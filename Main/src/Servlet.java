@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +16,22 @@ public class Servlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         System.out.println("test2");
+
         PrintWriter writer = response.getWriter();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/georgiahealthcareinformation", "root", "");
+            Statement statement = con.createStatement();
+            ResultSet resultset = statement.executeQuery("SELECT * FROM p1");
+            while (resultset.next()) {
+                writer.append(resultset.getString("NameFac") + "\n");
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
         if (request.getParameter("option") != null) {
             writer.append("<HTML><BODY>A checkbox was pressed</BODY></HTML>");
         } else {
