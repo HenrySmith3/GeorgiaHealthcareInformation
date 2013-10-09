@@ -22,8 +22,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/georgiahealthcareinformation", "root", "");
             Statement statement = con.createStatement();
-            ResultSet resultset = statement.executeQuery("SELECT * FROM p1");
+            ResultSet resultset = statement.executeQuery(getBasicSelectStatement());
             while (resultset.next()) {
+                Hospital hospital = getHospitalFromResultSet(resultset);
                 writer.append(resultset.getString("NameFac") + "\n");
             }
             con.close();
@@ -37,5 +38,17 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         } else {
             writer.append("<HTML><BODY>A checkbox was not pressed</BODY></HTML>");
         }
+    }
+
+    private String getBasicSelectStatement() {
+        return "SELECT * " +
+                "FROM (p1 " +
+                "JOIN p2 ON p1.ID = p2.ID " +
+                "JOIN p3_4_5 ON p1.ID = p3_4_5.ID)";
+    }
+
+    private Hospital getHospitalFromResultSet(ResultSet resultSet) {
+        Hospital hospital = new Hospital();
+        return hospital;
     }
 }
