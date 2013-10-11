@@ -5,18 +5,20 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Henry
- * Date: 10/6/13
- * Time: 2:05 PM
- * To change this template use File | Settings | File Templates.
+ * The main servlet which controls the back end.
  */
 public class Servlet extends javax.servlet.http.HttpServlet {
 
+    /**
+     * Currently unused.
+     */
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        System.out.println("test");
+        System.out.println("Post method received.");
     }
 
+    /**
+     * The main request processing.
+     */
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
         Hospital criteria = populateCriteriaFromRequest(request);

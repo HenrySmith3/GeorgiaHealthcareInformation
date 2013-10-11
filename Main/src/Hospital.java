@@ -4,11 +4,9 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Henry
- * Date: 10/9/13
- * Time: 11:51 AM
- * To change this template use File | Settings | File Templates.
+ * This is a class which represents a single hospital or clinic.
+ * This is used to return results from the SQL query, or as the criteria.
+ * When used as a criteria, every field not being searched on is null, every non-null field is a requirement.
  */
 public class Hospital {
     private final static int TRUE = 1;
