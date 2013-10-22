@@ -24,17 +24,21 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Hospital criteria = populateCriteriaFromRequest(request);
         PrintWriter writer = response.getWriter();
         Connection con = initializeConnection();
+        List<Hospital> hospitals = new ArrayList<Hospital>();
         try {
             Statement statement = con.createStatement();
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
-                writer.append(hospital.toString() + "\n");
+                hospitals.add(hospital);
+                //writer.append(hospital.toString() + "\n");
             }
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        request.setAttribute("hospitals", hospitals);
+        request.getRequestDispatcher("/response.jsp").forward(request, response);
     }
 
     private String getQuery(Hospital criteria) {
