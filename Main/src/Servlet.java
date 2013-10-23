@@ -1,3 +1,6 @@
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,13 +27,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Hospital criteria = populateCriteriaFromRequest(request);
         PrintWriter writer = response.getWriter();
         Connection con = initializeConnection();
-        List<Hospital> hospitals = new ArrayList<Hospital>();
+        JSONArray hospitals = new JSONArray();
         try {
             Statement statement = con.createStatement();
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
-                hospitals.add(hospital);
+                hospitals.add(hospital.toJson());
                 //writer.append(hospital.toString() + "\n");
             }
             con.close();

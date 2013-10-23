@@ -1,3 +1,5 @@
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import oracle.jrockit.jfr.settings.JSONElement;
 
 import java.lang.reflect.Field;
@@ -140,6 +142,24 @@ public class Hospital {
         result.append("}");
 
         return result.toString();
+    }
+
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        //print field names paired with their values
+        for ( Field field : fields  ) {
+            try {
+                if (!field.getName().equalsIgnoreCase("true"))  {
+                    jsonObject.accumulate(field.getName(), field.get(this));
+                }
+            } catch ( IllegalAccessException ex ) {
+                System.out.println(ex);
+            }
+        }
+        return jsonObject;
+
     }
 
     public static Hospital getHospitalFromResultSet(ResultSet resultSet) throws SQLException {
