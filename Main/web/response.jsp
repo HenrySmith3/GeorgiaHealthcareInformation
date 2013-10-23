@@ -9,6 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" href="/css/main.css" type="text/css">
 <html>
 <head>
     <title>This is a response</title>
@@ -18,8 +19,12 @@
     JSONArray jsonArray = (JSONArray)request.getAttribute("hospitals");
     ListIterator listIterator = jsonArray.listIterator();
     while (listIterator.hasNext()) {
+        out.print("<div>");
         JSONObject jsonObject = (JSONObject)listIterator.next();
-        out.print(jsonObject.get("name") + "\n");
+        out.print("Name: " + jsonObject.get("name") + "</br>");
+        out.print("Phone: " + jsonObject.get("phone") + "</br>");
+        out.print("Website: " + jsonObject.get("website") + "</br>");
+        out.print("</div>\n </br></br>");
     }
 %>
     <%--${hospitals}--%>
