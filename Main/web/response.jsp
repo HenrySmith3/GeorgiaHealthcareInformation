@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/css/main.css" type="text/css">
 <html>
 <head>
-    <title>This is a response</title>
+    <title>Georgia Healthcare Search Results</title>
 </head>
 <body>
 <%
@@ -23,8 +23,10 @@
         JSONObject jsonObject = (JSONObject)listIterator.next();
         out.print("Name: " + jsonObject.get("name") + "</br>");
         out.print("Phone: " + jsonObject.get("phone") + "</br>");
-        out.print("Website: " + jsonObject.get("website") + "</br>");
-        out.print("</div>\n </br></br>");
+        if (!jsonObject.get("website").toString().equals("null")) {
+            out.print("Website: " + jsonObject.get("website") + "</br>");
+        }
+        out.print("</div>");//\n </br></br>");
     }
 %>
     <%--${hospitals}--%>
