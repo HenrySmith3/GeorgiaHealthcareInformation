@@ -24,10 +24,19 @@
         <servlet-name>index</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>response</servlet-name>
+        <jsp-file>/response.jsp</jsp-file>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>response</servlet-name>
+        <url-pattern>/response.jsp</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
