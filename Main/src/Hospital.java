@@ -38,7 +38,7 @@ public class Hospital {
     public String spanishTimesComment;//this is poorly named.
     public String hoursGuide;
 
-    //page 3
+    //page 3, 4, & 5
     public int walkIn;//this needs an enum.
     public String walkInComment;
     public int apptGuide;//what does this mean?
