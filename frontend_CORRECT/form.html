@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		
-	</head>
+		<title>User Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="boostrap/js/bostrap.min.js"></script>
+        <style type="text/css">
+            h1 { text-align:center; } 
+            h4 { text-align: center; }
+            body {
+                margin: auto;
+                width: 70%;
+            }
+            .form-control{
+                margin-right: 10px;
+            }
+        </style>
+	</head> <!--end of header-->
 
 	<body>
+        
 		<div id="title">
-			<h1>Please fill out the form as accurately as you can </h1>
+            <h1>Clinic Search Form</h1>
+			<h4>Please fill out this form information based on the individual(s) who need healthcare. </h4>
 		</div>
 
 		<br>
 		<br>
 
-		<form>
+        <div class="span12">
+		<form class="form-horizontal">
 			<fieldset>
 				<legend> Personal Information </legend>
-				<div id="address">
-					What is your address? <input type="text" name="address"><br>
+                
+				<div id="address" class="form-horizontal">
+					<label>What county does the person who needs healthcare live in?</label>
+                    <br>
+                    <input type="text" class="form-control" name="address"><br>
+                    
 				</div>
 
 
 				<br>
 				<br>
 
-				<div id="sex">
-				<form>
+				<div id="sex" class="form-inline">
 				<label>Sex:</label>
-				<input type = "radio"
+                <br>
+				<input type = "radio" class="form-control"
 					name = "pickS"
 					id = "pickSF"
 					value = "female" />
 				<label for = "pickSF">Female</label>
 
-				<input type = "radio"
+				<input type = "radio" class="form-control"
 					name = "pickS"
 					id = "pickSM"
 					value = "male" />
 				<label for = "pickSM">Male</label>
-			</form>
 		</div>
 			</fieldset>
 		</form>
@@ -49,8 +69,9 @@
 		<form>
 			<fieldset>
 				<legend> Transportation </legend>
-				<div id="trans">
+				<div id="trans" class = "form-inline">
 					<label>What is your preferred method of transportation?</label>
+                    <br>
 					<select id = "transportation">
 						<option value = "1">Drive</option>
 						<option value = "2">MARTA</option>
@@ -62,15 +83,16 @@
 				<br>
 				<br>
 
-				<div id="parking">
+				<div id="parking" class="form-inline">
 					<label> Do you require parking space? </label>
-					<input type = "radio"
+                    <br>
+					<input type = "radio" class="form-control"
 						name = "parking"
 						id = "yes"
 						value = "y" />
 					<label for = "yes">Yes</label>
 
-					<input type = "radio"
+					<input type = "radio" class="form-control"
 						name = "parking"
 						id = "no"
 						value = "n" />
@@ -88,15 +110,16 @@
 		<form>
 			<fieldset>
 				<legend>Clinic Services</legend>
-				<div id="appt">
+				<div id="appt" class="form-inline">
 				<label>What sort of appointments do you prefer?</label>
-				<input type = "radio"
+                <br>
+				<input type = "radio" class="form-control"
 					name = "appt"
 					id = "walkin"
 					value = "walk" />
 				<label for = "walkin">Walk-In</label>
 
-				<input type = "radio"
+				<input type = "radio" class="form-control"
 					name = "appt"
 					id = "appointment"
 					value = "appmt" />
@@ -106,8 +129,9 @@
 				<br>
 				<br>
 
-				<div id="insurance">
+				<div id="insurance" class="form-inline">
 					<label>What medical insurance do you have?</label>
+                    <br>
 						<select id = "insurance">
 							<option value = "1">Medicare</option>
 							<option valie = "2">Medicaid</option>
@@ -119,20 +143,21 @@
 				<br>
 				<br>
 
-				<div id="language">
+				<div id="language" class="form-inline">
 				<p>
 					<label>Do you require any of these faculty members to speak Spanish?</label>
-					<input type = "checkbox"
+                    <br>
+					<input type = "checkbox" class="form-control"
 						id = "receptionist"
 						value = "recept" />
 					<label for = "receptionist">Receptionist</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "nurses"
 						value = "nur" />
 					<label for = "nurses">Nurses</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "doctor"
 						value = "doc" />
 					<label for = "doctor">Doctor</label>
@@ -142,15 +167,16 @@
 				<br>
 				<br>
 
-				<div id="forms">
+				<div id="forms" class="form-inline">
 					<label>Do the medical forms need to be written in Spanish?</label>
-					<input type = "radio"
+                    <br>
+					<input type = "radio" class="form-control"
 						name = "forms"
 						id = "yes"
 						value = "y" />
 					<label for = "yes">Yes</label>
 
-					<input type = "radio"
+					<input type = "radio" class="form-control"
 						name = "forms"
 						id = "no"
 						value = "n" />
@@ -160,15 +186,16 @@
 				<br>
 				<br>
 
-				<div id="phone">
+				<div id="phone" class="form-inline">
 					<label>Do you need a phone interpreter?</label>
-					<input type = "radio"
+                    <br>
+					<input type = "radio" class="form-control"
 						name = "phone"
 						id = "yes"
 						value = "y" />
 					<label for = "yes">Yes</label>
 
-					<input type = "radio"
+					<input type = "radio" class="form-control"
 						name = "forms"
 						id = "no"
 						value = "n" />
@@ -178,15 +205,16 @@
 				<br>
 				<br>
 
-				<div id="call">
+				<div id="call" class="form-inline">
 					<label>Do you require someone to be on-call after the clinic's normal business hours?</label>
-						<input type = "radio"
+                        <br>
+						<input type = "radio" class="form-control"
 							name = "call"
 							id = "yes"
 							value = "y" />
 						<label for = "yes">Yes</label>
 
-						<input type = "radio"
+						<input type = "radio" class="form-control"
 							name = "call"
 							id = "no"
 							value = "n" />
@@ -196,40 +224,40 @@
 				<br>
 				<br>
 
-				<div id="date">
+				<div id="date" class="form-inline">
 					<label>Which days are best for you to visit the clinic?</label>
 					<br>
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "mon"
 						value = "M" />
 					<label for = "mon">Monday</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "tues"
 						value = "T" />
 					<label for = "tues">Tuesday</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "wed"
 						value = "W" />
 					<label for = "wed">Wednesday</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "thurs"
 						value = "R" />
 					<label for = "thurs">Thursday</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "fri"
 						value = "F" />
 					<label for = "fri">Friday</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "sat"
 						value = "S" />
 					<label for = "sat">Saturday</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "sun"
 						value = "Su" />
 					<label for = "sun">Sunday</label>
@@ -245,36 +273,36 @@
 		<form>
 			<fieldset>
 				<legend>Healthcare</legend>
-				<div id="type">
+				<div id="type" class="form-inline">
 					<p>
 					<label>Do you need the clinic to handle any of the following?</label>
 					<br>
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "women"
 						value = "wo" />
 					<label for = "receptionist">Women's Health</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "mens"
 						value = "me" />
 					<label for = "nurses">Men's Health</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "family"
 						value = "fam" />
 					<label for = "family">Family Health</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "mental"
 						value = "ment" />
 					<label for = "mental">Mental Health</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "dental"
 						value = "dent" />
 					<label for = "dental">Dental Health</label>
 
-					<input type = "checkbox"
+					<input type = "checkbox" class="form-control"
 						id = "vision"
 						value = "vis" />
 					<label for = "vision">Vision Health</label>
@@ -284,15 +312,16 @@
 				<br>
 				<br>
 
-				<div id="children">
+				<div id="children" class="form-inline">
 					<label>Do you have children that need medical assistance?</label>
-						<input type = "radio"
+                        <br>
+						<input type = "radio" class="form-control"
 							name = "chil"
 							id = "yes"
 							value = "y" />
 						<label for = "yes">Yes</label>
 
-						<input type = "radio"
+						<input type = "radio" class="form-control"
 							name = "child"
 							id = "no"
 							value = "n" />
@@ -304,25 +333,33 @@
 
 				<div id = "ages">
 					<label>If yes, please check all the ages that apply.</label>
-						<input type = "checkbox"
+                    <label>
+						<input type = "checkbox" class="form-control"
 							id = "05"
 							value = "1" />
-						<label for = "05">0-5</label>
+						<span>0-5</span>
+                    </label>
 
-						<input type = "checkbox"
+                    <label>
+						<input type = "checkbox" class="form-control"
 							id = "610"
 							value = "2" />
-						<label for = "610">6-10</label>
+						<span>6-10</span>
+                    </label>
 
-						<input type = "checkbox"
+                    <label>
+						<input type = "checkbox" class="form-control"
 							id = "1115"
 							value = "3" />
-						<label for = "1115">11-15</label>
+						<span>11-15</span>
+                    </label>
 
-						<input type = "checkbox"
+                    <label>
+						<input type = "checkbox" class="form-control"
 							id = "1617"
 							value = "4" />
-						<label for = "1617">16-17</label>
+						<span>16-17</span>
+                    </label>
 				</div>
 
 				<br>
@@ -330,50 +367,46 @@
 
 				<div id = "mentalhealth">
 					<label>Do you need mental health, counseling, or rehabilitation services in any of the following?</label>
-						<br>
-						<input type = "checkbox"
+						
+                        <label>
+						<input type = "checkbox" class="form-control"
 							id = "substance"
 							value = "subt" />
-						<label for = "substance">Substance Abuse</label>
+						<span>Substance Abuse</span>
+                        </label>
 
-						<input type = "checkbox"
+                    <label>
+						<input type = "checkbox" class="form-control"
 							id = "sex"
 							value = "se" />
-						<label for = "sex">Sexual Abuse</label>
+						<span>Sexual Abuse</span>
+                    </label>
 
-						<input type = "checkbox"
+                    <label>
+						<input type = "checkbox" class="form-control"
 							id = "anger"
 							value = "ang" />
-						<label for = "anger">Anger Management</label>
+						<span>Anger Management</span>
+                    </label>
 
-						<input type = "checkbox"
+				
+                    <label>
+                    <input type = "checkbox" class="form-control"
 							id = "sexHIV"
 							value = "HIV" />
-						<label for = "sexHIV">HIV</label>
+						<span>HIV</span>
+                    </label>
 
-						<input type = "checkbox"
+						
+                    <label>
+                    <input type = "checkbox" class="form-control"
 							id = "sexLGBT"
 							value = "LGBT" />
-						<label for = "sexLGBT">LGBT</label>
+						<span>LGBT</span>
+                    </label>
 				</div>
 
-				<br>
-				<br>
 
-				<div id="abortion">
-					<label>Do you need abortion servies?</label>
-						<input type = "radio"
-							name = "abortion"
-							id = "yes"
-							value = "y" />
-						<label for = "yes">Yes</label>
-
-						<input type = "radio"
-							name = "abortion"
-							id = "no"
-							value = "n" />
-						<label for = "no">No</label>
-					</div>
 			</fieldset>
 		</form>
 				
@@ -382,7 +415,8 @@
 		<br>
 
 
-		<button type="submit">Submit</button>
+		<button type="submit" class="btn btn-primary">Submit</button>
+        </div>
 
 
 	</body>
