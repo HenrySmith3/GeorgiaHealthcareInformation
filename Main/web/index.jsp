@@ -425,8 +425,12 @@
     <br>
     <br>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <form name="input" action="html_form_action.asp" method="get">
+        <div>
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+    </form>
+    <%--<button type="submit" class="btn btn-primary">Submit</button>--%>
         </div>
 
 
