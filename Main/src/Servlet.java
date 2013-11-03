@@ -138,18 +138,24 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         	stringBuilder.append( " AND WHERE p2.OnCall == " + 0);
         }
         if(criteria.openTimes != null){
+            int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Op == " + criteria.openTimes);
+        	stringBuilder.append( " AND WHERE p2." + day + "Op == " + criteria.openTimes.get(k));
+        	k++;
             }
         }
         if(criteria.closeTimes != null){
+            int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Cl == " + criteria.closeTimes);
+        	stringBuilder.append( " AND WHERE p2." + day + "Cl == " + criteria.closeTimes.get(k));
+        	k++;
             }
         }
         if(criteria.commentsOnTimes != null){
+            int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Comm == " + criteria.commentsOnTimes);
+        	stringBuilder.append( " AND WHERE p2." + day + "Comm == " + criteria.commentsOnTimes.get(k)));
+        	k++;
             }
         }
         if(criteria.spanishTimesComment != null){
