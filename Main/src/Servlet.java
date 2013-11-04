@@ -493,17 +493,202 @@ public class Servlet extends javax.servlet.http.HttpServlet {
      * @param request The incoming request which contains the form data.
      * @return A hospital which represents the search criteria.
      */
-    private Hospital populateCriteriaFromRequest(HttpServletRequest request) {
+    private Hospital populateCriteriaFromRequest(HttpServletRequest request) 
+{
         Hospital criteria = new Hospital();
         Enumeration parameterNames = request.getParameterNames();
 
-        while (parameterNames.hasMoreElements()) {
+        while (parameterNames.hasMoreElements()) 
+        {
             String parameter = (String)parameterNames.nextElement();
-            if (parameter.equalsIgnoreCase("nameOfParameterHere")) {
-                //set value in criteria here.
-            }
+            
+            if (parameter.equalsIgnoreCase("id")) 
+            	criteria.id = parameter;
+            else if (parameter.equalsIgnoreCase("itp")) 
+            	criteria.itp = parameter;
+            else if (parameter.equalsIgnoreCase("spanishSpeakingStaff")) 
+            	criteria.spanishSpeakingStaff = parameter;
+            else if (parameter.equalsIgnoreCase("name")) 
+            	criteria.name = parameter;
+            else if (parameter.equalsIgnoreCase("addressLine1")) 
+            	criteria.addressLine1 = parameter;
+            else if (parameter.equalsIgnoreCase("addressLine2")) 
+            	criteria.addressLine2 = parameter;
+            else if (parameter.equalsIgnoreCase("city")) 
+            	criteria.city = parameter;
+            else if (parameter.equalsIgnoreCase("county")) 
+            	criteria.county = parameter;
+            else if (parameter.equalsIgnoreCase("zip")) 
+            	criteria.zip = parameter;
+            else if (parameter.equalsIgnoreCase("fax")) 
+            	criteria.fax = parameter;
+            else if (parameter.equalsIgnoreCase("website")) 
+            	criteria.website = parameter;
+            else if (parameter.equalsIgnoreCase("mainFacility")) 
+            	criteria.mainFacility = parameter;
+            else if (parameter.equalsIgnoreCase("branchRefNumber")) 
+            	criteria.branchRefNumber = parameter;
+            else if (parameter.equalsIgnoreCase("open247")) 
+            	criteria.open247 = parameter;
+            else if (parameter.equalsIgnoreCase("associatedFacilities")) 
+            	criteria.associatedFacilities = parameter;
+            else if (parameter.equalsIgnoreCase("intComm")) 
+            	criteria.intComm = parameter;
+            else if (parameter.equalsIgnoreCase("onCall")) 
+            	criteria.onCall = parameter;
+            else if (parameter.equalsIgnoreCase("openTimes")) 
+            	criteria.openTimes = parameter;
+            else if (parameter.equalsIgnoreCase("closeTimes")) 
+            	criteria.closeTimes = parameter;
+            else if (parameter.equalsIgnoreCase("commentsOnTimes")) 
+            	criteria.commentsOnTimes = parameter;
+            else if (parameter.equalsIgnoreCase("spanishTimesComment")) 
+            	criteria.spanishTimesComment = parameter;
+            else if (parameter.equalsIgnoreCase("hoursGuide")) 
+            	criteria.hoursGuide = parameter;
+            else if (parameter.equalsIgnoreCase("walkIn")) 
+            	criteria.walkIn = parameter;
+            else if (parameter.equalsIgnoreCase("walkInComment")) 
+            	criteria.walkInComment = parameter;
+            else if (parameter.equalsIgnoreCase("apptGuide")) 
+            	criteria.apptGuide = parameter;
+            else if (parameter.equalsIgnoreCase("walkInGuide")) 
+            	criteria.walkInGuide = parameter;
+            else if (parameter.equalsIgnoreCase("parking")) 
+            	criteria.parking = parameter;
+            else if (parameter.equalsIgnoreCase("parkingComment")) 
+            	criteria.parkingComment = parameter;
+            else if (parameter.equalsIgnoreCase("publicTransportation")) 
+            	criteria.publicTransportation = parameter;
+            else if (parameter.equalsIgnoreCase("publicTransportationGuide")) 
+            	criteria.publicTransportationGuide = parameter;
+            else if (parameter.equalsIgnoreCase("publicTransportationComment")) 
+            	criteria.publicTransportationComment = parameter;
+            else if (parameter.equalsIgnoreCase("publicTransportationOther")) 
+            	criteria.publicTransportationOther = parameter;
+            else if (parameter.equalsIgnoreCase("publicTransportationOtherComment")) 
+            	criteria.publicTransportationOtherComment = parameter;
+            else if (parameter.equalsIgnoreCase("freeTransport")) 
+            	criteria.freeTransport = parameter;
+            else if (parameter.equalsIgnoreCase("spanAdmin")) 
+            	criteria.spanAdmin = parameter;
+            else if (parameter.equalsIgnoreCase("spanAdminGuide")) 
+            	criteria.spanAdminGuide = parameter;
+            else if (parameter.equalsIgnoreCase("spanNurse")) 
+            	criteria.spanNurse = parameter;
+            else if (parameter.equalsIgnoreCase("spanNurseGuide")) 
+            	criteria.spanNurseGuide = parameter;
+            else if (parameter.equalsIgnoreCase("spanDoc")) 
+            	criteria.spanDoc = parameter;
+            else if (parameter.equalsIgnoreCase("spanDocGuide")) 
+            	criteria.spanDocGuide = parameter;
+            else if (parameter.equalsIgnoreCase("spanInterpreter")) 
+            	criteria.spanInterpreter = parameter;
+            else if (parameter.equalsIgnoreCase("spanInterpreterGuide")) 
+            	criteria.spanInterpreterGuide = parameter;
+            else if (parameter.equalsIgnoreCase("spanPhone")) 
+            	criteria.spanPhone = parameter;
+            else if (parameter.equalsIgnoreCase("spanPhoneGuide")) 
+            	criteria.spanPhoneGuide = parameter;
+            else if (parameter.equalsIgnoreCase("spanFo")) 
+            	criteria.spanFo = parameter;
+            else if (parameter.equalsIgnoreCase("spanFoGuide")) 
+            	criteria.spanFoGuide = parameter;
+            else if (parameter.equalsIgnoreCase("insurance")) 
+            	criteria.insurance = parameter;
+            else if (parameter.equalsIgnoreCase("insuranceComment")) 
+            	criteria.insuranceComment = parameter;
+            else if (parameter.equalsIgnoreCase("medicaid")) 
+            	criteria.medicaid = parameter;
+            else if (parameter.equalsIgnoreCase("peachCare")) 
+            	criteria.peachCare = parameter;
+            else if (parameter.equalsIgnoreCase("pay")) 
+            	criteria.pay = parameter;
+            else if (parameter.equalsIgnoreCase("financialAssistance")) 
+            	criteria.financialAssistance = parameter;
+            else if (parameter.equalsIgnoreCase("payPlanGuide")) 
+            	criteria.payPlanGuide = parameter;
+            else if (parameter.equalsIgnoreCase("SlideSc")) 
+            	criteria.SlideSc = parameter;
+            else if (parameter.equalsIgnoreCase("financialAssistanceComment")) 
+            	criteria.financialAssistanceComment = parameter;
+            else if (parameter.equalsIgnoreCase("finAssPh")) 
+            	criteria.finAssPh = parameter;
+            else if (parameter.equalsIgnoreCase("finAllPhComment")) 
+            	criteria.finAllPhComment = parameter;
+            else if (parameter.equalsIgnoreCase("spcFCH")) 
+            	criteria.spcFCH = parameter;
+            else if (parameter.equalsIgnoreCase("spcWH")) 
+            	criteria.spcWH = parameter;
+            else if (parameter.equalsIgnoreCase("spcMH")) 
+            	criteria.spcMH = parameter;
+            else if (parameter.equalsIgnoreCase("spcMHC")) 
+            	criteria.spcMHC = parameter;
+            else if (parameter.equalsIgnoreCase("spcDH")) 
+            	criteria.spcDH = parameter;
+            else if (parameter.equalsIgnoreCase("spcVH")) 
+            	criteria.spcVH = parameter;
+            else if (parameter.equalsIgnoreCase("spcOT")) 
+            	criteria.spcOT = parameter;
+            else if (parameter.equalsIgnoreCase("freeLow")) 
+            	criteria.freeLow = parameter;
+            else if (parameter.equalsIgnoreCase("spcComment")) 
+            	criteria.spcComment = parameter;
+            else if (parameter.equalsIgnoreCase("oteSpecial")) 
+            	criteria.oteSpecial = parameter;
+            else if (parameter.equalsIgnoreCase("spcDk")) 
+            	criteria.spcDk = parameter;
+            else if (parameter.equalsIgnoreCase("age")) 
+            	criteria.age = parameter;
+            else if (parameter.equalsIgnoreCase("ageStart")) 
+            	criteria.ageStart = parameter;
+            else if (parameter.equalsIgnoreCase("ageEnd")) 
+            	criteria.ageEnd = parameter;
+            else if (parameter.equalsIgnoreCase("ageOTComment ")) 
+            	criteria.ageOTComment = parameter;
+            else if (parameter.equalsIgnoreCase("childGuide")) 
+            	criteria.childGuide = parameter;
+            else if (parameter.equalsIgnoreCase("adolescentGuide")) 
+            	criteria.adolescentGuide = parameter;
+            else if (parameter.equalsIgnoreCase("adultGuide")) 
+            	criteria.adultGuide = parameter;
+            else if (parameter.equalsIgnoreCase("agesGuide")) 
+            	criteria.agesGuide = parameter;
+            else if (parameter.equalsIgnoreCase("otServ")) 
+            	criteria.otServ = parameter;
+            else if (parameter.equalsIgnoreCase("hivTestGuide")) 
+            	criteria.hivTestGuide = parameter;
+            else if (parameter.equalsIgnoreCase("abortionGuide")) 
+            	criteria.abortionGuide = parameter;
+            else if (parameter.equalsIgnoreCase("mhCount")) 
+            	criteria.mhCount = parameter;
+            else if (parameter.equalsIgnoreCase("mhCounSG")) 
+            	criteria.mhCounSG = parameter;
+            else if (parameter.equalsIgnoreCase("mhCounOT")) 
+            	criteria.mhCounOT = parameter;
+            else if (parameter.equalsIgnoreCase("subAbGuide")) 
+            	criteria.subAbGuide = parameter;
+            else if (parameter.equalsIgnoreCase("sexAbGuide")) 
+            	criteria.sexAbGuide = parameter;
+            else if (parameter.equalsIgnoreCase("angManGuide")) 
+            	criteria.angManGuide = parameter;
+            else if (parameter.equalsIgnoreCase("hivConsGuide")) 
+            	criteria.hivConsGuide = parameter;
+            else if (parameter.equalsIgnoreCase("lgbtGuide")) 
+            	criteria.lgbtGuide = parameter;
+            else if (parameter.equalsIgnoreCase("suppGGuide")) 
+            	criteria.suppGGuide = parameter;
+            else if (parameter.equalsIgnoreCase("finalComment")) 
+            	criteria.finalComment = parameter;
+            else if (parameter.equalsIgnoreCase("notes")) 
+            	criteria.notes = parameter;
+            else if (parameter.equalsIgnoreCase("notesLowFree")) 
+            	criteria.notesLowFree = parameter;
+            else if(parameter.equalsIgnoreCase("notesLowFree2")) 
+            	criteria.notesLowFree2 = parameter;
+            else {}
         }
         return criteria;
-    }
+}
 
 }
