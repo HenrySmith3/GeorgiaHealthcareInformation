@@ -493,8 +493,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
      * @param request The incoming request which contains the form data.
      * @return A hospital which represents the search criteria.
      */
-    private Hospital populateCriteriaFromRequest(HttpServletRequest request) 
-{
+    private Hospital populateCriteriaFromRequest(HttpServletRequest request)
+    {
         Hospital criteria = new Hospital();
         Enumeration parameterNames = request.getParameterNames();
 
@@ -689,6 +689,5 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             else {}
         }
         return criteria;
-}
-
+    }
 }
