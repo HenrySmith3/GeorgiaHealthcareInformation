@@ -116,8 +116,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         if(criteria.associatedFacilities != null){
 	    for(int i = 0; i < criteria.associatedFacilities.size(); i++){
-	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + " == " + criteria.associatedFacilities.get(i)[0]);
-	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + "Ph == " + criteria.associatedFacilities.get(i)[1]);
+//	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + " == " + criteria.associatedFacilities.get(i)[0]);
+//	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + "Ph == " + criteria.associatedFacilities.get(i)[1]);
 	    }      	
         }
         if(criteria.intComm != null){
@@ -154,7 +154,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if(criteria.commentsOnTimes != null){
             int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Comm == " + criteria.commentsOnTimes.get(k)));
+        	stringBuilder.append( " AND WHERE p2." + day + "Comm == " + criteria.commentsOnTimes.get(k));
         	k++;
             }
         }
@@ -501,7 +501,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         while (parameterNames.hasMoreElements()) 
         {
             String parameter = (String)parameterNames.nextElement();
-            
+            /*
             if (parameter.equalsIgnoreCase("id")) 
             	criteria.id = parameter;
             else if (parameter.equalsIgnoreCase("itp")) 
@@ -687,6 +687,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             else if(parameter.equalsIgnoreCase("notesLowFree2")) 
             	criteria.notesLowFree2 = parameter;
             else {}
+            */
         }
         return criteria;
     }
