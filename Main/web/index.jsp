@@ -99,13 +99,13 @@
                     <br>
           <input type = "radio" class="form-control"
             name = "parking"
-            id = "yes"
+            id = "parkyes"
             value = "y" />
           <label for = "yes">Yes</label>
 
           <input type = "radio" class="form-control"
             name = "parking"
-            id = "no"
+            id = "parkno"
             value = "n" />
           <label for = "no">No</label>
         </div>
@@ -143,7 +143,7 @@
         <div id="insurance" class="form-inline">
           <label>What medical insurance do you have?</label>
                     <br>
-            <select id = "insurance">
+            <select id = "medinsurance">
               <option value = "1">Medicare</option>
               <option valie = "2">Medicaid</option>
               <option value = "3">Peachcare</option>
@@ -183,13 +183,13 @@
                     <br>
           <input type = "radio" class="form-control"
             name = "forms"
-            id = "yes"
+            id = "medformyes"
             value = "y" />
           <label for = "yes">Yes</label>
 
           <input type = "radio" class="form-control"
             name = "forms"
-            id = "no"
+            id = "medformno"
             value = "n" />
           <label for = "no">No</label>
         </div>
@@ -202,13 +202,13 @@
                     <br>
           <input type = "radio" class="form-control"
             name = "phone"
-            id = "yes"
+            id = "phoneyes"
             value = "y" />
           <label for = "yes">Yes</label>
 
           <input type = "radio" class="form-control"
             name = "forms"
-            id = "no"
+            id = "phoneno"
             value = "n" />
           <label for = "no">No</label>
         </div>
@@ -328,13 +328,13 @@
                         <br>
             <input type = "radio" class="form-control"
               name = "chil"
-              id = "yes"
+              id = "childyes"
               value = "y" />
             <label for = "yes">Yes</label>
 
             <input type = "radio" class="form-control"
               name = "child"
-              id = "no"
+              id = "childno"
               value = "n" />
             <label for = "no">No</label>
         </div>
@@ -381,21 +381,21 @@
             
                         <label>
             <input type = "checkbox" class="form-control"
-              id = "substance"
+              id = "csubstance"
               value = "subt" />
             <span>Substance Abuse</span>
                         </label>
 
                     <label>
             <input type = "checkbox" class="form-control"
-              id = "sex"
+              id = "csex"
               value = "se" />
             <span>Sexual Abuse</span>
                     </label>
 
                     <label>
             <input type = "checkbox" class="form-control"
-              id = "anger"
+              id = "canger"
               value = "ang" />
             <span>Anger Management</span>
                     </label>
@@ -403,7 +403,7 @@
         
                     <label>
                     <input type = "checkbox" class="form-control"
-              id = "sexHIV"
+              id = "csexHIV"
               value = "HIV" />
             <span>HIV</span>
                     </label>
@@ -430,7 +430,7 @@
             <input type="submit" value="Submit" class="btn btn-primary">
         </div>
     </form>
-    <%--<button type="submit" class="btn btn-primary">Submit</button>--%>
+    <button type="button">Submit</button>
         </div>
 
 
