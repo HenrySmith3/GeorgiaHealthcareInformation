@@ -501,193 +501,303 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         while (parameterNames.hasMoreElements()) 
         {
             String parameter = (String)parameterNames.nextElement();
-            /*
-            if (parameter.equalsIgnoreCase("id")) 
-            	criteria.id = parameter;
-            else if (parameter.equalsIgnoreCase("itp")) 
-            	criteria.itp = parameter;
-            else if (parameter.equalsIgnoreCase("spanishSpeakingStaff")) 
-            	criteria.spanishSpeakingStaff = parameter;
-            else if (parameter.equalsIgnoreCase("name")) 
+
+            if (parameterNames.toString() == "id")
+            	criteria.id = Integer.parseInt(parameter) ;
+            if (parameterNames.toString()== "itp")
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.itp = true;
+                criteria.itp = false;
+            }
+            if (parameterNames.toString() == "spanishSpeakingStaff")
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spanishSpeakingStaff = true;
+                criteria.spanishSpeakingStaff = false;
+            }
+            if (parameterNames.toString() == "name")
             	criteria.name = parameter;
-            else if (parameter.equalsIgnoreCase("addressLine1")) 
+            if (parameterNames.toString() == "addressLine1")
             	criteria.addressLine1 = parameter;
-            else if (parameter.equalsIgnoreCase("addressLine2")) 
+            if (parameterNames.toString() == "addressLine2")
             	criteria.addressLine2 = parameter;
-            else if (parameter.equalsIgnoreCase("city")) 
+            if (parameterNames.toString() == "city")
             	criteria.city = parameter;
-            else if (parameter.equalsIgnoreCase("county")) 
+            if (parameterNames.toString() == "county")
             	criteria.county = parameter;
-            else if (parameter.equalsIgnoreCase("zip")) 
-            	criteria.zip = parameter;
-            else if (parameter.equalsIgnoreCase("fax")) 
+            if (parameterNames.toString() == ("zip"))
+            	criteria.zip = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("fax"))
             	criteria.fax = parameter;
-            else if (parameter.equalsIgnoreCase("website")) 
+            if (parameterNames.toString() == ("website"))
             	criteria.website = parameter;
-            else if (parameter.equalsIgnoreCase("mainFacility")) 
+            if (parameterNames.toString() == ("mainFacility"))
             	criteria.mainFacility = parameter;
-            else if (parameter.equalsIgnoreCase("branchRefNumber")) 
-            	criteria.branchRefNumber = parameter;
-            else if (parameter.equalsIgnoreCase("open247")) 
-            	criteria.open247 = parameter;
-            else if (parameter.equalsIgnoreCase("associatedFacilities")) 
-            	criteria.associatedFacilities = parameter;
-            else if (parameter.equalsIgnoreCase("intComm")) 
+            if (parameterNames.toString() == ("branchRefNumber"))
+            	criteria.branchRefNumber = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("open247"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.open247 = true;
+                criteria.open247 = false;
+            }
+            //if (parameterNames.equalsIgnoreCase("associatedFacilities"))
+            //	criteria.associatedFacilities = parameter;
+            if (parameterNames.toString() == ("intComm"))
             	criteria.intComm = parameter;
-            else if (parameter.equalsIgnoreCase("onCall")) 
-            	criteria.onCall = parameter;
-            else if (parameter.equalsIgnoreCase("openTimes")) 
-            	criteria.openTimes = parameter;
-            else if (parameter.equalsIgnoreCase("closeTimes")) 
-            	criteria.closeTimes = parameter;
-            else if (parameter.equalsIgnoreCase("commentsOnTimes")) 
-            	criteria.commentsOnTimes = parameter;
-            else if (parameter.equalsIgnoreCase("spanishTimesComment")) 
+            if (parameterNames.toString() == ("onCall"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.onCall = true;
+                criteria.onCall = false;
+            }
+            //if (parameterNames.equalsIgnoreCase("openTimes"))
+            //	criteria.openTimes = parameter;
+            //if (parameterNames.equalsIgnoreCase("closeTimes"))
+            //	criteria.closeTimes = parameter;
+            //if (parameterNames.equalsIgnoreCase("commentsOnTimes"))
+            //	criteria.commentsOnTimes = parameter;
+            if (parameterNames.toString() == ("spanishTimesComment"))
             	criteria.spanishTimesComment = parameter;
-            else if (parameter.equalsIgnoreCase("hoursGuide")) 
+            if (parameterNames.toString() == ("hoursGuide"))
             	criteria.hoursGuide = parameter;
-            else if (parameter.equalsIgnoreCase("walkIn")) 
-            	criteria.walkIn = parameter;
-            else if (parameter.equalsIgnoreCase("walkInComment")) 
+            if (parameterNames.toString() == ("walkIn"))
+            	criteria.walkIn = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("walkInComment"))
             	criteria.walkInComment = parameter;
-            else if (parameter.equalsIgnoreCase("apptGuide")) 
-            	criteria.apptGuide = parameter;
-            else if (parameter.equalsIgnoreCase("walkInGuide")) 
-            	criteria.walkInGuide = parameter;
-            else if (parameter.equalsIgnoreCase("parking")) 
-            	criteria.parking = parameter;
-            else if (parameter.equalsIgnoreCase("parkingComment")) 
+            if (parameterNames.toString() == ("apptGuide"))
+            	criteria.apptGuide = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("walkInGuide"))
+            	criteria.walkInGuide = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("parking"))
+            	criteria.parking = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("parkingComment"))
             	criteria.parkingComment = parameter;
-            else if (parameter.equalsIgnoreCase("publicTransportation")) 
-            	criteria.publicTransportation = parameter;
-            else if (parameter.equalsIgnoreCase("publicTransportationGuide")) 
-            	criteria.publicTransportationGuide = parameter;
-            else if (parameter.equalsIgnoreCase("publicTransportationComment")) 
+            if (parameterNames.toString() == ("publicTransportation"))
+            	criteria.publicTransportation = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("publicTransportationGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.publicTransportationGuide = true;
+                criteria.publicTransportationGuide = false;
+            }
+            if (parameterNames.toString() == ("publicTransportationComment"))
             	criteria.publicTransportationComment = parameter;
-            else if (parameter.equalsIgnoreCase("publicTransportationOther")) 
-            	criteria.publicTransportationOther = parameter;
-            else if (parameter.equalsIgnoreCase("publicTransportationOtherComment")) 
+            if (parameterNames.toString() == ("publicTransportationOther"))
+            	criteria.publicTransportationOther = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("publicTransportationOtherComment"))
             	criteria.publicTransportationOtherComment = parameter;
-            else if (parameter.equalsIgnoreCase("freeTransport")) 
+            if (parameterNames.toString() == ("freeTransport"))
             	criteria.freeTransport = parameter;
-            else if (parameter.equalsIgnoreCase("spanAdmin")) 
-            	criteria.spanAdmin = parameter;
-            else if (parameter.equalsIgnoreCase("spanAdminGuide")) 
+            if (parameterNames.toString() == ("spanAdmin"))
+            	criteria.spanAdmin = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("spanAdminGuide"))
             	criteria.spanAdminGuide = parameter;
-            else if (parameter.equalsIgnoreCase("spanNurse")) 
-            	criteria.spanNurse = parameter;
-            else if (parameter.equalsIgnoreCase("spanNurseGuide")) 
+            if (parameterNames.toString() == ("spanNurse"))
+            	criteria.spanNurse = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("spanNurseGuide"))
             	criteria.spanNurseGuide = parameter;
-            else if (parameter.equalsIgnoreCase("spanDoc")) 
-            	criteria.spanDoc = parameter;
-            else if (parameter.equalsIgnoreCase("spanDocGuide")) 
+            if (parameterNames.toString() == ("spanDoc"))
+            	criteria.spanDoc = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("spanDocGuide"))
             	criteria.spanDocGuide = parameter;
-            else if (parameter.equalsIgnoreCase("spanInterpreter")) 
-            	criteria.spanInterpreter = parameter;
-            else if (parameter.equalsIgnoreCase("spanInterpreterGuide")) 
+            if (parameterNames.toString() == ("spanInterpreter"))
+            	criteria.spanInterpreter = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("spanInterpreterGuide"))
             	criteria.spanInterpreterGuide = parameter;
-            else if (parameter.equalsIgnoreCase("spanPhone")) 
-            	criteria.spanPhone = parameter;
-            else if (parameter.equalsIgnoreCase("spanPhoneGuide")) 
+            if (parameterNames.toString() == ("spanPhone"))
+            	criteria.spanPhone = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("spanPhoneGuide"))
             	criteria.spanPhoneGuide = parameter;
-            else if (parameter.equalsIgnoreCase("spanFo")) 
-            	criteria.spanFo = parameter;
-            else if (parameter.equalsIgnoreCase("spanFoGuide")) 
+            if (parameterNames.toString() == ("spanFo"))
+            	criteria.spanFo = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("spanFoGuide"))
             	criteria.spanFoGuide = parameter;
-            else if (parameter.equalsIgnoreCase("insurance")) 
-            	criteria.insurance = parameter;
-            else if (parameter.equalsIgnoreCase("insuranceComment")) 
+            if (parameterNames.toString() == ("insurance"))
+            	criteria.insurance = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("insuranceComment"))
             	criteria.insuranceComment = parameter;
-            else if (parameter.equalsIgnoreCase("medicaid")) 
-            	criteria.medicaid = parameter;
-            else if (parameter.equalsIgnoreCase("peachCare")) 
-            	criteria.peachCare = parameter;
-            else if (parameter.equalsIgnoreCase("pay")) 
-            	criteria.pay = parameter;
-            else if (parameter.equalsIgnoreCase("financialAssistance")) 
-            	criteria.financialAssistance = parameter;
-            else if (parameter.equalsIgnoreCase("payPlanGuide")) 
-            	criteria.payPlanGuide = parameter;
-            else if (parameter.equalsIgnoreCase("SlideSc")) 
-            	criteria.SlideSc = parameter;
-            else if (parameter.equalsIgnoreCase("financialAssistanceComment")) 
+            if (parameterNames.toString() == ("medicaid"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.medicaid = true;
+                criteria.medicaid = false;
+            }
+            if (parameterNames.toString() == ("peachCare"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.peachCare = true;
+                criteria.peachCare = false;
+            }
+            if (parameterNames.toString() == ("pay"))
+            	criteria.pay = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("financialAssistance"))
+            	criteria.financialAssistance = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("payPlanGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.payPlanGuide = true;
+                criteria.payPlanGuide = false;
+            }
+            if (parameterNames.toString() == ("SlideSc"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.SlideSc = true;
+                criteria.SlideSc = false;
+            }
+            if (parameterNames.toString() == ("financialAssistanceComment"))
             	criteria.financialAssistanceComment = parameter;
-            else if (parameter.equalsIgnoreCase("finAssPh")) 
+            if (parameterNames.toString() == ("finAssPh"))
             	criteria.finAssPh = parameter;
-            else if (parameter.equalsIgnoreCase("finAllPhComment")) 
+            if (parameterNames.toString() == ("finAllPhComment"))
             	criteria.finAllPhComment = parameter;
-            else if (parameter.equalsIgnoreCase("spcFCH")) 
-            	criteria.spcFCH = parameter;
-            else if (parameter.equalsIgnoreCase("spcWH")) 
-            	criteria.spcWH = parameter;
-            else if (parameter.equalsIgnoreCase("spcMH")) 
-            	criteria.spcMH = parameter;
-            else if (parameter.equalsIgnoreCase("spcMHC")) 
-            	criteria.spcMHC = parameter;
-            else if (parameter.equalsIgnoreCase("spcDH")) 
-            	criteria.spcDH = parameter;
-            else if (parameter.equalsIgnoreCase("spcVH")) 
-            	criteria.spcVH = parameter;
-            else if (parameter.equalsIgnoreCase("spcOT")) 
-            	criteria.spcOT = parameter;
-            else if (parameter.equalsIgnoreCase("freeLow")) 
-            	criteria.freeLow = parameter;
-            else if (parameter.equalsIgnoreCase("spcComment")) 
+            if (parameterNames.toString() == ("spcFCH"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcFCH = true;
+                criteria.spcFCH = false;
+            }
+            if (parameterNames.toString() == ("spcWH"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcWH = true;
+                criteria.spcWH = false;
+            }
+            if (parameterNames.toString() == ("spcMH"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcMH = true;
+                criteria.spcMH = false;
+            }
+            if (parameterNames.toString() == ("spcMHC"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcMHC = true;
+                criteria.spcMHC = false;
+            }
+            if (parameterNames.toString() == ("spcDH"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcDH = true;
+                criteria.spcDH = false;
+            }
+            if (parameterNames.toString() == ("spcVH"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcVH = true;
+                criteria.spcVH = false;
+            }
+            if (parameterNames.toString() == ("spcOT"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.spcOT = true;
+                criteria.spcOT = false;
+            }
+            if (parameterNames.toString() == ("freeLow"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.freeLow = true;
+                criteria.freeLow = false;
+            }
+            if (parameterNames.toString() == ("spcComment"))
             	criteria.spcComment = parameter;
-            else if (parameter.equalsIgnoreCase("oteSpecial")) 
+            if (parameterNames.toString() == ("oteSpecial"))
             	criteria.oteSpecial = parameter;
-            else if (parameter.equalsIgnoreCase("spcDk")) 
-            	criteria.spcDk = parameter;
-            else if (parameter.equalsIgnoreCase("age")) 
-            	criteria.age = parameter;
-            else if (parameter.equalsIgnoreCase("ageStart")) 
-            	criteria.ageStart = parameter;
-            else if (parameter.equalsIgnoreCase("ageEnd")) 
-            	criteria.ageEnd = parameter;
-            else if (parameter.equalsIgnoreCase("ageOTComment ")) 
+            if (parameterNames.toString() == ("spcDk"))
+            	criteria.spcDk = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("age"))
+            	criteria.age = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("ageStart"))
+            	criteria.ageStart = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("ageEnd"))
+            	criteria.ageEnd = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("ageOTComment "))
             	criteria.ageOTComment = parameter;
-            else if (parameter.equalsIgnoreCase("childGuide")) 
-            	criteria.childGuide = parameter;
-            else if (parameter.equalsIgnoreCase("adolescentGuide")) 
-            	criteria.adolescentGuide = parameter;
-            else if (parameter.equalsIgnoreCase("adultGuide")) 
-            	criteria.adultGuide = parameter;
-            else if (parameter.equalsIgnoreCase("agesGuide")) 
+            if (parameterNames.toString() == ("childGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.childGuide = true;
+                criteria.childGuide = false;
+            }
+            if (parameterNames.toString() == ("adolescentGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.adolescentGuide = true;
+                criteria.adolescentGuide = false;
+            }
+            if (parameterNames.toString() == ("adultGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.adultGuide = true;
+                criteria.adultGuide = false;
+            }
+            if (parameterNames.toString() == ("agesGuide"))
             	criteria.agesGuide = parameter;
-            else if (parameter.equalsIgnoreCase("otServ")) 
-            	criteria.otServ = parameter;
-            else if (parameter.equalsIgnoreCase("hivTestGuide")) 
-            	criteria.hivTestGuide = parameter;
-            else if (parameter.equalsIgnoreCase("abortionGuide")) 
-            	criteria.abortionGuide = parameter;
-            else if (parameter.equalsIgnoreCase("mhCount")) 
-            	criteria.mhCount = parameter;
-            else if (parameter.equalsIgnoreCase("mhCounSG")) 
+            if (parameterNames.toString() == ("otServ"))
+            	criteria.otServ = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("hivTestGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.hivTestGuide = true;
+                criteria.hivTestGuide = false;
+            }
+            if (parameterNames.toString() == ("abortionGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.abortionGuide = true;
+                criteria.abortionGuide = false;
+            }
+            if (parameterNames.toString() == ("mhCount"))
+            	criteria.mhCount = Integer.parseInt(parameter);
+            if (parameterNames.toString() == ("mhCounSG"))
             	criteria.mhCounSG = parameter;
-            else if (parameter.equalsIgnoreCase("mhCounOT")) 
+            if (parameterNames.toString() == ("mhCounOT"))
             	criteria.mhCounOT = parameter;
-            else if (parameter.equalsIgnoreCase("subAbGuide")) 
-            	criteria.subAbGuide = parameter;
-            else if (parameter.equalsIgnoreCase("sexAbGuide")) 
-            	criteria.sexAbGuide = parameter;
-            else if (parameter.equalsIgnoreCase("angManGuide")) 
-            	criteria.angManGuide = parameter;
-            else if (parameter.equalsIgnoreCase("hivConsGuide")) 
-            	criteria.hivConsGuide = parameter;
-            else if (parameter.equalsIgnoreCase("lgbtGuide")) 
-            	criteria.lgbtGuide = parameter;
-            else if (parameter.equalsIgnoreCase("suppGGuide")) 
-            	criteria.suppGGuide = parameter;
-            else if (parameter.equalsIgnoreCase("finalComment")) 
+            if (parameterNames.toString() == ("subAbGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.subAbGuide = true;
+                criteria.subAbGuide = false;
+            }
+            if (parameterNames.toString() == ("sexAbGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.sexAbGuide = true;
+                criteria.sexAbGuide = false;
+            }
+            if (parameterNames.toString() == ("angManGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.angManGuide = true;
+                criteria.angManGuide = false;
+            }
+            if (parameterNames.toString() == ("hivConsGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.hivConsGuide = true;
+                criteria.hivConsGuide = false;
+            }
+            if (parameterNames.toString() == ("lgbtGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.lgbtGuide = true;
+                criteria.lgbtGuide = false;
+            }
+            if (parameterNames.toString() == ("suppGGuide"))
+            {
+                if(parameter.equalsIgnoreCase("True"))
+                    criteria.suppGGuide = true;
+                criteria.suppGGuide = false;
+            }
+            if (parameterNames.toString() == ("finalComment"))
             	criteria.finalComment = parameter;
-            else if (parameter.equalsIgnoreCase("notes")) 
+            if (parameterNames.toString() == ("notes"))
             	criteria.notes = parameter;
-            else if (parameter.equalsIgnoreCase("notesLowFree")) 
+            if (parameterNames.toString() == ("notesLowFree"))
             	criteria.notesLowFree = parameter;
-            else if(parameter.equalsIgnoreCase("notesLowFree2")) 
+            if(parameterNames.toString() == ("notesLowFree2"))
             	criteria.notesLowFree2 = parameter;
-            else {}
-            */
         }
         return criteria;
     }
