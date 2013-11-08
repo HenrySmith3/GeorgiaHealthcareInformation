@@ -542,8 +542,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.open247 = true;
                 criteria.open247 = false;
             }
-            //if (parameterNames.equalsIgnoreCase("associatedFacilities"))
-            //	criteria.associatedFacilities = parameter;
+            //Is this what we're trying to do?
+            if (parameterNames.toString() == ("associatedFacilities"))
+            	criteria.associatedFacilities.put(parameterNames.toString(), parameter);
+            //
+
             if (parameterNames.toString() == ("intComm"))
             	criteria.intComm = parameter;
             if (parameterNames.toString() == ("onCall"))
@@ -552,12 +555,15 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.onCall = true;
                 criteria.onCall = false;
             }
-            //if (parameterNames.equalsIgnoreCase("openTimes"))
-            //	criteria.openTimes = parameter;
-            //if (parameterNames.equalsIgnoreCase("closeTimes"))
-            //	criteria.closeTimes = parameter;
-            //if (parameterNames.equalsIgnoreCase("commentsOnTimes"))
-            //	criteria.commentsOnTimes = parameter;
+            //Is this what we're trying to do?
+            if (parameterNames.toString() == ("openTimes"))
+            	criteria.openTimes.add(parameter);
+            if (parameterNames.toString() ==("closeTimes"))
+            	criteria.closeTimes.add(parameter);
+            if (parameterNames.toString() == ("commentsOnTimes"))
+            	criteria.commentsOnTimes.add(parameter);
+            //
+
             if (parameterNames.toString() == ("spanishTimesComment"))
             	criteria.spanishTimesComment = parameter;
             if (parameterNames.toString() == ("hoursGuide"))
