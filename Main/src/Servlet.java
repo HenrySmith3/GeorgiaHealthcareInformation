@@ -806,6 +806,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if(parameter.equalsIgnoreCase("notesLowFree2"))
             	criteria.notesLowFree2 = parameter;
         }
-        return criteria;
+        return criteria ;
     }
 }
