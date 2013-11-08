@@ -40,7 +40,7 @@
     <br>
 
         <div class="span12">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="html_form_action.asp" method="get">
       <fieldset>
         <legend> Personal Information </legend>
                 
@@ -71,13 +71,11 @@
         <label for = "pickSM">Male</label>
     </div>
       </fieldset>
-    </form>
 
     <br>
     <br>
 
-    
-    <form>
+
       <fieldset>
         <legend> Transportation </legend>
         <div id="trans" class = "form-inline">
@@ -112,13 +110,10 @@
 
 
       </fieldset>
-    </form>
-  
 
     <br>
     <br>
 
-    <form>
       <fieldset>
         <legend>Clinic Services</legend>
         <div id="appt" class="form-inline">
@@ -276,12 +271,10 @@
 
 
       </fieldset>
-    </form>
 
     <br>
     <br>
 
-    <form>
       <fieldset>
         <legend>Healthcare</legend>
         <div id="type" class="form-inline">
@@ -418,19 +411,18 @@
         </div>
 
 
-      </fieldset>
-    </form>
+      </fieldset>           <div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </div>
         
 
     <br>
     <br>
-
-    <form name="input" action="html_form_action.asp" method="get">
-        <div>
-            <input type="submit" value="Submit" class="btn btn-primary">
-        </div>
+    <%--<div>--%>
+          <%--<input type="submit" value="Submit" class="btn btn-primary">--%>
+      <%--</div>--%>
     </form>
-    <button type="button">Submit</button>
+    <%--<button type="button">Submit</button>--%>
         </div>
 
 
