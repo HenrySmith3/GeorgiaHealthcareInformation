@@ -513,14 +513,16 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.itp = true;
-                criteria.itp = false;
+                else
+                    criteria.itp = false;
             }
             if (parameter.equalsIgnoreCase("spanishSpeakingStaff"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spanishSpeakingStaff = true;
-                criteria.spanishSpeakingStaff = false;
+                else
+                    criteria.spanishSpeakingStaff = false;
             }
             if (parameter.equalsIgnoreCase("name"))
             {
@@ -577,7 +579,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.open247 = true;
-                criteria.open247 = false;
+                else
+                    criteria.open247 = false;
             }
             //Is this what we're trying to do?
             if (parameter.equalsIgnoreCase("associatedFacilities"))
@@ -597,7 +600,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.onCall = true;
-                criteria.onCall = false;
+                else
+                    criteria.onCall = false;
             }
 
             //Is this what we're trying to do?
@@ -668,7 +672,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.publicTransportationGuide = true;
-                criteria.publicTransportationGuide = false;
+                else
+                    criteria.publicTransportationGuide = false;
             }
             if (parameter.equalsIgnoreCase("publicTransportationComment"))
             {
@@ -765,14 +770,16 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.medicaid = true;
-                criteria.medicaid = false;
+                else
+                    criteria.medicaid = false;
             }
             if (parameter.equalsIgnoreCase("peachCare"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.peachCare = true;
-                criteria.peachCare = false;
+                else
+                    criteria.peachCare = false;
             }
             if (parameter.equalsIgnoreCase("pay"))
             {
@@ -789,14 +796,16 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.payPlanGuide = true;
-                criteria.payPlanGuide = false;
+                else
+                    criteria.payPlanGuide = false;
             }
             if (parameter.equalsIgnoreCase("SlideSc"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.SlideSc = true;
-                criteria.SlideSc = false;
+                else
+                    criteria.SlideSc = false;
             }
             if (parameter.equalsIgnoreCase("financialAssistanceComment"))
             {
@@ -818,56 +827,64 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcFCH = true;
-                criteria.spcFCH = false;
+                else
+                    criteria.spcFCH = false;
             }
             if (parameter.equalsIgnoreCase("spcWH"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcWH = true;
-                criteria.spcWH = false;
+                else
+                    criteria.spcWH = false;
             }
             if (parameter.equalsIgnoreCase("spcMH"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcMH = true;
-                criteria.spcMH = false;
+                else
+                    criteria.spcMH = false;
             }
             if (parameter.equalsIgnoreCase("spcMHC"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcMHC = true;
-                criteria.spcMHC = false;
+                else
+                    criteria.spcMHC = false;
             }
             if (parameter.equalsIgnoreCase("spcDH"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcDH = true;
-                criteria.spcDH = false;
+                else
+                    criteria.spcDH = false;
             }
             if (parameter.equalsIgnoreCase("spcVH"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcVH = true;
-                criteria.spcVH = false;
+                else
+                    criteria.spcVH = false;
             }
             if (parameter.equalsIgnoreCase("spcOT"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.spcOT = true;
-                criteria.spcOT = false;
+                else
+                    criteria.spcOT = false;
             }
             if (parameter.equalsIgnoreCase("freeLow"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.freeLow = true;
-                criteria.freeLow = false;
+                else
+                    criteria.freeLow = false;
             }
             if (parameter.equalsIgnoreCase("spcComment"))
             {
@@ -909,21 +926,24 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.childGuide = true;
-                criteria.childGuide = false;
+                else
+                    criteria.childGuide = false;
             }
             if (parameter.equalsIgnoreCase("adolescentGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.adolescentGuide = true;
-                criteria.adolescentGuide = false;
+                else
+                    criteria.adolescentGuide = false;
             }
             if (parameter.equalsIgnoreCase("adultGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.adultGuide = true;
-                criteria.adultGuide = false;
+                else
+                    criteria.adultGuide = false;
             }
             if (parameter.equalsIgnoreCase("agesGuide"))
             {
@@ -940,14 +960,16 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.hivTestGuide = true;
-                criteria.hivTestGuide = false;
+                else
+                    criteria.hivTestGuide = false;
             }
             if (parameter.equalsIgnoreCase("abortionGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.abortionGuide = true;
-                criteria.abortionGuide = false;
+                else
+                    criteria.abortionGuide = false;
             }
             if (parameter.equalsIgnoreCase("mhCount"))
             {
@@ -969,42 +991,48 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.subAbGuide = true;
-                criteria.subAbGuide = false;
+                else
+                    criteria.subAbGuide = false;
             }
             if (parameter.equalsIgnoreCase("sexAbGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.sexAbGuide = true;
-                criteria.sexAbGuide = false;
+                else
+                    criteria.sexAbGuide = false;
             }
             if (parameter.equalsIgnoreCase("angManGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.angManGuide = true;
-                criteria.angManGuide = false;
+                else
+                    criteria.angManGuide = false;
             }
             if (parameter.equalsIgnoreCase("hivConsGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.hivConsGuide = true;
-                criteria.hivConsGuide = false;
+                else
+                    criteria.hivConsGuide = false;
             }
             if (parameter.equalsIgnoreCase("lgbtGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.lgbtGuide = true;
-                criteria.lgbtGuide = false;
+                else
+                    criteria.lgbtGuide = false;
             }
             if (parameter.equalsIgnoreCase("suppGGuide"))
             {
                 temp = request.getParameterValues(parameter);
                 if(temp[0].equalsIgnoreCase("True"))
                     criteria.suppGGuide = true;
-                criteria.suppGGuide = false;
+                else
+                    criteria.suppGGuide = false;
             }
             if (parameter.equalsIgnoreCase("finalComment"))
             {
