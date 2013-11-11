@@ -29,7 +29,7 @@ public class Hospital {
     public String website;
     public String mainFacility;
     public int branchRefNumber;
-    public Dictionary<String, String> associatedFacilities;//name then phone number.
+    public List<String[]> associatedFacilities;//name then phone number.
     public String intComm;
 
     //page 2
@@ -179,7 +179,7 @@ public class Hospital {
         hospital.website = resultSet.getString("Website");
         hospital.mainFacility = resultSet.getString("BraONL");
         hospital.branchRefNumber = resultSet.getInt("BraRefNo");
-        Dictionary<String, String> associatedFacilities = new Hashtable<String, String>();
+        List<String[]> associatedFacilities = new ArrayList<String[]>();
         for (int i = 1; i <= 10; i++) {
             String associatedFacilityName = resultSet.getString("OTFac" + i);
             if (associatedFacilityName != null) {
@@ -187,7 +187,8 @@ public class Hospital {
                 if (associatedFacilityNumber == null) {
                     associatedFacilityNumber = "";
                 }
-                associatedFacilities.put(associatedFacilityName, associatedFacilityNumber);
+                String[] facility = {associatedFacilityName, associatedFacilityNumber};
+                associatedFacilities.add(facility);
             }
         }
         hospital.associatedFacilities = associatedFacilities;//name then phone number.
