@@ -69,393 +69,395 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         StringBuilder stringBuilder = new StringBuilder();
         
         //page1
-        if(String.valueOf(criteria.id) != null){
-            stringBuilder.append( " WHERE p1.ID == " + criteria.id);
+        if(criteria.id != -1){
+            stringBuilder.append( " WHERE p1.ID = " + criteria.id + " AND ");
         }
         if(criteria.itp != null){
-            stringBuilder.append( " WHERE p1.ITP == " + criteria.itp);
+            stringBuilder.append( " WHERE p1.ITP = " + criteria.itp + " AND ");
         }
         if(criteria.spanishSpeakingStaff != null){
             if(criteria.spanishSpeakingStaff == true)
-        	stringBuilder.append( " AND WHERE p1.SPAN == " + 1);
+        	    stringBuilder.append( " WHERE p1.SPAN = " + 1 + " AND ");
             else if(criteria.spanishSpeakingStaff == false)
-        	stringBuilder.append( " AND WHERE p1.SPAN == " + 2);
+        	    stringBuilder.append( " WHERE p1.SPAN = " + 2 + " AND ");
         }
         if(criteria.name != null){
-            stringBuilder.append( " AND WHERE p1.NameFac == " + criteria.name);
+            stringBuilder.append( " WHERE p1.NameFac = " + criteria.name + " AND ");
         }
         if(criteria.addressLine1 != null){
-            stringBuilder.append( " AND WHERE p1.AddFacL1 == " + criteria.addressLine1);
+            stringBuilder.append( " WHERE p1.AddFacL1 = " + criteria.addressLine1 + " AND ");
         }
         if(criteria.addressLine2 != null){
-            stringBuilder.append( " AND WHERE p1.AddFacL2 == " + criteria.addressLine2);
+            stringBuilder.append( " WHERE p1.AddFacL2 = " + criteria.addressLine2 + " AND ");
         }
         if(criteria.city != null){
-            stringBuilder.append( " AND WHERE p1.City == " + criteria.city);
+            stringBuilder.append( " WHERE p1.City = " + criteria.city + " AND ");
         }
         if(criteria.county != null){
-            stringBuilder.append( " AND WHERE p1.County == " + criteria.county);
+            stringBuilder.append( " WHERE p1.County = " + criteria.county + " AND ");
         }
-        if(String.valueOf(criteria.zip) != null){
-            stringBuilder.append( " AND WHERE p1.ZIPCode == " + criteria.zip);
+        if(criteria.zip != -1){
+            stringBuilder.append( " WHERE p1.ZIPCode = " + criteria.zip + " AND ");
         }
         if(criteria.phone != null){
-            stringBuilder.append( " AND WHERE p1.Phone == " + criteria.phone);
+            stringBuilder.append( " WHERE p1.Phone = " + criteria.phone + " AND ");
         }
         if(criteria.fax != null){
-            stringBuilder.append( " AND WHERE p1.Fax == " + criteria.fax);
+            stringBuilder.append( " WHERE p1.Fax = " + criteria.fax + " AND ");
         }
         if(criteria.website != null){
-            stringBuilder.append( " AND WHERE p1.Website == " + criteria.website);
+            stringBuilder.append( " WHERE p1.Website = " + criteria.website + " AND ");
         }
         if(criteria.mainFacility != null){
-            stringBuilder.append( " AND WHERE p1.BraONL == " + criteria.mainFacility);
+            stringBuilder.append( " WHERE p1.BraONL = " + criteria.mainFacility + " AND ");
         }
-        if(String.valueOf(criteria.branchRefNumber) != null){
-            stringBuilder.append( " AND WHERE p1.BraRefNo == " + criteria.branchRefNumber);
+        if(criteria.branchRefNumber != -1){
+            stringBuilder.append( " WHERE p1.BraRefNo = " + criteria.branchRefNumber + " AND ");
         }
         if(criteria.associatedFacilities != null){
 	    for(int i = 0; i < criteria.associatedFacilities.size(); i++){
-//	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + " == " + criteria.associatedFacilities.get(i)[0]);
-//	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + "Ph == " + criteria.associatedFacilities.get(i)[1]);
+//	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + " = " + criteria.associatedFacilities.get(i)[0]);
+//	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + "Ph = " + criteria.associatedFacilities.get(i)[1]);
 	    }      	
         }
         if(criteria.intComm != null){
-            stringBuilder.append( " AND WHERE p1.IntComm == " + criteria.intComm);
+            stringBuilder.append( " WHERE p1.IntComm = " + criteria.intComm + " AND ");
         }
         
         //page2
         if(criteria.open247 != null){
             if(criteria.open247 == true)
-                stringBuilder.append( " AND WHERE p2.Op247 == " + 1);
+                stringBuilder.append( " WHERE p2.Op247 = " + 1 + " AND ");
             else if(criteria.spanishSpeakingStaff == false)
-               	stringBuilder.append( " AND WHERE p2.Op247 == " + 0);
+               	stringBuilder.append( " WHERE p2.Op247 = " + 0 + " AND ");
         }
         if(criteria.onCall != null){
             if(criteria.open247 == true)
-         	stringBuilder.append( " AND WHERE p2.OnCall == " + 1);
+         	stringBuilder.append( " WHERE p2.OnCall = " + 1 + " AND ");
             else if(criteria.spanishSpeakingStaff == false)
-        	stringBuilder.append( " AND WHERE p2.OnCall == " + 0);
+        	stringBuilder.append( " WHERE p2.OnCall = " + 0 + " AND ");
         }
         if(criteria.openTimes != null){
             int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Op == " + criteria.openTimes.get(k));
+        	stringBuilder.append( " WHERE p2." + day + "Op = " + criteria.openTimes.get(k) + " AND ");
         	k++;
             }
         }
         if(criteria.closeTimes != null){
             int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Cl == " + criteria.closeTimes.get(k));
+        	stringBuilder.append( " WHERE p2." + day + "Cl = " + criteria.closeTimes.get(k) + " AND ");
         	k++;
             }
         }
         if(criteria.commentsOnTimes != null){
             int k = 0;
             for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( " AND WHERE p2." + day + "Comm == " + criteria.commentsOnTimes.get(k));
+        	stringBuilder.append( " WHERE p2." + day + "Comm = " + criteria.commentsOnTimes.get(k) + " AND ");
         	k++;
             }
         }
         if(criteria.spanishTimesComment != null){
-            stringBuilder.append( " AND WHERE p2.HOpComm == " + criteria.spanishTimesComment);
+            stringBuilder.append( " WHERE p2.HOpComm = " + criteria.spanishTimesComment + " AND ");
         }
         if(criteria.hoursGuide != null){
-            stringBuilder.append( " AND WHERE p2.HoursGuide == " + criteria.hoursGuide);
+            stringBuilder.append( " WHERE p2.HoursGuide = " + criteria.hoursGuide + " AND ");
         }
         
         //page3_4_5
-        if(String.valueOf(criteria.walkIn) != null){
-            stringBuilder.append( " AND WHERE p3_4_5.AppWalk == " + criteria.walkIn);
+        if(criteria.walkIn != -1){
+            stringBuilder.append( " WHERE p3_4_5.AppWalk = " + criteria.walkIn + " AND ");
         }
         if(criteria.walkInComment != null){
-            stringBuilder.append( " AND WHERE p3_4_5.AppWalkSp == " + criteria.walkInComment);
+            stringBuilder.append( " WHERE p3_4_5.AppWalkSp = " + criteria.walkInComment + " AND ");
         }
-        if(String.valueOf(criteria.apptGuide) != null){
-            stringBuilder.append( " AND WHERE p3_4_5.ApptGUIDE == " + criteria.apptGuide);
+        if(criteria.apptGuide != -1){
+            stringBuilder.append( " WHERE p3_4_5.ApptGUIDE = " + criteria.apptGuide + " AND ");
         }
-        if(String.valueOf(criteria.walkInGuide) != null){
-            stringBuilder.append( " AND WHERE p3_4_5.Walk-inGUIDE == " + criteria.walkInGuide);
+        if(criteria.walkInGuide != -1){
+            stringBuilder.append( " WHERE p3_4_5.Walk-inGUIDE = " + criteria.walkInGuide + " AND ");
         }
-        if(String.valueOf(criteria.parking) != null){
-            stringBuilder.append( " AND WHERE p3_4_5.park == " + criteria.parking);
+        if(criteria.parking != -1){
+            stringBuilder.append( " WHERE p3_4_5.park = " + criteria.parking + " AND ");
         }
         if(criteria.parkingComment != null){
-            stringBuilder.append( " AND WHERE p3_4_5.ParkSP == " + criteria.parkingComment);
+            stringBuilder.append( " WHERE p3_4_5.ParkSP = " + criteria.parkingComment + " AND ");
         }
-        if(String.valueOf(criteria.publicTransportation) != null){
-            stringBuilder.append( " AND WHERE p3_4_5.PubTr == " + criteria.publicTransportation);
+        if(criteria.publicTransportation != -1){
+            stringBuilder.append( " WHERE p3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
         }
         if(criteria.publicTransportationGuide != null){
             if(criteria.publicTransportationGuide == true)
-        	stringBuilder.append( " AND WHERE p3_4_5.ParkGTGUIDE == " + 1);
+        	stringBuilder.append( " WHERE p3_4_5.ParkGTGUIDE = " + 1 + " AND ");
             else if(criteria.publicTransportationGuide == false)
-        	stringBuilder.append( " AND WHERE p3_4_5.ParkGTGUIDE == " + 0);
+        	stringBuilder.append( " WHERE p3_4_5.ParkGTGUIDE = " + 0 + " AND ");
         }
         if(criteria.publicTransportationComment != null){
-            stringBuilder.append( " AND WHERE p3_4_5.PubTrSp == " + criteria.publicTransportationComment);
+            stringBuilder.append( " WHERE p3_4_5.PubTrSp = " + criteria.publicTransportationComment + " AND ");
         }
-        if(String.valueOf(criteria.publicTransportationOther) != null){
-            stringBuilder.append( " AND WHERE p3_4_5.PubTrOt == " + criteria.publicTransportationOther);
+        if (criteria.publicTransportationOther != -1){
+            stringBuilder.append( " WHERE p3_4_5.PubTrOt = " + criteria.publicTransportationOther + " AND ");
         }
-        if(criteria.publicTransportationOtherComment != null){
-            stringBuilder.append( " AND WHERE p3_4_5.PubTrOtSp == " + criteria.publicTransportationOtherComment);
+        if (criteria.publicTransportationOtherComment != null){
+            stringBuilder.append( " WHERE p3_4_5.PubTrOtSp = " + criteria.publicTransportationOtherComment + " AND ");
         }
-        if(criteria.freeTransport != null){
-            stringBuilder.append( " AND WHERE p3_4_5.Transportegratis == " + criteria.freeTransport);
+        if (criteria.freeTransport != null){
+            stringBuilder.append( " WHERE p3_4_5.Transportegratis = " + criteria.freeTransport + " AND ");
         }
-        if (String.valueOf(criteria.spanAdmin) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SPANAdm == " + criteria.spanAdmin);
+        if (criteria.spanAdmin != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SPANAdm = " + criteria.spanAdmin + " AND ");
         }
         if (criteria.spanAdminGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.SPANAdmGUIDE == " + criteria.spanAdminGuide);
+            stringBuilder.append( " WHERE p3_4_5.SPANAdmGUIDE = " + criteria.spanAdminGuide + " AND ");
         }
-        if (String.valueOf(criteria.spanNurse) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanNur == " + criteria.spanNurse);
+        if (criteria.spanNurse != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SpanNur = " + criteria.spanNurse + " AND ");
         }
         if (criteria.spanNurseGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanNurGUIDE == " + criteria.spanNurseGuide);
+            stringBuilder.append( " WHERE p3_4_5.SpanNurGUIDE = " + criteria.spanNurseGuide + " AND ");
         }
-        if (String.valueOf(criteria.spanDoc) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanDoc == " + criteria.spanDoc);
+        if (criteria.spanDoc != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SpanDoc = " + criteria.spanDoc + " AND ");
         }
         if (criteria.spanDocGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanDocGUIDE == " + criteria.spanDocGuide);
+            stringBuilder.append( " WHERE p3_4_5.SpanDocGUIDE = " + criteria.spanDocGuide + " AND ");
         }
-        if (String.valueOf(criteria.spanInterpreter) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanIntON == " + criteria.spanInterpreter);
+        if (criteria.spanInterpreter != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SpanIntON = " + criteria.spanInterpreter + " AND ");
         }
         if (criteria.spanInterpreterGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanIntONGUIDE == " + criteria.spanInterpreterGuide);
+            stringBuilder.append( " WHERE p3_4_5.SpanIntONGUIDE = " + criteria.spanInterpreterGuide + " AND ");
         }
-        if (String.valueOf(criteria.spanPhone) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanIntPh == " + criteria.spanPhone);
+        if (criteria.spanPhone != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SpanIntPh = " + criteria.spanPhone + " AND ");
         }
         if (criteria.spanPhoneGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanIntPhGUIDE == " + criteria.spanPhoneGuide);
+            stringBuilder.append( " WHERE p3_4_5.SpanIntPhGUIDE = " + criteria.spanPhoneGuide + " AND ");
         }
-        if (String.valueOf(criteria.spanFo) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanFo == " + criteria.spanFo);
+        if (criteria.spanFo != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SpanFo = " + criteria.spanFo + " AND ");
         }
         if (criteria.spanFoGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpanFoGUIDE == " + criteria.spanFoGuide);
+            stringBuilder.append( " WHERE p3_4_5.SpanFoGUIDE = " + criteria.spanFoGuide + " AND ");
         }
-        if (String.valueOf(criteria.insurance) != null) {
-            stringBuilder.append( " WHERE p3_4_5.Insur == " + criteria.insurance);
+        if (criteria.insurance != -1) {
+            stringBuilder.append( " WHERE p3_4_5.Insur = " + criteria.insurance + " AND ");
         }
         if (criteria.insuranceComment != null) {
-            stringBuilder.append( " WHERE p3_4_5.InsurSp == " + criteria.insuranceComment);
+            stringBuilder.append( " WHERE p3_4_5.InsurSp = " + criteria.insuranceComment + " AND ");
         }
         if (criteria.medicare != null) {
             if(criteria.medicare == true)
-                stringBuilder.append( " WHERE p3_4_5.MedicareGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.MedicareGUIDE = " + 1 + " AND ");
             if(criteria.medicare == false)
-                stringBuilder.append( " WHERE p3_4_5.MedicareGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.MedicareGUIDE = " + 0 + " AND ");
         }
         if (criteria.medicaid != null) {
             if(criteria.medicaid == true)
-                stringBuilder.append( " WHERE p3_4_5.MedicaidGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.MedicaidGUIDE = " + 1 + " AND ");
             if(criteria.medicare == false)
-                stringBuilder.append( " WHERE p3_4_5.MedicaidGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.MedicaidGUIDE = " + 0 + " AND ");
         }
         if (criteria.peachCare != null) {
             if(criteria.peachCare == true)
-                stringBuilder.append( " WHERE p3_4_5.PeachcareGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.PeachcareGUIDE = " + 1 + " AND ");
             if(criteria.peachCare == false)
-                stringBuilder.append( " WHERE p3_4_5.PeachcareGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.PeachcareGUIDE = " + 0 + " AND ");
         }
-        if (String.valueOf(criteria.pay) != null) {
-            stringBuilder.append( " WHERE p3_4_5.Pay == " + criteria.pay);
+        if (criteria.pay != -1) {
+            stringBuilder.append( " WHERE p3_4_5.Pay = " + criteria.pay + " AND ");
         }
-        if (String.valueOf(criteria.financialAssistance) != null) {
-            stringBuilder.append( " WHERE p3_4_5.FinAss == " + criteria.financialAssistance);
+        if (criteria.financialAssistance != -1) {
+            stringBuilder.append( " WHERE p3_4_5.FinAss = " + criteria.financialAssistance + " AND ");
         }
         if (criteria.payPlanGuide != null) {
             if(criteria.payPlanGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.PayPlanGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.PayPlanGUIDE = " + 1 + " AND ");
             if(criteria.payPlanGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.PayPlanGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.PayPlanGUIDE = " + 0 + " AND ");
         }
         if (criteria.SlideSc != null) {
             if(criteria.SlideSc == true)
-                stringBuilder.append( " WHERE p3_4_5.SlideScGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SlideScGUIDE = " + 1 + " AND ");
             if(criteria.SlideSc == false)
-                stringBuilder.append( " WHERE p3_4_5.SlideScGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SlideScGUIDE = " + 0 + " AND ");
         }
         if (criteria.financialAssistanceComment != null) {
-            stringBuilder.append( " WHERE p3_4_5.FinAssSp == " + criteria.financialAssistanceComment);
+            stringBuilder.append( " WHERE p3_4_5.FinAssSp = " + criteria.financialAssistanceComment + " AND ");
         }
         if (criteria.finAssPh != null) {
-            stringBuilder.append( " WHERE p3_4_5.FinAssPh == " + criteria.finAssPh);
+            stringBuilder.append( " WHERE p3_4_5.FinAssPh = " + criteria.finAssPh + " AND ");
         }
         if (criteria.finAllPhComment != null) {
-            stringBuilder.append( " WHERE p3_4_5.FinAssPhSp == " + criteria.finAllPhComment);
+            stringBuilder.append( " WHERE p3_4_5.FinAssPhSp = " + criteria.finAllPhComment + " AND ");
         }
         if (criteria.spcFCH != null) {
             if(criteria.spcFCH == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcFCH == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcFCH = " + 1 + " AND ");
             if(criteria.spcFCH == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcFCH == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcFCH = " + 0 + " AND ");
         }
         if (criteria.spcWH != null) {
             if(criteria.spcWH == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcWH == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcWH = " + 1 + " AND ");
             if(criteria.spcWH == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcWH == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcWH = " + 0 + " AND ");
         }
         if (criteria.spcMH != null) {
             if(criteria.spcMH == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcMH == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcMH = " + 1 + " AND ");
             if(criteria.spcMH == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcMH == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcMH = " + 0 + " AND ");
         }
         if (criteria.spcMHC != null) {
             if(criteria.spcMHC == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcMHC == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcMHC = " + 1 + " AND ");
             if(criteria.spcMHC == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcMHC == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcMHC = " + 0 + " AND ");
         }
         if (criteria.spcDH != null) {
             if(criteria.spcDH == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcDH == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcDH = " + 1 + " AND ");
             if(criteria.spcDH == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcDH == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcDH = " + 0 + " AND ");
         }
         if (criteria.spcVH != null) {
             if(criteria.spcVH == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcVH == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcVH = " + 1 + " AND ");
        	    if(criteria.spcVH == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcVH == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcVH = " + 0 + " AND ");
         }
         if (criteria.spcOT != null) {
             if(criteria.spcOT == true)
-                stringBuilder.append( " WHERE p3_4_5.SpcOT == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SpcOT = " + 1 + " AND ");
             if(criteria.spcOT == false)
-                stringBuilder.append( " WHERE p3_4_5.SpcOT == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SpcOT = " + 0 + " AND ");
         }
         if (criteria.freeLow != null) {
             if(criteria.freeLow == true)
-                stringBuilder.append( " WHERE p3_4_5.FreeLow == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.FreeLow = " + 1 + " AND ");
             if(criteria.freeLow == false)
-                stringBuilder.append( " WHERE p3_4_5.FreeLow == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.FreeLow = " + 0 + " AND ");
         }
         if (criteria.spcComment != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpcSp == " + criteria.spcComment);
+            stringBuilder.append( " WHERE p3_4_5.SpcSp = " + criteria.spcComment + " AND ");
         }
         if (criteria.oteSpecial != null) {
-            stringBuilder.append( " WHERE p3_4_5.OTEspecial == " + criteria.oteSpecial);
+            stringBuilder.append( " WHERE p3_4_5.OTEspecial = " + criteria.oteSpecial + " AND ");
         }
-        if (String.valueOf(criteria.spcDk) != null) {
-            stringBuilder.append( " WHERE p3_4_5.SpcDk == " + criteria.spcDk);
+        if (criteria.spcDk != -1) {
+            stringBuilder.append( " WHERE p3_4_5.SpcDk = " + criteria.spcDk + " AND ");
         }
-        if (String.valueOf(criteria.age) != null) {
-            stringBuilder.append( " WHERE p3_4_5.Age == " + criteria.age);
+        if (criteria.age != -1) {
+            stringBuilder.append( " WHERE p3_4_5.Age = " + criteria.age + " AND ");
         }
-        if (String.valueOf(criteria.ageStart) != null) {
-            stringBuilder.append( " WHERE p3_4_5.AgeStart == " + criteria.ageStart);
+        if (criteria.ageStart != -1) {
+            stringBuilder.append( " WHERE p3_4_5.AgeStart = " + criteria.ageStart + " AND ");
         }
-        if (String.valueOf(criteria.ageEnd) != null) {
-            stringBuilder.append( " WHERE p3_4_5.AgeEnd == " + criteria.ageEnd);
+        if (criteria.ageEnd != -1) {
+            stringBuilder.append( " WHERE p3_4_5.AgeEnd = " + criteria.ageEnd + " AND ");
         }
         if (criteria.ageOTComment != null) {
-            stringBuilder.append( " WHERE p3_4_5.AgeOTSp == " + criteria.ageOTComment);
+            stringBuilder.append( " WHERE p3_4_5.AgeOTSp = " + criteria.ageOTComment + " AND ");
         }
         if (criteria.childGuide != null) {
             if(criteria.childGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.NinosGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.NinosGUIDE = " + 1 + " AND ");
             if(criteria.childGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.NinosGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.NinosGUIDE = " + 0 + " AND ");
         }
         if (criteria.adolescentGuide != null) {
             if(criteria.adolescentGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.AdolescGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.AdolescGUIDE = " + 1 + " AND ");
             if(criteria.adolescentGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.AdolescGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.AdolescGUIDE = " + 0 + " AND ");
         }
         if (criteria.adultGuide != null) {
             if(criteria.adultGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.AdultGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.AdultGUIDE = " + 1 + " AND ");
             if(criteria.adultGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.AdultGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.AdultGUIDE = " + 0 + " AND ");
         }
         if (criteria.agesGuide != null) {
-            stringBuilder.append( " WHERE p3_4_5.EdadesGUIDE == " + criteria.agesGuide);
+            stringBuilder.append( " WHERE p3_4_5.EdadesGUIDE = " + criteria.agesGuide + " AND ");
         }
-        if (String.valueOf(criteria.otServ) != null) {
-            stringBuilder.append( " WHERE p3_4_5.OTServ == " + criteria.otServ);
+        if (criteria.otServ != -1) {
+            stringBuilder.append( " WHERE p3_4_5.OTServ = " + criteria.otServ + " AND ");
         }
         if (criteria.hivTestGuide != null) {
             if(criteria.hivTestGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.HIVTestGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.HIVTestGUIDE = " + 1 + " AND ");
             if(criteria.hivTestGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.HIVTestGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.HIVTestGUIDE = " + 0 + " AND ");
         }
         if (criteria.abortionGuide != null) {
             if(criteria.abortionGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.AbortionGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.AbortionGUIDE = " + 1 + " AND ");
             if(criteria.abortionGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.AbortionGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.AbortionGUIDE = " + 0 + " AND ");
         }
-        if (String.valueOf(criteria.mhCount) != null) {
-            stringBuilder.append( " WHERE p3_4_5.MHCoun == " + criteria.mhCount);
+        if (criteria.mhCount != -1) {
+            stringBuilder.append( " WHERE p3_4_5.MHCoun = " + criteria.mhCount + " AND ");
         }
         if (criteria.mhCounSG != null) {
-            stringBuilder.append( " WHERE p3_4_5.MHCounSG == " + criteria.mhCounSG);
+            stringBuilder.append( " WHERE p3_4_5.MHCounSG = " + criteria.mhCounSG + " AND ");
         }
         if (criteria.mhCounOT != null) {
-            stringBuilder.append( " WHERE p3_4_5.MHCounOT == " + criteria.mhCounOT);
+            stringBuilder.append( " WHERE p3_4_5.MHCounOT = " + criteria.mhCounOT + " AND ");
         }
         if (criteria.subAbGuide != null) {
             if(criteria.subAbGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.SubAbGuide == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SubAbGuide = " + 1 + " AND ");
             if(criteria.subAbGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.SubAbGuide == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SubAbGuide = " + 0 + " AND ");
         }
         if (criteria.sexAbGuide != null) {
             if(criteria.sexAbGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.SexAbGuide == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SexAbGuide = " + 1 + " AND ");
             if(criteria.sexAbGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.SexAbGuide == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SexAbGuide = " + 0 + " AND ");
         }
         if (criteria.angManGuide != null) {
             if(criteria.angManGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.AngManGuide == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.AngManGuide = " + 1 + " AND ");
             if(criteria.angManGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.AngManGuide == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.AngManGuide = " + 0 + " AND ");
         }
         if (criteria.hivConsGuide != null) {
             if(criteria.hivConsGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.HIVConsGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.HIVConsGUIDE = " + 1 + " AND ");
             if(criteria.hivConsGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.HIVConsGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.HIVConsGUIDE = " + 0 + " AND ");
         }
         if (criteria.lgbtGuide != null) {
             if(criteria.lgbtGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.LGBTGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.LGBTGUIDE = " + 1 + " AND ");
             if(criteria.lgbtGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.LGBTGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.LGBTGUIDE = " + 0 + " AND ");
         }
         if (criteria.suppGGuide != null) {
             if(criteria.suppGGuide == true)
-                stringBuilder.append( " WHERE p3_4_5.SuppGGUIDE == " + 1);
+                stringBuilder.append( " WHERE p3_4_5.SuppGGUIDE = " + 1 + " AND ");
             if(criteria.suppGGuide == false)
-                stringBuilder.append( " WHERE p3_4_5.SuppGGUIDE == " + 0);
+                stringBuilder.append( " WHERE p3_4_5.SuppGGUIDE = " + 0 + " AND ");
         }
         if (criteria.finalComment != null) {
-            stringBuilder.append( " WHERE p3_4_5.FinComm2 == " + criteria.finalComment);
+            stringBuilder.append( " WHERE p3_4_5.FinComm2 = " + criteria.finalComment + " AND ");
         }
         if (criteria.notes != null) {
-            stringBuilder.append( " WHERE p3_4_5.NotesGUIDE == " + criteria.notes);
+            stringBuilder.append( " WHERE p3_4_5.NotesGUIDE = " + criteria.notes + " AND ");
         }
         if (criteria.notesLowFree != null) {
-            stringBuilder.append( " WHERE p3_4_5.NotesLowFreeGUIDE == " + criteria.notesLowFree);
+            stringBuilder.append( " WHERE p3_4_5.NotesLowFreeGUIDE = " + criteria.notesLowFree + " AND ");
         }
         if (criteria.notesLowFree2 != null) {
-            stringBuilder.append( " WHERE p3_4_5.NotesLowFree2GUIDE == " + criteria.notesLowFree2);
+            stringBuilder.append( " WHERE p3_4_5.NotesLowFree2GUIDE = " + criteria.notesLowFree2 + " AND ");
         }
         
-        return stringBuilder.toString();
+        String ss = stringBuilder.toString();
+        ss = ss.substring(0, ss.length() - 5);
+        return ss;
     }
 
     /**
@@ -506,7 +508,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("id"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.id = Integer.parseInt(temp[0]);
+                criteria.id = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("itp"))
             {
@@ -552,7 +554,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("zip"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.zip = Integer.parseInt(temp[0]);
+                criteria.zip = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("fax"))
             {
@@ -572,7 +574,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("branchRefNumber"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.branchRefNumber = Integer.parseInt(temp[0]);
+                criteria.branchRefNumber = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("open247"))
             {
@@ -635,7 +637,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("walkIn"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.walkIn = Integer.parseInt(temp[0]);
+                criteria.walkIn = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("walkInComment"))
             {
@@ -645,17 +647,17 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("apptGuide"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.apptGuide = Integer.parseInt(temp[0]);
+                criteria.apptGuide = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("walkInGuide"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.walkInGuide = Integer.parseInt(temp[0]);
+                criteria.walkInGuide = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("parking"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.parking = Integer.parseInt(temp[0]);
+                criteria.parking = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("parkingComment"))
             {
@@ -665,7 +667,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("publicTransportation"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.publicTransportation = Integer.parseInt(temp[0]);
+                criteria.publicTransportation = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("publicTransportationGuide"))
             {
@@ -683,7 +685,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("publicTransportationOther"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.publicTransportationOther = Integer.parseInt(temp[0]);
+                criteria.publicTransportationOther = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("publicTransportationOtherComment"))
             {
@@ -698,7 +700,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spanAdmin"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spanAdmin = Integer.parseInt(temp[0]);
+                criteria.spanAdmin = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("spanAdminGuide"))
             {
@@ -708,7 +710,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spanNurse"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spanNurse = Integer.parseInt(temp[0]);
+                criteria.spanNurse = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("spanNurseGuide"))
             {
@@ -718,7 +720,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spanDoc"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spanDoc = Integer.parseInt(temp[0]);
+                criteria.spanDoc = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("spanDocGuide"))
             {
@@ -728,7 +730,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spanInterpreter"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spanInterpreter = Integer.parseInt(temp[0]);
+                criteria.spanInterpreter = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("spanInterpreterGuide"))
             {
@@ -738,7 +740,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spanPhone"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spanPhone = Integer.parseInt(temp[0]);
+                criteria.spanPhone = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("spanPhoneGuide"))
             {
@@ -748,7 +750,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spanFo"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spanFo = Integer.parseInt(temp[0]);
+                criteria.spanFo = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("spanFoGuide"))
             {
@@ -758,7 +760,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("insurance"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.insurance = Integer.parseInt(temp[0]);
+                criteria.insurance = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("insuranceComment"))
             {
@@ -784,12 +786,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("pay"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.pay = Integer.parseInt(temp[0]);
+                criteria.pay = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("financialAssistance"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.financialAssistance = Integer.parseInt(temp[0]);
+                criteria.financialAssistance = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("payPlanGuide"))
             {
@@ -899,22 +901,22 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("spcDk"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.spcDk = Integer.parseInt(temp[0]);
+                criteria.spcDk = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("age"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.age = Integer.parseInt(temp[0]);
+                criteria.age = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("ageStart"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.ageStart = Integer.parseInt(temp[0]);
+                criteria.ageStart = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("ageEnd"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.ageEnd = Integer.parseInt(temp[0]);
+                criteria.ageEnd = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("ageOTComment "))
             {
@@ -953,7 +955,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("otServ"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.otServ = Integer.parseInt(temp[0]);
+                criteria.otServ = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("hivTestGuide"))
             {
@@ -974,7 +976,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("mhCount"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.mhCount = Integer.parseInt(temp[0]);
+                criteria.mhCount = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("mhCounSG"))
             {
