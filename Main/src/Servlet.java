@@ -116,8 +116,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         if(criteria.associatedFacilities != null){
 	    for(int i = 0; i < criteria.associatedFacilities.size(); i++){
-//	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + " = " + criteria.associatedFacilities.get(i)[0]);
-//	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + "Ph = " + criteria.associatedFacilities.get(i)[1]);
+	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + " = " + criteria.associatedFacilities.get(i)[0]);
+	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( " AND WHERE p1.OTFac" + i + 1 + "Ph = " + criteria.associatedFacilities.get(i)[1]);
 	    }      	
         }
         if(criteria.intComm != null){
@@ -588,7 +588,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("associatedFacilities"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.associatedFacilities.put(parameter, temp[0]);
+                String[] facility = {parameter, temp[0]};
+                criteria.associatedFacilities.add(facility);
             }
             //
 
