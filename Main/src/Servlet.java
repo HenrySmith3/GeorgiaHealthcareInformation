@@ -505,18 +505,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         {
             String parameter = (String)parameterNames.nextElement();
 
-            if (parameter.equalsIgnoreCase("id"))
+            if (parameter.equalsIgnoreCase("county"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.id = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("itp"))
-            {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
-                    criteria.itp = true;
-                else
-                    criteria.itp = false;
+                criteria.county = temp[0];
             }
             if (parameter.equalsIgnoreCase("spanishSpeakingStaff"))
             {
@@ -525,78 +517,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.spanishSpeakingStaff = true;
                 else
                     criteria.spanishSpeakingStaff = false;
-            }
-            if (parameter.equalsIgnoreCase("name"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.name = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("addressLine1"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.addressLine1 = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("addressLine2"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.addressLine2 = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("city"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.city = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("county"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.county = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("zip"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.zip = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("fax"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.fax = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("website"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.website = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("mainFacility"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.mainFacility = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("branchRefNumber"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.branchRefNumber = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("open247"))
-            {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
-                    criteria.open247 = true;
-                else
-                    criteria.open247 = false;
-            }
-            //Is this what we're trying to do?
-            if (parameter.equalsIgnoreCase("associatedFacilities"))
-            {
-                temp = request.getParameterValues(parameter);
-                String[] facility = {parameter, temp[0]};
-                criteria.associatedFacilities.add(facility);
-            }
-            //
-
-            if (parameter.equalsIgnoreCase("intComm"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.intComm = temp[0];
             }
             if (parameter.equalsIgnoreCase("onCall"))
             {
@@ -607,34 +527,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.onCall = false;
             }
 
-            //Is this what we're trying to do?
-            if (parameter.equalsIgnoreCase("openTimes"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.openTimes.add(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("closeTimes"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.closeTimes.add(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("commentsOnTimes"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.commentsOnTimes.add(temp[0]);
-            }
-            //
-
-            if (parameter.equalsIgnoreCase("spanishTimesComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanishTimesComment = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("hoursGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.hoursGuide = temp[0];
-            }
             if (parameter.equalsIgnoreCase("walkIn"))
             {
                 temp = request.getParameterValues(parameter);
@@ -648,125 +540,42 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("apptGuide"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.apptGuide = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                criteria.apptGuide = Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("walkInGuide"))
             {
                 temp = request.getParameterValues(parameter);
-                criteria.walkInGuide = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                criteria.walkInGuide = Integer.parseInt(temp[0]);
             }
             if (parameter.equalsIgnoreCase("parking"))
             {
                 temp = request.getParameterValues(parameter);
                 criteria.parking = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
-            if (parameter.equalsIgnoreCase("parkingComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.parkingComment = temp[0];
-            }
             if (parameter.equalsIgnoreCase("publicTransportation"))
             {
                 temp = request.getParameterValues(parameter);
                 criteria.publicTransportation = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("publicTransportationGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
-                    criteria.publicTransportationGuide = true;
-                else
-                    criteria.publicTransportationGuide = false;
-            }
-            if (parameter.equalsIgnoreCase("publicTransportationComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.publicTransportationComment = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("publicTransportationOther"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.publicTransportationOther = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("publicTransportationOtherComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.publicTransportationOtherComment = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("freeTransport"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.freeTransport = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("spanAdmin"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanAdmin = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("spanAdminGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanAdminGuide = temp[0];
             }
             if (parameter.equalsIgnoreCase("spanNurse"))
             {
                 temp = request.getParameterValues(parameter);
                 criteria.spanNurse = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
-            if (parameter.equalsIgnoreCase("spanNurseGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanNurseGuide = temp[0];
-            }
             if (parameter.equalsIgnoreCase("spanDoc"))
             {
                 temp = request.getParameterValues(parameter);
                 criteria.spanDoc = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("spanDocGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanDocGuide = temp[0];
             }
             if (parameter.equalsIgnoreCase("spanInterpreter"))
             {
                 temp = request.getParameterValues(parameter);
                 criteria.spanInterpreter = (temp == null)? -1 : Integer.parseInt(temp[0]);
             }
-            if (parameter.equalsIgnoreCase("spanInterpreterGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanInterpreterGuide = temp[0];
-            }
             if (parameter.equalsIgnoreCase("spanPhone"))
             {
                 temp = request.getParameterValues(parameter);
                 criteria.spanPhone = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("spanPhoneGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanPhoneGuide = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("spanFo"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanFo = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("spanFoGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spanFoGuide = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("insurance"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.insurance = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("insuranceComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.insuranceComment = temp[0];
             }
             if (parameter.equalsIgnoreCase("medicaid"))
             {
@@ -783,47 +592,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.peachCare = true;
                 else
                     criteria.peachCare = false;
-            }
-            if (parameter.equalsIgnoreCase("pay"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.pay = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("financialAssistance"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.financialAssistance = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("payPlanGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
-                    criteria.payPlanGuide = true;
-                else
-                    criteria.payPlanGuide = false;
-            }
-            if (parameter.equalsIgnoreCase("SlideSc"))
-            {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
-                    criteria.SlideSc = true;
-                else
-                    criteria.SlideSc = false;
-            }
-            if (parameter.equalsIgnoreCase("financialAssistanceComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.financialAssistanceComment = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("finAssPh"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.finAssPh = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("finAllPhComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.finAllPhComment = temp[0];
             }
             if (parameter.equalsIgnoreCase("spcFCH"))
             {
@@ -881,24 +649,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.spcOT = false;
             }
-            if (parameter.equalsIgnoreCase("freeLow"))
-            {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
-                    criteria.freeLow = true;
-                else
-                    criteria.freeLow = false;
-            }
-            if (parameter.equalsIgnoreCase("spcComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.spcComment = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("oteSpecial"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.oteSpecial = temp[0];
-            }
             if (parameter.equalsIgnoreCase("spcDk"))
             {
                 temp = request.getParameterValues(parameter);
@@ -918,11 +668,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameterValues(parameter);
                 criteria.ageEnd = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("ageOTComment "))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.ageOTComment = temp[0];
             }
             if (parameter.equalsIgnoreCase("childGuide"))
             {
@@ -974,21 +719,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.abortionGuide = false;
             }
-            if (parameter.equalsIgnoreCase("mhCount"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.mhCount = (temp == null)? -1 : Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("mhCounSG"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.mhCounSG = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("mhCounOT"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.mhCounOT = temp[0];
-            }
             if (parameter.equalsIgnoreCase("subAbGuide"))
             {
                 temp = request.getParameterValues(parameter);
@@ -1036,26 +766,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.suppGGuide = true;
                 else
                     criteria.suppGGuide = false;
-            }
-            if (parameter.equalsIgnoreCase("finalComment"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.finalComment = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("notes"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.notes = temp[0];
-            }
-            if (parameter.equalsIgnoreCase("notesLowFree"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.notesLowFree = temp[0];
-            }
-            if(parameter.equalsIgnoreCase("notesLowFree2"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.notesLowFree2 = temp[0];
             }
         }
         return criteria ;
