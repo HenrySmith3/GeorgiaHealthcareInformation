@@ -16,7 +16,7 @@ public class Hospital {
     public final static int FALSE = 1;
 
     //page 1
-    public int id;
+    public Integer id;
     public Boolean itp;
     public Boolean spanishSpeakingStaff;
     public String name;
@@ -24,12 +24,12 @@ public class Hospital {
     public String addressLine2;
     public String city;
     public String county;
-    public int zip;
+    public Integer zip;
     public String phone;
     public String fax;
     public String website;
     public String mainFacility;
-    public int branchRefNumber;
+    public Integer branchRefNumber;
     public List<String[]> associatedFacilities;//name then phone number.
     public String intComm;
 
@@ -43,37 +43,37 @@ public class Hospital {
     public String hoursGuide;
 
     //page 3, 4, & 5
-    public int walkIn;//this needs an enum.
+    public Integer walkIn;//this needs an enum.
     public String walkInComment;
-    public int apptGuide;//what does this mean?
-    public int walkInGuide;//what does this mean?
-    public int parking;
+    public Integer apptGuide;//what does this mean?
+    public Integer walkInGuide;//what does this mean?
+    public Integer parking;
     public String parkingComment;
-    public int publicTransportation;
+    public Integer publicTransportation;
     public Boolean publicTransportationGuide;//what does this mean?
     public String publicTransportationComment;
-    public int publicTransportationOther;
+    public Integer publicTransportationOther;
     public String publicTransportationOtherComment;
     public String freeTransport;//not sure about this.
-    public int spanAdmin;
+    public Integer spanAdmin;
     public String spanAdminGuide;
-    public int spanNurse;
+    public Integer spanNurse;
     public String spanNurseGuide;
-    public int spanDoc;
+    public Integer spanDoc;
     public String spanDocGuide;
-    public int spanInterpreter;
+    public Integer spanInterpreter;
     public String spanInterpreterGuide;
-    public int spanPhone;
+    public Integer spanPhone;
     public String spanPhoneGuide;
-    public int spanFo;//don't know what this is
+    public Integer spanFo;//don't know what this is
     public String spanFoGuide;
-    public int insurance;
+    public Integer insurance;
     public String insuranceComment;
     public Boolean medicare;
     public Boolean medicaid;
     public Boolean peachCare;
-    public int pay;
-    public int financialAssistance;
+    public Integer pay;
+    public Integer financialAssistance;
     public Boolean payPlanGuide;
     public Boolean SlideSc;//no idea what this is.
     public String financialAssistanceComment;
@@ -89,19 +89,19 @@ public class Hospital {
     public Boolean freeLow;
     public String spcComment;
     public String oteSpecial;
-    public int spcDk;//what is this?
-    public int age;
-    public int ageStart;
-    public int ageEnd;
+    public Integer spcDk;//what is this?
+    public Integer age;
+    public Integer ageStart;
+    public Integer ageEnd;
     public String ageOTComment;
     public Boolean childGuide;
     public Boolean adolescentGuide;
     public Boolean adultGuide;
     public String agesGuide;
-    public int otServ;
+    public Integer otServ;
     public Boolean hivTestGuide;
     public Boolean abortionGuide;
-    public int mhCount;
+    public Integer mhCount;
     public String mhCounSG;
     public String mhCounOT;
     public Boolean subAbGuide;

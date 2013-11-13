@@ -69,13 +69,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         StringBuilder stringBuilder = new StringBuilder();
         
         //page1
-        if(criteria.spanishSpeakingStaff != null){
-            //TODO this is wrong, it's also covered more later.
-            if(criteria.spanishSpeakingStaff == true)
-        	    stringBuilder.append( "P1.SPAN = " + 1 + " AND ");
-            else if(criteria.spanishSpeakingStaff == false)
-        	    stringBuilder.append( "P1.SPAN = " + 2 + " AND ");
-        }
         if(criteria.county != null){
             stringBuilder.append( "P1.County = '" + criteria.county + "' AND ");
         }
@@ -108,105 +101,82 @@ public class Servlet extends javax.servlet.http.HttpServlet {
 //        }
 
         //page3_4_5
-        if(criteria.apptGuide != -1){
-            //TODO this needs to be looked at. Is -1 even the default?
-            stringBuilder.append( "P3_4_5.ApptGUIDE = " + criteria.apptGuide + " AND ");
+        if(criteria.walkIn != null){
+            //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
+            stringBuilder.append( "(P3_4_5.AppWalk = 3 OR ");
+            stringBuilder.append( "P3_4_5.AppWalk = " + criteria.walkIn + ") AND ");
         }
-        if(criteria.walkIn != -1){
-            //TODO this is non-binary, there's a 'both' option.
-            stringBuilder.append( "P3_4_5.AppWalk = " + criteria.walkIn + " AND ");
+        if(criteria.parking != null){
+            //TODO are there really hospitals without parking? This seems poorly thought out.
+            stringBuilder.append( "P3_4_5.ParkGTGUIDE = " + criteria.parking + " AND ");
         }
-        if(criteria.parking != -1){
-            stringBuilder.append( "P3_4_5.park = " + criteria.parking + " AND ");
+        if(criteria.publicTransportation != null){
+            //TODO how is this formatted in the database?
+//            stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
         }
-        if(criteria.publicTransportation != -1){
-            stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
+        if (criteria.spanAdmin != null) {
+            stringBuilder.append( "P3_4_5.SPANAdm != 3 AND ");
         }
-        if(criteria.publicTransportationGuide != null){
-            if(criteria.publicTransportationGuide == true)
-        	stringBuilder.append( "P3_4_5.ParkGTGUIDE = " + 1 + " AND ");
-            else if(criteria.publicTransportationGuide == false)
-        	stringBuilder.append( "P3_4_5.ParkGTGUIDE = " + 0 + " AND ");
+        if (criteria.spanNurse != null) {
+            stringBuilder.append( "P3_4_5.SpanNur != 3 AND ");
         }
-        //TODO the next five or so are not binary attributes.
-        if (criteria.spanAdmin != -1) {
-            stringBuilder.append( "P3_4_5.SPANAdm = " + criteria.spanAdmin + " AND ");
+        if (criteria.spanDoc != null) {
+            stringBuilder.append( "P3_4_5.SpanDoc != 3 AND ");
         }
-        if (criteria.spanNurse != -1) {
-            stringBuilder.append( "P3_4_5.SpanNur = " + criteria.spanNurse + " AND ");
+        if (criteria.spanInterpreter != null) {
+            stringBuilder.append( "P3_4_5.SpanIntON != 3 AND ");
         }
-        if (criteria.spanDoc != -1) {
-            stringBuilder.append( "P3_4_5.SpanDoc = " + criteria.spanDoc + " AND ");
+        if (criteria.spanPhone != null) {
+            stringBuilder.append( "P3_4_5.SpanIntPh != 3 AND ");
         }
-        if (criteria.spanInterpreter != -1) {
-            stringBuilder.append( "P3_4_5.SpanIntON = " + criteria.spanInterpreter + " AND ");
-        }
-        if (criteria.spanPhone != -1) {
-            stringBuilder.append( "P3_4_5.SpanIntPh = " + criteria.spanPhone + " AND ");
-        }
-        if (criteria.spanFo != -1) {
-            stringBuilder.append( "P3_4_5.SpanFo = " + criteria.spanFo + " AND ");
+        if (criteria.spanFo != null) {
+            stringBuilder.append( "P3_4_5.SpanFo != 3 AND ");
         }
         //TODO fix these double if statements
-        if (criteria.medicare != null) {
-            if(criteria.medicare == true)
+        if(criteria.medicare == true) {
                 stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 1 + " AND ");
         }
-        if (criteria.medicaid != null) {
-            if(criteria.medicaid == true)
+        if(criteria.medicaid == true) {
                 stringBuilder.append( "P3_4_5.MedicaidGUIDE = " + 1 + " AND ");
         }
-        if (criteria.peachCare != null) {
-            if(criteria.peachCare == true)
+        if(criteria.peachCare == true) {
                 stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
         }
-        if (criteria.spcFCH != null) {
-            if(criteria.spcFCH == true)
+        if(criteria.spcFCH == true) {
                 stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
         }
-        if (criteria.spcWH != null) {
-            if(criteria.spcWH == true)
+        if(criteria.spcWH == true) {
                 stringBuilder.append( "P3_4_5.SpcWH = " + 1 + " AND ");
         }
-        if (criteria.spcMH != null) {
-            if(criteria.spcMH == true)
+        if(criteria.spcMH == true) {
                 stringBuilder.append( "P3_4_5.SpcMH = " + 1 + " AND ");
         }
-        if (criteria.spcMHC != null) {
-            if(criteria.spcMHC == true)
+        if(criteria.spcMHC == true) {
                 stringBuilder.append( "P3_4_5.SpcMHC = " + 1 + " AND ");
         }
-        if (criteria.spcDH != null) {
-            if(criteria.spcDH == true)
+        if(criteria.spcDH == true) {
                 stringBuilder.append( "P3_4_5.SpcDH = " + 1 + " AND ");
         }
-        if (criteria.spcVH != null) {
-            if(criteria.spcVH == true)
+        if(criteria.spcVH == true) {
                 stringBuilder.append( "P3_4_5.SpcVH = " + 1 + " AND ");
         }
-        if (criteria.spcOT != null) {
-            if(criteria.spcOT == true)
+        if(criteria.spcOT == true) {
                 stringBuilder.append( "P3_4_5.SpcOT = " + 1 + " AND ");
         }
-        if (criteria.freeLow != null) {
-            if(criteria.freeLow == true)
+        if(criteria.freeLow == true) {
                 stringBuilder.append( "P3_4_5.FreeLow = " + 1 + " AND ");
         }
-        //TODO fix these to be like the others. Why would anybody want to find only hospitals that don't offer these services? That's idiotic.
-        if (criteria.spcDk != -1) {
+        if (criteria.spcDk == Hospital.TRUE) {
             stringBuilder.append( "P3_4_5.SpcDk = " + criteria.spcDk + " AND ");
         }
-        if (criteria.age != -1) {
+        if (criteria.age == Hospital.TRUE) {
             stringBuilder.append( "P3_4_5.Age = " + criteria.age + " AND ");
         }
-        if (criteria.ageStart != -1) {
+        if (criteria.ageStart == Hospital.TRUE) {
             stringBuilder.append( "P3_4_5.AgeStart = " + criteria.ageStart + " AND ");
         }
-        if (criteria.ageEnd != -1) {
+        if (criteria.ageEnd == Hospital.TRUE) {
             stringBuilder.append( "P3_4_5.AgeEnd = " + criteria.ageEnd + " AND ");
-        }
-        if (criteria.ageOTComment != null) {
-            stringBuilder.append( "P3_4_5.AgeOTSp = " + criteria.ageOTComment + " AND ");
         }
         //TODO this is obviously wrong, but I'm leaving it like this because I don't know what we're doing about children yet.
         if (criteria.childGuide != null) {
@@ -230,19 +200,16 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.agesGuide != null) {
             stringBuilder.append( "P3_4_5.EdadesGUIDE = " + criteria.agesGuide + " AND ");
         }
-        if (criteria.otServ != -1) {
+        if (criteria.otServ != null) {
             stringBuilder.append( "P3_4_5.OTServ = " + criteria.otServ + " AND ");
         }
-        //TODO more double if statements, fix it later.
-        if (criteria.hivTestGuide != null) {
-            if(criteria.hivTestGuide == true)
+        if(criteria.hivTestGuide == true) {
                 stringBuilder.append( "P3_4_5.HIVTestGUIDE = " + 1 + " AND ");
         }
-        if (criteria.abortionGuide != null) {
-            if(criteria.abortionGuide == true)
+        if(criteria.abortionGuide == true) {
                 stringBuilder.append( "P3_4_5.AbortionGUIDE = " + 1 + " AND ");
         }
-        if (criteria.mhCount != -1) {
+        if (criteria.mhCount != null) {
             //TODO mental health is more complicated than this in the database.
             stringBuilder.append( "P3_4_5.MHCoun = " + criteria.mhCount + " AND ");
         }
@@ -339,7 +306,14 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("walkIn"))
             {
                 temp = request.getParameter(parameter);
-                criteria.walkIn = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+                //if appt was already processed
+                if (criteria.walkIn == 2) {
+                    if (temp.equalsIgnoreCase("y")) {
+                        criteria.walkIn = 3;
+                    }
+                } else {
+                    criteria.walkIn = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+                }
             }
             if (parameter.equalsIgnoreCase("walkInComment"))
             {
@@ -349,7 +323,14 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("appt"))
             {
                 temp = request.getParameter(parameter);
-                criteria.apptGuide = temp.equalsIgnoreCase("appmt") ? Hospital.TRUE : Hospital.FALSE;
+                //if walkin was already processed
+                if (criteria.walkIn == 1) {
+                    if (temp.equalsIgnoreCase("appmt")) {
+                        criteria.walkIn = 3;
+                    }
+                } else {
+                    criteria.walkIn = temp.equalsIgnoreCase("appmt") ? Hospital.TRUE : Hospital.FALSE;
+                }
             }
             if (parameter.equalsIgnoreCase("medicaid"))
             {
