@@ -79,6 +79,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if(criteria.onCall)
          	    stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
         }
+        //TODO times here aren't implemented. Are we even doing days?
 //        if(criteria.openTimes != null){
 //            int k = 0;
 //            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
@@ -182,19 +183,19 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.childGuide != null) {
             if(Boolean.TRUE.equals(criteria.childGuide))
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
-            if(Boolean.FALSE.equals(criteria.childGuide == false))
+            if(Boolean.FALSE.equals(criteria.childGuide))
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 0 + " AND ");
         }
         if (criteria.adolescentGuide != null) {
             if(Boolean.TRUE.equals(criteria.adolescentGuide))
                 stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 1 + " AND ");
-            if(Boolean.FALSE.equals(criteria.adolescentGuide == false))
+            if(Boolean.FALSE.equals(criteria.adolescentGuide))
                 stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 0 + " AND ");
         }
         if (criteria.adultGuide != null) {
             if(Boolean.TRUE.equals(criteria.adultGuide))
                 stringBuilder.append( "P3_4_5.AdultGUIDE = " + 1 + " AND ");
-            if(Boolean.FALSE.equals(criteria.adultGuide == false))
+            if(Boolean.FALSE.equals(criteria.adultGuide))
                 stringBuilder.append( "P3_4_5.AdultGUIDE = " + 0 + " AND ");
         }
         if (criteria.agesGuide != null) {
@@ -304,7 +305,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 //if appt was already processed
-                if (criteria.walkIn == 2) {
+                if (criteria.walkIn != null && criteria.walkIn == 2) {
                     if (temp.equalsIgnoreCase("y")) {
                         criteria.walkIn = 3;
                     }
@@ -321,7 +322,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 //if walkin was already processed
-                if (criteria.walkIn == 1) {
+                if (criteria.walkIn != null && criteria.walkIn == 1) {
                     if (temp.equalsIgnoreCase("appmt")) {
                         criteria.walkIn = 3;
                     }

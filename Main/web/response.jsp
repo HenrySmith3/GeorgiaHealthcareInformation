@@ -15,6 +15,7 @@
     <title>Georgia Healthcare Search Results</title>
 </head>
 <body>
+<%--TODO Should we display the search criteria here to?--%>
 <%
     JSONArray jsonArray = (JSONArray)request.getAttribute("hospitals");
     ListIterator listIterator = jsonArray.listIterator();
@@ -29,6 +30,7 @@
         out.print("</div>");//\n </br></br>");
     }
 %>
+<%--TODO There's an empty result getting printed here--%>
     <%--${hospitals}--%>
     <%--<c:foreach var="hospital" items=${hospitals}>--%>
         <%--<div>--%>
