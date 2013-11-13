@@ -47,7 +47,7 @@
         <div id="address" class="form-horizontal">
           <label>What county does the person who needs healthcare live in?</label>
                     <br>
-                    <input type="text" class="form-control" name="address"><br>
+                    <input type="text" class="form-control" name="county"><br>
                     
         </div>
 
