@@ -320,7 +320,7 @@
           <label>Do you have children that need medical assistance?</label>
                         <br>
             <input type = "radio" class="form-control"
-              name = "chil"
+              name = "child"
               id = "childyes"
               value = "y" />
             <label for = "yes">Yes</label>

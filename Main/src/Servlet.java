@@ -499,7 +499,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     {
         Hospital criteria = new Hospital();
         Enumeration parameterNames = request.getParameterNames();
-        String[] temp;
+        String temp;
 
         while (parameterNames.hasMoreElements()) 
         {
@@ -507,93 +507,88 @@ public class Servlet extends javax.servlet.http.HttpServlet {
 
             if (parameter.equalsIgnoreCase("county"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.county = temp[0];
+                temp = request.getParameter(parameter);
+                criteria.county = temp;
             }
             if (parameter.equalsIgnoreCase("publicTransportation"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.publicTransportation = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.publicTransportation = (temp == null)? -1 : Integer.parseInt(temp);
             }
             if (parameter.equalsIgnoreCase("parking"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.parking = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.parking = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
 
             if (parameter.equalsIgnoreCase("walkIn"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.walkIn = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.walkIn = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
             if (parameter.equalsIgnoreCase("walkInComment"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.walkInComment = temp[0];
+                temp = request.getParameter(parameter);
+                criteria.walkInComment = temp;
             }
-            if (parameter.equalsIgnoreCase("apptGuide"))
+            if (parameter.equalsIgnoreCase("appt"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.apptGuide = Integer.parseInt(temp[0]);
-            }
-            if (parameter.equalsIgnoreCase("walkInGuide"))
-            {
-                temp = request.getParameterValues(parameter);
-                criteria.walkInGuide = Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.apptGuide = temp.equalsIgnoreCase("appmt") ? Hospital.TRUE : Hospital.FALSE;
             }
             if (parameter.equalsIgnoreCase("medicaid"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.medicaid = true;
                 else
                     criteria.medicaid = false;
             }
             if (parameter.equalsIgnoreCase("peachCare"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.peachCare = true;
                 else
                     criteria.peachCare = false;
             }
             if (parameter.equalsIgnoreCase("spanishSpeakingStaff"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spanishSpeakingStaff = true;
                 else
                     criteria.spanishSpeakingStaff = false;
             }
             if (parameter.equalsIgnoreCase("spanNurse"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.spanNurse = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.spanNurse = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
             if (parameter.equalsIgnoreCase("spanDoc"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.spanDoc = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.spanDoc = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
-            if (parameter.equalsIgnoreCase("spanFo"))
+            if (parameter.equalsIgnoreCase("forms"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.spanFo = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.spanFo = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
             if (parameter.equalsIgnoreCase("spanInterpreter"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.spanInterpreter = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.spanInterpreter = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
-            if (parameter.equalsIgnoreCase("spanPhone"))
+            if (parameter.equalsIgnoreCase("phone"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.spanPhone = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.spanPhone = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
-            if (parameter.equalsIgnoreCase("onCall"))
+            if (parameter.equalsIgnoreCase("call"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.onCall = true;
                 else
                     criteria.onCall = false;
@@ -601,140 +596,140 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             //Stuff about days would go here, we're ignoring that for now.
             if (parameter.equalsIgnoreCase("spcFCH"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spcFCH = true;
                 else
                     criteria.spcFCH = false;
             }
             if (parameter.equalsIgnoreCase("spcWH"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spcWH = true;
                 else
                     criteria.spcWH = false;
             }
             if (parameter.equalsIgnoreCase("spcMH"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spcMH = true;
                 else
                     criteria.spcMH = false;
             }
             if (parameter.equalsIgnoreCase("spcMHC"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spcMHC = true;
                 else
                     criteria.spcMHC = false;
             }
             if (parameter.equalsIgnoreCase("spcDH"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spcDH = true;
                 else
                     criteria.spcDH = false;
             }
             if (parameter.equalsIgnoreCase("spcVH"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.spcVH = true;
                 else
                     criteria.spcVH = false;
             }
             if (parameter.equalsIgnoreCase("age"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.age = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.age = (temp == null)? -1 : Integer.parseInt(temp);
             }
             if (parameter.equalsIgnoreCase("ageStart"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.ageStart = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.ageStart = (temp == null)? -1 : Integer.parseInt(temp);
             }
             if (parameter.equalsIgnoreCase("ageEnd"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.ageEnd = (temp == null)? -1 : Integer.parseInt(temp[0]);
+                temp = request.getParameter(parameter);
+                criteria.ageEnd = (temp == null)? -1 : Integer.parseInt(temp);
             }
             if (parameter.equalsIgnoreCase("childGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.childGuide = true;
                 else
                     criteria.childGuide = false;
             }
             if (parameter.equalsIgnoreCase("adolescentGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.adolescentGuide = true;
                 else
                     criteria.adolescentGuide = false;
             }
             if (parameter.equalsIgnoreCase("adultGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.adultGuide = true;
                 else
                     criteria.adultGuide = false;
             }
             if (parameter.equalsIgnoreCase("agesGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                criteria.agesGuide = temp[0];
+                temp = request.getParameter(parameter);
+                criteria.agesGuide = temp;
             }
             if (parameter.equalsIgnoreCase("hivTestGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.hivTestGuide = true;
                 else
                     criteria.hivTestGuide = false;
             }
             if (parameter.equalsIgnoreCase("subAbGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.subAbGuide = true;
                 else
                     criteria.subAbGuide = false;
             }
             if (parameter.equalsIgnoreCase("sexAbGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.sexAbGuide = true;
                 else
                     criteria.sexAbGuide = false;
             }
             if (parameter.equalsIgnoreCase("angManGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.angManGuide = true;
                 else
                     criteria.angManGuide = false;
             }
             if (parameter.equalsIgnoreCase("hivConsGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.hivConsGuide = true;
                 else
                     criteria.hivConsGuide = false;
             }
             if (parameter.equalsIgnoreCase("lgbtGuide"))
             {
-                temp = request.getParameterValues(parameter);
-                if(temp[0].equalsIgnoreCase("True"))
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("True"))
                     criteria.lgbtGuide = true;
                 else
                     criteria.lgbtGuide = false;
