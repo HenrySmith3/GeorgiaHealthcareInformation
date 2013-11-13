@@ -69,110 +69,48 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         StringBuilder stringBuilder = new StringBuilder();
         
         //page1
-        if(criteria.id != -1){
-            stringBuilder.append( "P1.ID = " + criteria.id + " AND ");
-        }
-        if(criteria.itp != null){
-            stringBuilder.append( "P1.ITP = " + criteria.itp + " AND ");
-        }
         if(criteria.spanishSpeakingStaff != null){
             if(criteria.spanishSpeakingStaff == true)
         	    stringBuilder.append( "P1.SPAN = " + 1 + " AND ");
             else if(criteria.spanishSpeakingStaff == false)
         	    stringBuilder.append( "P1.SPAN = " + 2 + " AND ");
         }
-        if(criteria.name != null){
-            stringBuilder.append( "P1.NameFac = " + criteria.name + " AND ");
-        }
-        if(criteria.addressLine1 != null){
-            stringBuilder.append( "P1.AddFacL1 = " + criteria.addressLine1 + " AND ");
-        }
-        if(criteria.addressLine2 != null){
-            stringBuilder.append( "P1.AddFacL2 = " + criteria.addressLine2 + " AND ");
-        }
-        if(criteria.city != null){
-            stringBuilder.append( "P1.City = " + criteria.city + " AND ");
-        }
         if(criteria.county != null){
             stringBuilder.append( "P1.County = " + criteria.county + " AND ");
         }
-        if(criteria.zip != -1){
-            stringBuilder.append( "P1.ZIPCode = " + criteria.zip + " AND ");
-        }
-        if(criteria.phone != null){
-            stringBuilder.append( "P1.Phone = " + criteria.phone + " AND ");
-        }
-        if(criteria.fax != null){
-            stringBuilder.append( "P1.Fax = " + criteria.fax + " AND ");
-        }
-        if(criteria.website != null){
-            stringBuilder.append( "P1.Website = " + criteria.website + " AND ");
-        }
-        if(criteria.mainFacility != null){
-            stringBuilder.append( "P1.BraONL = " + criteria.mainFacility + " AND ");
-        }
-        if(criteria.branchRefNumber != -1){
-            stringBuilder.append( "P1.BraRefNo = " + criteria.branchRefNumber + " AND ");
-        }
-        if(criteria.associatedFacilities != null){
-	    for(int i = 0; i < criteria.associatedFacilities.size(); i++){
-	        if(criteria.associatedFacilities.get(i)[0] != null)stringBuilder.append( "P1.OTFac" + i + 1 + " = " + criteria.associatedFacilities.get(i)[0]);
-	        if(criteria.associatedFacilities.get(i)[1] != null)stringBuilder.append( "P1.OTFac" + i + 1 + "Ph = " + criteria.associatedFacilities.get(i)[1]);
-	    }      	
-        }
-        if(criteria.intComm != null){
-            stringBuilder.append( "P1.IntComm = " + criteria.intComm + " AND ");
-        }
-        
+
         //page2
-        if(criteria.open247 != null){
-            if(criteria.open247 == true)
-                stringBuilder.append( "P2.Op247 = " + 1 + " AND ");
-            else if(criteria.spanishSpeakingStaff == false)
-               	stringBuilder.append( "P2.Op247 = " + 0 + " AND ");
-        }
         if(criteria.onCall != null){
             if(criteria.open247 == true)
          	stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
             else if(criteria.spanishSpeakingStaff == false)
         	stringBuilder.append( "P2.OnCall = " + 0 + " AND ");
         }
-        if(criteria.openTimes != null){
-            int k = 0;
-            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( "P2." + day + "Op = " + criteria.openTimes.get(k) + " AND ");
-        	k++;
-            }
-        }
-        if(criteria.closeTimes != null){
-            int k = 0;
-            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( "P2." + day + "Cl = " + criteria.closeTimes.get(k) + " AND ");
-        	k++;
-            }
-        }
-        if(criteria.commentsOnTimes != null){
-            int k = 0;
-            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-        	stringBuilder.append( "P2." + day + "Comm = " + criteria.commentsOnTimes.get(k) + " AND ");
-        	k++;
-            }
-        }
-        if(criteria.spanishTimesComment != null){
-            stringBuilder.append( "P2.HOpComm = " + criteria.spanishTimesComment + " AND ");
-        }
-        if(criteria.hoursGuide != null){
-            stringBuilder.append( "P2.HoursGuide = " + criteria.hoursGuide + " AND ");
-        }
-        
+//        if(criteria.openTimes != null){
+//            int k = 0;
+//            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
+//        	stringBuilder.append( "P2." + day + "Op = " + criteria.openTimes.get(k) + " AND ");
+//        	k++;
+//            }
+//        }
+//        if(criteria.closeTimes != null){
+//            int k = 0;
+//            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
+//        	stringBuilder.append( "P2." + day + "Cl = " + criteria.closeTimes.get(k) + " AND ");
+//        	k++;
+//            }
+//        }
+//        if(criteria.commentsOnTimes != null){
+//            int k = 0;
+//            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
+//        	stringBuilder.append( "P2." + day + "Comm = " + criteria.commentsOnTimes.get(k) + " AND ");
+//        	k++;
+//            }
+//        }
+
         //page3_4_5
-        if(criteria.walkIn != -1){
-            stringBuilder.append( "P3_4_5.AppWalk = " + criteria.walkIn + " AND ");
-        }
-        if(criteria.walkInComment != null){
-            stringBuilder.append( "P3_4_5.AppWalkSp = " + criteria.walkInComment + " AND ");
-        }
         if(criteria.apptGuide != -1){
+            //TODO this needs to be looked at. Is -1 even the default?
             stringBuilder.append( "P3_4_5.ApptGUIDE = " + criteria.apptGuide + " AND ");
         }
         if(criteria.walkInGuide != -1){
@@ -180,9 +118,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         if(criteria.parking != -1){
             stringBuilder.append( "P3_4_5.park = " + criteria.parking + " AND ");
-        }
-        if(criteria.parkingComment != null){
-            stringBuilder.append( "P3_4_5.ParkSP = " + criteria.parkingComment + " AND ");
         }
         if(criteria.publicTransportation != -1){
             stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
@@ -193,159 +128,71 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             else if(criteria.publicTransportationGuide == false)
         	stringBuilder.append( "P3_4_5.ParkGTGUIDE = " + 0 + " AND ");
         }
-        if(criteria.publicTransportationComment != null){
-            stringBuilder.append( "P3_4_5.PubTrSp = " + criteria.publicTransportationComment + " AND ");
-        }
-        if (criteria.publicTransportationOther != -1){
-            stringBuilder.append( "P3_4_5.PubTrOt = " + criteria.publicTransportationOther + " AND ");
-        }
-        if (criteria.publicTransportationOtherComment != null){
-            stringBuilder.append( "P3_4_5.PubTrOtSp = " + criteria.publicTransportationOtherComment + " AND ");
-        }
-        if (criteria.freeTransport != null){
-            stringBuilder.append( "P3_4_5.Transportegratis = " + criteria.freeTransport + " AND ");
-        }
+        //TODO the next five or so are not binary attributes.
         if (criteria.spanAdmin != -1) {
             stringBuilder.append( "P3_4_5.SPANAdm = " + criteria.spanAdmin + " AND ");
-        }
-        if (criteria.spanAdminGuide != null) {
-            stringBuilder.append( "P3_4_5.SPANAdmGUIDE = " + criteria.spanAdminGuide + " AND ");
         }
         if (criteria.spanNurse != -1) {
             stringBuilder.append( "P3_4_5.SpanNur = " + criteria.spanNurse + " AND ");
         }
-        if (criteria.spanNurseGuide != null) {
-            stringBuilder.append( "P3_4_5.SpanNurGUIDE = " + criteria.spanNurseGuide + " AND ");
-        }
         if (criteria.spanDoc != -1) {
             stringBuilder.append( "P3_4_5.SpanDoc = " + criteria.spanDoc + " AND ");
-        }
-        if (criteria.spanDocGuide != null) {
-            stringBuilder.append( "P3_4_5.SpanDocGUIDE = " + criteria.spanDocGuide + " AND ");
         }
         if (criteria.spanInterpreter != -1) {
             stringBuilder.append( "P3_4_5.SpanIntON = " + criteria.spanInterpreter + " AND ");
         }
-        if (criteria.spanInterpreterGuide != null) {
-            stringBuilder.append( "P3_4_5.SpanIntONGUIDE = " + criteria.spanInterpreterGuide + " AND ");
-        }
         if (criteria.spanPhone != -1) {
             stringBuilder.append( "P3_4_5.SpanIntPh = " + criteria.spanPhone + " AND ");
-        }
-        if (criteria.spanPhoneGuide != null) {
-            stringBuilder.append( "P3_4_5.SpanIntPhGUIDE = " + criteria.spanPhoneGuide + " AND ");
         }
         if (criteria.spanFo != -1) {
             stringBuilder.append( "P3_4_5.SpanFo = " + criteria.spanFo + " AND ");
         }
-        if (criteria.spanFoGuide != null) {
-            stringBuilder.append( "P3_4_5.SpanFoGUIDE = " + criteria.spanFoGuide + " AND ");
-        }
-        if (criteria.insurance != -1) {
-            stringBuilder.append( "P3_4_5.Insur = " + criteria.insurance + " AND ");
-        }
-        if (criteria.insuranceComment != null) {
-            stringBuilder.append( "P3_4_5.InsurSp = " + criteria.insuranceComment + " AND ");
-        }
+        //TODO fix these double if statements
         if (criteria.medicare != null) {
             if(criteria.medicare == true)
                 stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 1 + " AND ");
-            if(criteria.medicare == false)
-                stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 0 + " AND ");
         }
         if (criteria.medicaid != null) {
             if(criteria.medicaid == true)
                 stringBuilder.append( "P3_4_5.MedicaidGUIDE = " + 1 + " AND ");
-            if(criteria.medicare == false)
-                stringBuilder.append( "P3_4_5.MedicaidGUIDE = " + 0 + " AND ");
         }
         if (criteria.peachCare != null) {
             if(criteria.peachCare == true)
                 stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
-            if(criteria.peachCare == false)
-                stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 0 + " AND ");
-        }
-        if (criteria.pay != -1) {
-            stringBuilder.append( "P3_4_5.Pay = " + criteria.pay + " AND ");
-        }
-        if (criteria.financialAssistance != -1) {
-            stringBuilder.append( "P3_4_5.FinAss = " + criteria.financialAssistance + " AND ");
-        }
-        if (criteria.payPlanGuide != null) {
-            if(criteria.payPlanGuide == true)
-                stringBuilder.append( "P3_4_5.PayPlanGUIDE = " + 1 + " AND ");
-            if(criteria.payPlanGuide == false)
-                stringBuilder.append( "P3_4_5.PayPlanGUIDE = " + 0 + " AND ");
-        }
-        if (criteria.SlideSc != null) {
-            if(criteria.SlideSc == true)
-                stringBuilder.append( "P3_4_5.SlideScGUIDE = " + 1 + " AND ");
-            if(criteria.SlideSc == false)
-                stringBuilder.append( "P3_4_5.SlideScGUIDE = " + 0 + " AND ");
-        }
-        if (criteria.financialAssistanceComment != null) {
-            stringBuilder.append( "P3_4_5.FinAssSp = " + criteria.financialAssistanceComment + " AND ");
-        }
-        if (criteria.finAssPh != null) {
-            stringBuilder.append( "P3_4_5.FinAssPh = " + criteria.finAssPh + " AND ");
-        }
-        if (criteria.finAllPhComment != null) {
-            stringBuilder.append( "P3_4_5.FinAssPhSp = " + criteria.finAllPhComment + " AND ");
         }
         if (criteria.spcFCH != null) {
             if(criteria.spcFCH == true)
                 stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
-            if(criteria.spcFCH == false)
-                stringBuilder.append( "P3_4_5.SpcFCH = " + 0 + " AND ");
         }
         if (criteria.spcWH != null) {
             if(criteria.spcWH == true)
                 stringBuilder.append( "P3_4_5.SpcWH = " + 1 + " AND ");
-            if(criteria.spcWH == false)
-                stringBuilder.append( "P3_4_5.SpcWH = " + 0 + " AND ");
         }
         if (criteria.spcMH != null) {
             if(criteria.spcMH == true)
                 stringBuilder.append( "P3_4_5.SpcMH = " + 1 + " AND ");
-            if(criteria.spcMH == false)
-                stringBuilder.append( "P3_4_5.SpcMH = " + 0 + " AND ");
         }
         if (criteria.spcMHC != null) {
             if(criteria.spcMHC == true)
                 stringBuilder.append( "P3_4_5.SpcMHC = " + 1 + " AND ");
-            if(criteria.spcMHC == false)
-                stringBuilder.append( "P3_4_5.SpcMHC = " + 0 + " AND ");
         }
         if (criteria.spcDH != null) {
             if(criteria.spcDH == true)
                 stringBuilder.append( "P3_4_5.SpcDH = " + 1 + " AND ");
-            if(criteria.spcDH == false)
-                stringBuilder.append( "P3_4_5.SpcDH = " + 0 + " AND ");
         }
         if (criteria.spcVH != null) {
             if(criteria.spcVH == true)
                 stringBuilder.append( "P3_4_5.SpcVH = " + 1 + " AND ");
-       	    if(criteria.spcVH == false)
-                stringBuilder.append( "P3_4_5.SpcVH = " + 0 + " AND ");
         }
         if (criteria.spcOT != null) {
             if(criteria.spcOT == true)
                 stringBuilder.append( "P3_4_5.SpcOT = " + 1 + " AND ");
-            if(criteria.spcOT == false)
-                stringBuilder.append( "P3_4_5.SpcOT = " + 0 + " AND ");
         }
         if (criteria.freeLow != null) {
             if(criteria.freeLow == true)
                 stringBuilder.append( "P3_4_5.FreeLow = " + 1 + " AND ");
-            if(criteria.freeLow == false)
-                stringBuilder.append( "P3_4_5.FreeLow = " + 0 + " AND ");
         }
-        if (criteria.spcComment != null) {
-            stringBuilder.append( "P3_4_5.SpcSp = " + criteria.spcComment + " AND ");
-        }
-        if (criteria.oteSpecial != null) {
-            stringBuilder.append( "P3_4_5.OTEspecial = " + criteria.oteSpecial + " AND ");
-        }
+        //TODO fix these to be like the others. Why would anybody want to find only hospitals that don't offer these services? That's idiotic.
         if (criteria.spcDk != -1) {
             stringBuilder.append( "P3_4_5.SpcDk = " + criteria.spcDk + " AND ");
         }
@@ -361,6 +208,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.ageOTComment != null) {
             stringBuilder.append( "P3_4_5.AgeOTSp = " + criteria.ageOTComment + " AND ");
         }
+        //TODO this is obviously wrong, but I'm leaving it like this because I don't know what we're doing about children yet.
         if (criteria.childGuide != null) {
             if(criteria.childGuide == true)
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
@@ -385,78 +233,45 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.otServ != -1) {
             stringBuilder.append( "P3_4_5.OTServ = " + criteria.otServ + " AND ");
         }
+        //TODO more double if statements, fix it later.
         if (criteria.hivTestGuide != null) {
             if(criteria.hivTestGuide == true)
                 stringBuilder.append( "P3_4_5.HIVTestGUIDE = " + 1 + " AND ");
-            if(criteria.hivTestGuide == false)
-                stringBuilder.append( "P3_4_5.HIVTestGUIDE = " + 0 + " AND ");
         }
         if (criteria.abortionGuide != null) {
             if(criteria.abortionGuide == true)
                 stringBuilder.append( "P3_4_5.AbortionGUIDE = " + 1 + " AND ");
-            if(criteria.abortionGuide == false)
-                stringBuilder.append( "P3_4_5.AbortionGUIDE = " + 0 + " AND ");
         }
         if (criteria.mhCount != -1) {
+            //TODO mental health is more complicated than this in the database.
             stringBuilder.append( "P3_4_5.MHCoun = " + criteria.mhCount + " AND ");
-        }
-        if (criteria.mhCounSG != null) {
-            stringBuilder.append( "P3_4_5.MHCounSG = " + criteria.mhCounSG + " AND ");
-        }
-        if (criteria.mhCounOT != null) {
-            stringBuilder.append( "P3_4_5.MHCounOT = " + criteria.mhCounOT + " AND ");
         }
         if (criteria.subAbGuide != null) {
             if(criteria.subAbGuide == true)
                 stringBuilder.append( "P3_4_5.SubAbGuide = " + 1 + " AND ");
-            if(criteria.subAbGuide == false)
-                stringBuilder.append( "P3_4_5.SubAbGuide = " + 0 + " AND ");
         }
         if (criteria.sexAbGuide != null) {
             if(criteria.sexAbGuide == true)
                 stringBuilder.append( "P3_4_5.SexAbGuide = " + 1 + " AND ");
-            if(criteria.sexAbGuide == false)
-                stringBuilder.append( "P3_4_5.SexAbGuide = " + 0 + " AND ");
         }
         if (criteria.angManGuide != null) {
             if(criteria.angManGuide == true)
                 stringBuilder.append( "P3_4_5.AngManGuide = " + 1 + " AND ");
-            if(criteria.angManGuide == false)
-                stringBuilder.append( "P3_4_5.AngManGuide = " + 0 + " AND ");
         }
         if (criteria.hivConsGuide != null) {
             if(criteria.hivConsGuide == true)
                 stringBuilder.append( "P3_4_5.HIVConsGUIDE = " + 1 + " AND ");
-            if(criteria.hivConsGuide == false)
-                stringBuilder.append( " P3_4_5.HIVConsGUIDE = " + 0 + " AND ");
         }
         if (criteria.lgbtGuide != null) {
             if(criteria.lgbtGuide == true)
                 stringBuilder.append( "P3_4_5.LGBTGUIDE = " + 1 + " AND ");
-            if(criteria.lgbtGuide == false)
-                stringBuilder.append( "P3_4_5.LGBTGUIDE = " + 0 + " AND ");
         }
         if (criteria.suppGGuide != null) {
             if(criteria.suppGGuide == true)
                 stringBuilder.append( "P3_4_5.SuppGGUIDE = " + 1 + " AND ");
-            if(criteria.suppGGuide == false)
-                stringBuilder.append( "P3_4_5.SuppGGUIDE = " + 0 + " AND ");
         }
-        if (criteria.finalComment != null) {
-            stringBuilder.append( "P3_4_5.FinComm2 = " + criteria.finalComment + " AND ");
-        }
-        if (criteria.notes != null) {
-            stringBuilder.append( "P3_4_5.NotesGUIDE = " + criteria.notes + " AND ");
-        }
-        if (criteria.notesLowFree != null) {
-            stringBuilder.append( "P3_4_5.NotesLowFreeGUIDE = " + criteria.notesLowFree + " AND ");
-        }
-        if (criteria.notesLowFree2 != null) {
-            stringBuilder.append( "P3_4_5.NotesLowFree2GUIDE = " + criteria.notesLowFree2 + " AND ");
-        }
-        
         String ss = stringBuilder.toString();
-        ss = "WHERE " + ss.substring(0, ss.length() - 5);
+        ss = "WHERE " + ss.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
         return ss;
     }
 
