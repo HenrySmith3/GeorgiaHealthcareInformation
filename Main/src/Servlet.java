@@ -70,21 +70,20 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         
         //page1
         if(criteria.spanishSpeakingStaff != null){
+            //TODO this is wrong, it's also covered more later.
             if(criteria.spanishSpeakingStaff == true)
         	    stringBuilder.append( "P1.SPAN = " + 1 + " AND ");
             else if(criteria.spanishSpeakingStaff == false)
         	    stringBuilder.append( "P1.SPAN = " + 2 + " AND ");
         }
         if(criteria.county != null){
-            stringBuilder.append( "P1.County = " + criteria.county + " AND ");
+            stringBuilder.append( "P1.County = '" + criteria.county + "' AND ");
         }
 
         //page2
         if(criteria.onCall != null){
-            if(criteria.open247 == true)
-         	stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
-            else if(criteria.spanishSpeakingStaff == false)
-        	stringBuilder.append( "P2.OnCall = " + 0 + " AND ");
+            if(criteria.onCall == true)
+         	    stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
         }
 //        if(criteria.openTimes != null){
 //            int k = 0;
@@ -113,8 +112,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             //TODO this needs to be looked at. Is -1 even the default?
             stringBuilder.append( "P3_4_5.ApptGUIDE = " + criteria.apptGuide + " AND ");
         }
-        if(criteria.walkInGuide != -1){
-            stringBuilder.append( "P3_4_5.Walk-inGUIDE = " + criteria.walkInGuide + " AND ");
+        if(criteria.walkIn != -1){
+            //TODO this is non-binary, there's a 'both' option.
+            stringBuilder.append( "P3_4_5.AppWalk = " + criteria.walkIn + " AND ");
         }
         if(criteria.parking != -1){
             stringBuilder.append( "P3_4_5.park = " + criteria.parking + " AND ");
