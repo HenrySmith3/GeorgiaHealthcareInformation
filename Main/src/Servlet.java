@@ -69,7 +69,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         StringBuilder stringBuilder = new StringBuilder();
         
         //page1
-        if(criteria.county != null){
+        if(criteria.county != null && !criteria.county.equals("")){
+            //TODO are we only returning results from the county they live in? What if they're right on the border?
             stringBuilder.append( "P1.County = '" + criteria.county + "' AND ");
         }
 
@@ -132,68 +133,68 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.spanFo != null) {
             stringBuilder.append( "P3_4_5.SpanFo != 3 AND ");
         }
-        if(criteria.medicare) {
+        if(Boolean.TRUE.equals(criteria.medicare)) {
             stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 1 + " AND ");
         }
-        if(criteria.medicaid) {
+        if(Boolean.TRUE.equals(criteria.medicaid)) {
             stringBuilder.append( "P3_4_5.MedicaidGUIDE = " + 1 + " AND ");
         }
-        if(criteria.peachCare) {
+        if(Boolean.TRUE.equals(criteria.peachCare)) {
             stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
         }
-        if(criteria.spcFCH) {
+        if(Boolean.TRUE.equals(criteria.spcFCH)) {
             stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
         }
-        if(criteria.spcWH) {
+        if(Boolean.TRUE.equals(criteria.spcWH)) {
             stringBuilder.append( "P3_4_5.SpcWH = " + 1 + " AND ");
         }
-        if(criteria.spcMH) {
+        if(Boolean.TRUE.equals(criteria.spcMH)) {
             stringBuilder.append( "P3_4_5.SpcMH = " + 1 + " AND ");
         }
-        if(criteria.spcMHC) {
+        if(Boolean.TRUE.equals(criteria.spcMHC)) {
             stringBuilder.append( "P3_4_5.SpcMHC = " + 1 + " AND ");
         }
-        if(criteria.spcDH) {
+        if(Boolean.TRUE.equals(criteria.spcDH)) {
             stringBuilder.append( "P3_4_5.SpcDH = " + 1 + " AND ");
         }
-        if(criteria.spcVH) {
+        if(Boolean.TRUE.equals(criteria.spcVH)) {
             stringBuilder.append( "P3_4_5.SpcVH = " + 1 + " AND ");
         }
-        if(criteria.spcOT) {
+        if(Boolean.TRUE.equals(criteria.spcOT)) {
             stringBuilder.append( "P3_4_5.SpcOT = " + 1 + " AND ");
         }
-        if(criteria.freeLow) {
+        if(Boolean.TRUE.equals(criteria.freeLow)) {
             stringBuilder.append( "P3_4_5.FreeLow = " + 1 + " AND ");
         }
-        if (criteria.spcDk == Hospital.TRUE) {
+        if (Hospital.TRUE.equals(criteria.spcDk)) {
             stringBuilder.append( "P3_4_5.SpcDk = " + criteria.spcDk + " AND ");
         }
-        if (criteria.age == Hospital.TRUE) {
+        if (Hospital.TRUE.equals(criteria.age)) {
             stringBuilder.append( "P3_4_5.Age = " + criteria.age + " AND ");
         }
-        if (criteria.ageStart == Hospital.TRUE) {
+        if (Hospital.TRUE.equals(criteria.ageStart)) {
             stringBuilder.append( "P3_4_5.AgeStart = " + criteria.ageStart + " AND ");
         }
-        if (criteria.ageEnd == Hospital.TRUE) {
+        if (Hospital.TRUE.equals(criteria.ageEnd)) {
             stringBuilder.append( "P3_4_5.AgeEnd = " + criteria.ageEnd + " AND ");
         }
         //TODO this is obviously wrong, but I'm leaving it like this because I don't know what we're doing about children yet.
         if (criteria.childGuide != null) {
-            if(criteria.childGuide)
+            if(Boolean.TRUE.equals(criteria.childGuide))
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
-            if(criteria.childGuide == false)
+            if(Boolean.FALSE.equals(criteria.childGuide == false))
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 0 + " AND ");
         }
         if (criteria.adolescentGuide != null) {
-            if(criteria.adolescentGuide)
+            if(Boolean.TRUE.equals(criteria.adolescentGuide))
                 stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 1 + " AND ");
-            if(criteria.adolescentGuide == false)
+            if(Boolean.FALSE.equals(criteria.adolescentGuide == false))
                 stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 0 + " AND ");
         }
         if (criteria.adultGuide != null) {
-            if(criteria.adultGuide)
+            if(Boolean.TRUE.equals(criteria.adultGuide))
                 stringBuilder.append( "P3_4_5.AdultGUIDE = " + 1 + " AND ");
-            if(criteria.adultGuide == false)
+            if(Boolean.FALSE.equals(criteria.adultGuide == false))
                 stringBuilder.append( "P3_4_5.AdultGUIDE = " + 0 + " AND ");
         }
         if (criteria.agesGuide != null) {
@@ -202,35 +203,38 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.otServ != null) {
             stringBuilder.append( "P3_4_5.OTServ = " + criteria.otServ + " AND ");
         }
-        if(criteria.hivTestGuide) {
+        if(Boolean.TRUE.equals(criteria.hivTestGuide)) {
                 stringBuilder.append( "P3_4_5.HIVTestGUIDE = " + 1 + " AND ");
         }
-        if(criteria.abortionGuide) {
+        if(Boolean.TRUE.equals(criteria.abortionGuide)) {
                 stringBuilder.append( "P3_4_5.AbortionGUIDE = " + 1 + " AND ");
         }
         if (criteria.mhCount != null) {
             //TODO mental health is more complicated than this in the database.
             stringBuilder.append( "P3_4_5.MHCoun = " + criteria.mhCount + " AND ");
         }
-        if(criteria.subAbGuide) {
+        if(Boolean.TRUE.equals(criteria.subAbGuide)) {
                 stringBuilder.append( "P3_4_5.SubAbGuide = " + 1 + " AND ");
         }
-        if(criteria.sexAbGuide) {
+        if(Boolean.TRUE.equals(criteria.sexAbGuide)) {
                 stringBuilder.append( "P3_4_5.SexAbGuide = " + 1 + " AND ");
         }
-        if(criteria.angManGuide) {
+        if(Boolean.TRUE.equals(criteria.angManGuide)) {
                 stringBuilder.append( "P3_4_5.AngManGuide = " + 1 + " AND ");
         }
-        if(criteria.hivConsGuide) {
+        if(Boolean.TRUE.equals(criteria.hivConsGuide)) {
                 stringBuilder.append( "P3_4_5.HIVConsGUIDE = " + 1 + " AND ");
         }
-        if(criteria.lgbtGuide) {
+        if(Boolean.TRUE.equals(criteria.lgbtGuide)) {
                 stringBuilder.append( "P3_4_5.LGBTGUIDE = " + 1 + " AND ");
         }
-        if(criteria.suppGGuide) {
+        if(Boolean.TRUE.equals(criteria.suppGGuide)) {
                 stringBuilder.append( "P3_4_5.SuppGGUIDE = " + 1 + " AND ");
         }
         String ss = stringBuilder.toString();
+        if (ss.length() <= 5) {
+            return "";
+        }
         ss = "WHERE " + ss.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
         return ss;
     }

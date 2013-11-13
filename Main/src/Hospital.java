@@ -12,8 +12,8 @@ import java.util.*;
  * When used as a criteria, every field not being searched on is null, every non-null field is a requirement.
  */
 public class Hospital {
-    public final static int TRUE = 1;
-    public final static int FALSE = 1;
+    public final static Integer TRUE = 1;
+    public final static Integer FALSE = 1;
 
     //page 1
     public Integer id;
