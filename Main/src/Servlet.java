@@ -75,7 +75,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
 
         //page2
         if(criteria.onCall != null){
-            if(criteria.onCall == true)
+            if(criteria.onCall)
          	    stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
         }
 //        if(criteria.openTimes != null){
@@ -132,39 +132,38 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.spanFo != null) {
             stringBuilder.append( "P3_4_5.SpanFo != 3 AND ");
         }
-        //TODO fix these double if statements
-        if(criteria.medicare == true) {
-                stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 1 + " AND ");
+        if(criteria.medicare) {
+            stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 1 + " AND ");
         }
-        if(criteria.medicaid == true) {
-                stringBuilder.append( "P3_4_5.MedicaidGUIDE = " + 1 + " AND ");
+        if(criteria.medicaid) {
+            stringBuilder.append( "P3_4_5.MedicaidGUIDE = " + 1 + " AND ");
         }
-        if(criteria.peachCare == true) {
-                stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
+        if(criteria.peachCare) {
+            stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
         }
-        if(criteria.spcFCH == true) {
-                stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
+        if(criteria.spcFCH) {
+            stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
         }
-        if(criteria.spcWH == true) {
-                stringBuilder.append( "P3_4_5.SpcWH = " + 1 + " AND ");
+        if(criteria.spcWH) {
+            stringBuilder.append( "P3_4_5.SpcWH = " + 1 + " AND ");
         }
-        if(criteria.spcMH == true) {
-                stringBuilder.append( "P3_4_5.SpcMH = " + 1 + " AND ");
+        if(criteria.spcMH) {
+            stringBuilder.append( "P3_4_5.SpcMH = " + 1 + " AND ");
         }
-        if(criteria.spcMHC == true) {
-                stringBuilder.append( "P3_4_5.SpcMHC = " + 1 + " AND ");
+        if(criteria.spcMHC) {
+            stringBuilder.append( "P3_4_5.SpcMHC = " + 1 + " AND ");
         }
-        if(criteria.spcDH == true) {
-                stringBuilder.append( "P3_4_5.SpcDH = " + 1 + " AND ");
+        if(criteria.spcDH) {
+            stringBuilder.append( "P3_4_5.SpcDH = " + 1 + " AND ");
         }
-        if(criteria.spcVH == true) {
-                stringBuilder.append( "P3_4_5.SpcVH = " + 1 + " AND ");
+        if(criteria.spcVH) {
+            stringBuilder.append( "P3_4_5.SpcVH = " + 1 + " AND ");
         }
-        if(criteria.spcOT == true) {
-                stringBuilder.append( "P3_4_5.SpcOT = " + 1 + " AND ");
+        if(criteria.spcOT) {
+            stringBuilder.append( "P3_4_5.SpcOT = " + 1 + " AND ");
         }
-        if(criteria.freeLow == true) {
-                stringBuilder.append( "P3_4_5.FreeLow = " + 1 + " AND ");
+        if(criteria.freeLow) {
+            stringBuilder.append( "P3_4_5.FreeLow = " + 1 + " AND ");
         }
         if (criteria.spcDk == Hospital.TRUE) {
             stringBuilder.append( "P3_4_5.SpcDk = " + criteria.spcDk + " AND ");
@@ -180,19 +179,19 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         //TODO this is obviously wrong, but I'm leaving it like this because I don't know what we're doing about children yet.
         if (criteria.childGuide != null) {
-            if(criteria.childGuide == true)
+            if(criteria.childGuide)
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
             if(criteria.childGuide == false)
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 0 + " AND ");
         }
         if (criteria.adolescentGuide != null) {
-            if(criteria.adolescentGuide == true)
+            if(criteria.adolescentGuide)
                 stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 1 + " AND ");
             if(criteria.adolescentGuide == false)
                 stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 0 + " AND ");
         }
         if (criteria.adultGuide != null) {
-            if(criteria.adultGuide == true)
+            if(criteria.adultGuide)
                 stringBuilder.append( "P3_4_5.AdultGUIDE = " + 1 + " AND ");
             if(criteria.adultGuide == false)
                 stringBuilder.append( "P3_4_5.AdultGUIDE = " + 0 + " AND ");
@@ -203,38 +202,32 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (criteria.otServ != null) {
             stringBuilder.append( "P3_4_5.OTServ = " + criteria.otServ + " AND ");
         }
-        if(criteria.hivTestGuide == true) {
+        if(criteria.hivTestGuide) {
                 stringBuilder.append( "P3_4_5.HIVTestGUIDE = " + 1 + " AND ");
         }
-        if(criteria.abortionGuide == true) {
+        if(criteria.abortionGuide) {
                 stringBuilder.append( "P3_4_5.AbortionGUIDE = " + 1 + " AND ");
         }
         if (criteria.mhCount != null) {
             //TODO mental health is more complicated than this in the database.
             stringBuilder.append( "P3_4_5.MHCoun = " + criteria.mhCount + " AND ");
         }
-        if (criteria.subAbGuide != null) {
-            if(criteria.subAbGuide == true)
+        if(criteria.subAbGuide) {
                 stringBuilder.append( "P3_4_5.SubAbGuide = " + 1 + " AND ");
         }
-        if (criteria.sexAbGuide != null) {
-            if(criteria.sexAbGuide == true)
+        if(criteria.sexAbGuide) {
                 stringBuilder.append( "P3_4_5.SexAbGuide = " + 1 + " AND ");
         }
-        if (criteria.angManGuide != null) {
-            if(criteria.angManGuide == true)
+        if(criteria.angManGuide) {
                 stringBuilder.append( "P3_4_5.AngManGuide = " + 1 + " AND ");
         }
-        if (criteria.hivConsGuide != null) {
-            if(criteria.hivConsGuide == true)
+        if(criteria.hivConsGuide) {
                 stringBuilder.append( "P3_4_5.HIVConsGUIDE = " + 1 + " AND ");
         }
-        if (criteria.lgbtGuide != null) {
-            if(criteria.lgbtGuide == true)
+        if(criteria.lgbtGuide) {
                 stringBuilder.append( "P3_4_5.LGBTGUIDE = " + 1 + " AND ");
         }
-        if (criteria.suppGGuide != null) {
-            if(criteria.suppGGuide == true)
+        if(criteria.suppGGuide) {
                 stringBuilder.append( "P3_4_5.SuppGGUIDE = " + 1 + " AND ");
         }
         String ss = stringBuilder.toString();
