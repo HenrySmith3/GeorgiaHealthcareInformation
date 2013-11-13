@@ -40,7 +40,7 @@
     <br>
 
         <div class="span12">
-    <form class="form-horizontal" action="html_form_action.asp" method="get">
+    <form class="form-horizontal" action="html_form_action.asp" method="get" id="mainForm">
       <fieldset>
         <legend> Personal Information </legend>
                 
@@ -81,7 +81,7 @@
         <div id="trans" class = "form-inline">
           <label>What is your preferred method of transportation?</label>
                     <br>
-          <select id = "transportation">
+          <select id = "transportation" form="mainForm" name="transportationForm">
             <option value = "1">Drive</option>
             <option value = "2">MARTA</option>
             <option value = "3">Bus</option>
@@ -138,9 +138,9 @@
         <div id="insurance" class="form-inline">
           <label>What medical insurance do you have?</label>
                     <br>
-            <select id = "medinsurance">
+            <select id = "medinsurance" name="insuranceForm" form="mainForm">
               <option value = "1">Medicare</option>
-              <option valie = "2">Medicaid</option>
+              <option value = "2">Medicaid</option>
               <option value = "3">Peachcare</option>
               <option value = "4">None</option>
             </select>
@@ -154,18 +154,24 @@
           <label>Do you require any of these faculty members to speak Spanish?</label>
                     <br>
           <input type = "checkbox" class="form-control"
+            name="receptionist"
             id = "receptionist"
-            value = "recept" />
+            value = "recept"
+            form="mainForm"/>
           <label for = "receptionist">Receptionist</label>
 
           <input type = "checkbox" class="form-control"
+            name="nurses"
             id = "nurses"
-            value = "nur" />
+            value = "nur"
+            form="mainForm" />
           <label for = "nurses">Nurses</label>
 
           <input type = "checkbox" class="form-control"
+            name="doctor"
             id = "doctor"
-            value = "doc" />
+            value = "doc"
+            form="mainForm" />
           <label for = "doctor">Doctor</label>
         </p>
         </div>
@@ -283,31 +289,43 @@
           <label>Do you need the clinic to handle any of the following?</label>
           <br>
           <input type = "checkbox" class="form-control"
+            form="mainForm"
+            name="womens"
             id = "women"
             value = "wo" />
-          <label for = "receptionist">Women's Health</label>
+          <label for = "women">Women's Health</label>
 
           <input type = "checkbox" class="form-control"
+            form="mainForm"
+            name="mens"
             id = "mens"
             value = "me" />
-          <label for = "nurses">Men's Health</label>
+          <label for = "mens">Men's Health</label>
 
           <input type = "checkbox" class="form-control"
+            form="mainForm"
+            name="family"
             id = "family"
             value = "fam" />
           <label for = "family">Family Health</label>
 
           <input type = "checkbox" class="form-control"
+            form="mainForm"
+            name="mental"
             id = "mental"
             value = "ment" />
           <label for = "mental">Mental Health</label>
 
           <input type = "checkbox" class="form-control"
+            form="mainForm"
+            name="dental"
             id = "dental"
             value = "dent" />
           <label for = "dental">Dental Health</label>
 
           <input type = "checkbox" class="form-control"
+            form="mainForm"
+            name="vision"
             id = "vision"
             value = "vis" />
           <label for = "vision">Vision Health</label>
@@ -375,6 +393,8 @@
             
                         <label>
             <input type = "checkbox" class="form-control"
+              form="mainForm"
+              name="csubstance"
               id = "csubstance"
               value = "subt" />
             <span>Substance Abuse</span>
@@ -382,6 +402,8 @@
 
                     <label>
             <input type = "checkbox" class="form-control"
+               form="mainForm"
+               name="csex"
               id = "csex"
               value = "se" />
             <span>Sexual Abuse</span>
@@ -389,22 +411,28 @@
 
                     <label>
             <input type = "checkbox" class="form-control"
+               form="mainForm"
+               name="canger"
               id = "canger"
               value = "ang" />
             <span>Anger Management</span>
                     </label>
 
         
-                    <label>
-                    <input type = "checkbox" class="form-control"
+                <label>
+                <input type = "checkbox" class="form-control"
+               form="mainForm"
+               name="csexHIV"
               id = "csexHIV"
               value = "HIV" />
             <span>HIV</span>
                     </label>
 
             
-                    <label>
-                    <input type = "checkbox" class="form-control"
+                <label>
+                <input type = "checkbox" class="form-control"
+               form="mainForm"
+               name="sexLGBT"
               id = "sexLGBT"
               value = "LGBT" />
             <span>LGBT</span>

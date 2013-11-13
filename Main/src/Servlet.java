@@ -290,10 +290,19 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameter(parameter);
                 criteria.county = temp;
             }
-            if (parameter.equalsIgnoreCase("publicTransportation"))
-            {
+            if (parameter.equalsIgnoreCase("transportationForm")) {
+                //TODO What are we doing if they say drive, bus, or bike? Nothing?
                 temp = request.getParameter(parameter);
-                criteria.publicTransportation = (temp == null)? -1 : Integer.parseInt(temp);
+                if(temp.equals("1")) {
+                    //Drive
+                } else if (temp.equals("2")) {
+                    //Marta
+                    criteria.publicTransportation = Hospital.TRUE;
+                } else if (temp.equals("3")) {
+                    //Bus
+                } else if (temp.equals("4")) {
+                    //Bike
+                }
             }
             if (parameter.equalsIgnoreCase("parking"))
             {
@@ -330,39 +339,34 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.walkIn = temp.equalsIgnoreCase("appmt") ? Hospital.TRUE : Hospital.FALSE;
                 }
             }
-            if (parameter.equalsIgnoreCase("medicaid"))
+            if (parameter.equalsIgnoreCase("insuranceForm"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equals("1")) {
+                    criteria.medicare = true;
+                } else if (temp.equals("2")) {
                     criteria.medicaid = true;
-                else
-                    criteria.medicaid = false;
-            }
-            if (parameter.equalsIgnoreCase("peachCare"))
-            {
-                temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                } else if (temp.equals("3")) {
                     criteria.peachCare = true;
-                else
-                    criteria.peachCare = false;
+                }
             }
-            if (parameter.equalsIgnoreCase("spanishSpeakingStaff"))
+            if (parameter.equalsIgnoreCase("receptionist"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("recept"))
                     criteria.spanishSpeakingStaff = true;
                 else
                     criteria.spanishSpeakingStaff = false;
             }
-            if (parameter.equalsIgnoreCase("spanNurse"))
+            if (parameter.equalsIgnoreCase("nurses"))
             {
                 temp = request.getParameter(parameter);
-                criteria.spanNurse = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+                criteria.spanNurse = temp.equalsIgnoreCase("nur") ? Hospital.TRUE : Hospital.FALSE;
             }
-            if (parameter.equalsIgnoreCase("spanDoc"))
+            if (parameter.equalsIgnoreCase("doctor"))
             {
                 temp = request.getParameter(parameter);
-                criteria.spanDoc = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+                criteria.spanDoc = temp.equalsIgnoreCase("doc") ? Hospital.TRUE : Hospital.FALSE;
             }
             if (parameter.equalsIgnoreCase("forms"))
             {
@@ -382,53 +386,54 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("call"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("y"))
                     criteria.onCall = true;
                 else
                     criteria.onCall = false;
             }
             //Stuff about days would go here, we're ignoring that for now.
-            if (parameter.equalsIgnoreCase("spcFCH"))
+            if (parameter.equalsIgnoreCase("family"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("fam"))
                     criteria.spcFCH = true;
                 else
                     criteria.spcFCH = false;
             }
-            if (parameter.equalsIgnoreCase("spcWH"))
+            if (parameter.equalsIgnoreCase("womens"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("wo"))
                     criteria.spcWH = true;
                 else
                     criteria.spcWH = false;
             }
-            if (parameter.equalsIgnoreCase("spcMH"))
+            if (parameter.equalsIgnoreCase("mens"))
             {
+                //TODO Make sure that spcMH is actually mens health and not mental health. I might have these backwards.
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("me"))
                     criteria.spcMH = true;
                 else
                     criteria.spcMH = false;
             }
-            if (parameter.equalsIgnoreCase("spcMHC"))
+            if (parameter.equalsIgnoreCase("mental"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("mental"))
                     criteria.spcMHC = true;
                 else
                     criteria.spcMHC = false;
             }
-            if (parameter.equalsIgnoreCase("spcDH"))
+            if (parameter.equalsIgnoreCase("dental"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("dent"))
                     criteria.spcDH = true;
                 else
                     criteria.spcDH = false;
             }
-            if (parameter.equalsIgnoreCase("spcVH"))
+            if (parameter.equalsIgnoreCase("vis"))
             {
                 temp = request.getParameter(parameter);
                 if(temp.equalsIgnoreCase("True"))
@@ -451,10 +456,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameter(parameter);
                 criteria.ageEnd = (temp == null)? -1 : Integer.parseInt(temp);
             }
-            if (parameter.equalsIgnoreCase("childGuide"))
+            if (parameter.equalsIgnoreCase("child"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("y"))
                     criteria.childGuide = true;
                 else
                     criteria.childGuide = false;
@@ -480,34 +485,34 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameter(parameter);
                 criteria.agesGuide = temp;
             }
-            if (parameter.equalsIgnoreCase("hivTestGuide"))
+            if (parameter.equalsIgnoreCase("csexHIV"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("HIV"))
                     criteria.hivTestGuide = true;
                 else
                     criteria.hivTestGuide = false;
             }
-            if (parameter.equalsIgnoreCase("subAbGuide"))
+            if (parameter.equalsIgnoreCase("csubstance"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("subt"))
                     criteria.subAbGuide = true;
                 else
                     criteria.subAbGuide = false;
             }
-            if (parameter.equalsIgnoreCase("sexAbGuide"))
+            if (parameter.equalsIgnoreCase("csex"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("se"))
                     criteria.sexAbGuide = true;
                 else
                     criteria.sexAbGuide = false;
             }
-            if (parameter.equalsIgnoreCase("angManGuide"))
+            if (parameter.equalsIgnoreCase("canger"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("ang"))
                     criteria.angManGuide = true;
                 else
                     criteria.angManGuide = false;
@@ -520,10 +525,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.hivConsGuide = false;
             }
-            if (parameter.equalsIgnoreCase("lgbtGuide"))
+            if (parameter.equalsIgnoreCase("sexLGBT"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("LGBT"))
                     criteria.lgbtGuide = true;
                 else
                     criteria.lgbtGuide = false;
