@@ -180,7 +180,6 @@
         <br>
 
         <div id="forms" class="form-inline">
-            <%--TODO There's a wrong radio group here, buttons on two lines interfere--%>
           <label>Do the medical forms need to be written in Spanish?</label>
                     <br>
           <input type = "radio" class="form-control"
@@ -209,7 +208,7 @@
           <label for = "yes">Yes</label>
 
           <input type = "radio" class="form-control"
-            name = "forms"
+            name = "phone"
             id = "phoneno"
             value = "n" />
           <label for = "no">No</label>
