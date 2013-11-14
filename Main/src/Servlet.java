@@ -271,8 +271,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 //if walkin was already processed
-                temp = request.getParameter(parameter);
-                //if walkin was already processed
                 if (temp.equalsIgnoreCase("appmt")) {
                     criteria.walkIn = 2;
                 } 
