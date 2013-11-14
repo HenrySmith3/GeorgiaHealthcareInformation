@@ -145,6 +145,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
         }
         
+        if(criteria.ageStart != -1){
+        	stringBuilder.append( "P3_4_5.AgeStart <= " + criteria.ageStart + " AND ");
+        }
+        if(criteria.ageEnd != -1){
+        	stringBuilder.append( "P3_4_5.AgeEnd >= " + criteria.ageEnd + " AND ");
+        }
+        
         if(Boolean.TRUE.equals(criteria.subAbGuide)) {
             stringBuilder.append( "P3_4_5.SubAbGuide = " + 1 + " AND ");
         }
@@ -377,21 +384,54 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.spcVH = false;
             }
-            if (parameter.equalsIgnoreCase("age"))
+            //find the age range of the children
+            ArrayList<Integer> start = new ArrayList<Integer>();
+            ArrayList<Integer> end = new ArrayList<Integer>();
+            if (parameter.equalsIgnoreCase("age1"))
             {
-                temp = request.getParameter(parameter);
-                criteria.age = (temp == null)? -1 : Integer.parseInt(temp);
+            	temp = request.getParameter(parameter);
+            	if(temp.equalsIgnoreCase("1")){
+                    start.add(0);
+                    end.add(5);
+            	}
             }
-            if (parameter.equalsIgnoreCase("ageStart"))
+            if (parameter.equalsIgnoreCase("age2"))
             {
-                temp = request.getParameter(parameter);
-                criteria.ageStart = (temp == null)? -1 : Integer.parseInt(temp);
+            	temp = request.getParameter(parameter);
+            	if(temp.equalsIgnoreCase("2")){
+                    start.add(6);
+                    end.add(10);
+            	}
             }
-            if (parameter.equalsIgnoreCase("ageEnd"))
+            if (parameter.equalsIgnoreCase("age3"))
             {
-                temp = request.getParameter(parameter);
-                criteria.ageEnd = (temp == null)? -1 : Integer.parseInt(temp);
+            	temp = request.getParameter(parameter);
+            	if(temp.equalsIgnoreCase("3")){
+                    start.add(11);
+                    end.add(15);
+            	}
             }
+            if (parameter.equalsIgnoreCase("age4"))
+            {
+            	temp = request.getParameter(parameter);
+            	if(temp.equalsIgnoreCase("4"))
+            	{
+                    start.add(16);
+                    end.add(17);
+            	}
+            }
+            int agestart = (start.size() != 0)? start.get(0) : -1;
+            int ageend = (end.size() != 0)? end.get(0) : -1;
+            for(int i = 0; i < start.size(); i++){
+            	if(start.get(i) < agestart)
+            		agestart = start.get(i);
+                if(end.get(i) > ageend)
+                	ageend = end.get(i);
+            }
+            criteria.ageStart = agestart;
+            criteria.ageEnd = ageend;
+            
+            
             if (parameter.equalsIgnoreCase("child"))
             {
                 temp = request.getParameter(parameter);
