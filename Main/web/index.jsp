@@ -438,6 +438,8 @@
                     </label>
         </div>
 
+          <%--TODO Weren't there more fields that go here? Like Orthopedics and other specialties?--%>
+
 
       </fieldset>           <div>
         <input type="submit" value="Submit" class="btn btn-primary">

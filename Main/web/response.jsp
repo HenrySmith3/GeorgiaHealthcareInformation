@@ -30,7 +30,6 @@
         out.print("</div>");//\n </br></br>");
     }
 %>
-<%--TODO There's an empty result getting printed here--%>
     <%--${hospitals}--%>
     <%--<c:foreach var="hospital" items=${hospitals}>--%>
         <%--<div>--%>
