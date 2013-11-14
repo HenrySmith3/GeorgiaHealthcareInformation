@@ -68,71 +68,27 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     private String getWhereClauses(Hospital criteria) {
         StringBuilder stringBuilder = new StringBuilder();
         
-        //page1
+        //Personal Information   
         if(criteria.county != null && !criteria.county.equals("")){
             //TODO are we only returning results from the county they live in? What if they're right on the border?
             stringBuilder.append( "P1.County = '" + criteria.county + "' AND ");
         }
-
-        //page2
-        if(criteria.onCall != null){
-            if(criteria.onCall)
-         	    stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
-        }
-        //TODO times here aren't implemented. Are we even doing days?
-//        if(criteria.openTimes != null){
-//            int k = 0;
-//            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-//        	stringBuilder.append( "P2." + day + "Op = " + criteria.openTimes.get(k) + " AND ");
-//        	k++;
-//            }
-//        }
-//        if(criteria.closeTimes != null){
-//            int k = 0;
-//            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-//        	stringBuilder.append( "P2." + day + "Cl = " + criteria.closeTimes.get(k) + " AND ");
-//        	k++;
-//            }
-//        }
-//        if(criteria.commentsOnTimes != null){
-//            int k = 0;
-//            for (String day : Arrays.asList("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
-//        	stringBuilder.append( "P2." + day + "Comm = " + criteria.commentsOnTimes.get(k) + " AND ");
-//        	k++;
-//            }
-//        }
-
-        //page3_4_5
-        if(criteria.walkIn != null){
-            //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
-            stringBuilder.append( "(P3_4_5.AppWalk = 3 OR ");
-            stringBuilder.append( "P3_4_5.AppWalk = " + criteria.walkIn + ") AND ");
-        }
-        if(criteria.parking != null){
+        
+        //Transportation
+        if(criteria.parking == Hospital.TRUE){
             //TODO are there really hospitals without parking? This seems poorly thought out.
-            stringBuilder.append( "P3_4_5.ParkGTGUIDE = " + criteria.parking + " AND ");
+        	stringBuilder.append( "P3_4_5.Park != 0 AND ");
         }
         if(criteria.publicTransportation != null){
             //TODO how is this formatted in the database?
 //            stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
         }
-        if (criteria.spanAdmin != null) {
-            stringBuilder.append( "P3_4_5.SPANAdm != 3 AND ");
-        }
-        if (criteria.spanNurse != null) {
-            stringBuilder.append( "P3_4_5.SpanNur != 3 AND ");
-        }
-        if (criteria.spanDoc != null) {
-            stringBuilder.append( "P3_4_5.SpanDoc != 3 AND ");
-        }
-        if (criteria.spanInterpreter != null) {
-            stringBuilder.append( "P3_4_5.SpanIntON != 3 AND ");
-        }
-        if (criteria.spanPhone != null) {
-            stringBuilder.append( "P3_4_5.SpanIntPh != 3 AND ");
-        }
-        if (criteria.spanFo != null) {
-            stringBuilder.append( "P3_4_5.SpanFo != 3 AND ");
+
+        //Clinic services
+        if(criteria.walkIn != null){
+            //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
+            stringBuilder.append( "(P3_4_5.AppWalk = 3 OR ");
+            stringBuilder.append( "P3_4_5.AppWalk = " + criteria.walkIn + ") AND ");
         }
         if(Boolean.TRUE.equals(criteria.medicare)) {
             stringBuilder.append( "P3_4_5.MedicareGUIDE = " + 1 + " AND ");
@@ -143,14 +99,38 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if(Boolean.TRUE.equals(criteria.peachCare)) {
             stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcFCH)) {
-            stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
+        
+        if (criteria.spanAdmin != null && criteria.spanAdmin == Hospital.TRUE) {
+            stringBuilder.append( "P3_4_5.SPANAdmGUIDE = 1 AND ");
         }
+        if (criteria.spanNurse != null && criteria.spanNurse == Hospital.TRUE) {
+            stringBuilder.append( "P3_4_5.SPANNurGUIDE = 1 AND ");
+        }
+        if (criteria.spanDoc != null && criteria.spanDoc == Hospital.TRUE) {
+            stringBuilder.append( "P3_4_5.SPANDocGUIDE = 1 AND ");
+        }
+        
+        if (criteria.spanFo != null && criteria.spanFo == Hospital.TRUE) {
+            stringBuilder.append( "P3_4_5.SPANFoGUIDE = 1 AND ");
+        }
+        
+        if (criteria.spanPhone != null && criteria.spanPhone == Hospital.TRUE) {
+            stringBuilder.append( "P3_4_5.SPANIntPhGUIDE = 1 AND ");
+        }
+        
+        if(criteria.onCall != null && criteria.onCall == true){
+         	stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
+        }
+        
+        //Healthcare
         if(Boolean.TRUE.equals(criteria.spcWH)) {
             stringBuilder.append( "P3_4_5.SpcWH = " + 1 + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.spcMH)) {
             stringBuilder.append( "P3_4_5.SpcMH = " + 1 + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.spcFCH)) {
+            stringBuilder.append( "P3_4_5.SpcFCH = " + 1 + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.spcMHC)) {
             stringBuilder.append( "P3_4_5.SpcMHC = " + 1 + " AND ");
@@ -161,77 +141,26 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if(Boolean.TRUE.equals(criteria.spcVH)) {
             stringBuilder.append( "P3_4_5.SpcVH = " + 1 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcOT)) {
-            stringBuilder.append( "P3_4_5.SpcOT = " + 1 + " AND ");
-        }
-        if(Boolean.TRUE.equals(criteria.freeLow)) {
-            stringBuilder.append( "P3_4_5.FreeLow = " + 1 + " AND ");
-        }
-        if (Hospital.TRUE.equals(criteria.spcDk)) {
-            stringBuilder.append( "P3_4_5.SpcDk = " + criteria.spcDk + " AND ");
-        }
-        if (Hospital.TRUE.equals(criteria.age)) {
-            stringBuilder.append( "P3_4_5.Age = " + criteria.age + " AND ");
-        }
-        if (Hospital.TRUE.equals(criteria.ageStart)) {
-            stringBuilder.append( "P3_4_5.AgeStart = " + criteria.ageStart + " AND ");
-        }
-        if (Hospital.TRUE.equals(criteria.ageEnd)) {
-            stringBuilder.append( "P3_4_5.AgeEnd = " + criteria.ageEnd + " AND ");
-        }
-        //TODO this is obviously wrong, but I'm leaving it like this because I don't know what we're doing about children yet.
-        if (criteria.childGuide != null) {
-            if(Boolean.TRUE.equals(criteria.childGuide))
+        if(Boolean.TRUE.equals(criteria.childGuide)){
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
-            if(Boolean.FALSE.equals(criteria.childGuide))
-                stringBuilder.append( "P3_4_5.NinosGUIDE = " + 0 + " AND ");
         }
-        if (criteria.adolescentGuide != null) {
-            if(Boolean.TRUE.equals(criteria.adolescentGuide))
-                stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 1 + " AND ");
-            if(Boolean.FALSE.equals(criteria.adolescentGuide))
-                stringBuilder.append( "P3_4_5.AdolescGUIDE = " + 0 + " AND ");
-        }
-        if (criteria.adultGuide != null) {
-            if(Boolean.TRUE.equals(criteria.adultGuide))
-                stringBuilder.append( "P3_4_5.AdultGUIDE = " + 1 + " AND ");
-            if(Boolean.FALSE.equals(criteria.adultGuide))
-                stringBuilder.append( "P3_4_5.AdultGUIDE = " + 0 + " AND ");
-        }
-        if (criteria.agesGuide != null) {
-            stringBuilder.append( "P3_4_5.EdadesGUIDE = " + criteria.agesGuide + " AND ");
-        }
-        if (criteria.otServ != null) {
-            stringBuilder.append( "P3_4_5.OTServ = " + criteria.otServ + " AND ");
-        }
-        if(Boolean.TRUE.equals(criteria.hivTestGuide)) {
-                stringBuilder.append( "P3_4_5.HIVTestGUIDE = " + 1 + " AND ");
-        }
-        if(Boolean.TRUE.equals(criteria.abortionGuide)) {
-                stringBuilder.append( "P3_4_5.AbortionGUIDE = " + 1 + " AND ");
-        }
-        if (criteria.mhCount != null) {
-            //TODO mental health is more complicated than this in the database.
-            stringBuilder.append( "P3_4_5.MHCoun = " + criteria.mhCount + " AND ");
-        }
+        
         if(Boolean.TRUE.equals(criteria.subAbGuide)) {
-                stringBuilder.append( "P3_4_5.SubAbGuide = " + 1 + " AND ");
+            stringBuilder.append( "P3_4_5.SubAbGuide = " + 1 + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.sexAbGuide)) {
-                stringBuilder.append( "P3_4_5.SexAbGuide = " + 1 + " AND ");
+            stringBuilder.append( "P3_4_5.SexAbGuide = " + 1 + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.angManGuide)) {
-                stringBuilder.append( "P3_4_5.AngManGuide = " + 1 + " AND ");
+            stringBuilder.append( "P3_4_5.AngManGuide = " + 1 + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.hivConsGuide)) {
-                stringBuilder.append( "P3_4_5.HIVConsGUIDE = " + 1 + " AND ");
+            stringBuilder.append( "P3_4_5.HIVConsGUIDE = " + 1 + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.lgbtGuide)) {
-                stringBuilder.append( "P3_4_5.LGBTGUIDE = " + 1 + " AND ");
+            stringBuilder.append( "P3_4_5.LGBTGUIDE = " + 1 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.suppGGuide)) {
-                stringBuilder.append( "P3_4_5.SuppGGUIDE = " + 1 + " AND ");
-        }
+        
         String ss = stringBuilder.toString();
         if (ss.length() <= 5) {
             return "";
@@ -304,6 +233,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     //Bike
                 }
             }
+            
+            if (parameter.equalsIgnoreCase("publicTransportation"))
+            {
+                temp = request.getParameter(parameter);
+                criteria.publicTransportation = (temp == null)? -1 : Integer.parseInt(temp);
+            }
+            
             if (parameter.equalsIgnoreCase("parking"))
             {
                 temp = request.getParameter(parameter);
@@ -331,12 +267,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 //if walkin was already processed
-                if (criteria.walkIn != null && criteria.walkIn == 1) {
-                    if (temp.equalsIgnoreCase("appmt")) {
-                        criteria.walkIn = 3;
-                    }
-                } else {
-                    criteria.walkIn = temp.equalsIgnoreCase("appmt") ? Hospital.TRUE : Hospital.FALSE;
+                temp = request.getParameter(parameter);
+                //if walkin was already processed
+                if (temp.equalsIgnoreCase("appmt")) {
+                    criteria.walkIn = 2;
+                } 
+                else if (temp.equalsIgnoreCase("walk")){
+                	criteria.walkIn = 1;
                 }
             }
             if (parameter.equalsIgnoreCase("insuranceForm"))
@@ -354,14 +291,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 if(temp.equalsIgnoreCase("recept"))
-                    criteria.spanishSpeakingStaff = true;
-                else
-                    criteria.spanishSpeakingStaff = false;
+                    criteria.spanAdmin = Hospital.TRUE;
             }
             if (parameter.equalsIgnoreCase("nurses"))
             {
                 temp = request.getParameter(parameter);
-                criteria.spanNurse = temp.equalsIgnoreCase("nur") ? Hospital.TRUE : Hospital.FALSE;
+                if(temp.equalsIgnoreCase("nur"))
+                    criteria.spanNurse = Hospital.TRUE;
             }
             if (parameter.equalsIgnoreCase("doctor"))
             {
@@ -420,7 +356,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("mental"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("mental"))
+                if(temp.equalsIgnoreCase("ment"))
                     criteria.spcMHC = true;
                 else
                     criteria.spcMHC = false;
@@ -433,10 +369,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.spcDH = false;
             }
-            if (parameter.equalsIgnoreCase("vis"))
+            if (parameter.equalsIgnoreCase("vision"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
+                if(temp.equalsIgnoreCase("vis"))
                     criteria.spcVH = true;
                 else
                     criteria.spcVH = false;
