@@ -358,6 +358,7 @@
                     <label>
             <input type = "checkbox" class="form-control"
               id = "05"
+              name = "age1"
               value = "1" />
             <span>0-5</span>
                     </label>
@@ -365,6 +366,7 @@
                     <label>
             <input type = "checkbox" class="form-control"
               id = "610"
+              name = "age2"
               value = "2" />
             <span>6-10</span>
                     </label>
@@ -372,6 +374,7 @@
                     <label>
             <input type = "checkbox" class="form-control"
               id = "1115"
+              name = "age3"
               value = "3" />
             <span>11-15</span>
                     </label>
@@ -379,6 +382,7 @@
                     <label>
             <input type = "checkbox" class="form-control"
               id = "1617"
+              name = "age4"
               value = "4" />
             <span>16-17</span>
                     </label>
