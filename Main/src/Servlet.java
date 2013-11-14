@@ -145,10 +145,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 stringBuilder.append( "P3_4_5.NinosGUIDE = " + 1 + " AND ");
         }
         
-        if(criteria.ageStart != -1){
+        if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageStart != -1){
         	stringBuilder.append( "P3_4_5.AgeStart <= " + criteria.ageStart + " AND ");
         }
-        if(criteria.ageEnd != -1){
+        if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageEnd != -1){
         	stringBuilder.append( "P3_4_5.AgeEnd >= " + criteria.ageEnd + " AND ");
         }
         
