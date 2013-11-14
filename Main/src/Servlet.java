@@ -458,7 +458,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameter(parameter);
                 criteria.agesGuide = temp;
             }
-  
+ */ 
             if (parameter.equalsIgnoreCase("csexHIV"))
             {
                 temp = request.getParameter(parameter);
@@ -467,7 +467,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.hivTestGuide = false;
             }
-*/
+
             if (parameter.equalsIgnoreCase("csubstance"))
             {
                 temp = request.getParameter(parameter);
@@ -491,14 +491,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.angManGuide = true;
                 else
                     criteria.angManGuide = false;
-            }
-            if (parameter.equalsIgnoreCase("hivConsGuide"))
-            {
-                temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("True"))
-                    criteria.hivConsGuide = true;
-                else
-                    criteria.hivConsGuide = false;
             }
             if (parameter.equalsIgnoreCase("sexLGBT"))
             {
