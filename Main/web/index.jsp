@@ -96,7 +96,7 @@
 <br>
 
 <div class="span10">
-<form class="form-horizontal form-stepped" id="clinic-search">
+<form class="form-horizontal form-stepped" id="clinic-search" action="html_form_action.asp">
 
 <div style="margin-left:auto;margin-right:auto;width:640px;">
     <ul class="pagination form-step-control" style="display:none;">
