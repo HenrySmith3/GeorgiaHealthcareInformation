@@ -1,0 +1,8 @@
+Documentation for Hispanic Healthcare Directory:
+
+Technological Overview:
+The full source of the project can be found on github on https://github.com/HenrySmith3/GeorgiaHealthcareInformation. The project is set up to be deployed as a .war file into tomcat. The project could be configured to be deployed using maven or ant, but it's far easier to simply open the project using an IDE and deploy from within that.
+The project uses a Java backend handled using a java web module. The front end is all done using JSPs, and the database side is handled using a MySQL connection. The libraries required to run the module are:
+mysql:mysql-connector-java:5.1.92
+net.sourceforge.json:com.springsource.net.sf.json:2.2.22
+

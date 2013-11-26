@@ -125,6 +125,7 @@
 
     <div class="form-group" id="free">
         <label>Do you qualify for free clinic services?</label><br>
+        <%--TODO We need to explain who would qualify for free clinic services--%>
         <label class="radio-inline" for="pickfreeY">
             <input id="pickfreeY" name="pickFY" type="radio" value="freeY">Yes
         </label>

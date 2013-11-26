@@ -48,10 +48,19 @@
         <servlet-name>bug</servlet-name>
         <jsp-file>/bug.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>main</servlet-name>
+        <jsp-file>/main.jsp</jsp-file>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>main</servlet-name>
+        <url-pattern>/main.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
