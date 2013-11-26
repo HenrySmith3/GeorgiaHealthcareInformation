@@ -64,9 +64,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         //add in the where clauses so that only the hospitals with fields matching the criteria are returned.
         builder.append(getWhereClauses(criteria));
         //edit hospital information in the database
-        builder.append(editHospitalClauses(criteria));
+        //builder.append(editHospitalClauses(criteria));
         //add a new hospital
-        builder.append(addHospitalClauses(criteria));
+        //builder.append(addHospitalClauses(criteria));
         
         return builder.toString();
     }
