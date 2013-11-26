@@ -193,6 +193,7 @@
         </select>
     </div>
 
+    <%--TODO this is now just shown on the results page, this can all be removed.--%>
     <div class="form-group" id="language">
         <label>Do you require any of the following faculty members to speak Spanish?</label><br>
         <label class="checkbox-inline" for="receptionist">

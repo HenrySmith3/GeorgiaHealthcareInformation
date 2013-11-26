@@ -27,7 +27,26 @@
         if (!jsonObject.get("website").toString().equals("null")) {
             out.print("Website: " + jsonObject.get("website") + "</br>");
         }
-        out.print("</div>");//\n </br></br>");
+        if (jsonObject.get("spanNurseGuide").toString().equals("1")) {
+            out.print("Nurse Available Who Speaks Spanish.</br>");
+        }
+        if (jsonObject.get("spanDocGuide").toString().equals("1")) {
+            out.print("Doctor Available Who Speaks Spanish.</br>");
+        }
+        if (jsonObject.get("spanAdminGuide").toString().equals("1")) {
+            out.print("Administrator Available Who Speaks Spanish.</br>");
+        }
+        if (jsonObject.get("spanPhone").toString().equals("1")) {
+            out.print("Phone Interpreter Available Who Speaks Spanish.</br>");
+        }
+        if (jsonObject.get("spanFo").toString().equals("1")) {
+            out.print("Medical Forms Available In Spanish.</br>");
+        }
+        if (jsonObject.get("onCall").toString().equals("1")) {
+            out.print("Person On Call Available After Hours.</br>");
+        }
+
+         out.print("</div>");//\n </br></br>");
     }
 %>
     <%--${hospitals}--%>

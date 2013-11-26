@@ -99,28 +99,28 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if(Boolean.TRUE.equals(criteria.peachCare)) {
             stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
         }
-        
-        if (criteria.spanAdmin != null && criteria.spanAdmin == Hospital.TRUE) {
-            stringBuilder.append( "P3_4_5.SPANAdmGUIDE = 1 AND ");
-        }
-        if (criteria.spanNurse != null && criteria.spanNurse == Hospital.TRUE) {
-            stringBuilder.append( "P3_4_5.SPANNurGUIDE = 1 AND ");
-        }
-        if (criteria.spanDoc != null && criteria.spanDoc == Hospital.TRUE) {
-            stringBuilder.append( "P3_4_5.SPANDocGUIDE = 1 AND ");
-        }
-        
-        if (criteria.spanFo != null && criteria.spanFo == Hospital.TRUE) {
-            stringBuilder.append( "P3_4_5.SPANFoGUIDE = 1 AND ");
-        }
-        
-        if (criteria.spanPhone != null && criteria.spanPhone == Hospital.TRUE) {
-            stringBuilder.append( "P3_4_5.SPANIntPhGUIDE = 1 AND ");
-        }
-        
-        if(criteria.onCall != null && criteria.onCall == true){
-         	stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
-        }
+//These are just in the results page now.
+//        if (criteria.spanAdmin != null && criteria.spanAdmin == Hospital.TRUE) {
+//            stringBuilder.append( "P3_4_5.SPANAdmGUIDE = 1 AND ");
+//        }
+//        if (criteria.spanNurse != null && criteria.spanNurse == Hospital.TRUE) {
+//            stringBuilder.append( "P3_4_5.SPANNurGUIDE = 1 AND ");
+//        }
+//        if (criteria.spanDoc != null && criteria.spanDoc == Hospital.TRUE) {
+//            stringBuilder.append( "P3_4_5.SPANDocGUIDE = 1 AND ");
+//        }
+//
+//        if (criteria.spanFo != null && criteria.spanFo == Hospital.TRUE) {
+//            stringBuilder.append( "P3_4_5.SPANFoGUIDE = 1 AND ");
+//        }
+//
+//        if (criteria.spanPhone != null && criteria.spanPhone == Hospital.TRUE) {
+//            stringBuilder.append( "P3_4_5.SPANIntPhGUIDE = 1 AND ");
+//        }
+//
+//        if(criteria.onCall != null && criteria.onCall == true){
+//         	stringBuilder.append( "P2.OnCall = " + 1 + " AND ");
+//        }
         
         //Healthcare
         if(Boolean.TRUE.equals(criteria.spcWH)) {
