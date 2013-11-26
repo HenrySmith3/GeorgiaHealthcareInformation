@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class Servlet extends javax.servlet.http.HttpServlet {
 
+    private String max_survno;  //get the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
     /**
      * Currently unused.
      */
@@ -30,6 +31,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         JSONArray hospitals = new JSONArray();
         try {
             Statement statement = con.createStatement();
+            //get the max value of survno 
+            ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
+            while(result_max_survno.next()){
+            	max_survno = result_max_survno.getString("MAX(SurvNo)"); 
+            	System.out.println(Integer.parseInt(max_survno) + 1);
+            }
+            
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
@@ -55,6 +63,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         builder.append(getBasicSelectStatement());
         //add in the where clauses so that only the hospitals with fields matching the criteria are returned.
         builder.append(getWhereClauses(criteria));
+        //edit hospital information in the database
+        builder.append(editHospitalClauses(criteria));
+        //add a new hospital
+        builder.append(addHospitalClauses(criteria));
+        
         return builder.toString();
     }
 
@@ -502,5 +515,151 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             }
         }
         return criteria ;
+    }
+    //edit hospital information
+    private String editHospitalClauses(Hospital criteria) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String ss = "";
+        //page 1
+    	if(criteria.county != null && !criteria.county.equals("")){
+    		stringBuilder.append( "UPDATE P1 SET County = '" + criteria.county + "' WHERE ID = " + criteria.id + "; ");
+        }
+    	String s1 = stringBuilder.toString();
+    	stringBuilder = new StringBuilder();
+    	//page 2
+    	if(criteria.onCall != null && criteria.onCall == true){
+    		stringBuilder.append( "UPDATE P2 SET OnCall = '" + criteria.onCall + "' WHERE ID = " + criteria.id + "; ");
+        }
+    	String s2 = stringBuilder.toString();
+    	stringBuilder = new StringBuilder();
+    	//page3_4_5
+    	stringBuilder.append( "UPDATE P3_4_5 SET ");
+    	
+        //Transportation
+        if(criteria.parking == Hospital.TRUE || criteria.parking == Hospital.FALSE){
+            //TODO are there really hospitals without parking? This seems poorly thought out.
+        	stringBuilder.append( "Park = " + criteria.parking + " AND ");
+        }
+        if(criteria.publicTransportation != null){
+            //TODO how is this formatted in the database?
+            stringBuilder.append( "PubTr = " + criteria.publicTransportation + " AND ");
+        }
+
+        //Clinic services
+        if(criteria.walkIn != null){
+            //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
+            stringBuilder.append( "AppWalk = " + criteria.walkIn + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.medicare) || Boolean.FALSE.equals(criteria.medicare)) {
+            stringBuilder.append( "MedicareGUIDE = " + criteria.medicare + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.medicaid) || Boolean.FALSE.equals(criteria.medicaid)) {
+            stringBuilder.append( "MedicaidGUIDE = " + criteria.medicaid + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.peachCare) || Boolean.FALSE.equals(criteria.peachCare)) {
+            stringBuilder.append( "PeachcareGUIDE = " + criteria.peachCare + " AND ");
+        }
+        
+        if (criteria.spanAdmin != null) {
+            stringBuilder.append( "SPANAdmGUIDE = " + criteria.spanAdmin + " AND ");
+        }
+        if (criteria.spanNurse != null) {
+            stringBuilder.append( "SPANNurGUIDE = " + criteria.spanNurse + " AND ");
+        }
+        if (criteria.spanDoc != null) {
+            stringBuilder.append( "SPANDocGUIDE = " + criteria.spanDoc + " AND ");
+        }
+        
+        if (criteria.spanFo != null) {
+            stringBuilder.append( "SPANFoGUIDE = " + criteria.spanFo + " AND ");
+        }
+        
+        if (criteria.spanPhone != null) {
+            stringBuilder.append( "PSPANIntPhGUIDE = " + criteria.spanPhone + " AND ");
+        }
+       
+        
+        //Healthcare
+        if(Boolean.TRUE.equals(criteria.spcWH) || Boolean.FALSE.equals(criteria.spcWH)) {
+            stringBuilder.append( "SpcWH = " + criteria.spcWH + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.spcMH) || Boolean.FALSE.equals(criteria.spcMH)) {
+            stringBuilder.append( "SpcMH = " + criteria.spcMH + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.spcFCH) || Boolean.FALSE.equals(criteria.spcFCH)) {
+            stringBuilder.append( "SpcFCH = " + criteria.spcFCH + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.spcMHC) || Boolean.FALSE.equals(criteria.spcMHC)) {
+            stringBuilder.append( "SpcMHC = " + criteria.spcMHC + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.spcDH) || Boolean.FALSE.equals(criteria.spcDH)) {
+            stringBuilder.append( "SpcDH = " + criteria.spcDH + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.spcVH) || Boolean.FALSE.equals(criteria.spcVH)) {
+            stringBuilder.append( "SpcVH = " + criteria.spcVH + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.childGuide) || Boolean.FALSE.equals(criteria.childGuide)){
+            stringBuilder.append( "NinosGUIDE = " + criteria.childGuide + " AND ");
+        }
+        
+        if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageStart != -1){
+        	stringBuilder.append( "AgeStart = " + criteria.ageStart + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageEnd != -1){
+        	stringBuilder.append( "AgeEnd = " + criteria.ageEnd + " AND ");
+        }
+        
+        if(Boolean.TRUE.equals(criteria.subAbGuide) || Boolean.FALSE.equals(criteria.subAbGuide)) {
+            stringBuilder.append( "SubAbGuide = " + criteria.subAbGuide + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.sexAbGuide) || Boolean.FALSE.equals(criteria.sexAbGuide)) {
+            stringBuilder.append( "SexAbGuide = " + criteria.sexAbGuide + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.angManGuide) || Boolean.FALSE.equals(criteria.angManGuide)) {
+            stringBuilder.append( "AngManGuide = " + criteria.angManGuide + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.hivConsGuide) || Boolean.FALSE.equals(criteria.hivConsGuide)) {
+            stringBuilder.append( "HIVConsGUIDE = " + criteria.hivConsGuide + " AND ");
+        }
+        if(Boolean.TRUE.equals(criteria.lgbtGuide) || Boolean.FALSE.equals(criteria.lgbtGuide)) {
+            stringBuilder.append( "LGBTGUIDE = " + criteria.lgbtGuide + " AND ");
+        }
+        
+        String s3 = stringBuilder.toString();
+        if (s3.length() <= 20) {
+        	ss = s1 + s2;
+            return ss;
+        }
+        ss = s1 + s2 + s3.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
+        ss = ss + "WHERE ID = " + criteria.id + "; ";
+        return ss;
+    }
+    //add new hospital
+    private String addHospitalClauses(Hospital criteria){
+    	StringBuilder stringBuilder = new StringBuilder();
+    	String survno = String.valueOf(Integer.parseInt(max_survno) + 1);
+    	String addfacl = "None";
+    	
+    	//page 1
+    	stringBuilder.append("INSERT INTO P1 (SurvNo, AddFacL1, County");
+    	stringBuilder.append("VALUES (" + survno + ", " + addfacl + ", " + criteria.county + ")");
+    	//page 2
+    	stringBuilder.append("INSERT INTO P2 (SurvNo, OnCall");
+    	stringBuilder.append("VALUES (" + survno + ", " + criteria.onCall + ")");
+    	//page3_4_5
+    	stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
+    			"PeachcareGuide, SPANAdmGUIDE, SPANNurGUIDE, SPANDocGUIDE, SPANFoGuide, " +
+    			"SPANIntPhGUIDE, SpcWH, SpcMH, SpcFCH, SpcMHC," +
+    			"SpcDH, SpcVH, NinosGUIDE, AgeStart, " +
+    			"AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
+    			"HIVConsGUIDE, LGBTGUIDE");
+    	stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
+    			criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
+    			criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
+    			criteria.spcDH + ", " + criteria.spcVH + ", " + criteria.childGuide + ", " + criteria.ageStart + ", " + 
+    			criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
+    			criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
+        String ss = stringBuilder.toString();
+        return ss;
     }
 }
