@@ -691,4 +691,17 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         String ss = stringBuilder.toString();
         return ss;
     }
+    
+    //Insert new bugs in bug report table in database
+    private String addBugClauses(String bug, String bug_desc){
+    	StringBuilder stringBuilder = new StringBuilder();
+    	System.out.println(bug);
+    	System.out.println(bug_desc);
+     	if(bug == "" && bug_desc == "")
+    		return "";
+    	stringBuilder.append("INSERT INTO BUG_REPORT (bug, bugDesc) ");
+        stringBuilder.append("VALUES ('" + bug + "', '" + bug_desc + "');");
+        String ss = stringBuilder.toString();
+        return ss;
+    }
 }
