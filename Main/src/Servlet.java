@@ -13,6 +13,7 @@ import java.util.*;
 public class Servlet extends javax.servlet.http.HttpServlet {
 
     private String max_survno;  //get the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
+    private String[] bugs = new String[2]; //the inputs in bug report form
     /**
      * Currently unused.
      */
@@ -39,7 +40,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             }
             //create bug report table
             statement.executeUpdate(createBugTable());
-            
+            statement.executeUpdate(addBugClauses(bugs[0], bugs[1]));
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
@@ -522,6 +523,24 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     criteria.lgbtGuide = true;
                 else
                     criteria.lgbtGuide = false;
+            }
+            if (parameter.equalsIgnoreCase("bugs1"))
+            {
+                temp = request.getParameter(parameter);
+                if(temp.equals("1")) {
+                    bugs[0] = "Broken Functionality";
+                } else if (temp.equals("2")) {
+                	bugs[0] = "Incorrect Information";
+                } else if (temp.equals("3")) {
+                	bugs[0] = "Typos";
+                } else if (temp.equals("4")) {
+                	bugs[0] = "Other";
+                }
+            }
+            if (parameter.equalsIgnoreCase("bugs2"))
+            {
+                temp = request.getParameter(parameter);
+                bugs[1] = temp;
             }
         }
         return criteria ;
