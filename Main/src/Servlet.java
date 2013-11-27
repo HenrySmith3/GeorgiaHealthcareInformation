@@ -12,9 +12,6 @@ import java.util.*;
  */
 public class Servlet extends javax.servlet.http.HttpServlet {
 
-    private String max_survno;  //get the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
-    //TODO Are either of these actually properties of the Servleet? they seem to be used in only one method.
-    private String[] bugs = new String[2]; //the inputs in bug report form
     /**
      * Currently unused.
      */
@@ -32,18 +29,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         JSONArray hospitals = new JSONArray();
         try {
             Statement statement = con.createStatement();
-            //get the max value of survno
-            //TODO this doesn't need to be run every time we get a post request.
-            ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
-            while(result_max_survno.next()){
-            	max_survno = result_max_survno.getString("MAX(SurvNo)");
-                //TODO this is fine to test, but you shouldn't commit code that just prints out a number with no explanation.
-            	System.out.println(Integer.parseInt(max_survno) + 1);
-            }
-            //create bug report table
-            //TODO This will get run every time a post request comes in, even if we're just trying to get hospital results. That's definitely wrong.
-            statement.executeUpdate(createBugTable());
-            statement.executeUpdate(addBugClauses(bugs[0], bugs[1]));
+            //edit, update hospital or add bug reports
+            statement.executeUpdate(updateQuery(criteria));
+            
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
@@ -69,21 +57,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         builder.append(getBasicSelectStatement());
         //add in the where clauses so that only the hospitals with fields matching the criteria are returned.
         builder.append(getWhereClauses(criteria));
-        //edit hospital information in the database
-        //builder.append(editHospitalClauses(criteria));
-        //add a new hospital
-        //builder.append(addHospitalClauses(criteria));
         
         return builder.toString();
-    }
-
-    //TODO We're seriously going to run this every single time? This is going to slow everything down. Make it once, then assume that it's there.
-    private String createBugTable() {
-    	return "CREATE TABLE IF NOT EXISTS BUG_REPORT ( " +
-    			"ID INT(100) NOT NULL AUTO_INCREMENT, " +
-    			"PRIMARY KEY(ID), " + 
-    			"bug varchar(20), " +
-    			"bugDesc varchar(225));";
     }
 
     /**
@@ -200,7 +175,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (ss.length() <= 5) {
             return "";
         }
-        ss = "WHERE " + ss.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
+        ss = "WHERE " + ss.substring(0, ss.length() - 5) + ";"; //the -5 is to pop off the last AND.
         return ss;
     }
 
@@ -532,23 +507,36 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 if(temp.equals("1")) {
-                    bugs[0] = "Broken Functionality";
+                    criteria.bugs[0] = "Broken Functionality";
                 } else if (temp.equals("2")) {
-                	bugs[0] = "Incorrect Information";
+                	criteria.bugs[0] = "Incorrect Information";
                 } else if (temp.equals("3")) {
-                	bugs[0] = "Typos";
+                	criteria.bugs[0] = "Typos";
                 } else if (temp.equals("4")) {
-                	bugs[0] = "Other";
+                	criteria.bugs[0] = "Other";
                 }
             }
             if (parameter.equalsIgnoreCase("bugs2"))
             {
                 temp = request.getParameter(parameter);
-                bugs[1] = temp;
+                criteria.bugs[1] = temp;
             }
         }
         return criteria ;
     }
+    
+    /**
+     * Gets the query that will be used to update the database
+     * @return A query string to be executed.
+     */
+    private String updateQuery(Hospital criteria){
+    	StringBuilder builder = new StringBuilder();
+    	builder.append(addBugClauses(criteria));
+    	builder.append(editHospitalClauses(criteria));
+    	builder.append(addHospitalClauses(criteria));
+    	return builder.toString();
+    }
+    
     //edit hospital information
     private String editHospitalClauses(Hospital criteria) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -562,19 +550,24 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	//page 2
         //TODO so we're only updating it if it's true? It can't be set to false? also, you're setting it to "true", not 1. Are you sure that's right?
     	if(criteria.onCall != null && criteria.onCall == true){
-    		stringBuilder.append( "UPDATE P2 SET OnCall = '" + criteria.onCall + "' WHERE ID = " + criteria.id + "; ");
+        	if(criteria.onCall == true)
+                stringBuilder.append( "UPDATE P2 SET OnCall = '" + 1 + "' WHERE ID = " + criteria.id + "; ");
+        	else if(criteria.onCall == false)
+        		stringBuilder.append( "UPDATE P2 SET OnCall = '" + 0 + "' WHERE ID = " + criteria.id + "; ");
         }
     	String s2 = stringBuilder.toString();
     	stringBuilder = new StringBuilder();
     	//page3_4_5
-        //TODO this is going to error if nothing in p3_4_5 needs to be set.
+        //TODO this is going to error if nothing in p3_4_5 needs to be set. 
         //TODO you still need to go from boolean to integers (or however it's stored in the database)
     	stringBuilder.append( "UPDATE P3_4_5 SET ");
     	
         //Transportation
-        if(criteria.parking == Hospital.TRUE || criteria.parking == Hospital.FALSE){
-            //TODO are there really hospitals without parking? This seems poorly thought out.
-        	stringBuilder.append( "Park = " + criteria.parking + " AND ");
+        if(criteria.parking != null){
+        	if(criteria.parking == Hospital.TRUE)
+        		stringBuilder.append( "Park = " + 1 + " AND ");
+        	else if(criteria.parking == Hospital.FALSE)
+        		stringBuilder.append( "Park = " + 0 + " AND ");
         }
         if(criteria.publicTransportation != null){
             //TODO how is this formatted in the database?
@@ -586,16 +579,24 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
             stringBuilder.append( "AppWalk = " + criteria.walkIn + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.medicare) || Boolean.FALSE.equals(criteria.medicare)) {
-            stringBuilder.append( "MedicareGUIDE = " + criteria.medicare + " AND ");
+        if(criteria.medicare != null){
+        	if(criteria.medicare == Boolean.TRUE)
+        		stringBuilder.append( "MedicareGUIDE = " + 1 + " AND ");
+        	else if(criteria.medicare == Boolean.FALSE)
+        		stringBuilder.append( "MedicareGUIDE = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.medicaid) || Boolean.FALSE.equals(criteria.medicaid)) {
-            stringBuilder.append( "MedicaidGUIDE = " + criteria.medicaid + " AND ");
+        if(criteria.medicaid != null){
+        	if(criteria.medicaid == Boolean.TRUE)
+        		stringBuilder.append( "MedicaidGUIDE = " + 1 + " AND ");
+        	else if(criteria.medicaid == Boolean.FALSE)
+        		stringBuilder.append( "MedicaidGUIDE = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.peachCare) || Boolean.FALSE.equals(criteria.peachCare)) {
-            stringBuilder.append( "PeachcareGUIDE = " + criteria.peachCare + " AND ");
+        if(criteria.peachCare != null){
+        	if(criteria.peachCare == Boolean.TRUE)
+        		stringBuilder.append( "PeachcareGUIDE = " + 1 + " AND ");
+        	else if(criteria.peachCare == Boolean.FALSE)
+        		stringBuilder.append( "PeachcareGUIDE = " + 0 + " AND ");
         }
-        
         if (criteria.spanAdmin != null) {
             stringBuilder.append( "SPANAdmGUIDE = " + criteria.spanAdmin + " AND ");
         }
@@ -616,49 +617,84 @@ public class Servlet extends javax.servlet.http.HttpServlet {
        
         
         //Healthcare
-        if(Boolean.TRUE.equals(criteria.spcWH) || Boolean.FALSE.equals(criteria.spcWH)) {
-            stringBuilder.append( "SpcWH = " + criteria.spcWH + " AND ");
+        if(criteria.spcWH != null){
+        	if(criteria.spcWH == Boolean.TRUE)
+        		stringBuilder.append( "SpcWH = " + 1 + " AND ");
+        	else if(criteria.spcWH == Boolean.FALSE)
+        		stringBuilder.append( "SpcWH = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcMH) || Boolean.FALSE.equals(criteria.spcMH)) {
-            stringBuilder.append( "SpcMH = " + criteria.spcMH + " AND ");
+        if(criteria.spcMH != null){
+        	if(criteria.spcMH == Boolean.TRUE)
+        		stringBuilder.append( "SpcMH = " + 1 + " AND ");
+        	else if(criteria.spcMH == Boolean.FALSE)
+        		stringBuilder.append( "SpcMH = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcFCH) || Boolean.FALSE.equals(criteria.spcFCH)) {
-            stringBuilder.append( "SpcFCH = " + criteria.spcFCH + " AND ");
+        if(criteria.spcFCH != null){
+        	if(criteria.spcFCH == Boolean.TRUE)
+        		stringBuilder.append( "SpcFCH = " + 1 + " AND ");
+        	else if(criteria.spcFCH == Boolean.FALSE)
+        		stringBuilder.append( "SpcFCH = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcMHC) || Boolean.FALSE.equals(criteria.spcMHC)) {
-            stringBuilder.append( "SpcMHC = " + criteria.spcMHC + " AND ");
+        if(criteria.spcMHC != null){
+        	if(criteria.spcMHC == Boolean.TRUE)
+        		stringBuilder.append( "SpcMHC = " + 1 + " AND ");
+        	else if(criteria.spcMHC == Boolean.FALSE)
+        		stringBuilder.append( "SpcMHC = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcDH) || Boolean.FALSE.equals(criteria.spcDH)) {
-            stringBuilder.append( "SpcDH = " + criteria.spcDH + " AND ");
+        if(criteria.spcDH != null){
+        	if(criteria.spcDH == Boolean.TRUE)
+        		stringBuilder.append( "SpcDH = " + 1 + " AND ");
+        	else if(criteria.spcDH == Boolean.FALSE)
+        		stringBuilder.append( "SpcDH = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.spcVH) || Boolean.FALSE.equals(criteria.spcVH)) {
-            stringBuilder.append( "SpcVH = " + criteria.spcVH + " AND ");
+        if(criteria.spcVH != null){
+        	if(criteria.spcVH == Boolean.TRUE)
+        		stringBuilder.append( "SpcVH = " + 1 + " AND ");
+        	else if(criteria.spcVH == Boolean.FALSE)
+        		stringBuilder.append( "SpcVH = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.childGuide) || Boolean.FALSE.equals(criteria.childGuide)){
-            stringBuilder.append( "NinosGUIDE = " + criteria.childGuide + " AND ");
+        if(criteria.childGuide != null){
+        	if(criteria.childGuide == Boolean.TRUE)
+        		stringBuilder.append( "NinosGUIDE = " + 1 + " AND ");
+        	else if(criteria.childGuide == Boolean.FALSE)
+        		stringBuilder.append( "NionosGUIDE = " + 0 + " AND ");
         }
         
         if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageStart != -1){
-        	stringBuilder.append( "AgeStart = " + criteria.ageStart + " AND ");
+                stringBuilder.append( "AgeStart = " + criteria.ageStart + " AND ");
         }
         if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageEnd != -1){
-        	stringBuilder.append( "AgeEnd = " + criteria.ageEnd + " AND ");
+                stringBuilder.append( "AgeEnd = " + criteria.ageEnd + " AND ");
         }
-        
-        if(Boolean.TRUE.equals(criteria.subAbGuide) || Boolean.FALSE.equals(criteria.subAbGuide)) {
-            stringBuilder.append( "SubAbGuide = " + criteria.subAbGuide + " AND ");
+        if(criteria.subAbGuide != null){
+        	if(criteria.subAbGuide == Boolean.TRUE)
+        		stringBuilder.append( "SubAbGUIDE = " + 1 + " AND ");
+        	else if(criteria.medicaid == Boolean.FALSE)
+        		stringBuilder.append( "SubAbGUIDE = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.sexAbGuide) || Boolean.FALSE.equals(criteria.sexAbGuide)) {
-            stringBuilder.append( "SexAbGuide = " + criteria.sexAbGuide + " AND ");
+        if(criteria.sexAbGuide != null){
+        	if(criteria.sexAbGuide == Boolean.TRUE)
+        		stringBuilder.append( "SexAbGUIDE = " + 1 + " AND ");
+        	else if(criteria.sexAbGuide == Boolean.FALSE)
+        		stringBuilder.append( "SexAbGUIDE = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.angManGuide) || Boolean.FALSE.equals(criteria.angManGuide)) {
-            stringBuilder.append( "AngManGuide = " + criteria.angManGuide + " AND ");
+        if(criteria.angManGuide != null){
+        	if(criteria.angManGuide == Boolean.TRUE)
+        		stringBuilder.append( "AngManGUIDE = " + 1 + " AND ");
+        	else if(criteria.angManGuide == Boolean.FALSE)
+        		stringBuilder.append( "AngManGUIDE = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.hivConsGuide) || Boolean.FALSE.equals(criteria.hivConsGuide)) {
-            stringBuilder.append( "HIVConsGUIDE = " + criteria.hivConsGuide + " AND ");
+        if(criteria.hivConsGuide != null){
+        	if(criteria.hivConsGuide == Boolean.TRUE)
+        		stringBuilder.append( "HIVConsGUIDE = " + 1 + " AND ");
+        	else if(criteria.hivConsGuide == Boolean.FALSE)
+        		stringBuilder.append( "HIVConsGUIDE = " + 0 + " AND ");
         }
-        if(Boolean.TRUE.equals(criteria.lgbtGuide) || Boolean.FALSE.equals(criteria.lgbtGuide)) {
-            stringBuilder.append( "LGBTGUIDE = " + criteria.lgbtGuide + " AND ");
+        if(criteria.lgbtGuide != null){
+        	if(criteria.lgbtGuide == Boolean.TRUE)
+        		stringBuilder.append( "LGBTGUIDE = " + 1 + " AND ");
+        	else if(criteria.lgbtGuide == Boolean.FALSE)
+        		stringBuilder.append( "LGBTGUIDE = " + 0 + " AND ");
         }
         
         String s3 = stringBuilder.toString();
@@ -672,6 +708,19 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
     //add new hospital
     private String addHospitalClauses(Hospital criteria){
+        Connection con = initializeConnection();
+    	String max_survno = "";  //find the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
+    	try {
+    	    Statement statement = con.createStatement();
+    	    ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
+            while(result_max_survno.next()){
+                max_survno = result_max_survno.getString("MAX(SurvNo)"); 
+                System.out.println("max survno in database: " + max_survno);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     	StringBuilder stringBuilder = new StringBuilder();
         //TODO why are we even doing this? SQL will automatically add an entry with a unique ID, we don't even have to calculate it ourselves
     	String survno = String.valueOf(Integer.parseInt(max_survno) + 1);
@@ -682,7 +731,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	stringBuilder.append("VALUES (" + survno + ", " + addfacl + ", " + criteria.county + ")");
     	//page 2
     	stringBuilder.append("INSERT INTO P2 (SurvNo, OnCall)");
-    	stringBuilder.append("VALUES (" + survno + ", " + criteria.onCall + ")");
+        stringBuilder.append("VALUES (" + survno + ", " + ((criteria.onCall == true)?1:0) + ")");
+       
     	//page3_4_5
     	stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
     			"PeachcareGuide, SPANAdmGUIDE, SPANNurGUIDE, SPANDocGUIDE, SPANFoGuide, " +
@@ -691,12 +741,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     			"AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
     			"HIVConsGUIDE, LGBTGUIDE)");
         //TODO You have to change these from their values in the criteria to the right value types in the database. true should be 1, not true.
-    	stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
-    			criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
-    			criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
-    			criteria.spcDH + ", " + criteria.spcVH + ", " + criteria.childGuide + ", " + criteria.ageStart + ", " + 
-    			criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
-    			criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
+        stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + (criteria.medicare == Boolean.TRUE? 1 : 0) + ", " + (criteria.medicaid == Boolean.TRUE? 1 : 0) + ", " + 
+                            (criteria.peachCare == Boolean.TRUE? 1 : 0) + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
+                            criteria.spanPhone + ", " + (criteria.spcWH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcMH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcFCH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcMHC == Boolean.TRUE? 1 : 0) + ", " + 
+                            (criteria.spcDH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcVH == Boolean.TRUE? 1 : 0) + ", " + (criteria.childGuide == Boolean.TRUE? 1 : 0) + ", " + criteria.ageStart + ", " + 
+                            criteria.ageEnd + ", " + (criteria.subAbGuide == Boolean.TRUE? 1 : 0) + ", " + (criteria.sexAbGuide == Boolean.TRUE? 1 : 0) + ", " + (criteria.angManGuide == Boolean.TRUE? 1 : 0) + ", " + 
+                            (criteria.hivConsGuide == Boolean.TRUE? 1 : 0) + ", " + (criteria.lgbtGuide == Boolean.TRUE? 1 : 0) + ")");
+        
         String ss = stringBuilder.toString();
         return ss;
     }
@@ -705,12 +756,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     //TODO what's your plan for someone being able to view these? Is there going to be a page for this? Will someone get emailed? Just putting it in the database isn't really a solution by itself.
     private String addBugClauses(String bug, String bug_desc){
     	StringBuilder stringBuilder = new StringBuilder();
-    	System.out.println(bug);
-    	System.out.println(bug_desc);
-     	if(bug == "" && bug_desc == "")
+    	if(criteria.bugs == null)
     		return "";
     	stringBuilder.append("INSERT INTO BUG_REPORT (bug, bugDesc) ");
-        stringBuilder.append("VALUES ('" + bug + "', '" + bug_desc + "');");
+        stringBuilder.append("VALUES ('" + criteria.bugs[0] + "', '" + criteria.bugs[1] + "');");
         String ss = stringBuilder.toString();
         return ss;
     }
