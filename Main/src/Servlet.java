@@ -13,6 +13,7 @@ import java.util.*;
 public class Servlet extends javax.servlet.http.HttpServlet {
 
     private String max_survno;  //get the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
+    //TODO Are either of these actually properties of the Servleet? they seem to be used in only one method.
     private String[] bugs = new String[2]; //the inputs in bug report form
     /**
      * Currently unused.
@@ -27,18 +28,20 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
         Hospital criteria = populateCriteriaFromRequest(request);
-        PrintWriter writer = response.getWriter();
         Connection con = initializeConnection();
         JSONArray hospitals = new JSONArray();
         try {
             Statement statement = con.createStatement();
-            //get the max value of survno 
+            //get the max value of survno
+            //TODO this doesn't need to be run every time we get a post request.
             ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
             while(result_max_survno.next()){
-            	max_survno = result_max_survno.getString("MAX(SurvNo)"); 
+            	max_survno = result_max_survno.getString("MAX(SurvNo)");
+                //TODO this is fine to test, but you shouldn't commit code that just prints out a number with no explanation.
             	System.out.println(Integer.parseInt(max_survno) + 1);
             }
             //create bug report table
+            //TODO This will get run every time a post request comes in, even if we're just trying to get hospital results. That's definitely wrong.
             statement.executeUpdate(createBugTable());
             statement.executeUpdate(addBugClauses(bugs[0], bugs[1]));
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
@@ -73,7 +76,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         
         return builder.toString();
     }
-    
+
+    //TODO We're seriously going to run this every single time? This is going to slow everything down. Make it once, then assume that it's there.
     private String createBugTable() {
     	return "CREATE TABLE IF NOT EXISTS BUG_REPORT ( " +
     			"ID INT(100) NOT NULL AUTO_INCREMENT, " +
@@ -556,12 +560,15 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	String s1 = stringBuilder.toString();
     	stringBuilder = new StringBuilder();
     	//page 2
+        //TODO so we're only updating it if it's true? It can't be set to false? also, you're setting it to "true", not 1. Are you sure that's right?
     	if(criteria.onCall != null && criteria.onCall == true){
     		stringBuilder.append( "UPDATE P2 SET OnCall = '" + criteria.onCall + "' WHERE ID = " + criteria.id + "; ");
         }
     	String s2 = stringBuilder.toString();
     	stringBuilder = new StringBuilder();
     	//page3_4_5
+        //TODO this is going to error if nothing in p3_4_5 needs to be set.
+        //TODO you still need to go from boolean to integers (or however it's stored in the database)
     	stringBuilder.append( "UPDATE P3_4_5 SET ");
     	
         //Transportation
@@ -666,6 +673,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     //add new hospital
     private String addHospitalClauses(Hospital criteria){
     	StringBuilder stringBuilder = new StringBuilder();
+        //TODO why are we even doing this? SQL will automatically add an entry with a unique ID, we don't even have to calculate it ourselves
     	String survno = String.valueOf(Integer.parseInt(max_survno) + 1);
     	String addfacl = "None";
     	
@@ -682,6 +690,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     			"SpcDH, SpcVH, NinosGUIDE, AgeStart, " +
     			"AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
     			"HIVConsGUIDE, LGBTGUIDE)");
+        //TODO You have to change these from their values in the criteria to the right value types in the database. true should be 1, not true.
     	stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
     			criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
     			criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
@@ -693,6 +702,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
     
     //Insert new bugs in bug report table in database
+    //TODO what's your plan for someone being able to view these? Is there going to be a page for this? Will someone get emailed? Just putting it in the database isn't really a solution by itself.
     private String addBugClauses(String bug, String bug_desc){
     	StringBuilder stringBuilder = new StringBuilder();
     	System.out.println(bug);
