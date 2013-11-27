@@ -37,6 +37,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             	max_survno = result_max_survno.getString("MAX(SurvNo)"); 
             	System.out.println(Integer.parseInt(max_survno) + 1);
             }
+            //create bug report table
+            statement.executeUpdate(createBugTable());
             
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
@@ -69,6 +71,14 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         //builder.append(addHospitalClauses(criteria));
         
         return builder.toString();
+    }
+    
+    private String createBugTable() {
+    	return "CREATE TABLE IF NOT EXISTS BUG_REPORT ( " +
+    			"ID INT(100) NOT NULL AUTO_INCREMENT, " +
+    			"PRIMARY KEY(ID), " + 
+    			"bug varchar(20), " +
+    			"bugDesc varchar(225));";
     }
 
     /**
@@ -234,7 +244,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         {
             String parameter = (String)parameterNames.nextElement();
 
-            if (parameter.equalsIgnoreCase("county"))
+            if (parameter.equalsIgnoreCase("address"))
             {
                 temp = request.getParameter(parameter);
                 criteria.county = temp;
@@ -641,10 +651,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	String addfacl = "None";
     	
     	//page 1
-    	stringBuilder.append("INSERT INTO P1 (SurvNo, AddFacL1, County");
+    	stringBuilder.append("INSERT INTO P1 (SurvNo, AddFacL1, County)");
     	stringBuilder.append("VALUES (" + survno + ", " + addfacl + ", " + criteria.county + ")");
     	//page 2
-    	stringBuilder.append("INSERT INTO P2 (SurvNo, OnCall");
+    	stringBuilder.append("INSERT INTO P2 (SurvNo, OnCall)");
     	stringBuilder.append("VALUES (" + survno + ", " + criteria.onCall + ")");
     	//page3_4_5
     	stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
@@ -652,7 +662,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     			"SPANIntPhGUIDE, SpcWH, SpcMH, SpcFCH, SpcMHC," +
     			"SpcDH, SpcVH, NinosGUIDE, AgeStart, " +
     			"AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
-    			"HIVConsGUIDE, LGBTGUIDE");
+    			"HIVConsGUIDE, LGBTGUIDE)");
     	stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
     			criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
     			criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
