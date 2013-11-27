@@ -548,8 +548,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	String s1 = stringBuilder.toString();
     	stringBuilder = new StringBuilder();
     	//page 2
-        //TODO so we're only updating it if it's true? It can't be set to false? also, you're setting it to "true", not 1. Are you sure that's right?
-    	if(criteria.onCall != null && criteria.onCall == true){
+    	if(criteria.onCall != null){
         	if(criteria.onCall == true)
                 stringBuilder.append( "UPDATE P2 SET OnCall = '" + 1 + "' WHERE ID = " + criteria.id + "; ");
         	else if(criteria.onCall == false)
