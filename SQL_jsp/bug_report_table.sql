@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS BUG_REPORT ( 
+    ID INT(100) NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY(ID),
+    bug varchar(20),
+    bugDesc varchar(225))
