@@ -740,13 +740,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     			"AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
     			"HIVConsGUIDE, LGBTGUIDE)");
         //TODO You have to change these from their values in the criteria to the right value types in the database. true should be 1, not true.
-        stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + (criteria.medicare == Boolean.TRUE? 1 : 0) + ", " + (criteria.medicaid == Boolean.TRUE? 1 : 0) + ", " + 
-                            (criteria.peachCare == Boolean.TRUE? 1 : 0) + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
-                            criteria.spanPhone + ", " + (criteria.spcWH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcMH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcFCH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcMHC == Boolean.TRUE? 1 : 0) + ", " + 
-                            (criteria.spcDH == Boolean.TRUE? 1 : 0) + ", " + (criteria.spcVH == Boolean.TRUE? 1 : 0) + ", " + (criteria.childGuide == Boolean.TRUE? 1 : 0) + ", " + criteria.ageStart + ", " + 
-                            criteria.ageEnd + ", " + (criteria.subAbGuide == Boolean.TRUE? 1 : 0) + ", " + (criteria.sexAbGuide == Boolean.TRUE? 1 : 0) + ", " + (criteria.angManGuide == Boolean.TRUE? 1 : 0) + ", " + 
-                            (criteria.hivConsGuide == Boolean.TRUE? 1 : 0) + ", " + (criteria.lgbtGuide == Boolean.TRUE? 1 : 0) + ")");
-        
+        stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
+                            criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
+                            criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
+                            criteria.spcDH + ", " + criteria.spcVH + ", " + criteria.childGuide + ", " + criteria.ageStart + ", " + 
+                            criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
+                            criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
+                            
         String ss = stringBuilder.toString();
         return ss;
     }
