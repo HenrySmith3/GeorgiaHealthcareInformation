@@ -9,6 +9,7 @@
   User: Priscilla
   Time:12:54
 --%>
+<%@ page import = "java.util.ResourceBundle" %> <% ResourceBundle resource = ResourceBundle.getBundle("english");%>
 <!DOCTYPE html>
 
 <html>
@@ -89,9 +90,9 @@
 
 
 <div id="title">
-    <h1>Clinic Search Form</h1>
+    <h1><%=resource.getString("formTitle")%></h1>
 
-    <h4>Please fill out this form information based on the individual(s) who need healthcare.</h4>
+    <h4><%=resource.getString("instructions")%></h4>
 </div><br>
 <br>
 
@@ -101,25 +102,25 @@
 <div style="margin-left:auto;margin-right:auto;width:640px;">
     <ul class="pagination form-step-control" style="display:none;">
         <li class="active">
-            <span><span class="glyphicon glyphicon-user pull-left"></span>&nbsp;<strong>Step 1:</strong><br>Personal Information</span>
+            <span><span class="glyphicon glyphicon-user pull-left"></span>&nbsp;<strong><%=resource.getString("step1")%>:</strong><br><%=resource.getString("personalInfo")%></span>
         </li>
         <li class="disabled">
-            <span><span class="glyphicon glyphicon-road pull-left"></span>&nbsp;<strong>Step 2:</strong><br>Transportation</span>
+            <span><span class="glyphicon glyphicon-road pull-left"></span>&nbsp;<strong><%=resource.getString("step2")%>:</strong><br><%=resource.getString("transportation")%></span>
         </li>
         <li class="disabled">
-                    <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong>Step 3:</strong><br>Clinic Services<span>
+                    <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong><%=resource.getString("step3")%>:</strong><br><%=resource.getString("clinicServices")%><span>
         </li>
         <li class="disabled">
-                    <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong>Step 4:</strong><br>Healthcare<span>
+                    <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong><%=resource.getString("step4")%>:</strong><br><%=resource.getString("healthcare")%><span>
         </li>
     </ul>
 </div>
 
 <fieldset class="form-step">
-    <legend>Personal Information</legend>
+    <legend><%=resource.getString("personalInfo")%></legend>
 
     <div class="form-group" id="address">
-        <label>What county does the person who needs healthcare live in?</label>
+        <label><%=resource.getString("county")%></label>
         <input class="form-control" name="address" type="text" placeholder="Enter county">
     </div>
 
