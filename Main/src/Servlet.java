@@ -753,7 +753,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     
     //Insert new bugs in bug report table in database
     //TODO what's your plan for someone being able to view these? Is there going to be a page for this? Will someone get emailed? Just putting it in the database isn't really a solution by itself.
-    private String addBugClauses(String bug, String bug_desc){
+    private String addBugClauses(Hospital criteria){
     	StringBuilder stringBuilder = new StringBuilder();
     	if(criteria.bugs == null)
     		return "";
