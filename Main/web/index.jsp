@@ -53,29 +53,29 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="../">
-                Home
+                <%=resource.getString("home")%>
             </a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="index.jsp">
-                        Clinic Search Form
+                        <%=resource.getString("search")%>
                     </a>
                 </li>
                 <li>
                     <a href="clinic.jsp">
-                        Clinic Addition Form
+                        <%=resource.getString("addition")%>
                     </a>
                 </li>
                 <li class="active">
                     <a href="../components">
-                        Clinic Editting Form
+                        <%=resource.getString("editing")%>
                     </a>
                 </li>
                 <li>
                     <a href="bug.jsp">
-                        Error Report
+                        <%=resource.getString("error")%>
                     </a>
                 </li>
             </ul>
@@ -125,7 +125,7 @@
     </div>
 
     <div class="form-group" id="free">
-        <label>Do you qualify for free clinic services?</label><br>
+        <label><%=resource.getString("freeServices")%></label><br>
         <%--TODO We need to explain who would qualify for free clinic services--%>
         <label class="radio-inline" for="pickfreeY">
             <input id="pickfreeY" name="pickFY" type="radio" value="freeY">Yes
@@ -148,15 +148,15 @@
 </fieldset>
 
 <fieldset class="form-step">
-    <legend>Transportation</legend>
+    <legend><%=resource.getString("transportation")%></legend>
 
     <div class="form-group" id="trans">
-        <label>What is your preferred method of transportation?</label>
+        <label><%=resource.getString("preferredTransportation")%></label>
         <select id="transportation" class="form-control">
-            <option value="1">Drive</option>
+            <option value="1"><%=resource.getString("drive")%></option>
             <option value="2">MARTA</option>
-            <option value="3">Bus</option>
-            <option value="4"></option>
+            <option value="3"><%=resource.getString("bus")%></option>
+            <option value="4"><%=resource.getString("none")%></option>
         </select>
     </div>
 
@@ -173,10 +173,10 @@
 </fieldset>
 
 <fieldset class="form-step">
-    <legend>Clinic Services</legend>
+    <legend><%=resource.getString("clinicServices")%></legend>
 
     <div class="form-group" id="appt">
-        <label>Which kind of appointments do you prefer?</label><br>
+        <label><%=resource.getString("kindAppointments")%></label><br>
         <label class="radio-inline" for="walkin">
             <input id="walkin" name="appt" type="radio" value="walk">Walk-In
         </label>
@@ -185,59 +185,59 @@
         </label>
     </div>
     <div class="form-group" id="insurance">
-        <label>What medical insurance do you have?</label>
+        <label><%=resource.getString("insurance")%></label>
         <select class="form-control" id="insurancetype">
             <option value="1">Medicare</option>
             <option value="2">Medicaid</option>
             <option value="3">Peachcare</option>
-            <option value="4">None</option>
+            <option value="4"><%=resource.getString("none")%></option>
         </select>
     </div>
 
     <%--TODO this is now just shown on the results page, this can all be removed.--%>
     <div class="form-group" id="language">
-        <label>Do you require any of the following faculty members to speak Spanish?</label><br>
+        <label><%=resource.getString("facultyMembers")%></label><br>
         <label class="checkbox-inline" for="receptionist">
-            <input id="receptionist" type="checkbox" value="recept">Receptionist
+            <input id="receptionist" type="checkbox" value="recept"><%=resource.getString("receptionist")%>
         </label>
         <label class="checkbox-inline" for="nurses">
-            <input id="nurses" type="checkbox" value="nur">Nurses
+            <input id="nurses" type="checkbox" value="nur"><%=resource.getString("nurse")%>
         </label>
         <label class="checkbox-inline" for="doctor">
-            <input id="doctor" type="checkbox" value="doc">Doctor
+            <input id="doctor" type="checkbox" value="doc"><%=resource.getString("doctor")%>
         </label>
     </div>
 
     <div class="form-group" id="forms">
-        <label>Do the medical forms need to be written in Spanish?</label><br>
+        <label><%=resource.getString("medicalForms")%></label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="forms" type="radio" value="y">Yes
+            <input id="phoneyes" name="forms" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n">No
+            <input id="phoneno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
 
     <div class="form-group" id="phone">
-        <label>Do you need a Spanish speaking receptionist on the phone?</label><br>
+        <label><%=resource.getString("spanishReceptionist")%></label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="phone" type="radio" value="y">Yes
+            <input id="phoneyes" name="phone" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n">No
+            <input id="phoneno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
 
     <div class="form-group" id="call">
-        <label>Do you require someone to be available on-call after the clinic's normal business hours?</label><br>
+        <label><%=resource.getString("onCall")%></label><br>
         <label class="radio-inline" for="yes">
-            <input id="callyes" name="call" type="radio" value="y">Yes
+            <input id="callyes" name="call" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="no">
-            <input id="callno" name="call" type="radio" value="n">No
+            <input id="callno" name="call" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
-
+    <%--TODO are we even asking these anymore?--%>
     <div class="form-group" id="date">
         <label>Which days are best for you to visit the clinic?</label><br>
         <label class="checkbox-inline" for="mon">
@@ -266,37 +266,37 @@
 </fieldset>
 
 <fieldset class="form-step">
-    <legend>Healthcare</legend>
+    <legend><%=resource.getString("healthcare")%></legend>
 
     <div class="form-group" id="type">
-        <label>Do you need the clinic to handle any of the following?</label><br>
+        <label><%=resource.getString("following")%></label><br>
         <label class="checkbox-inline" for="women">
-            <input id="women" type="checkbox" value="wo">Women's Health
+            <input id="women" type="checkbox" value="wo"><%=resource.getString("womens")%>
         </label>
         <label class="checkbox-inline" for="mens">
-            <input id="mens" type="checkbox" value="me">Men's Health
+            <input id="mens" type="checkbox" value="me"><%=resource.getString("mens")%>
         </label>
         <label class="checkbox-inline" for="family">
-            <input id="family" type="checkbox" value="fam">Family Health
+            <input id="family" type="checkbox" value="fam"><%=resource.getString("family")%>
         </label>
         <label class="checkbox-inline" for="mental">
-            <input id="mental" type="checkbox" value="ment">Mental Health
+            <input id="mental" type="checkbox" value="ment"><%=resource.getString("mental")%>
         </label>
         <label class="checkbox-inline" for="dental">
-            <input id="dental" type="checkbox" value="dent">Dental Health
+            <input id="dental" type="checkbox" value="dent"><%=resource.getString("dental")%>
         </label>
         <label class="checkbox-inline" for="vision">
-            <input id="vision" type="checkbox" value="vis">Vision Health
+            <input id="vision" type="checkbox" value="vis"><%=resource.getString("vision")%>
         </label>
     </div>
 
     <div class="form-group" id="children">
-        <label>Do you have children that need medical assistance?</label><br>
+        <label><%=resource.getString("children")%></label><br>
         <label class="radio-inline" for="yes">
-            <input id="chilyes" name="chil" type="radio" value="y">Yes
+            <input id="chilyes" name="chil" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="no">
-            <input id="chilno" name="child" type="radio" value="n">No
+            <input id="chilno" name="child" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
 
@@ -317,30 +317,30 @@
     </div> -->
 
     <div class="form-group" id="mentalhealth">
-        <label>Do you need mental health services, counseling, or rehabilitation services in any of the following?</label>
+        <label><%=resource.getString("mentalFollowing")%></label>
         <label class="checkbox">
-            <input id="substance" type="checkbox" value="subt">Substance Abuse
+            <input id="substance" type="checkbox" value="subt"><%=resource.getString("substance")%>
         </label>
         <label class="checkbox">
-            <input id="sex" type="checkbox" value="se">Sexual Abuse
+            <input id="sex" type="checkbox" value="se"><%=resource.getString("sexual")%>
         </label>
         <label class="checkbox">
-            <input id="anger" type="checkbox" value="ang">Anger Management
+            <input id="anger" type="checkbox" value="ang"><%=resource.getString("anger")%>
         </label>
         <label class="checkbox">
-            <input id="sexHIV" type="checkbox" value="HIV">HIV
+            <input id="sexHIV" type="checkbox" value="HIV"><%=resource.getString("hiv")%>
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT">LGBT
+            <input id="sexLGBT" type="checkbox" value="LGBT"><%=resource.getString("lgbt")%>
         </label>
     </div>
     <br>
 </fieldset>
 
 <div class="step-control">
-    <button class="btn btn-default" style="display:none;">&larr; Go Back</button>
-    <button class="btn btn-primary" type="submit">Submit</button>
-    <button class="btn btn-default" style="display:none;">Continue &rarr;</button>
+    <button class="btn btn-default" style="display:none;"><%=resource.getString("goBack")%></button>
+    <button class="btn btn-primary" type="submit"><%=resource.getString("submit")%></button>
+    <button class="btn btn-default" style="display:none;"><%=resource.getString("continue")%></button>
 </div>
 
 </form>
@@ -349,7 +349,7 @@
 <br>
 <div class="footer">
     <hr>
-    *filler header* For the Emory School of Public Health and Hispanic Health Coalition of Georgia. Designed by &copy; Health Coders and Hamilton Evans Cahill
+    <%=resource.getString("header")%>
 </div>
 </body>
 </html>
