@@ -9,10 +9,6 @@
         <display-name>Servlet</display-name>
         <servlet-name>Servlet</servlet-name>
         <servlet-class>Servlet</servlet-class>
-        <init-param>
-            <param-name>myName</param-name>
-            <param-value>value</param-value>
-        </init-param>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -21,8 +17,20 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>index</servlet-name>
+        <servlet-name>english</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
+        <init-param>
+            <param-name>language</param-name>
+            <param-value>english</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>spanish</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+        <init-param>
+            <param-name>language</param-name>
+            <param-value>spanish</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>response</servlet-name>
@@ -50,8 +58,13 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index.jsp</url-pattern>
+        <servlet-name>english</servlet-name>
+        <url-pattern>/english</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>spanish</servlet-name>
+        <url-pattern>/spanish</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -83,6 +96,6 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

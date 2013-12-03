@@ -9,8 +9,19 @@
   User: Priscilla
   Time:12:54
 --%>
-<%@ page import = "java.util.ResourceBundle" %> <% ResourceBundle resource = ResourceBundle.getBundle("english");%>
+<%@ page import = "java.util.ResourceBundle" %>
+<%@ page import="java.util.Enumeration" %>
+<%
+    ResourceBundle resource;
+    if (request.getRequestURL().toString().contains("english")) {
+        resource = ResourceBundle.getBundle("english");
+    } else {
+        resource = ResourceBundle.getBundle("spanish");
+    }
+%>
 <!DOCTYPE html>
+
+
 
 <html>
 <head>
