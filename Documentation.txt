@@ -6,3 +6,12 @@ The project uses a Java backend handled using a java web module. The front end i
 mysql:mysql-connector-java:5.1.92
 net.sourceforge.json:com.springsource.net.sf.json:2.2.22
 
+Other sections to include:
+compiling and installing from source
+installing from war
+tomcat overview
+jsp overview
+explaining twitter bootstrap
+explanation of the organization of Servlet.java
+explanation of .properties file
+web.xml explained
