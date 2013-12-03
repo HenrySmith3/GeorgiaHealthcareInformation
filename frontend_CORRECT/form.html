@@ -58,27 +58,27 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.jsp">
+                    <a href="index.html">
                         Clinic Search Form
                     </a>
                 </li>
                 <li>
-                    <a href="clinic.jsp">
+                    <a href="clinic.html">
                         Clinic Addition Form
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../components">
+                <li>
+                    <a href="edit.html">
                         Clinic Editting Form
                     </a>
                 </li>
                 <li>
-                    <a href="bug.jsp">
+                    <a href="bug.html">
                         Error Report
                     </a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right"></ul>
         </nav>
     </div>
 </header>
@@ -119,7 +119,7 @@
     <legend>Personal Information</legend>
 
     <div class="form-group" id="address">
-        <label>What county do you live in?</label> 
+        <label>What county does the patient live in?</label> 
         <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
         <select id="county" class="form-control">
             <option value="1">Clayton</option>
@@ -159,9 +159,9 @@
         <label>What is your preferred method of transportation?</label>
         <select id="transportation" class="form-control">
             <option value="1">Drive</option>
-            <option value="2">MARTA</option>
-            <option value="3">Bus</option>
-            <option value="4"></option>
+            <option value="2">MARTA Rail Service</option>
+            <option value="3">MARTA Bus</option>
+            <option value="4">Taxi</option>
         </select>
     </div>
 
@@ -195,11 +195,22 @@
             <option value="1">Medicare</option>
             <option value="2">Medicaid</option>
             <option value="3">Peachcare</option>
-            <option value="4">None</option>
+            <option value="4">Other</option>
+            <option value="5">None</option>
         </select>
     </div>
 
-    <div class="form-group" id="language">
+    <div class="form-group" id="interpreter">
+        <label>Do you need a Spanish interpreter/translator?</label><br>
+        <label class="radio-inline" for="interpreteryes">
+            <input id="interpY" name="interpreter" type="radio" value="interpYes">Yes
+        </label>
+        <label class="radio-inline" for="interpreterno">
+            <input id="interpN" name="interpreter" type="radio" value="interpNo">No
+        </label>
+    </div>
+
+    <!--<div class="form-group" id="language">
         <label>Do you require any of the following faculty members to speak Spanish? (Check all that applies)</label><br>
         <label class="checkbox-inline" for="receptionist">
             <input id="receptionist" type="checkbox" value="recept">Receptionist
@@ -210,7 +221,7 @@
         <label class="checkbox-inline" for="doctor">
             <input id="doctor" type="checkbox" value="doc">Doctor
         </label>
-    </div>
+    </div> -->
 
     <div class="form-group" id="forms">
         <label>Do the medical forms need to be written in Spanish?</label><br>
@@ -233,7 +244,7 @@
     </div>
 
     <div class="form-group" id="call">
-        <label>Do you require someone to be available on-call after the clinic's normal business hours?</label><br>
+        <label>Would you want someone available on the phone after the clinic's normal business hours?</label><br>
         <label class="radio-inline" for="yes">
             <input id="callyes" name="call" type="radio" value="y">Yes
         </label>
@@ -298,7 +309,7 @@
     </div>
 
     <div class="form-group" id="children">
-        <label>Do you have children that need medical assistance?</label><br>
+        <label>Do you need pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
         <label class="radio-inline" for="yes">
             <input id="chilyes" name="chil" type="radio" value="y">Yes
         </label>
@@ -306,6 +317,17 @@
             <input id="chilno" name="child" type="radio" value="n">No
         </label>
     </div>
+
+    <div class="form-group" id="prenatal"> <!--add as a specialty-->
+        <label>Do you need pre-natal care?</label><br>
+        <label class="radio-inline" for="prenatalyes">
+            <input id="preyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
+        </label>
+        <label class="radio-inline" for="prenatalyes">
+            <input id="preno" name="prenatal" type="radio" value="prenatalcareno">No
+        </label>
+    </div>
+
 
     <!--<div class="form-group" id="ages">
        <label>If yes, please check all the ages that apply.</label>
