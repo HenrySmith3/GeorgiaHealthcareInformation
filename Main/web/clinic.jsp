@@ -125,17 +125,6 @@
         </select>
     </div>
 
-    <div class="form-group" id="parking">
-        <label>Is there free parking space?</label><br>
-        <label class="radio-inline" for="yes">
-            <input id="yes" name="parking" type="radio" value="yes">Yes
-        </label>
-        <label class="radio-inline" for="no">
-            <input id="no" name="parking" type="radio" value="no">No
-        </label>
-    </div>
-    <br>
-
     <div class="form-group" id="appt">
         <label>What kind of appointments can be made?</label><br>
         <label class="radio-inline" for="walkin">
