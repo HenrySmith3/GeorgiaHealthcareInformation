@@ -27,7 +27,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         if (request.getParameter("action").equalsIgnoreCase("search")) {
             processSearch(request, response);
-        } else if ("bug".equalsIgnoreCase(request.getParameter("action"))) {
+        } else if (request.getParameter("action").equalsIgnoreCase("bug")) {
             submitBug(request, response);
         } else if ("addHospital".equalsIgnoreCase(request.getParameter("action"))) {
             addHospital(request, response);
@@ -68,16 +68,18 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         {
             String parameter = (String)parameterNames.nextElement();
 
-            if (parameter.equalsIgnoreCase("bug1"))
-            {
-                bug1 = request.getParameter(parameter);
-                System.out.println("bug1: " + bug1);
-            }
-            if (parameter.equalsIgnoreCase("bugdescription"))
-            {
-            	bug2 = request.getParameter(parameter);
-            	System.out.println("bug2: " + bug2);
-            }
+            String temp = request.getParameter("bug1");
+            if(temp.equals("1")) {
+                bug1 = "Broken Functionality";
+            } else if (temp.equals("2")) {
+                bug1 = "Incorrect Information";
+            } else if (temp.equals("3")) {
+               	bug1 = "Typos";
+            } else if (temp.equals("4")) {
+               	bug1 = "Other";
+            } 
+            temp = request.getParameter("bug2");
+            bug2 = temp;
         }
     	StringBuilder stringBuilder = new StringBuilder();
     	if(bug1 == null && bug2 == null)
@@ -302,10 +304,17 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         {
             String parameter = (String)parameterNames.nextElement();
 
-            if (parameter.equalsIgnoreCase("address"))
-            {
-                temp = request.getParameter(parameter);
-                criteria.county = temp;
+            temp = request.getParameter("county");
+            if(temp.equals("1")) {
+                criteria.county = "Clayton";
+            } else if (temp.equals("2")) {
+                criteria.county = "Cobb";
+            } else if (temp.equals("3")) {
+               	criteria.county = "DeKalb";
+            } else if (temp.equals("4")) {
+               	criteria.county = "Fulton";
+            } else if (temp.equals("5")) {
+                criteria.county = "Gwinnett";
             }
             if (parameter.equalsIgnoreCase("transportationForm")) {
                 //TODO What are we doing if they say drive, bus, or bike? Nothing?
