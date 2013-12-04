@@ -51,7 +51,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../">
+            <a class="navbar-brand" href="home.jsp">
                 Home
             </a>
         </div>
