@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>healthcare</title>
+    <title>Hispanic Healthcare Web Directory</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -45,10 +45,10 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hispanic Healthcare Search Site</h1>
-        <p>We provide a form that you can fill out to find local healthcare providers that fit your specific needs.</p>
+        <h1>Hispanic Healthcare Web Directory</h1>
+        <p><br>Easily locate the healthcare providers that fit your specific needs.</p>
           <%--TODO there should be english and spanish buttons--%>
-        <p><a class="btn btn-primary btn-lg" role="button" href="/english">Go to the Form &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="/english">Find a Provider &raquo;</a></p>
       </div>
     </div>
 
@@ -57,13 +57,13 @@
       <div class="row">
         <div class="col-md-4">
           <h2>General Health</h2>
-          <p>Accurate and reputable information about health can be difficult to find, even with the internet. Here we 
+          <p>Accurate and trustworthy information about health can be difficult to find, even with the internet. We
             have compiled some information and links concerning maintaining health and what to ask about with your healthcare providers.</p>
           <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Clinicians</h2>
-          <p>If you are a staff member of a healthcare providing institution, information about your clinic can be added
+          <p>If you are a staff member of a care-providing institution, information about your clinic can be added
           to this site. If information about your clinic already exists but isn't up to date, you can also find 
           information as to how to update it here as well.</p>
           <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>

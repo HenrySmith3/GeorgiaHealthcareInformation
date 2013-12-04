@@ -107,10 +107,10 @@
             <span><span class="glyphicon glyphicon-road pull-left"></span>&nbsp;<strong>Step 2:</strong><br>Transportation</span>
         </li>
         <li class="disabled">
-                    <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong>Step 3:</strong><br>Clinic Services<span>
+                    <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong>Step 3:</strong><br>Clinic Services</span>
         </li>
         <li class="disabled">
-                    <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong>Step 4:</strong><br>Healthcare<span>
+                    <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong>Step 4:</strong><br>Healthcare</span>
         </li>
     </ul>
 </div>
