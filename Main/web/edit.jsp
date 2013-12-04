@@ -397,7 +397,9 @@
     <label>How long on average does it take for a patient to get an appointment?</label><br>
     <input type="text" name="appointmentWait">
 </div>
-
+<div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+</div>
 <br><br><br>
 
 </form>
