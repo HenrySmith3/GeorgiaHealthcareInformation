@@ -171,30 +171,30 @@
     <div class="form-group" id="forms">
         <label>Do you provide medical forms that are written in Spanish?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="forms" type="radio" value="y">"Yes">
+            <input id="phoneyes" name="forms" type="radio" value="y">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n">"No">
+            <input id="phoneno" name="forms" type="radio" value="n">No
         </label>
     </div>
 
     <div class="form-group" id="phone">
         <label>Do you have a Spanish speaking receptionist on the phone?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="phone" type="radio" value="y">"Yes">
+            <input id="phoneyes" name="phone" type="radio" value="y">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n">"No">
+            <input id="phoneno" name="forms" type="radio" value="n">No
         </label>
     </div>
 
     <div class="form-group" id="call">
         <label>Do you have someone available on the phone after the clinic's normal business hours?></label><br>
         <label class="radio-inline" for="yes">
-            <input id="callyes" name="call" type="radio" value="y">"Yes">
+            <input id="callyes" name="call" type="radio" value="y">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="callno" name="call" type="radio" value="n">"No">
+            <input id="callno" name="call" type="radio" value="n">No
         </label>
     </div>
     <%--TODO are we even asking these anymore?--%>
