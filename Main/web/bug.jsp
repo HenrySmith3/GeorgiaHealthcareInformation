@@ -25,7 +25,7 @@
 
 <html>
 <head>
-    <title>Bug Form</title>
+    <title><%=resource.getString("error")%></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
     <script src="bootstrap/js/jquery.js"></script>
@@ -71,22 +71,22 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="index.jsp">
-                        Clinic Search Form
+                        <%=resource.getString("search")%>
                     </a>
                 </li>
                 <li>
                     <a href="clinic.jsp">
-                        Clinic Addition Form
+                        <%=resource.getString("addition")%>
                     </a>
                 </li>
                 <li class="active">
                     <a href="components">
-                        Clinic Editting Form
+                        <%=resource.getString("editing")%>
                     </a>
                 </li>
                 <li>
                     <a href="bug.jsp">
-                        Error Report
+                        <%=resource.getString("error")%>
                     </a>
                 </li>
             </ul>
@@ -100,7 +100,7 @@
 <br>
 
 <div id="title">
-    <h1>Bug Report Form</h1>
+    <h1><%=resource.getString("error")%></h1>
 </div><br>
 <br>
 <div class="span10">
@@ -110,19 +110,19 @@
     <input type="hidden" value="bug" name="action" id="action">
 
     <div class="form-group" id="bug1">
-        <label>What sort of bug do you want to report?</label>
+        <label><%=resource.getString("sort_bug")%></label>
         <%--TODO this needs to be automated--%>
         <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
         <select id="bug1" name = "bug1" class="form-control">
-            <option value = "1">Broken Functionality</option>
-            <option value = "2">Incorrect Information</option>
-            <option value = "3">Typos</option>
-            <option value = "4">Other</option>
+            <option value = "1"><%=resource.getString("error_bf")%></option>
+            <option value = "2"><%=resource.getString("error_ii")%></option>
+            <option value = "3"><%=resource.getString("error_ty")%></option>
+            <option value = "4"><%=resource.getString("error_ot")%></option>
         </select>
     </div>
 
     <div id="bug2" class="form-inline">
-    <label>Please write a short description of the error you have found.</label>
+    <label><%=resource.getString("bug_desc")%></label>
     <br>
     <textarea id="bug2" name = "bug2" rows = "3" cols = "90" placeholder="Error Description"></textarea>
 
@@ -132,7 +132,7 @@
 <br>
 <br>
     <div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit"><%=resource.getString("submit")%></button>
     </div>
 
 
