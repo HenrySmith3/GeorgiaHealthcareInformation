@@ -179,7 +179,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
-    }
 
     private void editHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
