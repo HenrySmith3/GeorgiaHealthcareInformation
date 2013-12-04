@@ -128,10 +128,10 @@
     <div class="form-group" id="parking">
         <label>Is there free parking space?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="yes" name="parking" type="radio" value="y">Yes
+            <input id="yes" name="parking" type="radio" value="yes">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="no" name="parking" type="radio" value="n">No
+            <input id="no" name="parking" type="radio" value="no">No
         </label>
     </div>
     <br>
@@ -139,15 +139,15 @@
     <div class="form-group" id="appt">
         <label>What kind of appointments can be made?</label><br>
         <label class="radio-inline" for="walkin">
-            <input id="walkin" name="appt" type="radio" value="walk">Walk-In
+            <input id="walkin" name="appt" type="radio" value="walkin">Walk-In
         </label>
         <label class="radio-inline" for="appointment">
-            <input id="appointment" name="appt" type="radio" value="appmt">Appointment
+            <input id="appointment" name="appt" type="radio" value="appointment">Appointment
         </label>
     </div>
     <div class="form-group" id="insurance">
         <label>Which medical insurance can be used?</label>
-        <select class="form-control" id="insurancetype">
+        <select class="form-control" id="insurancetype" name = "insuranceForm">
             <option value="1">Medicare</option>
             <option value="2">Medicaid</option>
             <option value="3">Peachcare</option>
@@ -161,68 +161,68 @@
         <%--TODO this was added--%>
         <label>Is there a Spanish interpreter/translator?</label><br>
         <label class="radio-inline" for="interpreteryes">
-            <input id="interpY" name="interpreter" type="radio" value="interpYes">Yes
+            <input id="interpY" name="interpreter" type="radio" value="interpY">Yes
         </label>
         <label class="radio-inline" for="interpreterno">
-            <input id="interpN" name="interpreter" type="radio" value="interpNo">No
+            <input id="interpN" name="interpreter" type="radio" value="interpN">No
         </label>
     </div>
 
     <div class="form-group" id="forms">
         <label>Do you provide medical forms that are written in Spanish?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="forms" type="radio" value="y">Yes
+            <input id="yes" name="forms" type="radio" value="yes">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n">No
+            <input id="no" name="forms" type="radio" value="no">No
         </label>
     </div>
 
     <div class="form-group" id="phone">
         <label>Do you have a Spanish speaking receptionist on the phone?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="phone" type="radio" value="y">Yes
+            <input id="yes" name="reception" type="radio" value="yes">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n">No
+            <input id="no" name="reception" type="radio" value="no">No
         </label>
     </div>
 
     <div class="form-group" id="call">
         <label>Do you have someone available on the phone after the clinic's normal business hours?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="callyes" name="call" type="radio" value="y">Yes
+            <input id="callyes" name="call" type="radio" value="yes">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="callno" name="call" type="radio" value="n">No
+            <input id="callno" name="call" type="radio" value="no">No
         </label>
     </div>
     <%--TODO are we even asking these anymore?--%>
     <div class="form-group" id="date">
         <label>On which days do you open?</label><br>
         <label class="checkbox-inline" for="mon">
-            <input id="mon" type="checkbox" value="M">Monday
+            <input id="mon" type="checkbox" value="M" name = "days">Monday
         </label>
         <label class="checkbox-inline" for="tues">
-            <input id="tues" type="checkbox" value="T">Tuesday
+            <input id="tues" type="checkbox" value="T" name = "days">Tuesday
         </label>
         <label class="checkbox-inline" for="wed">
-            <input id="wed" type="checkbox" value="W">Wednesday
+            <input id="wed" type="checkbox" value="W" name = "days">Wednesday
         </label>
         <label class="checkbox-inline" for="thurs">
-            <input id="thurs" type="checkbox" value="R">Thursday
+            <input id="thurs" type="checkbox" value="R" name = "days">Thursday
         </label>
         <label class="checkbox-inline" for="fri">
-            <input id="fri" type="checkbox" value="F">Friday
+            <input id="fri" type="checkbox" value="F" name = "days">Friday
         </label>
         <label class="checkbox-inline" for="sat">
-            <input id="sat" type="checkbox" value="S">Saturday
+            <input id="sat" type="checkbox" value="S" name = "days">Saturday
         </label>
         <label class="checkbox-inline" for="sun">
-            <input id="sun" type="checkbox" value="Su">Sunday
+            <input id="sun" type="checkbox" value="Su" name = "days">Sunday
         </label>
         <label class="checkbox-inline" for="all">
-            <input id="all" type="checkbox" value="A">All/Any
+            <input id="all" type="checkbox" value="A" name = "days">All/Any
         </label>
     </div>
     <br>
@@ -230,32 +230,32 @@
     <div class="form-group" id="type">
         <label>Do you have the clinic to handle any of the following? (Check all that applies)?</label><br>
         <label class="checkbox-inline" for="women">
-            <input id="women" type="checkbox" value="wo">Womens
+            <input id="women" type="checkbox" value="wo" name = "womens">Womens
         </label>
         <label class="checkbox-inline" for="mens">
-            <input id="mens" type="checkbox" value="me">Mens
+            <input id="mens" type="checkbox" value="me" name = "mens">Mens
         </label>
         <label class="checkbox-inline" for="family">
-            <input id="family" type="checkbox" value="fam">Family
+            <input id="family" type="checkbox" value="fam" name = "family">Family
         </label>
         <label class="checkbox-inline" for="mental">
-            <input id="mental" type="checkbox" value="ment">Mental
+            <input id="mental" type="checkbox" value="ment" name = "mental">Mental
         </label>
         <label class="checkbox-inline" for="dental">
-            <input id="dental" type="checkbox" value="dent">Dental
+            <input id="dental" type="checkbox" value="dent" name = "dental">Dental
         </label>
         <label class="checkbox-inline" for="vision">
-            <input id="vision" type="checkbox" value="vis">Vision
+            <input id="vision" type="checkbox" value="vis" name = "vision">Vision
         </label>
     </div>
 
     <div class="form-group" id="children">
         <label>Do you have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
         <label class="radio-inline" for="yes">
-            <input id="chilyes" name="chil" type="radio" value="y">Yes
+            <input id="y" name="child" type="radio" value="y">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="chilno" name="child" type="radio" value="n">No
+            <input id="n" name="child" type="radio" value="n">No
         </label>
     </div>
 
@@ -290,19 +290,19 @@
     <div class="form-group" id="mentalhealth">
         <label>Do you have mental health services, counseling, or rehabilitation services in any of the following? (Check all that applies)</label>
         <label class="checkbox">
-            <input id="substance" type="checkbox" value="subt"><%=resource.getString("substance")%>
+            <input id="substance" type="checkbox" value="subt" name = "mentalhealth"><%=resource.getString("substance")%>
         </label>
         <label class="checkbox">
-            <input id="sex" type="checkbox" value="se">Sexual
+            <input id="sex" type="checkbox" value="se" name = "mentalhealth1">Sexual
         </label>
         <label class="checkbox">
-            <input id="anger" type="checkbox" value="ang">Anger
+            <input id="anger" type="checkbox" value="ang" name = "mentalhealth2">Anger
         </label>
         <label class="checkbox">
-            <input id="sexHIV" type="checkbox" value="HIV">Hiv
+            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3">Hiv
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT">Lgbt
+            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4">Lgbt
         </label>
     </div>
     <br>
