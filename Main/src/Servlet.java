@@ -483,7 +483,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             temp = request.getParameter("call");
             if(temp != null && temp.equals("yes"))
                 criteria.onCall = true;
-            criteria.onCall = false;
+            else criteria.onCall = false;
             //Stuff about days would go here, we're ignoring that for now.
             if (parameter.equalsIgnoreCase("family"))
             {
