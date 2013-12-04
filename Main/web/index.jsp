@@ -135,7 +135,7 @@
         <label><%=resource.getString("county")%></label>
         <%--TODO this needs to be automated--%>
         <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
-        <select id="county" class="form-control">
+        <select id="county" name= "county" class="form-control">
             <option value="1">Clayton</option>
             <option value="2">Cobb</option>
             <option value="3">DeKalb</option>
