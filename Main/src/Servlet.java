@@ -127,7 +127,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             ss = "INSERT INTO P2 (SurvNo, OnCall) VALUES ('" + survno + "', '" + oncall + "'); ";
             statement.executeUpdate(ss);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, AppWalk, MedicareGuide, MedicaidGuide, " +
+            stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, AppWalk, MedicareGuide, MedicaidGuide, " +
                     "PeachcareGuide, SPANAdmGUIDE,SPANFoGuide, " +
                     "SpcWH, SpcMH, SpcFCH, SpcMHC," +
                     "SpcDH, SpcVH, NinosGUIDE," +
@@ -166,7 +166,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             	spcdh = "1";
             if(criteria.spcVH != null && criteria.spcVH == true)
             	spcvh = "1";
-           stringBuilder.append("VALUES ('" + survno + "', '" + criteria.parking + "', '" + criteria.walkIn + "', '" + medicare + "', '" + medicaid + "', '" + 
+           stringBuilder.append("VALUES ('" + survno + "', '" +  + criteria.walkIn + "', '" + medicare + "', '" + medicaid + "', '" + 
                     peachcare + "', '" + criteria.spanAdmin + "', '" + criteria.spanFo + "', '" + 
                     spcwh + "', '" + spcmh + "', '" + spcfch + "', '" + spcmhc+ "', '" + 
                     spcdh + "', '" + spcvh + "', '" + childguide + "', '" + subab + "', '" + sexab + "', '" + angman + "', '" + 
