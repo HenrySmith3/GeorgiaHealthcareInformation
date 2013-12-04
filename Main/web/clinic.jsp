@@ -390,7 +390,9 @@
         </div>
 
         <br><br><br>
-    
+    <div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </div>
     </form>
     </body>
 
