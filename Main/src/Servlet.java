@@ -31,7 +31,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             submitBug(request, response);
         } else if (request.getParameter("action").equalsIgnoreCase("addHospital")) {
             addHospital(request, response);
-        } else if ("editHospital".equalsIgnoreCase(request.getParameter("action"))) {
+        } else if (request.getParameter("action").equalsIgnoreCase("editHospital")) {
             editHospital(request, response);
         }
 
@@ -181,13 +181,103 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     private void editHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
-        Hospital criteria = populateCriteriaFromRequest(request);
+    	Hospital criteria = populateCriteriaFromRequest_addHospital(request);
         Connection con = initializeConnection();
+        String ss = "";
         try {
             Statement statement = con.createStatement();
-            statement.executeQuery(editHospitalClauses(criteria));
-            con.close();
+            criteria.name = "none";
+            if(criteria.county != null && !criteria.county.equals("")){
+                ss = "UPDATE P1 SET County = '" + criteria.county + "' WHERE ID = " + criteria.id + "; ";
+                statement.executeUpdate(ss);
+            }
+            String oncall = "0";
+            if(criteria.onCall != null && criteria.onCall == true)
+            	oncall = "1";
+            else
+            	oncall = "0";
+            ss = "UPDATE P2 SET OnCall = '" + oncall + "' WHERE ID = " + criteria.id + "; ";
+            statement.executeUpdate(ss);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append( "UPDATE P3_4_5 SET ");
+            
+            //Clinic services
+            if(criteria.walkIn != null){
+                //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
+                stringBuilder.append( "AppWalk = " + criteria.walkIn + " AND ");
+            }
+            if(criteria.medicare != null && criteria.medicare == true)
+                    stringBuilder.append( "MedicareGUIDE = '" + 1 + "' AND ");
+            else
+                    stringBuilder.append( "MedicareGUIDE = '" + 0 + "' AND ");
+            if(criteria.medicaid != null && criteria.medicaid == true)
+                    stringBuilder.append( "MedicaidGUIDE = '" + 1 + "' AND ");
+            else 
+                    stringBuilder.append( "MedicaidGUIDE = '" + 0 + "' AND ");
+            if(criteria.peachCare != null && criteria.peachCare == true)
+                    stringBuilder.append( "PeachcareGUIDE = " + 1 + " AND ");
+            else
+                    stringBuilder.append( "PeachcareGUIDE = " + 0 + " AND ");
+            if (criteria.spanAdmin != null) {
+                stringBuilder.append( "SPANAdmGUIDE = " + criteria.spanAdmin + " AND ");
+            }            
+            if (criteria.spanFo != null) {
+                stringBuilder.append( "SPANFoGUIDE = '" + criteria.spanFo + "' AND ");
+            }
+            
+            //Healthcare
+            if(criteria.spcWH != null && criteria.spcWH == true)
+                    stringBuilder.append( "SpcWH = '" + 1 + "' AND ");
+            else
+                    stringBuilder.append( "SpcWH = " + 0 + " AND ");
+            if(criteria.spcMH != null && criteria.spcMH == true)
+                    stringBuilder.append( "SpcMH = " + 1 + " AND ");
+            else
+                    stringBuilder.append( "SpcMH = " + 0 + " AND ");
+            if(criteria.spcFCH != null && criteria.spcFCH == true)
+                    stringBuilder.append( "SpcFCH = " + 1 + " AND ");
+            else
+                    stringBuilder.append( "SpcFCH = " + 0 + " AND ");
+            if(criteria.spcMHC != null && criteria.spcMHC == true)
+                    stringBuilder.append( "SpcMHC = " + 1 + " AND ");
+            else 
+                    stringBuilder.append( "SpcMHC = " + 0 + " AND ");
+            if(criteria.spcDH != null && criteria.spcDH == true)
+                    stringBuilder.append( "SpcDH = " + 1 + " AND ");
+            else 
+                    stringBuilder.append( "SpcDH = " + 0 + " AND ");
+            if(criteria.spcVH != null && criteria.spcVH == true)
+                    stringBuilder.append( "SpcVH = " + 1 + " AND ");
+            else 
+                    stringBuilder.append( "SpcVH = " + 0 + " AND ");
+            if(criteria.childGuide != null && criteria.childGuide == true)
+                    stringBuilder.append( "NinosGUIDE = " + 1 + " AND ");
+            else 
+                    stringBuilder.append( "NinosGUIDE = " + 0 + " AND ");
+            if(criteria.subAbGuide != null && criteria.subAbGuide == true)
+                    stringBuilder.append( "SubAbGUIDE = " + 1 + " AND ");
+            else
+                    stringBuilder.append( "SubAbGUIDE = " + 0 + " AND ");
+            if(criteria.sexAbGuide != null && criteria.sexAbGuide == true)
+                    stringBuilder.append( "SexAbGUIDE = " + 1 + " AND ");
+            else
+                    stringBuilder.append( "SexAbGUIDE = " + 0 + " AND ");
+            if(criteria.angManGuide != null && criteria.angManGuide == true)
+                    stringBuilder.append( "AngManGUIDE = " + 1 + " AND ");
+            else 
+                    stringBuilder.append( "AngManGUIDE = " + 0 + " AND ");
+            if(criteria.hivConsGuide != null && criteria.hivConsGuide == true)
+                    stringBuilder.append( "HIVConsGUIDE = " + 1 + " AND ");
+            else 
+                    stringBuilder.append( "HIVConsGUIDE = " + 0 + " AND ");
+            if(criteria.lgbtGuide != null && criteria.lgbtGuide == true)
+                    stringBuilder.append( "LGBTGUIDE = " + 1 + " AND ");
+            else
+                   stringBuilder.append( "LGBTGUIDE = " + 0 + " AND ");          
+            ss = stringBuilder.toString();
+            ss = ss.substring(0, ss.length() - 4) + "WHERE ID = " + criteria.id + "; ";
+            statement.executeUpdate(ss);
+          con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -657,175 +747,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         return criteria ;
     }
-    
-    //edit hospital information
-    private String editHospitalClauses(Hospital criteria) {
-        StringBuilder stringBuilder = new StringBuilder();
-        String ss = "";
-        //page 1
-    	if(criteria.county != null && !criteria.county.equals("")){
-    		stringBuilder.append( "UPDATE P1 SET County = '" + criteria.county + "' WHERE ID = " + criteria.id + "; ");
-        }
-    	String s1 = stringBuilder.toString();
-    	stringBuilder = new StringBuilder();
-    	//page 2
-    	if(criteria.onCall != null){
-        	if(criteria.onCall == true)
-                stringBuilder.append( "UPDATE P2 SET OnCall = '" + 1 + "' WHERE ID = " + criteria.id + "; ");
-        	else if(criteria.onCall == false)
-        		stringBuilder.append( "UPDATE P2 SET OnCall = '" + 0 + "' WHERE ID = " + criteria.id + "; ");
-        }
-    	String s2 = stringBuilder.toString();
-    	stringBuilder = new StringBuilder();
-    	//page3_4_5
-        //TODO this is going to error if nothing in p3_4_5 needs to be set. 
-        //TODO you still need to go from boolean to integers (or however it's stored in the database)
-    	stringBuilder.append( "UPDATE P3_4_5 SET ");
-    	
-        //Transportation
-//        if(criteria.parking != null){
-//        	if(criteria.parking == Hospital.TRUE)
-//        		stringBuilder.append( "Park = " + 1 + " AND ");
-//        	else if(criteria.parking == Hospital.FALSE)
-//        		stringBuilder.append( "Park = " + 0 + " AND ");
-//        }
-        if(criteria.publicTransportation != null){
-            //TODO how is this formatted in the database?
-            stringBuilder.append( "PubTr = " + criteria.publicTransportation + " AND ");
-        }
-
-        //Clinic services
-        if(criteria.walkIn != null){
-            //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
-            stringBuilder.append( "AppWalk = " + criteria.walkIn + " AND ");
-        }
-        if(criteria.medicare != null){
-        	if(criteria.medicare == Boolean.TRUE)
-        		stringBuilder.append( "MedicareGUIDE = " + 1 + " AND ");
-        	else if(criteria.medicare == Boolean.FALSE)
-        		stringBuilder.append( "MedicareGUIDE = " + 0 + " AND ");
-        }
-        if(criteria.medicaid != null){
-        	if(criteria.medicaid == Boolean.TRUE)
-        		stringBuilder.append( "MedicaidGUIDE = " + 1 + " AND ");
-        	else if(criteria.medicaid == Boolean.FALSE)
-        		stringBuilder.append( "MedicaidGUIDE = " + 0 + " AND ");
-        }
-        if(criteria.peachCare != null){
-        	if(criteria.peachCare == Boolean.TRUE)
-        		stringBuilder.append( "PeachcareGUIDE = " + 1 + " AND ");
-        	else if(criteria.peachCare == Boolean.FALSE)
-        		stringBuilder.append( "PeachcareGUIDE = " + 0 + " AND ");
-        }
-        if (criteria.spanAdmin != null) {
-            stringBuilder.append( "SPANAdmGUIDE = " + criteria.spanAdmin + " AND ");
-        }
-        if (criteria.spanNurse != null) {
-            stringBuilder.append( "SPANNurGUIDE = " + criteria.spanNurse + " AND ");
-        }
-        if (criteria.spanDoc != null) {
-            stringBuilder.append( "SPANDocGUIDE = " + criteria.spanDoc + " AND ");
-        }
-        
-        if (criteria.spanFo != null) {
-            stringBuilder.append( "SPANFoGUIDE = " + criteria.spanFo + " AND ");
-        }
-        
-        if (criteria.spanPhone != null) {
-            stringBuilder.append( "PSPANIntPhGUIDE = " + criteria.spanPhone + " AND ");
-        }
-       
-        
-        //Healthcare
-        if(criteria.spcWH != null){
-        	if(criteria.spcWH == Boolean.TRUE)
-        		stringBuilder.append( "SpcWH = " + 1 + " AND ");
-        	else if(criteria.spcWH == Boolean.FALSE)
-        		stringBuilder.append( "SpcWH = " + 0 + " AND ");
-        }
-        if(criteria.spcMH != null){
-        	if(criteria.spcMH == Boolean.TRUE)
-        		stringBuilder.append( "SpcMH = " + 1 + " AND ");
-        	else if(criteria.spcMH == Boolean.FALSE)
-        		stringBuilder.append( "SpcMH = " + 0 + " AND ");
-        }
-        if(criteria.spcFCH != null){
-        	if(criteria.spcFCH == Boolean.TRUE)
-        		stringBuilder.append( "SpcFCH = " + 1 + " AND ");
-        	else if(criteria.spcFCH == Boolean.FALSE)
-        		stringBuilder.append( "SpcFCH = " + 0 + " AND ");
-        }
-        if(criteria.spcMHC != null){
-        	if(criteria.spcMHC == Boolean.TRUE)
-        		stringBuilder.append( "SpcMHC = " + 1 + " AND ");
-        	else if(criteria.spcMHC == Boolean.FALSE)
-        		stringBuilder.append( "SpcMHC = " + 0 + " AND ");
-        }
-        if(criteria.spcDH != null){
-        	if(criteria.spcDH == Boolean.TRUE)
-        		stringBuilder.append( "SpcDH = " + 1 + " AND ");
-        	else if(criteria.spcDH == Boolean.FALSE)
-        		stringBuilder.append( "SpcDH = " + 0 + " AND ");
-        }
-        if(criteria.spcVH != null){
-        	if(criteria.spcVH == Boolean.TRUE)
-        		stringBuilder.append( "SpcVH = " + 1 + " AND ");
-        	else if(criteria.spcVH == Boolean.FALSE)
-        		stringBuilder.append( "SpcVH = " + 0 + " AND ");
-        }
-        if(criteria.childGuide != null){
-        	if(criteria.childGuide == Boolean.TRUE)
-        		stringBuilder.append( "NinosGUIDE = " + 1 + " AND ");
-        	else if(criteria.childGuide == Boolean.FALSE)
-        		stringBuilder.append( "NionosGUIDE = " + 0 + " AND ");
-        }
-        
-        if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageStart != -1){
-                stringBuilder.append( "AgeStart = " + criteria.ageStart + " AND ");
-        }
-        if(Boolean.TRUE.equals(criteria.childGuide) && criteria.ageEnd != -1){
-                stringBuilder.append( "AgeEnd = " + criteria.ageEnd + " AND ");
-        }
-        if(criteria.subAbGuide != null){
-        	if(criteria.subAbGuide == Boolean.TRUE)
-        		stringBuilder.append( "SubAbGUIDE = " + 1 + " AND ");
-        	else if(criteria.medicaid == Boolean.FALSE)
-        		stringBuilder.append( "SubAbGUIDE = " + 0 + " AND ");
-        }
-        if(criteria.sexAbGuide != null){
-        	if(criteria.sexAbGuide == Boolean.TRUE)
-        		stringBuilder.append( "SexAbGUIDE = " + 1 + " AND ");
-        	else if(criteria.sexAbGuide == Boolean.FALSE)
-        		stringBuilder.append( "SexAbGUIDE = " + 0 + " AND ");
-        }
-        if(criteria.angManGuide != null){
-        	if(criteria.angManGuide == Boolean.TRUE)
-        		stringBuilder.append( "AngManGUIDE = " + 1 + " AND ");
-        	else if(criteria.angManGuide == Boolean.FALSE)
-        		stringBuilder.append( "AngManGUIDE = " + 0 + " AND ");
-        }
-        if(criteria.hivConsGuide != null){
-        	if(criteria.hivConsGuide == Boolean.TRUE)
-        		stringBuilder.append( "HIVConsGUIDE = " + 1 + " AND ");
-        	else if(criteria.hivConsGuide == Boolean.FALSE)
-        		stringBuilder.append( "HIVConsGUIDE = " + 0 + " AND ");
-        }
-        if(criteria.lgbtGuide != null){
-        	if(criteria.lgbtGuide == Boolean.TRUE)
-        		stringBuilder.append( "LGBTGUIDE = " + 1 + " AND ");
-        	else if(criteria.lgbtGuide == Boolean.FALSE)
-        		stringBuilder.append( "LGBTGUIDE = " + 0 + " AND ");
-        }
-        
-        String s3 = stringBuilder.toString();
-        if (s3.length() <= 20) {
-        	ss = s1 + s2;
-            return ss;
-        }
-        ss = s1 + s2 + s3.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
-        ss = ss + "WHERE ID = " + criteria.id + "; ";
-        return ss;
-    }
+   
      private Hospital populateCriteriaFromRequest_addHospital(HttpServletRequest request)
     {
         Hospital criteria = new Hospital();
@@ -835,7 +757,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         while (parameterNames.hasMoreElements()) 
         {
             String parameter = (String)parameterNames.nextElement();
-
+            temp = request.getParameter("id");
+            if(temp != null)
+                criteria.id = Integer.parseInt(temp);
+            else
+            	criteria.id = 1;
             temp = request.getParameter("county");
             if(temp.equals("1")) {
                 criteria.county = "Clayton";
