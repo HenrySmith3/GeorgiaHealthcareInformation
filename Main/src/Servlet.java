@@ -581,6 +581,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.lgbtGuide = false;
             }
+        }
         return criteria ;
     }
     
