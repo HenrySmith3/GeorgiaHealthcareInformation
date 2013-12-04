@@ -171,30 +171,30 @@
     <div class="form-group" id="forms">
         <label>Do you provide medical forms that are written in Spanish?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="forms" type="radio" value="y"><%=resource.getString("yes")%>
+            <input id="phoneyes" name="forms" type="radio" value="y">"Yes">
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
+            <input id="phoneno" name="forms" type="radio" value="n">"No">
         </label>
     </div>
 
     <div class="form-group" id="phone">
         <label>Do you have a Spanish speaking receptionist on the phone?</label><br>
         <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="phone" type="radio" value="y"><%=resource.getString("yes")%>
+            <input id="phoneyes" name="phone" type="radio" value="y">"Yes">
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
+            <input id="phoneno" name="forms" type="radio" value="n">"No">
         </label>
     </div>
 
     <div class="form-group" id="call">
         <label>Do you have someone available on the phone after the clinic's normal business hours?></label><br>
         <label class="radio-inline" for="yes">
-            <input id="callyes" name="call" type="radio" value="y"><%=resource.getString("yes")%>
+            <input id="callyes" name="call" type="radio" value="y">"Yes">
         </label>
         <label class="radio-inline" for="no">
-            <input id="callno" name="call" type="radio" value="n"><%=resource.getString("no")%>
+            <input id="callno" name="call" type="radio" value="n">"No">
         </label>
     </div>
     <%--TODO are we even asking these anymore?--%>
@@ -230,32 +230,32 @@
     <div class="form-group" id="type">
         <label>Do you have the clinic to handle any of the following? (Check all that applies)?</label><br>
         <label class="checkbox-inline" for="women">
-            <input id="women" type="checkbox" value="wo"><%=resource.getString("womens")%>
+            <input id="women" type="checkbox" value="wo">Womens>
         </label>
         <label class="checkbox-inline" for="mens">
-            <input id="mens" type="checkbox" value="me"><%=resource.getString("mens")%>
+            <input id="mens" type="checkbox" value="me">Mens>
         </label>
         <label class="checkbox-inline" for="family">
-            <input id="family" type="checkbox" value="fam"><%=resource.getString("family")%>
+            <input id="family" type="checkbox" value="fam">Family>
         </label>
         <label class="checkbox-inline" for="mental">
-            <input id="mental" type="checkbox" value="ment"><%=resource.getString("mental")%>
+            <input id="mental" type="checkbox" value="ment">Mental>
         </label>
         <label class="checkbox-inline" for="dental">
-            <input id="dental" type="checkbox" value="dent"><%=resource.getString("dental")%>
+            <input id="dental" type="checkbox" value="dent">Dental>
         </label>
         <label class="checkbox-inline" for="vision">
-            <input id="vision" type="checkbox" value="vis"><%=resource.getString("vision")%>
+            <input id="vision" type="checkbox" value="vis">Vision>
         </label>
     </div>
 
     <div class="form-group" id="children">
         <label>Do you have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
         <label class="radio-inline" for="yes">
-            <input id="chilyes" name="chil" type="radio" value="y"><%=resource.getString("yes")%>
+            <input id="chilyes" name="chil" type="radio" value="y">Yes>
         </label>
         <label class="radio-inline" for="no">
-            <input id="chilno" name="child" type="radio" value="n"><%=resource.getString("no")%>
+            <input id="chilno" name="child" type="radio" value="n">No>
         </label>
     </div>
 
@@ -293,16 +293,16 @@
             <input id="substance" type="checkbox" value="subt"><%=resource.getString("substance")%>
         </label>
         <label class="checkbox">
-            <input id="sex" type="checkbox" value="se"><%=resource.getString("sexual")%>
+            <input id="sex" type="checkbox" value="se">Sexual
         </label>
         <label class="checkbox">
-            <input id="anger" type="checkbox" value="ang"><%=resource.getString("anger")%>
+            <input id="anger" type="checkbox" value="ang">Anger
         </label>
         <label class="checkbox">
-            <input id="sexHIV" type="checkbox" value="HIV"><%=resource.getString("hiv")%>
+            <input id="sexHIV" type="checkbox" value="HIV">Hiv
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT"><%=resource.getString("lgbt")%>
+            <input id="sexLGBT" type="checkbox" value="LGBT">Lgbt
         </label>
     </div>
     <br>
