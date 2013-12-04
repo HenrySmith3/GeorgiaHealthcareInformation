@@ -189,7 +189,7 @@
     </div>
 
     <div class="form-group" id="call">
-        <label>Do you have someone available on the phone after the clinic's normal business hours?></label><br>
+        <label>Do you have someone available on the phone after the clinic's normal business hours?</label><br>
         <label class="radio-inline" for="yes">
             <input id="callyes" name="call" type="radio" value="y">Yes
         </label>
@@ -230,32 +230,32 @@
     <div class="form-group" id="type">
         <label>Do you have the clinic to handle any of the following? (Check all that applies)?</label><br>
         <label class="checkbox-inline" for="women">
-            <input id="women" type="checkbox" value="wo">Womens>
+            <input id="women" type="checkbox" value="wo">Womens
         </label>
         <label class="checkbox-inline" for="mens">
-            <input id="mens" type="checkbox" value="me">Mens>
+            <input id="mens" type="checkbox" value="me">Mens
         </label>
         <label class="checkbox-inline" for="family">
-            <input id="family" type="checkbox" value="fam">Family>
+            <input id="family" type="checkbox" value="fam">Family
         </label>
         <label class="checkbox-inline" for="mental">
-            <input id="mental" type="checkbox" value="ment">Mental>
+            <input id="mental" type="checkbox" value="ment">Mental
         </label>
         <label class="checkbox-inline" for="dental">
-            <input id="dental" type="checkbox" value="dent">Dental>
+            <input id="dental" type="checkbox" value="dent">Dental
         </label>
         <label class="checkbox-inline" for="vision">
-            <input id="vision" type="checkbox" value="vis">Vision>
+            <input id="vision" type="checkbox" value="vis">Vision
         </label>
     </div>
 
     <div class="form-group" id="children">
         <label>Do you have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
         <label class="radio-inline" for="yes">
-            <input id="chilyes" name="chil" type="radio" value="y">Yes>
+            <input id="chilyes" name="chil" type="radio" value="y">Yes
         </label>
         <label class="radio-inline" for="no">
-            <input id="chilno" name="child" type="radio" value="n">No>
+            <input id="chilno" name="child" type="radio" value="n">No
         </label>
     </div>
 
