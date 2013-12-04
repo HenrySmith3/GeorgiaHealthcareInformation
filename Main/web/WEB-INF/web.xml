@@ -19,18 +19,10 @@
     <servlet>
         <servlet-name>english</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
-        <init-param>
-            <param-name>language</param-name>
-            <param-value>english</param-value>
-        </init-param>
     </servlet>
     <servlet>
         <servlet-name>spanish</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
-        <init-param>
-            <param-name>language</param-name>
-            <param-value>spanish</param-value>
-        </init-param>
     </servlet>
     <servlet>
         <servlet-name>response</servlet-name>
