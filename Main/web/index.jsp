@@ -64,7 +64,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="../">
-                <%=resource.getString("home")%>
+                <%=resource.getString("form")%>
             </a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">

@@ -40,22 +40,22 @@
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
           <li>
-            <a href="form.html">
+            <a href="form.jsp">
               Clinic Search Form
             </a>
           </li>
           <li>
-            <a href="clinic.html">
+            <a href="clinic.jsp">
               Clinic Addition Form
             </a>
           </li>
           <li>
-            <a href="edit.html">
+            <a href="edit.jsp">
               Clinic Editting Form
             </a>
           </li>
           <li>
-            <a href="bug.html">
+            <a href="bug.jsp">
               Error Report
             </a>
           </li>
