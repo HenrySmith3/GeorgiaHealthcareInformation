@@ -29,7 +29,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             processSearch(request, response);
         } else if (request.getParameter("action").equalsIgnoreCase("bug")) {
             submitBug(request, response);
-        } else if ("addHospital".equalsIgnoreCase(request.getParameter("action"))) {
+        } else if (request.getParameter("action").equalsIgnoreCase("addHospital")) {
             addHospital(request, response);
         } else if ("editHospital".equalsIgnoreCase(request.getParameter("action"))) {
             editHospital(request, response);
@@ -99,13 +99,48 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     private void addHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
         Hospital criteria = populateCriteriaFromRequest(request);
         Connection con = initializeConnection();
+        String max_survno1 = "", max_survno2 = "", max_survno3 = "";  //find the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
+        int max_survno;
         try {
-            Statement statement = con.createStatement();
-            statement.executeQuery(addHospitalClauses(criteria));
-            con.close();
+        	Statement statement = con.createStatement();
+            ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
+            while(result_max_survno.next()){
+                max_survno1 = result_max_survno.getString("MAX(SurvNo)"); 
+            }
+            result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P2;");
+            while(result_max_survno.next()){
+                max_survno2 = result_max_survno.getString("MAX(SurvNo)"); 
+            }
+            result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P3_4_5;");
+            while(result_max_survno.next()){
+                max_survno3 = result_max_survno.getString("MAX(SurvNo)"); 
+            }
+            max_survno = Math.max(Integer.parseInt(max_survno1),  Integer.parseInt(max_survno2));
+            max_survno = Math.max(max_survno, Integer.parseInt(max_survno3));
+            String survno = String.valueOf(max_survno + 1);
+            criteria.name = "none";
+            String ss = "INSERT INTO P1 (SurvNo, AddFacL1, County) VALUES ('" + survno + "', '" + criteria.name + "', '" + criteria.county + "'); ";
+            statement.executeUpdate(ss);
+            String oncall = (criteria.onCall == true)? "1" : "0";
+            ss = "INSERT INTO P2 (SurvNo, OnCall) VALUES ('" + survno + "', '" + oncall + "'); ";
+            statement.executeUpdate(ss);
+ /*           StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
+                    "PeachcareGuide, SPANAdmGUIDE, SPANNurGUIDE, SPANDocGUIDE, SPANFoGuide, " +
+                    "SPANIntPhGUIDE, SpcWH, SpcMH, SpcFCH, SpcMHC," +
+                    "SpcDH, SpcVH, NinosGUIDE, AgeStart, " +
+                    "AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
+                    "HIVConsGUIDE, LGBTGUIDE)");
+            stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
+                    criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
+                    criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
+                    criteria.spcDH + ", " + criteria.spcVH + ", " + criteria.childGuide + ", " + criteria.ageStart + ", " + 
+                    criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
+                    criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
+            statement.executeUpdate(stringBuilder.toString());
+ */           con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -412,14 +447,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameter(parameter);
                 criteria.spanPhone = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
-            if (parameter.equalsIgnoreCase("call"))
-            {
-                temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("y"))
-                    criteria.onCall = true;
-                else
-                    criteria.onCall = false;
-            }
+            temp = request.getParameter("call");
+            if(temp.equals("yes"))
+                criteria.onCall = true;
+            else
+                criteria.onCall = false;
             //Stuff about days would go here, we're ignoring that for now.
             if (parameter.equalsIgnoreCase("family"))
             {
@@ -760,53 +792,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         ss = s1 + s2 + s3.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
         ss = ss + "WHERE ID = " + criteria.id + "; ";
-        return ss;
-    }
-    //add new hospital
-    private String addHospitalClauses(Hospital criteria){
-        Connection con = initializeConnection();
-    	String max_survno = "";  //find the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
-    	try {
-    	    Statement statement = con.createStatement();
-    	    ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
-            while(result_max_survno.next()){
-                max_survno = result_max_survno.getString("MAX(SurvNo)"); 
-                System.out.println("max survno in database: " + max_survno);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-    	StringBuilder stringBuilder = new StringBuilder();
-        //TODO why are we even doing this? SQL will automatically add an entry with a unique ID, we don't even have to calculate it ourselves
-    	String survno = String.valueOf(Integer.parseInt(max_survno) + 1);
-    	String addfacl = "None";
-    	
-    	//page 1
-    	stringBuilder.append("INSERT INTO P1 (SurvNo, AddFacL1, County)");
-    	stringBuilder.append("VALUES (" + survno + ", " + addfacl + ", " + criteria.county + "); ");
-    	//page 2
-    	stringBuilder.append("INSERT INTO P2 (SurvNo, OnCall)");
-    	String oncall = (criteria.onCall == true)? "1" : "0";
-        stringBuilder.append("VALUES (" + survno + ", " + oncall + "); ");
-       
-       
-    	//page3_4_5
-    	stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
-    			"PeachcareGuide, SPANAdmGUIDE, SPANNurGUIDE, SPANDocGUIDE, SPANFoGuide, " +
-    			"SPANIntPhGUIDE, SpcWH, SpcMH, SpcFCH, SpcMHC," +
-    			"SpcDH, SpcVH, NinosGUIDE, AgeStart, " +
-    			"AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
-    			"HIVConsGUIDE, LGBTGUIDE)");
-        //TODO You have to change these from their values in the criteria to the right value types in the database. true should be 1, not true.
-        stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
-                            criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
-                            criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
-                            criteria.spcDH + ", " + criteria.spcVH + ", " + criteria.childGuide + ", " + criteria.ageStart + ", " + 
-                            criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
-                            criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
-                            
-        String ss = stringBuilder.toString();
         return ss;
     }
 }
