@@ -774,10 +774,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	
     	//page 1
     	stringBuilder.append("INSERT INTO P1 (SurvNo, AddFacL1, County)");
-    	stringBuilder.append("VALUES (" + survno + ", " + addfacl + ", " + criteria.county + ")");
+    	stringBuilder.append("VALUES (" + survno + ", " + addfacl + ", " + criteria.county + "); ");
     	//page 2
     	stringBuilder.append("INSERT INTO P2 (SurvNo, OnCall)");
-        stringBuilder.append("VALUES (" + survno + ", " + criteria.onCall + ")");
+    	String oncall = (criteria.onCall == true)? "1" : "0";
+        stringBuilder.append("VALUES (" + survno + ", " + oncall + "); ");
+       
        
     	//page3_4_5
     	stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
