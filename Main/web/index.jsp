@@ -119,7 +119,7 @@
             <span><span class="glyphicon glyphicon-road pull-left"></span>&nbsp;<strong><%=resource.getString("step2")%>:</strong><br><%=resource.getString("transportation")%></span>
         </li>
         <li class="disabled">
-                    <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong><%=resource.getString("step3")%>:</strong><br><%=resource.getString("clinicServices")%><span>
+                    <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong><%=resource.getString("step3")%>:</strong><br><%=resource.getString("clinicServices")%></span>
         </li>
         <li class="disabled">
                     <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong><%=resource.getString("step4")%>:</strong><br><%=resource.getString("healthcare")%><span>
