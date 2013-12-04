@@ -9,7 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="/css/main.css" type="text/css">
+<%--<link rel="stylesheet" href="/css/main.css" type="text/css">--%>
 <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
 <script src="bootstrap/js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -23,14 +23,22 @@
 <%
     JSONArray jsonArray = (JSONArray)request.getAttribute("hospitals");
     ListIterator listIterator = jsonArray.listIterator();
-    out.print("<div class=\"panel-group\" id=\"accordion\"><div class=\"panel panel-default\">");
+    out.println("<div class=\"panel-group\" id=\"accordion\">");
+    int count = 0;
     while (listIterator.hasNext()) {
-        out.print("<div class=\"panel-collapse collapse\">");
+        out.println("<div class=\"panel panel-default\">");
         JSONObject jsonObject = (JSONObject)listIterator.next();
-        out.print("Name: " + jsonObject.get("name") + "</br>");
+        out.print("<div class=\"panel-heading\"><h4 class=\"panel-title\">");
+        out.print("<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + count + "\">");
+        out.print(jsonObject.get("name") + "</br>");
+        out.print("</a></div></div>");
+        out.print("<div id=\"collapse" + count + "\" class=\"panel-collapse collapse\"><div class=\"panel-body\">");
         out.print("Phone: " + jsonObject.get("phone") + "</br>");
+        if (!jsonObject.get("addressLine1").toString().equals("null")) {
+            out.print("<a>http://maps.google.com/?q=" + jsonObject.get("addressLine1") + "</a></br>");
+        }
         if (!jsonObject.get("website").toString().equals("null")) {
-            out.print("Website: " + jsonObject.get("website") + "</br>");
+            out.print("Website: <a>" + jsonObject.get("website") + "</a></br>");
         }
         if (jsonObject.get("spanNurseGuide").toString().equals("1")) {
             out.print("Nurse Available Who Speaks Spanish.</br>");
@@ -51,7 +59,8 @@
             out.print("Person On Call Available After Hours.</br>");
         }
 
-         out.print("</div>");
+        out.print("</div></div></div>");
+        count++;
     }
     out.print("</div>");
     out.print("</div>");
