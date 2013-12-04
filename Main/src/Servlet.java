@@ -59,11 +59,36 @@ public class Servlet extends javax.servlet.http.HttpServlet {
 
     private void submitBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
-        Hospital criteria = populateCriteriaFromRequest(request);
-        Connection con = initializeConnection();
+    	Connection con = initializeConnection();
+        JSONArray hospitals = new JSONArray();
+        Enumeration parameterNames = request.getParameterNames();
+        String bug1 = null, bug2 = null, ss;
+
+        while (parameterNames.hasMoreElements()) 
+        {
+            String parameter = (String)parameterNames.nextElement();
+
+            if (parameter.equalsIgnoreCase("bug1"))
+            {
+                bug1 = request.getParameter(parameter);
+                System.out.println("bug1: " + bug1);
+            }
+            if (parameter.equalsIgnoreCase("bugdescription"))
+            {
+            	bug2 = request.getParameter(parameter);
+            	System.out.println("bug2: " + bug2);
+            }
+        }
+    	StringBuilder stringBuilder = new StringBuilder();
+    	if(bug1 == null && bug2 == null)
+    		ss = "";
+    	else {
+    		stringBuilder.append("INSERT INTO BUG_REPORT (bug, bugDesc) VALUES ('" + bug1 + "', '" + bug2 + "');");
+            ss = stringBuilder.toString();
+    	}
         try {
-            Statement statement = con.createStatement();
-            statement.executeQuery(addBugClauses(criteria));
+        	Statement statement = con.createStatement();
+            statement.executeUpdate(ss);
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -556,38 +581,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 else
                     criteria.lgbtGuide = false;
             }
-            if (parameter.equalsIgnoreCase("bugs1"))
-            {
-                temp = request.getParameter(parameter);
-                if(temp.equals("1")) {
-                    criteria.bugs[0] = "Broken Functionality";
-                } else if (temp.equals("2")) {
-                	criteria.bugs[0] = "Incorrect Information";
-                } else if (temp.equals("3")) {
-                	criteria.bugs[0] = "Typos";
-                } else if (temp.equals("4")) {
-                	criteria.bugs[0] = "Other";
-                }
-            }
-            if (parameter.equalsIgnoreCase("bugs2"))
-            {
-                temp = request.getParameter(parameter);
-                criteria.bugs[1] = temp;
-            }
-        }
         return criteria ;
-    }
-    
-    /**
-     * Gets the query that will be used to update the database
-     * @return A query string to be executed.
-     */
-    private String updateQuery(Hospital criteria){
-    	StringBuilder builder = new StringBuilder();
-    	builder.append(addBugClauses(criteria));
-    	builder.append(editHospitalClauses(criteria));
-    	builder.append(addHospitalClauses(criteria));
-    	return builder.toString();
     }
     
     //edit hospital information
@@ -800,18 +794,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                             criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
                             criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
                             
-        String ss = stringBuilder.toString();
-        return ss;
-    }
-    
-    //Insert new bugs in bug report table in database
-    //TODO what's your plan for someone being able to view these? Is there going to be a page for this? Will someone get emailed? Just putting it in the database isn't really a solution by itself.
-    private String addBugClauses(Hospital criteria){
-    	StringBuilder stringBuilder = new StringBuilder();
-    	if(criteria.bugs == null)
-    		return "";
-    	stringBuilder.append("INSERT INTO BUG_REPORT (bug, bugDesc) ");
-        stringBuilder.append("VALUES ('" + criteria.bugs[0] + "', '" + criteria.bugs[1] + "');");
         String ss = stringBuilder.toString();
         return ss;
     }

@@ -114,7 +114,6 @@ public class Hospital {
     public String notes;
     public String notesLowFree;
     public String notesLowFree2;
-    public String[] bugs;
 
     public String toString() {
         StringBuilder result = new StringBuilder();
