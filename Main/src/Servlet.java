@@ -448,10 +448,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 criteria.spanPhone = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
             temp = request.getParameter("call");
-            if(temp.equals("yes"))
+            if(temp != null && temp.equals("yes"))
                 criteria.onCall = true;
-            else
-                criteria.onCall = false;
+            criteria.onCall = false;
             //Stuff about days would go here, we're ignoring that for now.
             if (parameter.equalsIgnoreCase("family"))
             {
