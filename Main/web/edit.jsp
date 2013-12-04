@@ -70,7 +70,8 @@
 <br>
 <br>
 
-<h1>Health Resource Guide Survey</h1>
+<h1>Clinic Edit Form</h1>
+<h4>Change or add information about your clinic as needed. The marked answers is the data that we currently have concerning your clinic.</h4>
 
 <form>
 
