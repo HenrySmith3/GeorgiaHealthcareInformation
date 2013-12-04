@@ -101,9 +101,7 @@
 
 
 <div id="title">
-    <h1><%=resource.getString("formTitle")%></h1>
-
-    <h4><%=resource.getString("instructions")%></h4>
+    <h1>Add Clinic Services</h1>
 </div><br>
 <br>
 
