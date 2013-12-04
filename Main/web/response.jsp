@@ -10,6 +10,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/css/main.css" type="text/css">
+<link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
+<script src="bootstrap/js/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
 <html>
 <head>
     <title>Georgia Healthcare Search Results</title>
@@ -19,8 +23,9 @@
 <%
     JSONArray jsonArray = (JSONArray)request.getAttribute("hospitals");
     ListIterator listIterator = jsonArray.listIterator();
+    out.print("<div class=\"panel-group\" id=\"accordion\"><div class=\"panel panel-default\">");
     while (listIterator.hasNext()) {
-        out.print("<div>");
+        out.print("<div class=\"panel-collapse collapse\">");
         JSONObject jsonObject = (JSONObject)listIterator.next();
         out.print("Name: " + jsonObject.get("name") + "</br>");
         out.print("Phone: " + jsonObject.get("phone") + "</br>");
@@ -46,8 +51,10 @@
             out.print("Person On Call Available After Hours.</br>");
         }
 
-         out.print("</div>");//\n </br></br>");
+         out.print("</div>");
     }
+    out.print("</div>");
+    out.print("</div>");
 %>
     <%--${hospitals}--%>
     <%--<c:foreach var="hospital" items=${hospitals}>--%>

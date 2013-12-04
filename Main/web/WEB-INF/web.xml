@@ -44,7 +44,6 @@
         <servlet-name>clinic</servlet-name>
         <jsp-file>/clinic.jsp</jsp-file>
     </servlet>
-    <servlet>
 
     <servlet-mapping>
         <servlet-name>english</servlet-name>

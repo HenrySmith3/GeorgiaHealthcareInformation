@@ -47,7 +47,7 @@
       <div class="container">
         <h1>Hispanic Healthcare Search Site</h1>
         <p>We provide a form that you can fill out to find local healthcare providers that fit your specific needs.</p>
-        <p><a class="btn btn-primary btn-lg" role="button" href="form.jsp">Go to the Form &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="index.jsp">Go to the Form &raquo;</a></p>
       </div>
     </div>
 
