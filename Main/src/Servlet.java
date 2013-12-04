@@ -99,12 +99,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     private void addHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Hospital criteria = populateCriteriaFromRequest(request);
+        Hospital criteria = populateCriteriaFromRequest_addHospital(request);
         Connection con = initializeConnection();
         String max_survno1 = "", max_survno2 = "", max_survno3 = "";  //find the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
         int max_survno;
         try {
-        	Statement statement = con.createStatement();
+            Statement statement = con.createStatement();
             ResultSet result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P1;");
             while(result_max_survno.next()){
                 max_survno1 = result_max_survno.getString("MAX(SurvNo)"); 
@@ -126,21 +126,54 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             String oncall = (criteria.onCall == true)? "1" : "0";
             ss = "INSERT INTO P2 (SurvNo, OnCall) VALUES ('" + survno + "', '" + oncall + "'); ";
             statement.executeUpdate(ss);
- /*           StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, PubTr, AppWalk, MedicareGuide, MedicaidGuide, " +
-                    "PeachcareGuide, SPANAdmGUIDE, SPANNurGUIDE, SPANDocGUIDE, SPANFoGuide, " +
-                    "SPANIntPhGUIDE, SpcWH, SpcMH, SpcFCH, SpcMHC," +
-                    "SpcDH, SpcVH, NinosGUIDE, AgeStart, " +
-                    "AgeEnd, subAbGuide, sexAbGuide, angManGuide, " +
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, Park, AppWalk, MedicareGuide, MedicaidGuide, " +
+                    "PeachcareGuide, SPANAdmGUIDE,SPANFoGuide, " +
+                    "SpcWH, SpcMH, SpcFCH, SpcMHC," +
+                    "SpcDH, SpcVH, NinosGUIDE," +
+                    "subAbGuide, sexAbGuide, angManGuide, " +
                     "HIVConsGUIDE, LGBTGUIDE)");
-            stringBuilder.append("VALUES (" + survno + ", " + criteria.parking + ", " + criteria.publicTransportation + criteria.walkIn + ", " + criteria.medicare + ", " + criteria.medicaid + ", " + 
-                    criteria.peachCare + ", " + criteria.spanAdmin + ", " + criteria.spanNurse + ", " + criteria.spanDoc + ", " + criteria.spanFo + "," + 
-                    criteria.spanPhone + ", " + criteria.spcWH + ", " + criteria.spcMH + ", " + criteria.spcFCH + ", " + criteria.spcMHC + ", " + 
-                    criteria.spcDH + ", " + criteria.spcVH + ", " + criteria.childGuide + ", " + criteria.ageStart + ", " + 
-                    criteria.ageEnd + ", " + criteria.subAbGuide + ", " + criteria.sexAbGuide + ", " + criteria.angManGuide + ", " + 
-                    criteria.hivConsGuide + ", " + criteria.lgbtGuide + ")");
-            statement.executeUpdate(stringBuilder.toString());
- */           con.close();
+            String medicare = "0", medicaid = "0", peachcare = "0", childguide = "0";
+            String subab = "0", sexab = "0", angman = "0", hivcons = "0", lgbt = "0";
+            String spcwh = "0", spcmh = "0", spcfch = "0", spcmhc = "0", spcdh = "0", spcvh = "0";
+            if(criteria.medicare != null && criteria.medicare == true)
+            	medicare = "1";
+            if(criteria.medicaid != null && criteria.medicaid == true)
+            	medicaid = "1";
+            if(criteria.peachCare != null && criteria.peachCare == true)
+            	peachcare = "1";
+            if(criteria.childGuide != null && criteria.childGuide == true)
+            	childguide = "1";
+            if(criteria.subAbGuide != null && criteria.subAbGuide == true)
+            	subab = "1";
+            if(criteria.sexAbGuide != null && criteria.sexAbGuide == true)
+            	sexab = "1";
+            if(criteria.angManGuide != null && criteria.angManGuide == true)
+            	angman = "1";
+            if(criteria.hivConsGuide != null && criteria.hivConsGuide == true)
+            	hivcons = "1";
+            if(criteria.lgbtGuide != null && criteria.lgbtGuide == true)
+            	lgbt = "1";
+            if(criteria.spcWH != null && criteria.spcWH == true)
+            	spcwh = "1";
+            if(criteria.spcMH != null && criteria.spcMH == true)
+            	spcmh = "1";
+            if(criteria.spcFCH != null && criteria.spcFCH == true)
+            	spcfch = "1";
+            if(criteria.spcMHC != null && criteria.spcMHC == true)
+            	spcmhc = "1";
+            if(criteria.spcDH != null && criteria.spcDH == true)
+            	spcdh = "1";
+            if(criteria.spcVH != null && criteria.spcVH == true)
+            	spcvh = "1";
+           stringBuilder.append("VALUES ('" + survno + "', '" + criteria.parking + "', '" + criteria.walkIn + "', '" + medicare + "', '" + medicaid + "', '" + 
+                    peachcare + "', '" + criteria.spanAdmin + "', '" + criteria.spanFo + "', '" + 
+                    spcwh + "', '" + spcmh + "', '" + spcfch + "', '" + spcmhc+ "', '" + 
+                    spcdh + "', '" + spcvh + "', '" + childguide + "', '" + subab + "', '" + sexab + "', '" + angman + "', '" + 
+                    hivcons + "', '" + lgbt + "'); ");
+            ss = stringBuilder.toString();
+            statement.executeUpdate(ss);
+          con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -193,10 +226,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         
         //Transportation
-        if(criteria.parking == Hospital.TRUE){
-            //TODO are there really hospitals without parking? This seems poorly thought out.
-        	stringBuilder.append( "P3_4_5.Park != 0 AND ");
-        }
+//        if(criteria.parking == Hospital.TRUE){
+//            //TODO are there really hospitals without parking? This seems poorly thought out.
+//        	stringBuilder.append( "P3_4_5.Park != 0 AND ");
+//        }
         if(criteria.publicTransportation != null){
             //TODO how is this formatted in the database?
 //            stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
@@ -367,11 +400,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             }
             
             
-            if (parameter.equalsIgnoreCase("parking"))
-            {
-                temp = request.getParameter(parameter);
-                criteria.parking = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
-            }
+//            if (parameter.equalsIgnoreCase("parking"))
+//            {
+//                temp = request.getParameter(parameter);
+//                criteria.parking = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+//            }
 
  /*           if (parameter.equalsIgnoreCase("walkIn"))
             {
@@ -450,7 +483,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             temp = request.getParameter("call");
             if(temp != null && temp.equals("yes"))
                 criteria.onCall = true;
-            criteria.onCall = false;
+            else criteria.onCall = false;
             //Stuff about days would go here, we're ignoring that for now.
             if (parameter.equalsIgnoreCase("family"))
             {
@@ -650,12 +683,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	stringBuilder.append( "UPDATE P3_4_5 SET ");
     	
         //Transportation
-        if(criteria.parking != null){
-        	if(criteria.parking == Hospital.TRUE)
-        		stringBuilder.append( "Park = " + 1 + " AND ");
-        	else if(criteria.parking == Hospital.FALSE)
-        		stringBuilder.append( "Park = " + 0 + " AND ");
-        }
+//        if(criteria.parking != null){
+//        	if(criteria.parking == Hospital.TRUE)
+//        		stringBuilder.append( "Park = " + 1 + " AND ");
+//        	else if(criteria.parking == Hospital.FALSE)
+//        		stringBuilder.append( "Park = " + 0 + " AND ");
+//        }
         if(criteria.publicTransportation != null){
             //TODO how is this formatted in the database?
             stringBuilder.append( "PubTr = " + criteria.publicTransportation + " AND ");
@@ -792,5 +825,140 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         ss = s1 + s2 + s3.substring(0, ss.length() - 5); //the -5 is to pop off the last AND.
         ss = ss + "WHERE ID = " + criteria.id + "; ";
         return ss;
+    }
+     private Hospital populateCriteriaFromRequest_addHospital(HttpServletRequest request)
+    {
+        Hospital criteria = new Hospital();
+        Enumeration parameterNames = request.getParameterNames();
+        String temp;
+
+        while (parameterNames.hasMoreElements()) 
+        {
+            String parameter = (String)parameterNames.nextElement();
+
+            temp = request.getParameter("county");
+            if(temp.equals("1")) {
+                criteria.county = "Clayton";
+            } else if (temp.equals("2")) {
+                criteria.county = "Cobb";
+            } else if (temp.equals("3")) {
+                       criteria.county = "DeKalb";
+            } else if (temp.equals("4")) {
+                       criteria.county = "Fulton";
+            } else if (temp.equals("5")) {
+                criteria.county = "Gwinnett";
+            }
+            temp = request.getParameter("parking");
+            criteria.parking = 0;
+            if(temp != null && temp.equals("yes"))
+                criteria.parking = 1;
+            criteria.walkIn = 1;
+            if (parameter.equalsIgnoreCase("appt"))
+            {
+                temp = request.getParameter(parameter);
+                //if walkin was already processed
+                if (temp != null && temp.equalsIgnoreCase("walkin")) {
+                    criteria.walkIn = 2;
+                } 
+                else if (temp != null && temp.equalsIgnoreCase("appointment")){
+                    criteria.walkIn = 1;
+                }
+            }
+            temp = request.getParameter("insuranceForm");
+            criteria.medicare = false;
+            criteria.medicaid = false;
+            criteria.peachCare = false;
+            if(temp != null && temp.equals("1")) {
+                criteria.medicare = true;
+            } else if (temp != null && temp.equals("2")) {
+                criteria.medicaid = true;
+            } else if (temp != null && temp.equals("3")) {
+                criteria.peachCare = true;
+            }
+            criteria.spanFo = 0;
+            temp = request.getParameter("forms");
+            if(temp != null && temp.equals("yes")) {
+                criteria.spanFo = 1;
+            } 
+            temp = request.getParameter("reception");
+            if(temp != null && temp.equals("yes")) {
+                criteria.spanAdmin = 1;
+            } else{ 
+                criteria.spanAdmin = 0;
+            } 
+            if (parameter.equalsIgnoreCase("interpreter"))
+            {
+                temp = request.getParameter(parameter);
+                //if walkin was already processed
+                if (temp != null && temp.equalsIgnoreCase("interpY")) {
+                	criteria.spanInterpreter = 1;
+                } 
+                else 
+                	criteria.spanInterpreter = 0;
+            }
+            temp = request.getParameter("call");
+            if(temp != null && temp.equals("yes"))
+                criteria.onCall = true;
+            else criteria.onCall = false;
+            //Stuff about days would go here, we're ignoring that for now.
+            if (parameter.equalsIgnoreCase("family"))
+            {
+                temp = request.getParameter(parameter);
+                if(temp.equalsIgnoreCase("fam"))
+                    criteria.spcFCH = true;
+                else
+                    criteria.spcFCH = false;
+            }
+            temp = request.getParameter("womens");
+            if(temp != null && temp.equals("wo"))
+                criteria.spcWH = true;
+            else criteria.spcWH = false;
+            temp = request.getParameter("mens");
+            if(temp != null && temp.equals("me"))
+                criteria.spcMH = true;
+            else criteria.spcMH = false;
+            temp = request.getParameter("mental");
+            if(temp != null && temp.equals("ment"))
+                criteria.spcMHC = true;
+            else criteria.spcMHC = false;
+            temp = request.getParameter("dental");
+            if(temp != null && temp.equals("dent"))
+                criteria.spcDH = true;
+            else criteria.spcDH = false;
+            temp = request.getParameter("vision");
+            if(temp != null && temp.equals("vis"))
+                criteria.spcVH = true;
+            else criteria.spcVH = false;
+            temp = request.getParameter("child");
+            if(temp != null && temp.equals("y"))
+                criteria.childGuide = true;
+            else criteria.childGuide = false;
+            temp = request.getParameter("mentalhealth");
+            if(temp != null && temp.equals("subt"))
+                criteria.subAbGuide = true;
+            else criteria.subAbGuide = false;
+            temp = request.getParameter("mentalhealth1");
+            if(temp != null && temp.equals("se"))
+                criteria.sexAbGuide = true;
+            else criteria.sexAbGuide = false;
+            temp = request.getParameter("mentalhealth2");
+            if(temp != null && temp.equals("ang"))
+                criteria.angManGuide = true;
+            else criteria.angManGuide = false;
+            temp = request.getParameter("mentalhealth3");
+            if(temp != null && temp.equals("HIV"))
+                criteria.hivConsGuide = true;
+            else criteria.hivConsGuide = false;
+            temp = request.getParameter("mentalhealth4");
+            if(temp != null && temp.equals("LGBT"))
+                criteria.lgbtGuide = true;
+            else criteria.lgbtGuide = false;
+            criteria.childGuide = false;
+            temp = request.getParameter("child");
+            if(temp != null && temp.equals("yes"))
+                criteria.childGuide = true;
+ 
+        }
+        return criteria ;
     }
 }
