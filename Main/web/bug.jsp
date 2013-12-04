@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Bug Form</title>
+        <input type="hidden" value="bug" name="action" id="action">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
         <script src="bootstrap/js/jquery.js"></script> 

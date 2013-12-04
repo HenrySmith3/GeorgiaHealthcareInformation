@@ -30,11 +30,11 @@
     </servlet>
     <servlet>
         <servlet-name>editHospital</servlet-name>
-        <jsp-file>/editHospital.jsp</jsp-file>
+        <jsp-file>/edit.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>submitComplaint</servlet-name>
-        <jsp-file>/submitComplaint.jsp</jsp-file>
+        <jsp-file>/bug.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>home</servlet-name>
@@ -45,9 +45,6 @@
         <jsp-file>/clinic.jsp</jsp-file>
     </servlet>
     <servlet>
-        <servlet-name>bug</servlet-name>
-        <jsp-file>/bug.jsp</jsp-file>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>english</servlet-name>
@@ -66,21 +63,17 @@
 
     <servlet-mapping>
         <servlet-name>editHospital</servlet-name>
-        <url-pattern>/editHospital.jsp</url-pattern>
+        <url-pattern>/edit.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>submitComplaint</servlet-name>
-        <url-pattern>/submitComplaint.jsp</url-pattern>
+        <url-pattern>/bug.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home.jsp</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>bug</servlet-name>
-        <url-pattern>/bug.jsp</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>clinic</servlet-name>

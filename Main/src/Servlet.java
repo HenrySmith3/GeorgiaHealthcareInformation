@@ -27,6 +27,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         if (request.getParameter("action").equalsIgnoreCase("search")) {
             processSearch(request, response);
+        } else if ("bug".equalsIgnoreCase(request.getParameter("action"))) {
+            submitBug(request, response);
+        } else if ("addHospital".equalsIgnoreCase(request.getParameter("action"))) {
+            addHospital(request, response);
+        } else if ("editHospital".equalsIgnoreCase(request.getParameter("action"))) {
+            editHospital(request, response);
         }
 
     }
@@ -37,9 +43,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         JSONArray hospitals = new JSONArray();
         try {
             Statement statement = con.createStatement();
-            //edit, update hospital or add bug reports
-//            statement.executeUpdate(updateQuery(criteria));
-
             ResultSet resultset = statement.executeQuery(getQuery(criteria));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
@@ -52,6 +55,48 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         request.setAttribute("hospitals", hospitals);
         request.getRequestDispatcher("/response.jsp").forward(request, response);
+    }
+
+    private void submitBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
+        Hospital criteria = populateCriteriaFromRequest(request);
+        Connection con = initializeConnection();
+        try {
+            Statement statement = con.createStatement();
+            statement.executeQuery(addBugClauses(criteria));
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
+    }
+
+    private void addHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
+        Hospital criteria = populateCriteriaFromRequest(request);
+        Connection con = initializeConnection();
+        try {
+            Statement statement = con.createStatement();
+            statement.executeQuery(addHospitalClauses(criteria));
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
+    }
+
+    private void editHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
+        Hospital criteria = populateCriteriaFromRequest(request);
+        Connection con = initializeConnection();
+        try {
+            Statement statement = con.createStatement();
+            statement.executeQuery(editHospitalClauses(criteria));
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
 
     /**
