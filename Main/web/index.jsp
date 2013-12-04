@@ -148,10 +148,10 @@
         <label><%=resource.getString("freeServices")%></label><br>
         <%--TODO We need to explain who would qualify for free clinic services--%>
         <label class="radio-inline" for="pickfreeY">
-            <input id="pickfreeY" name="pickFY" type="radio" value="freeY">Yes
+            <input id="pickfreeY" name="pickFY" type="radio" value="freeY"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="pickfreeN">
-            <input id="pickfreeN" name="pickFN" type="radio" value="freeN">No
+            <input id="pickfreeN" name="pickFN" type="radio" value="freeN"><%=resource.getString("no")%>
         </label>
     </div>
 
@@ -180,15 +180,15 @@
         </select>
     </div>
 
-    <div class="form-group" id="parking">
-        <label>Do you require parking space?</label><br>
-        <label class="radio-inline" for="yes">
-            <input id="yes" name="parking" type="radio" value="y">Yes
-        </label>
-        <label class="radio-inline" for="no">
-            <input id="no" name="parking" type="radio" value="n">No
-        </label>
-    </div>
+    <%--<div class="form-group" id="parking">--%>
+        <%--<label>Do you require parking space?</label><br>--%>
+        <%--<label class="radio-inline" for="yes">--%>
+            <%--<input id="yes" name="parking" type="radio" value="y"><%=resource.getString("yes")%>--%>
+        <%--</label>--%>
+        <%--<label class="radio-inline" for="no">--%>
+            <%--<input id="no" name="parking" type="radio" value="n"><%=resource.getString("no")%>--%>
+        <%--</label>--%>
+    <%--</div>--%>
     <br>
 </fieldset>
 
@@ -220,10 +220,10 @@
         <%--TODO this was added--%>
         <label>Do you need a Spanish interpreter/translator?</label><br>
         <label class="radio-inline" for="interpreteryes">
-            <input id="interpY" name="interpreter" type="radio" value="interpYes">Yes
+            <input id="interpY" name="interpreter" type="radio" value="interpYes"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="interpreterno">
-            <input id="interpN" name="interpreter" type="radio" value="interpNo">No
+            <input id="interpN" name="interpreter" type="radio" value="interpNo"><%=resource.getString("no")%>
         </label>
     </div>
 
@@ -326,10 +326,10 @@
     <div class="form-group" id="prenatal"> <!--add as a specialty-->
         <label>Do you need pre-natal care?</label><br>
         <label class="radio-inline" for="prenatalyes">
-            <input id="preyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
+            <input id="preyes" name="prenatal" type="radio" value="prenatalcareyes"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="prenatalyes">
-            <input id="preno" name="prenatal" type="radio" value="prenatalcareno">No
+            <input id="preno" name="prenatal" type="radio" value="prenatalcareno"><%=resource.getString("no")%>
         </label>
     </div>
 

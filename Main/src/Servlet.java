@@ -227,10 +227,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         
         //Transportation
-        if(criteria.parking == Hospital.TRUE){
-            //TODO are there really hospitals without parking? This seems poorly thought out.
-        	stringBuilder.append( "P3_4_5.Park != 0 AND ");
-        }
+//        if(criteria.parking == Hospital.TRUE){
+//            //TODO are there really hospitals without parking? This seems poorly thought out.
+//        	stringBuilder.append( "P3_4_5.Park != 0 AND ");
+//        }
         if(criteria.publicTransportation != null){
             //TODO how is this formatted in the database?
 //            stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
@@ -401,11 +401,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             }
             
             
-            if (parameter.equalsIgnoreCase("parking"))
-            {
-                temp = request.getParameter(parameter);
-                criteria.parking = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
-            }
+//            if (parameter.equalsIgnoreCase("parking"))
+//            {
+//                temp = request.getParameter(parameter);
+//                criteria.parking = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+//            }
 
  /*           if (parameter.equalsIgnoreCase("walkIn"))
             {
@@ -684,12 +684,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     	stringBuilder.append( "UPDATE P3_4_5 SET ");
     	
         //Transportation
-        if(criteria.parking != null){
-        	if(criteria.parking == Hospital.TRUE)
-        		stringBuilder.append( "Park = " + 1 + " AND ");
-        	else if(criteria.parking == Hospital.FALSE)
-        		stringBuilder.append( "Park = " + 0 + " AND ");
-        }
+//        if(criteria.parking != null){
+//        	if(criteria.parking == Hospital.TRUE)
+//        		stringBuilder.append( "Park = " + 1 + " AND ");
+//        	else if(criteria.parking == Hospital.FALSE)
+//        		stringBuilder.append( "Park = " + 0 + " AND ");
+//        }
         if(criteria.publicTransportation != null){
             //TODO how is this formatted in the database?
             stringBuilder.append( "PubTr = " + criteria.publicTransportation + " AND ");
