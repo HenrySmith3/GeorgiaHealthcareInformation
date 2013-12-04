@@ -79,8 +79,8 @@
                         <%=resource.getString("addition")%>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../components">
+                <li>
+                    <a href="edit.jsp">
                         <%=resource.getString("editing")%>
                     </a>
                 </li>
@@ -90,7 +90,7 @@
                     </a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right"></ul>
         </nav>
     </div>
 </header>
@@ -133,7 +133,15 @@
 
     <div class="form-group" id="address">
         <label><%=resource.getString("county")%></label>
-        <input class="form-control" name="address" type="text" placeholder="Enter county">
+        <%--TODO this needs to be automated--%>
+        <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
+        <select id="county" class="form-control">
+            <option value="1">Clayton</option>
+            <option value="2">Cobb</option>
+            <option value="3">DeKalb</option>
+            <option value="4">Fulton</option>
+            <option value="5">Gwinnett</option>
+        </select>
     </div>
 
     <div class="form-group" id="free">
@@ -202,21 +210,20 @@
             <option value="1">Medicare</option>
             <option value="2">Medicaid</option>
             <option value="3">Peachcare</option>
-            <option value="4"><%=resource.getString("none")%></option>
+            <%--TODO is this being handled right? 5 was added--%>
+            <option value="4">Other</option>
+            <option value="5"><%=resource.getString("none")%></option>
         </select>
     </div>
 
-    <%--TODO this is now just shown on the results page, this can all be removed.--%>
-    <div class="form-group" id="language">
-        <label><%=resource.getString("facultyMembers")%></label><br>
-        <label class="checkbox-inline" for="receptionist">
-            <input id="receptionist" type="checkbox" value="recept"><%=resource.getString("receptionist")%>
+    <div class="form-group" id="interpreter">
+        <%--TODO this was added--%>
+        <label>Do you need a Spanish interpreter/translator?</label><br>
+        <label class="radio-inline" for="interpreteryes">
+            <input id="interpY" name="interpreter" type="radio" value="interpYes">Yes
         </label>
-        <label class="checkbox-inline" for="nurses">
-            <input id="nurses" type="checkbox" value="nur"><%=resource.getString("nurse")%>
-        </label>
-        <label class="checkbox-inline" for="doctor">
-            <input id="doctor" type="checkbox" value="doc"><%=resource.getString("doctor")%>
+        <label class="radio-inline" for="interpreterno">
+            <input id="interpN" name="interpreter" type="radio" value="interpNo">No
         </label>
     </div>
 
@@ -273,6 +280,9 @@
         <label class="checkbox-inline" for="sun">
             <input id="sun" type="checkbox" value="Su">Sunday
         </label>
+        <label class="checkbox-inline" for="all">
+            <input id="all" type="checkbox" value="A">All/Any
+        </label>
     </div>
     <br>
 </fieldset>
@@ -311,6 +321,18 @@
             <input id="chilno" name="child" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
+
+    <%--TODO this was added--%>
+    <div class="form-group" id="prenatal"> <!--add as a specialty-->
+        <label>Do you need pre-natal care?</label><br>
+        <label class="radio-inline" for="prenatalyes">
+            <input id="preyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
+        </label>
+        <label class="radio-inline" for="prenatalyes">
+            <input id="preno" name="prenatal" type="radio" value="prenatalcareno">No
+        </label>
+    </div>
+
 
     <!--<div class="form-group" id="ages">
        <label>If yes, please check all the ages that apply.</label>

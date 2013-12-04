@@ -116,6 +116,7 @@
 </div>
 
 <fieldset class="form-step">
+    <input type="hidden" value="search" name="action" id="action">
     <legend>Personal Information</legend>
 
     <div class="form-group" id="address">
