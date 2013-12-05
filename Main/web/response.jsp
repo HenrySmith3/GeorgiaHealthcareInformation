@@ -33,6 +33,7 @@
         out.print("</a></div></div>");
         out.print("<div id=\"collapse" + count + "\" class=\"panel-collapse collapse\"><div class=\"panel-body\">");
         out.print("Phone: " + jsonObject.get("phone") + "</br>");
+        //links work now
         if (!jsonObject.get("addressLine1").toString().equals("null")) {
             out.print("<a href=" + "\"" + "http://maps.google.com/?q="+jsonObject.get("addressLine1") +"\"" + ">" + jsonObject.get("addressLine1") + "</a></br>");
         }
