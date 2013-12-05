@@ -173,10 +173,10 @@
     <div class="form-group" id="trans">
         <label><%=resource.getString("preferredTransportation")%></label>
         <select id="transportation" class="form-control">
-            <option value="1">Drive<%=resource.getString("drive")%></option>
+            <option value="1"><%=resource.getString("drive")%></option>
             <option value="2">MARTA Rail Service</option>
             <option value="3">MARTA <%=resource.getString("bus")%></option>
-            <option value="4">Taxi<%=resource.getString("none")%></option>
+            <option value="4"><%=resource.getString("none")%></option>
         </select>
     </div>
 
