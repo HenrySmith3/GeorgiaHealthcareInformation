@@ -236,6 +236,42 @@
         <label class="checkbox-inline" for="vision">
             <input id="vision" type="checkbox" value="vis" name = "vision">Vision
         </label>
+        <label class="checkbox-inline" for="primary">
+            <input id="primary" type="checkbox" value="pri">Primary Care
+        </label>
+        <label class="checkbox-inline" for="internal">
+            <input id="internal" type="checkbox" value="int">Internal Medicine
+        </label>
+        <label class="checkbox-inline" for="child">
+            <input id="child" type="checkbox" value="chi">Pediatric Care
+        </label>
+        <label class="checkbox-inline" for="elder">
+            <input id="elder" type="checkbox" value="eld">Geriatric Care
+        </label>
+        <label class="checkbox-inline" for="diabetes">
+            <input id="diabetes" type="checkbox" value="dia">Diabetes
+        </label>
+        <label class="checkbox-inline" for="pain">
+            <input id="pain" type="checkbox" value="pai">Pain Management
+        </label>
+        <label class="checkbox-inline" for="trauma">
+            <input id="trauma" type="checkbox" value="trau">Trauma/Emergency
+        </label>
+        <label class="checkbox-inline" for="surgery">
+            <input id="surgery" type="checkbox" value="sur">General Surgery
+        </label>
+        <label class="checkbox-inline" for="radio">
+            <input id="radio" type="checkbox" value="rad">Radiology
+        </label>
+        <label class="checkbox-inline" for="skin">
+            <input id="skin" type="checkbox" value="skin">Dermatology
+        </label>
+        <label class="checkbox-inline" for="ent">
+            <input id="ent" type="checkbox" value="ent">ENT (Ears/Nose/Throat)
+        </label>
+        <label class="checkbox-inline" for="allergy">
+            <input id="allergy" type="checkbox" value="alle">Allergy/Asthma
+        </label>
     </div>
 
     <div class="form-group" id="children">
