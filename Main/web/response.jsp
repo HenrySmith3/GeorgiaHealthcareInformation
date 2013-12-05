@@ -12,10 +12,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<link rel="stylesheet" href="/css/main.css" type="text/css">--%>
-<link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
-<script src="bootstrap/js/jquery.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="main.js"></script>
+<link href="/bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
+<script src="/bootstrap/js/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/main.js"></script>
 <html>
 <head>
     <title>Georgia Healthcare Search Results</title>

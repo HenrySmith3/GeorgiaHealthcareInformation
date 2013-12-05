@@ -10,7 +10,6 @@
   Time:12:54
 --%>
 <%@ page import = "java.util.ResourceBundle" %>
-<%@ page import="java.util.Enumeration" %>
 <%
     ResourceBundle resource;
     if (request.getRequestURL().toString().contains("english")) {
@@ -27,10 +26,10 @@
 <head>
     <title>User Form</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
+    <script src="/bootstrap/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/main.js"></script>
     <style type="text/css">
         h1 { text-align:center; }
         h4 { text-align: center; }
