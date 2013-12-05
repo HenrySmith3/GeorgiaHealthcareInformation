@@ -192,7 +192,7 @@
             <input id="afterphoneno" name="call" type="radio" value="no">No
         </label>
     </div>
-    <%--TODO are we even asking these anymore?--%>
+
     <div class="form-group" id="date">
         <label>On which days do you open?</label><br>
         <label class="checkbox-inline" for="mon">

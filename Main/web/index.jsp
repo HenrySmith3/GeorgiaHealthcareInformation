@@ -255,7 +255,6 @@
             <input id="callno" name="call" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
-    <%--TODO are we even asking these anymore?--%>
     <!--<div class="form-group" id="date">
         <label>Which days are best for you to visit the clinic?</label><br>
         <label class="checkbox-inline" for="mon">
