@@ -81,7 +81,7 @@
                 </li>
                 <li>
                     <a href="edit.jsp">
-                        Clinic Editting Form
+                        Clinic Editing Form
                     </a>
                 </li>
                 <li>

@@ -2,6 +2,7 @@
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="java.util.ListIterator" %>
 <%@ page import="java.io.IOException" %>
+<%@ page import="com.sun.xml.internal.bind.v2.TODO" %>
 <%--
   Created by IntelliJ IDEA.
   User: Henry
@@ -61,8 +62,9 @@
     }
 %>
 
+<%-- TODO we could make it say "results in ____ county" to make it clearer--%>
 <%
-    out.print("<h4>Results in County</h4>");
+    out.print("<h2>Results in County</h2>");
     JSONArray jsonArray = (JSONArray)request.getAttribute("hospitalsInCounty");
     ListIterator listIterator = jsonArray.listIterator();
     out.println("<div class=\"panel-group\" id=\"accordion\">");
@@ -71,7 +73,7 @@
         printHospital((JSONObject)listIterator.next(), out, count);
         count++;
     }
-    out.print("<h4>Results in all of Georgia</h4>");
+    out.print("<h2>Results in all of Georgia</h2>");
     jsonArray = (JSONArray)request.getAttribute("allHospitals");
     listIterator = jsonArray.listIterator();
     while (listIterator.hasNext()) {

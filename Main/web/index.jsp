@@ -122,7 +122,7 @@
                     <span><span class="glyphicon glyphicon-list-alt pull-left"></span>&nbsp;<strong><%=resource.getString("step3")%>:</strong><br><%=resource.getString("clinicServices")%></span>
         </li>
         <li class="disabled">
-                    <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong><%=resource.getString("step4")%>:</strong><br><%=resource.getString("healthcare")%><span>
+                    <span><span class="glyphicon glyphicon-heart pull-left"></span>&nbsp;<strong><%=resource.getString("step4")%>:</strong><br><%=resource.getString("healthcare")%></span>
         </li>
     </ul>
 </div>
@@ -174,8 +174,8 @@
         <label><%=resource.getString("preferredTransportation")%></label>
         <select id="transportation" class="form-control">
             <option value="1"><%=resource.getString("drive")%></option>
-            <option value="2">MARTA</option>
-            <option value="3"><%=resource.getString("bus")%></option>
+            <option value="2">MARTA Rail Service</option>
+            <option value="3">MARTA <%=resource.getString("bus")%></option>
             <option value="4"><%=resource.getString("none")%></option>
         </select>
     </div>
@@ -210,8 +210,8 @@
             <option value="1">Medicare</option>
             <option value="2">Medicaid</option>
             <option value="3">Peachcare</option>
-            <%--TODO is this being handled right? 5 was added--%>
             <option value="4">Other</option>
+            <%--TODO is this being handled right? 5 was added--%>
             <option value="5"><%=resource.getString("none")%></option>
         </select>
     </div>
@@ -365,7 +365,7 @@
             <input id="sexHIV" type="checkbox" value="HIV"><%=resource.getString("hiv")%>
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT"><%=resource.getString("lgbt")%>
+            <input id="sexLGBT" type="checkbox" value="Lesbian/Gay/Bisexual/Transgender"><%=resource.getString("lgbt")%>
         </label>
     </div>
     <br>
