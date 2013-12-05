@@ -40,20 +40,30 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     private void processSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Hospital criteria = populateCriteriaFromRequest(request);
         Connection con = initializeConnection();
-        JSONArray hospitals = new JSONArray();
+        JSONArray hospitalsInCounty = new JSONArray();
+        JSONArray allHospitals = new JSONArray();
         try {
             Statement statement = con.createStatement();
-            ResultSet resultset = statement.executeQuery(getQuery(criteria));
+            ResultSet resultset = statement.executeQuery(getQuery(criteria, true));
             while (resultset.next()) {
                 Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
-                hospitals.add(hospital.toJson());
+                hospitalsInCounty.add(hospital.toJson());
                 //writer.append(hospital.toString() + "\n");
             }
+            statement = con.createStatement();
+            resultset = statement.executeQuery(getQuery(criteria, false));
+            while (resultset.next()) {
+                Hospital hospital = Hospital.getHospitalFromResultSet(resultset);
+                allHospitals.add(hospital.toJson());
+                //writer.append(hospital.toString() + "\n");
+            }
+
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        request.setAttribute("hospitals", hospitals);
+        request.setAttribute("hospitalsInCounty", hospitalsInCounty);
+        request.setAttribute("allHospitals", allHospitals);
         request.getRequestDispatcher("/response.jsp").forward(request, response);
     }
 
@@ -289,14 +299,15 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     /**
      * Gets the query that will be used to query the database.
      * @param criteria All non-null values in this hospital will be used as the criteria.
+     * @param inCounty If true, returns results in the users county, if false, returns all results.
      * @return A query string to be executed.
      */
-    private String getQuery(Hospital criteria) {
+    private String getQuery(Hospital criteria, boolean inCounty) {
         StringBuilder builder = new StringBuilder();
         //get the basic statement, which is just a select all.
         builder.append(getBasicSelectStatement());
         //add in the where clauses so that only the hospitals with fields matching the criteria are returned.
-        builder.append(getWhereClauses(criteria));
+        builder.append(getWhereClauses(criteria, inCounty));
         
         return builder.toString();
     }
@@ -306,13 +317,14 @@ public class Servlet extends javax.servlet.http.HttpServlet {
      * For each non-null value in hospital, this method adds a SQL where clause to restrict
      * the results returned to only those that match the value in hospital.
      * @param criteria The hospital criteria. All values that we aren't looking to match should be null.
+     * @param inCounty If true, returns results in the users county, if false, returns all results.
      * @return A string which is appended to the basic sql statement.
      */
-    private String getWhereClauses(Hospital criteria) {
+    private String getWhereClauses(Hospital criteria, boolean inCounty) {
         StringBuilder stringBuilder = new StringBuilder();
         
         //Personal Information   
-        if(criteria.county != null && !criteria.county.equals("")){
+        if(inCounty && criteria.county != null && !criteria.county.equals("")){
             //TODO are we only returning results from the county they live in? What if they're right on the border?
             stringBuilder.append( "P1.County = '" + criteria.county + "' AND ");
         }

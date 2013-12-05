@@ -1,6 +1,7 @@
 <%@ page import="net.sf.json.JSONArray" %>
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="java.util.ListIterator" %>
+<%@ page import="java.io.IOException" %>
 <%--
   Created by IntelliJ IDEA.
   User: Henry
@@ -20,14 +21,11 @@
 </head>
 <body>
 <%--TODO Should we display the search criteria here to?--%>
-<%
-    JSONArray jsonArray = (JSONArray)request.getAttribute("hospitals");
-    ListIterator listIterator = jsonArray.listIterator();
-    out.println("<div class=\"panel-group\" id=\"accordion\">");
-    int count = 0;
-    while (listIterator.hasNext()) {
+
+<%!
+    public static void printHospital(JSONObject jsonObject, JspWriter out, int count) throws IOException {
+
         out.println("<div class=\"panel panel-default\">");
-        JSONObject jsonObject = (JSONObject)listIterator.next();
         out.print("<div class=\"panel-heading\"><h4 class=\"panel-title\">");
         out.print("<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + count + "\">");
         out.print(jsonObject.get("name") + "</br>");
@@ -60,10 +58,30 @@
         }
 
         out.print("</div></div></div>");
+    }
+%>
+
+<%
+    out.print("<h4>Results in County</h4>");
+    JSONArray jsonArray = (JSONArray)request.getAttribute("hospitalsInCounty");
+    ListIterator listIterator = jsonArray.listIterator();
+    out.println("<div class=\"panel-group\" id=\"accordion\">");
+    int count = 0;
+    while (listIterator.hasNext()) {
+        printHospital((JSONObject)listIterator.next(), out, count);
+        count++;
+    }
+    out.print("<h4>Results in all of Georgia</h4>");
+    jsonArray = (JSONArray)request.getAttribute("allHospitals");
+    listIterator = jsonArray.listIterator();
+    while (listIterator.hasNext()) {
+        printHospital((JSONObject)listIterator.next(), out, count);
         count++;
     }
     out.print("</div>");
     out.print("</div>");
+
+
 %>
     <%--${hospitals}--%>
     <%--<c:foreach var="hospital" items=${hospitals}>--%>
