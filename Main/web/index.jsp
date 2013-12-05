@@ -243,7 +243,7 @@
             <input id="phoneyes" name="phone" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
+            <input id="phoneno" name="phone" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
 
@@ -365,7 +365,7 @@
             <input id="sexHIV" type="checkbox" value="HIV"><%=resource.getString("hiv")%>
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="Lesbian/Gay/Bisexual/Transgender"><%=resource.getString("lgbt")%>
+            <input id="sexLGBT" type="checkbox" value="LGBT"><%=resource.getString("lgbt")%>
         </label>
     </div>
     <br>
