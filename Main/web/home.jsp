@@ -26,7 +26,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"></a>
+          <a class="navbar-brand" href="#">Spanish</a>
+          <a class="navbar-brand" href="#">English</a>
         </div>
         <div class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -47,7 +48,6 @@
       <div class="container">
         <h1>Hispanic Healthcare Web Directory</h1>
         <p><br>Easily locate the healthcare providers that fit your specific needs.</p>
-          <%--TODO there should be english and spanish buttons--%>
         <p><a class="btn btn-primary btn-lg" role="button" href="/english">Find a Provider &raquo;</a></p>
       </div>
     </div>
