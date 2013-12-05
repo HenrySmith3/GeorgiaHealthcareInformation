@@ -111,8 +111,6 @@
 
     <div class="form-group" id="bug1">
         <label><%=resource.getString("sort_bug")%></label>
-        <%--TODO this needs to be automated--%>
-        <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
         <select id="bug1" name = "bug1" class="form-control">
             <option value = "1"><%=resource.getString("error_bf")%></option>
             <option value = "2"><%=resource.getString("error_ii")%></option>
