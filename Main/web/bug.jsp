@@ -70,7 +70,7 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.jsp">
+                    <a href="english">
                         <%=resource.getString("search")%>
                     </a>
                 </li>
