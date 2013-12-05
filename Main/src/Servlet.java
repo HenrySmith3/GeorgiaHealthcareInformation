@@ -204,78 +204,80 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             //Clinic services
             if(criteria.walkIn != null){
                 //on 2 it's appointments only, on 1 it's walk in only. 3 is always right.
-                stringBuilder.append( "AppWalk = " + criteria.walkIn + " AND ");
+                stringBuilder.append( "AppWalk = " + criteria.walkIn + ", ");
             }
-            if(criteria.medicare != null && criteria.medicare == true)
-                    stringBuilder.append( "MedicareGUIDE = '" + 1 + "' AND ");
-            else
-                    stringBuilder.append( "MedicareGUIDE = '" + 0 + "' AND ");
-            if(criteria.medicaid != null && criteria.medicaid == true)
-                    stringBuilder.append( "MedicaidGUIDE = '" + 1 + "' AND ");
-            else 
-                    stringBuilder.append( "MedicaidGUIDE = '" + 0 + "' AND ");
-            if(criteria.peachCare != null && criteria.peachCare == true)
-                    stringBuilder.append( "PeachcareGUIDE = " + 1 + " AND ");
-            else
-                    stringBuilder.append( "PeachcareGUIDE = " + 0 + " AND ");
+            if(criteria.medicare != null){
+            	String medi = (criteria.medicare == true)? "1" : "0";
+                stringBuilder.append( "MedicareGUIDE = '" + medi + "', ");
+            }
+            if(criteria.medicaid != null){
+            	String medicaid = (criteria.medicaid == true)? "1" : "0";
+                stringBuilder.append( "MedicaidGUIDE = '" + medicaid + "', ");
+            }
+            if(criteria.peachCare != null){
+            	String peachcare = (criteria.peachCare == true)? "1" : "0";
+                stringBuilder.append( "PeachcareGUIDE = " + peachcare + ", ");
+            }
             if (criteria.spanAdmin != null) {
-                stringBuilder.append( "SPANAdmGUIDE = " + criteria.spanAdmin + " AND ");
+                stringBuilder.append( "SPANAdmGUIDE = " + criteria.spanAdmin + ", ");
             }            
             if (criteria.spanFo != null) {
-                stringBuilder.append( "SPANFoGUIDE = '" + criteria.spanFo + "' AND ");
+                stringBuilder.append( "SPANFoGUIDE = '" + criteria.spanFo + "', ");
             }
             
             //Healthcare
-            if(criteria.spcWH != null && criteria.spcWH == true)
-                    stringBuilder.append( "SpcWH = '" + 1 + "' AND ");
-            else
-                    stringBuilder.append( "SpcWH = " + 0 + " AND ");
-            if(criteria.spcMH != null && criteria.spcMH == true)
-                    stringBuilder.append( "SpcMH = " + 1 + " AND ");
-            else
-                    stringBuilder.append( "SpcMH = " + 0 + " AND ");
-            if(criteria.spcFCH != null && criteria.spcFCH == true)
-                    stringBuilder.append( "SpcFCH = " + 1 + " AND ");
-            else
-                    stringBuilder.append( "SpcFCH = " + 0 + " AND ");
-            if(criteria.spcMHC != null && criteria.spcMHC == true)
-                    stringBuilder.append( "SpcMHC = " + 1 + " AND ");
-            else 
-                    stringBuilder.append( "SpcMHC = " + 0 + " AND ");
-            if(criteria.spcDH != null && criteria.spcDH == true)
-                    stringBuilder.append( "SpcDH = " + 1 + " AND ");
-            else 
-                    stringBuilder.append( "SpcDH = " + 0 + " AND ");
-            if(criteria.spcVH != null && criteria.spcVH == true)
-                    stringBuilder.append( "SpcVH = " + 1 + " AND ");
-            else 
-                    stringBuilder.append( "SpcVH = " + 0 + " AND ");
-            if(criteria.childGuide != null && criteria.childGuide == true)
-                    stringBuilder.append( "NinosGUIDE = " + 1 + " AND ");
-            else 
-                    stringBuilder.append( "NinosGUIDE = " + 0 + " AND ");
-            if(criteria.subAbGuide != null && criteria.subAbGuide == true)
-                    stringBuilder.append( "SubAbGUIDE = " + 1 + " AND ");
-            else
-                    stringBuilder.append( "SubAbGUIDE = " + 0 + " AND ");
-            if(criteria.sexAbGuide != null && criteria.sexAbGuide == true)
-                    stringBuilder.append( "SexAbGUIDE = " + 1 + " AND ");
-            else
-                    stringBuilder.append( "SexAbGUIDE = " + 0 + " AND ");
-            if(criteria.angManGuide != null && criteria.angManGuide == true)
-                    stringBuilder.append( "AngManGUIDE = " + 1 + " AND ");
-            else 
-                    stringBuilder.append( "AngManGUIDE = " + 0 + " AND ");
-            if(criteria.hivConsGuide != null && criteria.hivConsGuide == true)
-                    stringBuilder.append( "HIVConsGUIDE = " + 1 + " AND ");
-            else 
-                    stringBuilder.append( "HIVConsGUIDE = " + 0 + " AND ");
-            if(criteria.lgbtGuide != null && criteria.lgbtGuide == true)
-                    stringBuilder.append( "LGBTGUIDE = " + 1 + " AND ");
-            else
-                   stringBuilder.append( "LGBTGUIDE = " + 0 + " AND ");          
+            if(criteria.spcWH != null){
+            	String spcwh = (criteria.spcWH == true)? "1" : "0";
+                stringBuilder.append( "SpcWH = '" + spcwh + "', ");
+            }
+            if(criteria.spcMH != null){
+            	String spcmh = (criteria.spcMH == true)? "1" : "0";
+                stringBuilder.append( "SpcMH = '" + spcmh + "', ");
+            }
+            if(criteria.spcFCH != null){
+            	String spcfch = (criteria.spcFCH == true)? "1" : "0";
+                stringBuilder.append( "SpcFCH = '" + spcfch + "', ");
+            }
+            if(criteria.spcMHC != null){
+            	String spcmhc = (criteria.spcMHC == true)? "1" : "0";
+                stringBuilder.append( "SpcMHC = '" + spcmhc + "', ");
+            }
+            if(criteria.spcDH != null){
+            	String spcdh = (criteria.spcDH == true)? "1" : "0";
+                stringBuilder.append( "SpcDH = '" + spcdh + "', ");
+            }
+            if(criteria.spcVH != null){
+            	String spcvh = (criteria.spcVH == true)? "1" : "0";
+                stringBuilder.append( "SpcVH = '" + spcvh + "', ");
+            }
+            if(criteria.childGuide != null){
+            	String child = (criteria.childGuide == true)? "1" : "0";
+                stringBuilder.append( "NinosGUIDE = '" + child + "', ");
+            }
+            if(criteria.subAbGuide != null){
+            	String subab = (criteria.subAbGuide == true)? "1" : "0";
+                stringBuilder.append( "SubAbGUIDE = '" + subab + "', ");
+            }
+            if(criteria.sexAbGuide != null)
+            {
+            	String sexab = (criteria.sexAbGuide == true)? "1" : "0";
+            	stringBuilder.append( "SexAbGUIDE = '" + sexab + "', ");
+            }
+            if(criteria.angManGuide != null){
+            	String angman = (criteria.angManGuide == true)? "1" : "0";
+                stringBuilder.append( "AngManGUIDE = '" + angman + "', ");
+            }
+            if(criteria.hivConsGuide != null){
+            	String hivcons = (criteria.hivConsGuide == true)? "1" : "0";
+            	stringBuilder.append( "HIVConsGUIDE = '" + hivcons + "', ");
+            }
+            if(criteria.lgbtGuide != null){
+            	String lgbt = (criteria.lgbtGuide == true)? "1" : "0";
+                stringBuilder.append( "LGBTGUIDE = '" + lgbt + "', ");
+            }        
             ss = stringBuilder.toString();
-            ss = ss.substring(0, ss.length() - 4) + "WHERE ID = " + criteria.id + "; ";
+            ss = ss.substring(0, ss.length() - 2) + "WHERE ID = " + criteria.id + "; ";
+            System.out.println(ss);
             statement.executeUpdate(ss);
           con.close();
         } catch (SQLException e) {
