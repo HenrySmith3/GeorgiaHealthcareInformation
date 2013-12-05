@@ -1,4 +1,7 @@
-GeorgiaHealthcareInformation
-============================
+Code Organization Overview:
 
-This is a project that will create an online resource for Hispanic individuals in Georgia to better be able to find healthcare information.
+Hospital.java represents a Hospital. It includes every attribute that a hospital can have in the database, including the attributes that we are not currently using. It has the ability to encode itself as a JSON string and to create a Hospital from a ResultSet.
+
+Servlet.java handles all of the actual logic of the system. All requests come in to doGet(). From there, the "action" attribute is checked to see what sort of request this is. Searches go to processSerach, bugs go to submitBug, adding a hospital goes to addHospital, and editing a hospital goes to editHospital. The biggest methods in Servlet.java are populateCriteriaFromRequest and getWhereClauses. populateCriteriaFromRequest takes in a request and returns a hospital that represents what is being searched for. Any non-null attributes in this returned hospital should be restricted in the search. getWhereClauses takes in the hospital that came out of populateCriteriaFromRequest and generates the SQL to search for the correct hospital.
+
+All of the other methods are fairly self-explanatory. In addition, all of the methods have javadocs, so you shouldn't have too much trouble figuring out what any given method does.
