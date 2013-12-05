@@ -242,6 +242,7 @@
         <label class="checkbox-inline" for="vision">
             <input id="vision" type="checkbox" value="vis" name = "vision">Vision
         </label>
+        <%--TODO all the options from here forward are new and aren't being handles --%>
         <label class="checkbox-inline" for="primary">
             <input id="primary" type="checkbox" value="pri">Primary Care
         </label>
