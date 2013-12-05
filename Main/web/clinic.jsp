@@ -150,40 +150,40 @@
         <%--TODO this was added--%>
         <label>Is there a Spanish interpreter/translator?</label><br>
         <label class="radio-inline" for="interpreteryes">
-            <input id="interpY" name="interpreter" type="radio" value="interpY">Yes
+            <input id="interpreteryes" name="interpreter" type="radio" value="interpY">Yes
         </label>
         <label class="radio-inline" for="interpreterno">
-            <input id="interpN" name="interpreter" type="radio" value="interpN">No
+            <input id="interpreterno" name="interpreter" type="radio" value="interpN">No
         </label>
     </div>
 
     <div class="form-group" id="forms">
         <label>Do you provide medical forms that are written in Spanish?</label><br>
-        <label class="radio-inline" for="yes">
-            <input id="yes" name="forms" type="radio" value="yes">Yes
+        <label class="radio-inline" for="formyes">
+            <input id="formyes" name="forms" type="radio" value="yes">Yes
         </label>
-        <label class="radio-inline" for="no">
-            <input id="no" name="forms" type="radio" value="no">No
+        <label class="radio-inline" for="formno">
+            <input id="formno" name="forms" type="radio" value="no">No
         </label>
     </div>
 
     <div class="form-group" id="phone">
         <label>Do you have a Spanish speaking receptionist on the phone?</label><br>
-        <label class="radio-inline" for="yes">
-            <input id="yes" name="reception" type="radio" value="yes">Yes
+        <label class="radio-inline" for="phoneyes">
+            <input id="phoneyes" name="reception" type="radio" value="yes">Yes
         </label>
-        <label class="radio-inline" for="no">
-            <input id="no" name="reception" type="radio" value="no">No
+        <label class="radio-inline" for="phoneno">
+            <input id="phoneno" name="reception" type="radio" value="no">No
         </label>
     </div>
 
     <div class="form-group" id="call">
         <label>Do you have someone available on the phone after the clinic's normal business hours?</label><br>
-        <label class="radio-inline" for="yes">
-            <input id="callyes" name="call" type="radio" value="yes">Yes
+        <label class="radio-inline" for="afterphoneyes">
+            <input id="afterphoneyes" name="call" type="radio" value="yes">Yes
         </label>
-        <label class="radio-inline" for="no">
-            <input id="callno" name="call" type="radio" value="no">No
+        <label class="radio-inline" for="afterphoneno">
+            <input id="afterphoneno" name="call" type="radio" value="no">No
         </label>
     </div>
     <%--TODO are we even asking these anymore?--%>
@@ -240,11 +240,11 @@
 
     <div class="form-group" id="children">
         <label>Do you have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
-        <label class="radio-inline" for="yes">
-            <input id="y" name="child" type="radio" value="y">Yes
+        <label class="radio-inline" for="childrenyes">
+            <input id="childrenyes" name="child" type="radio" value="y">Yes
         </label>
-        <label class="radio-inline" for="no">
-            <input id="n" name="child" type="radio" value="n">No
+        <label class="radio-inline" for="childrenno">
+            <input id="childrenno" name="child" type="radio" value="n">No
         </label>
     </div>
 
@@ -252,10 +252,10 @@
     <div class="form-group" id="prenatal"> <!--add as a specialty-->
         <label>Do you have pre-natal care?</label><br>
         <label class="radio-inline" for="prenatalyes">
-            <input id="preyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
+            <input id="prenatalyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
         </label>
-        <label class="radio-inline" for="prenatalyes">
-            <input id="preno" name="prenatal" type="radio" value="prenatalcareno">No
+        <label class="radio-inline" for="prenatalno">
+            <input id="prenatalno" name="prenatal" type="radio" value="prenatalcareno">No
         </label>
     </div>
 
