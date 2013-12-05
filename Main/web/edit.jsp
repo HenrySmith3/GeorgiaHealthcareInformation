@@ -279,6 +279,9 @@
         <label class="checkbox-inline" for="allergy">
             <input id="allergy" type="checkbox" value="alle">Allergy/Asthma
         </label>
+        <label class="checkbox-inline" for="prenatal">
+            <input id="prenatal" type="checkbox" value="prena">Prenatal Care
+        </label>
     </div>
 
     <div class="form-group" id="children">
@@ -288,17 +291,6 @@
         </label>
         <label class="radio-inline" for="childrenno">
             <input id="childrenno" name="child" type="radio" value="n">No
-        </label>
-    </div>
-
-    <%--TODO this was added--%>
-    <div class="form-group" id="prenatal"> <!--add as a specialty-->
-        <label>Do you have pre-natal care?</label><br>
-        <label class="radio-inline" for="prenatalyes">
-            <input id="prenatalyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
-        </label>
-        <label class="radio-inline" for="prenatalno">
-            <input id="prenatalno" name="prenatal" type="radio" value="prenatalcareno">No
         </label>
     </div>
 
