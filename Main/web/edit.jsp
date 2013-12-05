@@ -27,10 +27,10 @@
 <head>
     <title>User Form</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
+    <script src="/bootstrap/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/main.js"></script>
     <style type="text/css">
         h1 { text-align:center; }
         h4 { text-align: center; }
@@ -192,7 +192,7 @@
             <input id="afterphoneno" name="call" type="radio" value="no">No
         </label>
     </div>
-    <%--TODO are we even asking these anymore?--%>
+
     <div class="form-group" id="date">
         <label>On which days do you open?</label><br>
         <label class="checkbox-inline" for="mon">
@@ -242,6 +242,46 @@
         <label class="checkbox-inline" for="vision">
             <input id="vision" type="checkbox" value="vis" name = "vision">Vision
         </label>
+        <%--TODO all the options from here forward are new and aren't being handles --%>
+        <label class="checkbox-inline" for="primary">
+            <input id="primary" type="checkbox" value="pri">Primary Care
+        </label>
+        <label class="checkbox-inline" for="internal">
+            <input id="internal" type="checkbox" value="int">Internal Medicine
+        </label>
+        <label class="checkbox-inline" for="child">
+            <input id="child" type="checkbox" value="chi">Pediatric Care
+        </label>
+        <label class="checkbox-inline" for="elder">
+            <input id="elder" type="checkbox" value="eld">Geriatric Care
+        </label>
+        <label class="checkbox-inline" for="diabetes">
+            <input id="diabetes" type="checkbox" value="dia">Diabetes
+        </label>
+        <label class="checkbox-inline" for="pain">
+            <input id="pain" type="checkbox" value="pai">Pain Management
+        </label>
+        <label class="checkbox-inline" for="trauma">
+            <input id="trauma" type="checkbox" value="trau">Trauma/Emergency
+        </label>
+        <label class="checkbox-inline" for="surgery">
+            <input id="surgery" type="checkbox" value="sur">General Surgery
+        </label>
+        <label class="checkbox-inline" for="radio">
+            <input id="radio" type="checkbox" value="rad">Radiology
+        </label>
+        <label class="checkbox-inline" for="skin">
+            <input id="skin" type="checkbox" value="skin">Dermatology
+        </label>
+        <label class="checkbox-inline" for="ent">
+            <input id="ent" type="checkbox" value="ent">ENT (Ears/Nose/Throat)
+        </label>
+        <label class="checkbox-inline" for="allergy">
+            <input id="allergy" type="checkbox" value="alle">Allergy/Asthma
+        </label>
+        <label class="checkbox-inline" for="prenatal">
+            <input id="prenatal" type="checkbox" value="prena">Prenatal Care
+        </label>
     </div>
 
     <div class="form-group" id="children">
@@ -251,17 +291,6 @@
         </label>
         <label class="radio-inline" for="childrenno">
             <input id="childrenno" name="child" type="radio" value="n">No
-        </label>
-    </div>
-
-    <%--TODO this was added--%>
-    <div class="form-group" id="prenatal"> <!--add as a specialty-->
-        <label>Do you have pre-natal care?</label><br>
-        <label class="radio-inline" for="prenatalyes">
-            <input id="prenatalyes" name="prenatal" type="radio" value="prenatalcareyes">Yes
-        </label>
-        <label class="radio-inline" for="prenatalno">
-            <input id="prenatalno" name="prenatal" type="radio" value="prenatalcareno">No
         </label>
     </div>
 

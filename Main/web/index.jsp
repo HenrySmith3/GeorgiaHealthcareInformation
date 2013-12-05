@@ -10,7 +10,6 @@
   Time:12:54
 --%>
 <%@ page import = "java.util.ResourceBundle" %>
-<%@ page import="java.util.Enumeration" %>
 <%
     ResourceBundle resource;
     if (request.getRequestURL().toString().contains("english")) {
@@ -27,10 +26,10 @@
 <head>
     <title>User Form</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
+    <script src="/bootstrap/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/main.js"></script>
     <style type="text/css">
         h1 { text-align:center; }
         h4 { text-align: center; }
@@ -220,44 +219,43 @@
         <%--TODO this was added--%>
         <label>Do you need a Spanish interpreter/translator?</label><br>
         <label class="radio-inline" for="interpreteryes">
-            <input id="interpY" name="interpreter" type="radio" value="interpYes"><%=resource.getString("yes")%>
+            <input id="interpreteryes" name="interpreter" type="radio" value="interpYes"><%=resource.getString("yes")%>
         </label>
         <label class="radio-inline" for="interpreterno">
-            <input id="interpN" name="interpreter" type="radio" value="interpNo"><%=resource.getString("no")%>
+            <input id="interpreterno" name="interpreter" type="radio" value="interpNo"><%=resource.getString("no")%>
         </label>
     </div>
 
     <div class="form-group" id="forms">
         <label><%=resource.getString("medicalForms")%></label><br>
-        <label class="radio-inline" for="yes">
-            <input id="phoneyes" name="forms" type="radio" value="y"><%=resource.getString("yes")%>
+        <label class="radio-inline" for="formsyes">
+            <input id="formsyes" name="forms" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
-        <label class="radio-inline" for="no">
-            <input id="phoneno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
+        <label class="radio-inline" for="formsno">
+            <input id="formsno" name="forms" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
 
     <div class="form-group" id="phone">
         <label><%=resource.getString("spanishReceptionist")%></label><br>
-        <label class="radio-inline" for="yes">
+        <label class="radio-inline" for="phoneyes">
             <input id="phoneyes" name="phone" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
-        <label class="radio-inline" for="no">
+        <label class="radio-inline" for="phoneno">
             <input id="phoneno" name="phone" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
 
     <div class="form-group" id="call">
         <label><%=resource.getString("onCall")%></label><br>
-        <label class="radio-inline" for="yes">
+        <label class="radio-inline" for="callyes">
             <input id="callyes" name="call" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
-        <label class="radio-inline" for="no">
+        <label class="radio-inline" for="callno">
             <input id="callno" name="call" type="radio" value="n"><%=resource.getString("no")%>
         </label>
     </div>
-    <%--TODO are we even asking these anymore?--%>
-    <div class="form-group" id="date">
+    <!--<div class="form-group" id="date">
         <label>Which days are best for you to visit the clinic?</label><br>
         <label class="checkbox-inline" for="mon">
             <input id="mon" type="checkbox" value="M">Monday
@@ -283,7 +281,7 @@
         <label class="checkbox-inline" for="all">
             <input id="all" type="checkbox" value="A">All/Any
         </label>
-    </div>
+    </div> -->
     <br>
 </fieldset>
 
@@ -314,22 +312,11 @@
 
     <div class="form-group" id="children">
         <label><%=resource.getString("children")%></label><br>
-        <label class="radio-inline" for="yes">
+        <label class="radio-inline" for="chilyes">
             <input id="chilyes" name="chil" type="radio" value="y"><%=resource.getString("yes")%>
         </label>
-        <label class="radio-inline" for="no">
+        <label class="radio-inline" for="chilno">
             <input id="chilno" name="child" type="radio" value="n"><%=resource.getString("no")%>
-        </label>
-    </div>
-
-    <%--TODO this was added--%>
-    <div class="form-group" id="prenatal"> <!--add as a specialty-->
-        <label>Do you need pre-natal care?</label><br>
-        <label class="radio-inline" for="prenatalyes">
-            <input id="preyes" name="prenatal" type="radio" value="prenatalcareyes"><%=resource.getString("yes")%>
-        </label>
-        <label class="radio-inline" for="prenatalyes">
-            <input id="preno" name="prenatal" type="radio" value="prenatalcareno"><%=resource.getString("no")%>
         </label>
     </div>
 

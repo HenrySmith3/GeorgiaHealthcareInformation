@@ -27,10 +27,10 @@
 <head>
     <title><%=resource.getString("error")%></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" media="screen" rel="stylesheet">
+    <script src="/bootstrap/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/main.js"></script>
     <style type="text/css">
         h1 { text-align:center; }
         h4 { text-align: center; }
@@ -111,8 +111,6 @@
 
     <div class="form-group" id="bug1">
         <label><%=resource.getString("sort_bug")%></label>
-        <%--TODO this needs to be automated--%>
-        <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
         <select id="bug1" name = "bug1" class="form-control">
             <option value = "1"><%=resource.getString("error_bf")%></option>
             <option value = "2"><%=resource.getString("error_ii")%></option>
