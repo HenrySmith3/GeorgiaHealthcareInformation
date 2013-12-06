@@ -110,7 +110,7 @@
 <br>
 
 <div class="span10">
-<form class="form-horizontal form-stepped" id="clinic-search" action="/html_form_action.asp">
+<form class="form-horizontal form-stepped" id="clinic-search" action="/html_form_action.asp/<%out.print(language);%>">
 
 <div style="margin-left:auto;margin-right:auto;width:640px;">
     <ul class="pagination form-step-control" style="display:none;">

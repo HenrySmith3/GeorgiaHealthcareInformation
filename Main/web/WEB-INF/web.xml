@@ -13,7 +13,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
-        <url-pattern>/html_form_action.asp</url-pattern>
+        <url-pattern>/html_form_action.asp/*</url-pattern>
     </servlet-mapping>
 
     <servlet>

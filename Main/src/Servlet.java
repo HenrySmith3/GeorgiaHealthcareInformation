@@ -64,7 +64,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         request.setAttribute("hospitalsInCounty", hospitalsInCounty);
         request.setAttribute("allHospitals", allHospitals);
-        request.getRequestDispatcher("/response.jsp").forward(request, response);
+        if (request.getRequestURL().toString().contains("english")) {
+            request.getRequestDispatcher("/response.jsp/english").forward(request, response);
+        } else {
+            request.getRequestDispatcher("/response.jsp/spanish").forward(request, response);
+        }
     }
 
     private void submitBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
