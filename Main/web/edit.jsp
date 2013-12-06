@@ -117,7 +117,7 @@
     <input type="hidden" value="editHospital" name="action" id="action">
 
     <div class="form-group" id="selectclinic">
-    <label>Input the hopital ID you wish to edit</label><br>
+    <label>Input the ID of the hospital you wish to edit</label><br>
     <textarea id="id" name="id" rows="1" cols="20" placeholder="hospital ID"/></textarea>
     </div>
 
@@ -133,25 +133,23 @@
             <option value="5">Gwinnett</option>
         </select>
     </div>
-    <div id="city" class="form-inline">
+    <div class="form-group" id="city" class="form-inline">
     <label>City</label>
     <br>
     <textarea id="city" name = "city" rows = "1" cols = "60" placeholder="city"></textarea>
 
     </div>
-    <div id="website" class="form-inline">
+    <div class="form-group" id="website" class="form-inline">
     <label>Website</label>
     <br>
     <textarea id="web" name = "web" rows = "1" cols = "60" placeholder="website"></textarea>
     </div>
-    <div id="phone" class="form-inline">
+    <div class="form-group" id="phone" class="form-inline">
     <label>Phone</label>
     <br>
     <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"></textarea>
-    
     </div>
-    <br>
-    <div id="address" class="form-inline">
+    <div class="form-group" id="address" class="form-inline">
     <label>Address</label>
     <br>
     <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
