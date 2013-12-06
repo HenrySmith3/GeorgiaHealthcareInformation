@@ -148,13 +148,15 @@
     <label>Phone</label>
     <br>
     <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"></textarea>
-
+    
     </div>
+    <br>
     <div id="address" class="form-inline">
     <label>Address</label>
     <br>
     <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
-
+    </div>
+    <br>
     <div class="form-group" id="appt">
         <label>What kind of appointments can be made?</label><br>
         <label class="radio-inline" for="walkin">

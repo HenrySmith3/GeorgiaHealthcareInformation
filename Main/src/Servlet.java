@@ -68,7 +68,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     private void submitBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO this shouldn't even be using populateCriteriaFromRequest, it should have its own method
     	Connection con = initializeConnection();
         JSONArray hospitals = new JSONArray();
         Enumeration parameterNames = request.getParameterNames();
@@ -348,17 +347,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         
         //Personal Information   
         if(inCounty && criteria.county != null && !criteria.county.equals("")){
-            //TODO are we only returning results from the county they live in? What if they're right on the border?
             stringBuilder.append( "P1.County = '" + criteria.county + "' AND ");
         }
-        
-        //Transportation
-//        if(criteria.parking == Hospital.TRUE){
-//            //TODO are there really hospitals without parking? This seems poorly thought out.
-//        	stringBuilder.append( "P3_4_5.Park != 0 AND ");
-//        }
+
         if(criteria.publicTransportation != null){
-            //TODO how is this formatted in the database?
+            //TODO how is this formatted in the database? Are we still even doing this?
 //            stringBuilder.append( "P3_4_5.PubTr = " + criteria.publicTransportation + " AND ");
         }
 
