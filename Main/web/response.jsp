@@ -39,7 +39,7 @@
                     "\"" + ">" + jsonObject.get("addressLine1") + ", " +jsonObject.get("city") + ", Georgia" + "</a></br>");
         }
         if (!jsonObject.get("website").toString().equals("null")) {
-            out.print("Website:" + "<a href=" +"\"" + jsonObject.get("website") + "\"" + ">" + jsonObject.get("website") + "</a></br>");
+            out.print("<a href=" + "\"" + "http://" + jsonObject.get("website") + "\"" + ">" + "Website: " + jsonObject.get("website") + "</a></br>");
         }
         if (jsonObject.get("spanNurseGuide").toString().equals("1")) {
             out.print("Nurse Available Who Speaks Spanish.</br>");
