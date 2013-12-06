@@ -110,7 +110,7 @@
 <br>
 
 <div class="span10">
-<form class="form-horizontal form-stepped" action="html_form_action.asp">
+<form class="form-horizontal form-stepped" action="/html_form_action.asp">
 
 
 <fieldset class="form-step">
