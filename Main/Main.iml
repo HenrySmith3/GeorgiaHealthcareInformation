@@ -22,7 +22,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="net.sourceforge.json:com.springsource.net.sf.json:2.2.2" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6 (2)" level="project" />
   </component>
 </module>
 

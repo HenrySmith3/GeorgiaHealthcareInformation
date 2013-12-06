@@ -149,14 +149,12 @@
             <option value="1">Medicare</option>
             <option value="2">Medicaid</option>
             <option value="3">Peachcare</option>
-            <%--TODO is this being handled right? 5 was added--%>
             <option value="4">Other</option>
             <option value="5"><%=resource.getString("none")%></option>
         </select>
     </div>
 
     <div class="form-group" id="interpreter">
-        <%--TODO this was added--%>
         <label>Is there a Spanish interpreter/translator?</label><br>
         <label class="radio-inline" for="interpreteryes">
             <input id="interpreteryes" name="interpreter" type="radio" value="interpY">Yes

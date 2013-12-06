@@ -142,10 +142,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     "SpcWH, SpcMH, SpcFCH, SpcMHC," +
                     "SpcDH, SpcVH, NinosGUIDE," +
                     "subAbGuide, sexAbGuide, angManGuide, " +
-                    "HIVConsGUIDE, LGBTGUIDE)");
+                    "HIVConsGUIDE, LGBTGUIDE, SPANIntON)");
             String medicare = "0", medicaid = "0", peachcare = "0", childguide = "0";
             String subab = "0", sexab = "0", angman = "0", hivcons = "0", lgbt = "0";
             String spcwh = "0", spcmh = "0", spcfch = "0", spcmhc = "0", spcdh = "0", spcvh = "0";
+            String interpreter = "3";
             if(criteria.medicare != null && criteria.medicare == true)
             	medicare = "1";
             if(criteria.medicaid != null && criteria.medicaid == true)
@@ -176,11 +177,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             	spcdh = "1";
             if(criteria.spcVH != null && criteria.spcVH == true)
             	spcvh = "1";
+            if(!new Integer(3).equals(criteria.spanInterpreter))
+                interpreter = "1";
            stringBuilder.append("VALUES ('" + survno + "', '" +  + criteria.walkIn + "', '" + medicare + "', '" + medicaid + "', '" + 
                     peachcare + "', '" + criteria.spanAdmin + "', '" + criteria.spanFo + "', '" + 
                     spcwh + "', '" + spcmh + "', '" + spcfch + "', '" + spcmhc+ "', '" + 
                     spcdh + "', '" + spcvh + "', '" + childguide + "', '" + subab + "', '" + sexab + "', '" + angman + "', '" + 
-                    hivcons + "', '" + lgbt + "'); ");
+                    hivcons + "', '" + lgbt + "', '" + interpreter + "'); ");
             ss = stringBuilder.toString();
             statement.executeUpdate(ss);
           con.close();
@@ -284,7 +287,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if(criteria.lgbtGuide != null){
             	String lgbt = (criteria.lgbtGuide == true)? "1" : "0";
                 stringBuilder.append( "LGBTGUIDE = '" + lgbt + "', ");
-            }        
+            }
+            if(criteria.spanInterpreter != null) {
+                String interpreter = (criteria.spanInterpreter.equals(3))? "3" : "1";
+                stringBuilder.append( "SpanIntON = '" + interpreter + "', ");
+            }
             ss = stringBuilder.toString();
             ss = ss.substring(0, ss.length() - 2) + "WHERE ID = " + criteria.id + "; ";
             System.out.println(ss);
@@ -353,6 +360,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         }
         if(Boolean.TRUE.equals(criteria.peachCare)) {
             stringBuilder.append( "P3_4_5.PeachcareGUIDE = " + 1 + " AND ");
+        }
+
+        if(Hospital.TRUE.equals(criteria.spanInterpreter)) {
+            stringBuilder.append( "P3_4_5.SpanIntON != 3");
         }
 //These are just in the results page now.
 //        if (criteria.spanAdmin != null && criteria.spanAdmin == Hospital.TRUE) {
@@ -573,12 +584,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 temp = request.getParameter(parameter);
                 criteria.spanFo = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
             }
-  /*          if (parameter.equalsIgnoreCase("spanInterpreter"))
+            if (parameter.equalsIgnoreCase("spanInterpreter"))
             {
                 temp = request.getParameter(parameter);
-                criteria.spanInterpreter = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+                criteria.spanInterpreter = temp.equalsIgnoreCase("interpY") ? Hospital.TRUE : Hospital.FALSE;
             }
-*/
+
             if (parameter.equalsIgnoreCase("phone"))
             {
                 temp = request.getParameter(parameter);
@@ -829,7 +840,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if (parameter.equalsIgnoreCase("interpreter"))
             {
                 temp = request.getParameter(parameter);
-                //if walkin was already processed
                 if (temp != null && temp.equalsIgnoreCase("interpY")) {
                 	criteria.spanInterpreter = 1;
                 } 
