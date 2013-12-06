@@ -22,7 +22,9 @@
     <title>Georgia Healthcare Search Results</title>
     <style type="text/css">
         h1 { text-align:center; }
+        h2 { text-align: center; }
         h4 { text-align: center; }
+        #accordion { text-align: center; }
         body {
             margin: auto;
             margin-top: 5%;
