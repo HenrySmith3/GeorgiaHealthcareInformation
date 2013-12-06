@@ -12,10 +12,13 @@
 <%@ page import = "java.util.ResourceBundle" %>
 <%
     ResourceBundle resource;
+    String language;
     if (request.getRequestURL().toString().contains("english")) {
         resource = ResourceBundle.getBundle("english");
+        language = "english";
     } else {
         resource = ResourceBundle.getBundle("spanish");
+        language = "spanish";
     }
 %>
 <!DOCTYPE html>
@@ -69,22 +72,22 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.jsp">
+                    <a href="/index.jsp/<%out.print(language);%>">
                         <%=resource.getString("search")%>
                     </a>
                 </li>
                 <li>
-                    <a href="clinic.jsp">
+                    <a href="/clinic.jsp/<%out.print(language);%>">
                         <%=resource.getString("addition")%>
                     </a>
                 </li>
                 <li>
-                    <a href="edit.jsp">
+                    <a href="/edit.jsp/<%out.print(language);%>">
                         <%=resource.getString("editing")%>
                     </a>
                 </li>
                 <li>
-                    <a href="bug.jsp">
+                    <a href="/bug.jsp/<%out.print(language);%>">
                         <%=resource.getString("error")%>
                     </a>
                 </li>

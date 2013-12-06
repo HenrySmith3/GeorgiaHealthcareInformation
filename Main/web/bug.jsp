@@ -13,10 +13,13 @@
 <%@ page import="java.util.Enumeration" %>
 <%
     ResourceBundle resource;
+    String language;
     if (request.getRequestURL().toString().contains("english")) {
         resource = ResourceBundle.getBundle("english");
+        language = "english";
     } else {
         resource = ResourceBundle.getBundle("spanish");
+        language = "spanish";
     }
 %>
 <!DOCTYPE html>
@@ -70,22 +73,22 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="english">
+                    <a href="/index.jsp/<%out.print(language);%>">
                         <%=resource.getString("search")%>
                     </a>
                 </li>
                 <li>
-                    <a href="clinic.jsp">
+                    <a href="/clinic.jsp/<%out.print(language);%>">
                         <%=resource.getString("addition")%>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="components">
+                    <a href="/edit.jsp/<%out.print(language);%>">
                         <%=resource.getString("editing")%>
                     </a>
                 </li>
                 <li>
-                    <a href="bug.jsp">
+                    <a href="/bug.jsp/<%out.print(language);%>">
                         <%=resource.getString("error")%>
                     </a>
                 </li>

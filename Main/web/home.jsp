@@ -1,3 +1,14 @@
+<%@ page import="java.util.ResourceBundle" %><%
+    ResourceBundle resource;
+    String language;
+    if (request.getRequestURL().toString().contains("english")) {
+        resource = ResourceBundle.getBundle("english");
+        language = "english";
+    } else {
+        resource = ResourceBundle.getBundle("spanish");
+        language = "spanish";
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,8 +37,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Spanish</a>
-          <a class="navbar-brand" href="#">English</a>
+          <a class="navbar-brand" href="/home.jsp/spanish">Spanish</a>
+          <a class="navbar-brand" href="/home.jsp/english">English</a>
         </div>
         <div class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -48,7 +59,7 @@
       <div class="container">
         <h1>Hispanic Healthcare Web Directory</h1>
         <p><br>Easily locate the healthcare providers that fit your specific needs.</p>
-        <p><a class="btn btn-primary btn-lg" role="button" href="/english">Find a Provider &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="/index.jsp/english">Find a Provider &raquo;</a></p>
       </div>
     </div>
 
