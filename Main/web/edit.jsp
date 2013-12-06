@@ -105,7 +105,7 @@
 
 <div id="title">
     <h1>Clinic Edit Form</h1>
-    <h4>Change or add information about your clinic as needed. The marked answers is the data that we currently have concerning your clinic.</h4>
+    <h4>Change or add information about your clinic as needed. The marked answers is the data that we currently have concerning that clinic.</h4>
 </div><br>
 <br>
 
@@ -117,7 +117,7 @@
     <input type="hidden" value="editHospital" name="action" id="action">
 
     <div class="form-group" id="selectclinic">
-    <label>Input the hopital ID you wish to edit</label><br>
+    <label>Input the ID of the hospital you wish to edit</label><br>
     <textarea id="id" name="id" rows="1" cols="20" placeholder="hospital ID"/></textarea>
     </div>
 
@@ -142,17 +142,25 @@
         <label class="radio-inline" for="appointment">
             <input id="appointment" name="appt" type="radio" value="appointment">Appointment
         </label>
+        <%--TODO this option is new--%>
+        <label class="radio-inline" for="bothWalkApp">
+            <input id="bothWalkApp" name="appt" type="radio" value="bothWalkApp">Both
+        </label>
     </div>
     <div class="form-group" id="insurance">
         <label>Which medical insurance can be used?</label>
-        <select class="form-control" id="insurancetype" name = "insuranceForm">
-            <option value="1">Medicare</option>
-            <option value="2">Medicaid</option>
-            <option value="3">Peachcare</option>
-            <%--TODO is this being handled right? 5 was added--%>
-            <option value="4">Other</option>
-            <option value="5"><%=resource.getString("none")%></option>
-        </select>
+        <label class="checkbox" for="Medicare">
+            <input id="Medicare" type="checkbox" value="Medicare" name = "days">Medicare
+        </label>
+        <label class="checkbox" for="Medicaid">
+            <input id="Medicaid" type="checkbox" value="Medicaid" name = "days">Medicaid
+        </label>
+        <label class="checkbox" for="Peachcare">
+            <input id="Peachcare" type="checkbox" value="Peachcare" name = "days">Peachcare
+        </label>
+        <label class="checkbox" for="Other">
+            <input id="Other" type="checkbox" value="Other" name = "days">Other
+        </label>
     </div>
 
     <div class="form-group" id="interpreter">
@@ -167,7 +175,7 @@
     </div>
 
     <div class="form-group" id="forms">
-        <label>Do you provide medical forms that are written in Spanish?</label><br>
+        <label>Does this institution provide medical forms that are written in Spanish?</label><br>
         <label class="radio-inline" for="formyes">
             <input id="formyes" name="forms" type="radio" value="yes">Yes
         </label>
@@ -177,7 +185,7 @@
     </div>
 
     <div class="form-group" id="phone">
-        <label>Do you have a Spanish speaking receptionist on the phone?</label><br>
+        <label>Does this institution have a Spanish speaking receptionist on the phone?</label><br>
         <label class="radio-inline" for="phoneyes">
             <input id="phoneyes" name="reception" type="radio" value="yes">Yes
         </label>
@@ -187,7 +195,7 @@
     </div>
 
     <div class="form-group" id="call">
-        <label>Do you have someone available on the phone after the clinic's normal business hours?</label><br>
+        <label>Does this institution have someone available on the phone after the clinic's normal business hours?</label><br>
         <label class="radio-inline" for="afterphoneyes">
             <input id="afterphoneyes" name="call" type="radio" value="yes">Yes
         </label>
@@ -197,7 +205,7 @@
     </div>
 
     <div class="form-group" id="date">
-        <label>On which days do you open?</label><br>
+        <label>On which days are they open?</label><br>
         <label class="checkbox-inline" for="mon">
             <input id="mon" type="checkbox" value="M" name = "days">Monday
         </label>
@@ -226,7 +234,7 @@
     <br>
 
     <div class="form-group" id="type">
-        <label>Do you have the clinic to handle any of the following? (Check all that applies)?</label><br>
+        <label>Does this institution have the clinic to handle any of the following? (Check all that applies)?</label><br>
         <label class="checkbox-inline" for="women">
             <input id="women" type="checkbox" value="wo" name = "womens">Womens
         </label>
@@ -288,7 +296,7 @@
     </div>
 
     <div class="form-group" id="children">
-        <label>Do you have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
+        <label>Does this institution have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
         <label class="radio-inline" for="childrenyes">
             <input id="childrenyes" name="child" type="radio" value="y">Yes
         </label>
@@ -315,7 +323,7 @@
     </div> -->
 
     <div class="form-group" id="mentalhealth">
-        <label>Do you have mental health services, counseling, or rehabilitation services in any of the following? (Check all that applies)</label>
+        <label>Does this institution have mental health services, counseling, or rehabilitation services in any of the following? (Check all that applies)</label>
         <label class="checkbox">
             <input id="substance" type="checkbox" value="subt" name = "mentalhealth">Substance
         </label>
@@ -326,10 +334,10 @@
             <input id="anger" type="checkbox" value="ang" name = "mentalhealth2">Anger
         </label>
         <label class="checkbox">
-            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3">Hiv
+            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3">HIV
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4">Lgbt
+            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4">LGBT
         </label>
     </div>
     <br>

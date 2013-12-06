@@ -136,17 +136,27 @@
         <label class="radio-inline" for="appointment">
             <input id="appointment" name="appt" type="radio" value="appointment">Appointment
         </label>
+        <%--TODO this option is new--%>
+        <label class="radio-inline" for="bothWalkApp">
+            <input id="bothWalkApp" name="appt" type="radio" value="bothWalkApp">Both
+        </label>
     </div>
+
     <div class="form-group" id="insurance">
         <label>Which medical insurance can be used?</label>
-        <select class="form-control" id="insurancetype" name = "insuranceForm">
-            <option value="1">Medicare</option>
-            <option value="2">Medicaid</option>
-            <option value="3">Peachcare</option>
-            <%--TODO is this being handled right? 5 was added--%>
-            <option value="4">Other</option>
-            <option value="5"><%=resource.getString("none")%></option>
-        </select>
+        <%--TODO changed format, being handled?--%>
+        <label class="checkbox" for="Medicare">
+            <input id="Medicare" type="checkbox" value="Medicare" name = "days">Medicare
+        </label>
+        <label class="checkbox" for="Medicaid">
+            <input id="Medicaid" type="checkbox" value="Medicaid" name = "days">Medicaid
+        </label>
+        <label class="checkbox" for="Peachcare">
+            <input id="Peachcare" type="checkbox" value="Peachcare" name = "days">Peachcare
+        </label>
+        <label class="checkbox" for="Other">
+            <input id="Other" type="checkbox" value="Other" name = "days">Other
+        </label>
     </div>
 
     <div class="form-group" id="interpreter">
@@ -320,10 +330,10 @@
             <input id="anger" type="checkbox" value="ang" name = "mentalhealth2">Anger
         </label>
         <label class="checkbox">
-            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3">Hiv
+            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3">HIV
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4">Lgbt
+            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4">LGBT
         </label>
     </div>
     <br>
