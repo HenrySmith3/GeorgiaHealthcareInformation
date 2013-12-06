@@ -131,7 +131,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             max_survno = Math.max(max_survno, Integer.parseInt(max_survno3));
             String survno = String.valueOf(max_survno + 1);
             criteria.name = "none";
-            String ss = "INSERT INTO P1 (SurvNo, AddFacL1, County) VALUES ('" + survno + "', '" + criteria.name + "', '" + criteria.county + "'); ";
+            String ss = "INSERT INTO P1 (SurvNo, AddFacL1, County, Website, Phone, City) VALUES ('" + survno + "', '" + criteria.addressLine1 + "', '" + criteria.county + "','" + criteria.website + "', '" + criteria.phone + "', '" + criteria.city + "'); ";
             statement.executeUpdate(ss);
             String oncall = (criteria.onCall == true)? "1" : "0";
             ss = "INSERT INTO P2 (SurvNo, OnCall) VALUES ('" + survno + "', '" + oncall + "'); ";
@@ -202,6 +202,22 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             criteria.name = "none";
             if(criteria.county != null && !criteria.county.equals("")){
                 ss = "UPDATE P1 SET County = '" + criteria.county + "' WHERE ID = " + criteria.id + "; ";
+                statement.executeUpdate(ss);
+            }
+            if(criteria.city != null && !criteria.city.equals("")){
+                ss = "UPDATE P1 SET City = '" + criteria.city + "' WHERE ID = " + criteria.id + "; ";
+                statement.executeUpdate(ss);
+            }
+            if(criteria.website != null && !criteria.website.equals("")){
+                ss = "UPDATE P1 SET Website = '" + criteria.website + "' WHERE ID = " + criteria.id + "; ";
+                statement.executeUpdate(ss);
+            }
+            if(criteria.phone != null && !criteria.phone.equals("")){
+                ss = "UPDATE P1 SET Phone = '" + criteria.city + "' WHERE ID = " + criteria.id + "; ";
+                statement.executeUpdate(ss);
+            }
+            if(criteria.addressLine1 != null && !criteria.addressLine1.equals("")){
+                ss = "UPDATE P1 SET AddFacL1 = '" + criteria.addressLine1 + "' WHERE ID = " + criteria.id + "; ";
                 statement.executeUpdate(ss);
             }
             String oncall = "0";
@@ -907,7 +923,14 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             temp = request.getParameter("child");
             if(temp != null && temp.equals("yes"))
                 criteria.childGuide = true;
- 
+            temp = request.getParameter("web");
+            criteria.website = temp;
+            temp = request.getParameter("pho");
+            criteria.phone = temp;
+            temp = request.getParameter("add");
+            criteria.addressLine1 = temp;
+            temp = request.getParameter("city");
+            criteria.city = temp;
         }
         return criteria ;
     }
