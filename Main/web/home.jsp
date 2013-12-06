@@ -68,20 +68,20 @@
       <div class="row">
         <div class="col-md-4">
           <h2>General Health</h2>
-          <p>Accurate and trustworthy information about health can be difficult to find, even with the internet. We
-            have compiled some information and links concerning maintaining health and what to ask about with your healthcare providers.</p>
+          <p>Accurate and trustworthy information about healthcare can be difficult to find, even with the internet. We
+            have compiled some information and links concerning maintaining good health and what to ask your healthcare providers.</p>
           <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Clinicians</h2>
           <p>If you are a staff member of a care-providing institution, information about your clinic can be added
-          to this site. If information about your clinic already exists but isn't up to date, you can also find 
-          information as to how to update it here as well.</p>
+          to this site. If information about your clinic already exists but isn't up-to-date, you can also find
+          information on to how to update it here.</p>
           <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
        </div>
         <div class="col-md-4">
           <h2>Site Navigation</h2>
-          <p>Here you can find a guide that will explain how to navigate this website. Provided is a video that shows you what this site offers and where you can find it. There is also a text guide with images for those with lower bandwidth.</p>
+          <p>Here you can find tools that will explain how to navigate this website. Provided is a video that shows you what this site offers and where you can find it. There is also a text guide with images for those with lower bandwidth.</p>
           <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
         </div>
       </div>
