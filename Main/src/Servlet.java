@@ -796,10 +796,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         {
             String parameter = (String)parameterNames.nextElement();
             temp = request.getParameter("id");
-            if(temp != null)
+            criteria.id = 1;
+            if(temp != null && temp != "")
                 criteria.id = Integer.parseInt(temp);
-            else
-            	criteria.id = 1;
             temp = request.getParameter("county");
             if(temp.equals("1")) {
                 criteria.county = "Clayton";

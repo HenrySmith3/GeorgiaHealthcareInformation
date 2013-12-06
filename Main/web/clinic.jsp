@@ -127,28 +127,35 @@
             <option value="5">Gwinnett</option>
         </select>
     </div>
+    <br>
     <div id="city" class="form-inline">
     <label>City</label>
     <br>
     <textarea id="city" name = "city" rows = "1" cols = "60" placeholder="city"></textarea>
 
+    <br>
     </div>
+    <br>
     <div id="website" class="form-inline">
     <label>Website</label>
     <br>
     <textarea id="web" name = "web" rows = "1" cols = "60" placeholder="website"></textarea>
     </div>
+    <br>
     <div id="phone" class="form-inline">
     <label>Phone</label>
     <br>
     <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"></textarea>
 
     </div>
+    <br>
     <div id="address" class="form-inline">
     <label>Address</label>
     <br>
     <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
 
+    <br>
+    <br>
     </div>
     <div class="form-group" id="appt">
         <label>What kind of appointments can be made?</label><br>
