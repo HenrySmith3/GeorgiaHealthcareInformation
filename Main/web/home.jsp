@@ -41,14 +41,15 @@
           <a class="navbar-brand" href="/home.jsp/english">English</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right" action="/html_form_action.asp">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+              <input type="text" placeholder="Email" name="username" class="form-control">
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+              <input type="password" placeholder="Password" name="password"  class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <input type="hidden" value="adminPage" name="action" id="action">
+            <button type="submit">Login</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
