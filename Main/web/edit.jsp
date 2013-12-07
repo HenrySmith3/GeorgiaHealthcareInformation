@@ -112,6 +112,7 @@
     <input type="hidden" value="lookupIds" name="action" id="action">
     <button type="submit">Lookup Your Hospital's ID</button>
 </form>
+<br>
 
 <div class="span10">
 <form class="form-horizontal form-stepped" action="/html_form_action.asp">
