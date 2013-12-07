@@ -37,9 +37,34 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             lookupIds(request, response);
         } else if (request.getParameter("action").equalsIgnoreCase("viewBugs")) {
             viewBugs(request, response);
+        } else if (request.getParameter("action").equalsIgnoreCase("adminPage")) {
+            adminPage(request, response);
         }
 
 }
+
+    private void adminPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if (username.equals("")|| password.equals("")) {
+            request.getRequestDispatcher("/home.jsp").forward(request, response);
+        }
+        Connection con = initializeConnection();
+        Statement statement = null;
+        try {
+            statement = con.createStatement();
+            String query = "SELECT * FROM USERS WHERE USERNAME='" + username + "' AND PASSWORD='" + password + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                request.getRequestDispatcher("/adminPage.jsp").forward(request, response);
+            }  else {
+                request.getRequestDispatcher("/home.jsp").forward(request, response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
 
     private void processSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Hospital criteria = populateCriteriaFromRequest(request);
