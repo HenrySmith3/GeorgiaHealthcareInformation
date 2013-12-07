@@ -108,6 +108,10 @@
     <h4>Change or add information about your clinic as needed. The marked answers is the data that we currently have concerning your clinic.</h4>
 </div><br>
 <br>
+<form action="/html_form_action.asp">
+    <input type="hidden" value="lookupIds" name="action" id="action">
+    <button type="submit">Lookup Your Hospital's ID</button>
+</form>
 
 <div class="span10">
 <form class="form-horizontal form-stepped" action="/html_form_action.asp">
