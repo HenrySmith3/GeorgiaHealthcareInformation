@@ -109,6 +109,10 @@
 </div><br>
 <br>
 <form action="/html_form_action.asp">
+    <input type="hidden" value="viewBugs" name="action" id="action">
+    <button type="submit">View Current Bugs (Move this button later)</button>
+</form>
+<form action="/html_form_action.asp">
     <input type="hidden" value="lookupIds" name="action" id="action">
     <button type="submit">Lookup Your Hospital's ID</button>
 </form>
