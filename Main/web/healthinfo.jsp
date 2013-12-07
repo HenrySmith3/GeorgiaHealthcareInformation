@@ -1,3 +1,5 @@
+
+<%--TODO add this page to web.xml --%>
 <%@ page import="java.util.ResourceBundle" %><%
     ResourceBundle resource;
     String language;
