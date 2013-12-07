@@ -137,7 +137,7 @@
     <label>City</label>
     <br>
     <textarea id="city" name = "city" rows = "1" cols = "60" placeholder="city"></textarea>
-
+    <br>
     </div>
     <div class="form-group" id="website" class="form-inline">
     <label>Website</label>

@@ -70,7 +70,7 @@
           <h2>General Health</h2>
           <p>Accurate and trustworthy information about healthcare can be difficult to find, even with the internet. We
             have compiled some information and links concerning maintaining good health and what to ask your healthcare providers.</p>
-          <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
+          <p><a class="btn btn-default" href="/healthinfo.jsp/english" role="button">Learn more &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Clinicians</h2>
