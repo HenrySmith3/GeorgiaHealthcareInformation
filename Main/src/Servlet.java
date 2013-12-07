@@ -33,9 +33,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             addHospital(request, response);
         } else if (request.getParameter("action").equalsIgnoreCase("editHospital")) {
             editHospital(request, response);
+        } else if (request.getParameter("action").equalsIgnoreCase("lookupIds")) {
+            lookupIds(request, response);
+        } else if (request.getParameter("action").equalsIgnoreCase("viewBugs")) {
+            viewBugs(request, response);
         }
 
-    }
+}
 
     private void processSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Hospital criteria = populateCriteriaFromRequest(request);
@@ -69,6 +73,59 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         } else {
             request.getRequestDispatcher("/response.jsp/spanish").forward(request, response);
         }
+    }
+
+    private void lookupIds(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Connection con = initializeConnection();
+        JSONArray hospitals = new JSONArray();
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultset = statement.executeQuery(getIDLookupQuery());
+            while (resultset.next()) {
+                JSONObject object = new JSONObject();
+                object.accumulate("name", resultset.getString("NameFac"));
+                object.accumulate("ID", resultset.getString("ID"));
+                hospitals.add(object);
+                //writer.append(hospital.toString() + "\n");
+            }
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("hospitals", hospitals);
+        request.getRequestDispatcher("/idLookup.jsp").forward(request, response);
+    }
+
+    private void viewBugs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Connection con = initializeConnection();
+        JSONArray hospitals = new JSONArray();
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultset = statement.executeQuery(getBugLookup());
+            while (resultset.next()) {
+                JSONObject object = new JSONObject();
+                object.accumulate("ID", resultset.getString("ID"));
+                object.accumulate("bug", resultset.getString("bug"));
+                object.accumulate("bugDesc", resultset.getString("bugDesc"));
+                hospitals.add(object);
+                //writer.append(hospital.toString() + "\n");
+            }
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("bugs", hospitals);
+        request.getRequestDispatcher("/viewBugs.jsp").forward(request, response);
+    }
+
+    private String getIDLookupQuery() {
+        return "SELECT p1.NameFac, p1.ID from p1";
+    }
+
+    private String getBugLookup() {
+        return "SELECT bug_report.ID, bug_report.bug, bug_report.bugDesc from bug_report";
     }
 
     private void submitBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

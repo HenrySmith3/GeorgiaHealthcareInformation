@@ -25,6 +25,7 @@
         h2 { text-align: center; }
         h4 { text-align: center; }
         #accordion { text-align: center; }
+        .panel-collapse { text-align: center; }
         body {
             margin: auto;
             margin-top: 5%;

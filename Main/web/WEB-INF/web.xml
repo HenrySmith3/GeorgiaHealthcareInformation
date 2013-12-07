@@ -40,10 +40,28 @@
         <servlet-name>clinic</servlet-name>
         <jsp-file>/clinic.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>idLookup</servlet-name>
+        <jsp-file>/idLookup.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>viewBugs</servlet-name>
+        <jsp-file>/viewBugs.jsp</jsp-file>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index.jsp/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>viewBugs</servlet-name>
+        <url-pattern>/viewBugs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>idLookup</servlet-name>
+        <url-pattern>/idLookup.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

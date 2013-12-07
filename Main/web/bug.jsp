@@ -82,7 +82,7 @@
                         <%=resource.getString("addition")%>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/edit.jsp/<%out.print(language);%>">
                         <%=resource.getString("editing")%>
                     </a>
@@ -122,7 +122,7 @@
         </select>
     </div>
 
-    <div id="bug2" class="form-inline">
+    <div id="bug2" class="form-group">
     <label><%=resource.getString("bug_desc")%></label>
     <br>
     <textarea id="bug2" name = "bug2" rows = "3" cols = "90" placeholder="Error Description"></textarea>
