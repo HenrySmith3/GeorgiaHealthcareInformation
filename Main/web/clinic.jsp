@@ -128,7 +128,7 @@
         </select>
     </div>
     <br>
-    <div id="city" class="form-inline">
+    <div id="city" class="form-group">
     <label>City</label>
     <br>
     <textarea id="city" name = "city" rows = "1" cols = "60" placeholder="city"></textarea>
@@ -136,20 +136,20 @@
     <br>
     </div>
     <br>
-    <div id="website" class="form-inline">
+    <div id="website" class="form-group">
     <label>Website</label>
     <br>
     <textarea id="web" name = "web" rows = "1" cols = "60" placeholder="website"></textarea>
     </div>
     <br>
-    <div id="phone" class="form-inline">
+    <div id="phone" class="form-group">
     <label>Phone</label>
     <br>
     <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"></textarea>
 
     </div>
     <br>
-    <div id="address" class="form-inline">
+    <div id="address" class="form-group">
     <label>Address</label>
     <br>
     <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
