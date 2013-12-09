@@ -96,14 +96,22 @@
 
 
 <div id="body">
+    <form>
+        <fieldset>
+            <input type="hidden" value="deleteBug" name="action" id="action">
+
+
 <%
     JSONArray jsonArray = (JSONArray)request.getAttribute("bugs");
     ListIterator listIterator = jsonArray.listIterator();
     out.println("<table style=\"border: 1px solid black\">");
-    out.println("<tr><td>ID</td><td>Bug Type</td><td>Bug Description</td></tr>");
+    out.println("<tr><td>Delete</td><td>ID</td><td>Bug Type</td><td>Bug Description</td></tr>");
     while (listIterator.hasNext()) {
         out.println("<tr><td>");
         JSONObject object = (JSONObject)listIterator.next();
+        int ID = object.getInt("ID");
+        out.print("<button type=\"submit\" name=\"Delete\" value=\"" + ID + "\">Delete this bug</button>");
+        out.print("</td><td>");
         out.print(object.get("ID"));
         out.print("</td><td>");
         out.print(object.get("bug"));
@@ -113,8 +121,9 @@
     }
     out.print("</table>");
 
-
 %>
+        </fieldset>
+    </form>
 </div>
 
 </body>

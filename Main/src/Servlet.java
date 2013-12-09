@@ -39,6 +39,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             viewBugs(request, response);
         } else if (request.getParameter("action").equalsIgnoreCase("adminPage")) {
             adminPage(request, response);
+        } else if (request.getParameter("action").equalsIgnoreCase("deleteBug")) {
+            deleteBug(request, response);
         }
 
 }
@@ -60,6 +62,22 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             }  else {
                 request.getRequestDispatcher("/home.jsp").forward(request, response);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
+
+    private void deleteBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String deleteID = request.getParameter("Delete");
+        Connection con = initializeConnection();
+        Statement statement = null;
+        try {
+            statement = con.createStatement();
+            String query = "DELETE FROM bug_report WHERE ID=" + deleteID;
+            statement.executeUpdate(query);
+            //TODO we should think about where all of these go when they're done. We should have confirmation messages for things like this.
+//            request.getRequestDispatcher("/home.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
