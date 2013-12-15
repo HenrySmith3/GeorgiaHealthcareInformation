@@ -49,13 +49,13 @@
         <jsp-file>/viewBugs.jsp</jsp-file>
     </servlet>
     <servlet>
-        <servlet-name>healthInfo</servlet-name>
-        <jsp-file>/healthInfo.jsp/*</jsp-file>
+        <servlet-name>healthinfo</servlet-name>
+        <jsp-file>/healthinfo.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>healthInfo</servlet-name>
-        <url-pattern>/healthInfo.jsp/*</url-pattern>
+        <servlet-name>healthinfo</servlet-name>
+        <url-pattern>/healthinfo.jsp/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

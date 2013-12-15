@@ -19,7 +19,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>Hispanic Healthcare Web Directory</title>
+    <title><%=resource.getString("tabTitle")%></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -37,6 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+            <%--TODO this entire header needs to be in spanish or english depending on the URL--%>
           <a class="navbar-brand" href="/home.jsp/spanish">Spanish</a>
           <a class="navbar-brand" href="/home.jsp/english">English</a>
         </div>
@@ -58,9 +59,9 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hispanic Healthcare Web Directory</h1>
-        <p><br>Easily locate the healthcare providers that fit your specific needs.</p>
-        <p><a class="btn btn-primary btn-lg" role="button" href="/index.jsp/english">Find a Provider &raquo;</a></p>
+        <h1><%=resource.getString("mainTitle")%></h1>
+        <p><br><%=resource.getString("subTitle")%></p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="/index.jsp/english"><%=resource.getString("mainButton")%></a></p>
       </div>
     </div>
 
@@ -68,30 +69,26 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>General Health</h2>
-          <p>Accurate and trustworthy information about healthcare can be difficult to find, even with the internet. We
-            have compiled some information and links concerning maintaining good health and what to ask your healthcare providers.</p>
-          <p><a class="btn btn-default" href="/healthinfo.jsp/english" role="button">Learn more &raquo;</a></p>
+          <h2><%=resource.getString("subTab1")%></h2>
+          <p><%=resource.getString("subBody1")%></p>
+          <p><a class="btn btn-default" href="/healthinfo.jsp/english" role="button"><%=resource.getString("learnMore")%></a></p>
         </div>
         <div class="col-md-4">
-          <h2>Clinicians</h2>
-          <p>If you are a staff member of a care-providing institution, information about your clinic can be added
-          to this site. If information about your clinic already exists but isn't up-to-date, you can also find
-          information on to how to update it here.</p>
-          <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
+          <h2><%=resource.getString("subTab2")%></h2>
+          <p><%=resource.getString("subBody2")%></p>
+          <p><a class="btn btn-default" href="#" role="button"><%=resource.getString("learnMore")%></a></p>
        </div>
         <div class="col-md-4">
-          <h2>Site Navigation</h2>
-          <p>Here you can find tools that will explain how to navigate this website. Provided is a video that shows you what this site offers and where you can find it. There is also a text guide with images for those with lower bandwidth.</p>
-          <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
+          <h2><%=resource.getString("subTab3")%></h2>
+          <p><%=resource.getString("subBody3")%></p>
+          <p><a class="btn btn-default" href="#" role="button"><%=resource.getString("learnMore")%></a></p>
         </div>
       </div>
 
       <hr>
 
       <footer>
-        <p>Provided by members of the Georgia Institute of Technology, Emory School of Public Health, and the Hispanic 
-          Healthcare Coalition of Georgia</p>
+        <p><%=resource.getString("footer")%></p>
       </footer>
     </div> <!-- /container -->
 
