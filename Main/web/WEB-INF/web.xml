@@ -48,6 +48,15 @@
         <servlet-name>viewBugs</servlet-name>
         <jsp-file>/viewBugs.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>healthInfo</servlet-name>
+        <jsp-file>/healthInfo.jsp/*</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>healthInfo</servlet-name>
+        <url-pattern>/healthInfo.jsp/*</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
