@@ -159,9 +159,14 @@
     <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"></textarea>
     </div>
     <div class="form-group" id="address" class="form-inline">
-    <label>Address</label>
-    <br>
-    <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
+        <label>Address</label>
+        <br>
+        <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
+    </div>
+    <div class="form-group" id="zipCode" class="form-inline">
+        <label>Zip Code</label>
+        <br>
+        <textarea id="zip" name = "zip" rows = "1" cols = "60" placeholder="zip code"></textarea>
     </div>
     <br>
     <div class="form-group" id="appt">

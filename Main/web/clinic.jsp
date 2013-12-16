@@ -150,9 +150,16 @@
     </div>
     <br>
     <div id="address" class="form-group">
-    <label>Address</label>
-    <br>
+        <label>Address</label>
+        <br>
     <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
+
+    </div>
+    <br>
+    <div id="zipCode" class="form-group">
+        <label>Zip Code</label>
+        <br>
+    <textarea id="zip" name = "zip" rows = "1" cols = "60" placeholder="zip code"></textarea>
 
     <br>
     <br>
