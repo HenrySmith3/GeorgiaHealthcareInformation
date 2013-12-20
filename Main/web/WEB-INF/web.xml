@@ -52,6 +52,15 @@
         <servlet-name>healthinfo</servlet-name>
         <jsp-file>/healthinfo.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>adminPage</servlet-name>
+        <jsp-file>/adminPage.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>adminPage</servlet-name>
+        <url-pattern>/adminPage.jsp/*</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>healthinfo</servlet-name>

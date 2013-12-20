@@ -897,10 +897,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Hospital criteria = new Hospital();
         Enumeration parameterNames = request.getParameterNames();
         String temp;
-
+//        TODO we aren't actually using the looping here. Just take it out.
         while (parameterNames.hasMoreElements()) 
         {
             String parameter = (String)parameterNames.nextElement();
+
             temp = request.getParameter("id");
             criteria.id = 1;
             if(temp != null && temp != "")
