@@ -87,6 +87,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     private void populateFields(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Hospital hospital1 = new Hospital();
+        String getThis = hospital1.toJson().toString();
         String id = request.getParameter("id");
         Connection con = initializeConnection();
         Statement statement = null;

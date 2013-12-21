@@ -23,6 +23,9 @@
         language = "spanish";
     }
     JSONObject hospital = (JSONObject)request.getAttribute("hospital");
+    if (hospital == null) {
+        hospital = JSONObject.fromObject("{\"FALSE\":0,\"id\":'',\"itp\":'',\"spanishSpeakingStaff\":'',\"name\":'',\"addressLine1\":'',\"addressLine2\":'',\"city\":'',\"county\":'',\"zip\":'',\"phone\":'',\"fax\":'',\"website\":'',\"mainFacility\":'',\"branchRefNumber\":'',\"associatedFacilities\":'',\"intComm\":'',\"open247\":'',\"onCall\":'',\"openTimes\":'',\"closeTimes\":'',\"commentsOnTimes\":'',\"spanishTimesComment\":'',\"hoursGuide\":'',\"walkIn\":'',\"walkInComment\":'',\"apptGuide\":'',\"walkInGuide\":'',\"parking\":'',\"parkingComment\":'',\"publicTransportation\":'',\"publicTransportationGuide\":'',\"publicTransportationComment\":'',\"publicTransportationOther\":'',\"publicTransportationOtherComment\":'',\"freeTransport\":'',\"spanAdmin\":'',\"spanAdminGuide\":'',\"spanNurse\":'',\"spanNurseGuide\":'',\"spanDoc\":'',\"spanDocGuide\":'',\"spanInterpreter\":'',\"spanInterpreterGuide\":'',\"spanPhone\":'',\"spanPhoneGuide\":'',\"spanFo\":'',\"spanFoGuide\":'',\"insurance\":'',\"insuranceComment\":'',\"medicare\":'',\"medicaid\":'',\"peachCare\":'',\"pay\":'',\"financialAssistance\":'',\"payPlanGuide\":'',\"SlideSc\":'',\"financialAssistanceComment\":'',\"finAssPh\":'',\"finAllPhComment\":'',\"spcFCH\":'',\"spcWH\":'',\"spcMH\":'',\"spcMHC\":'',\"spcDH\":'',\"spcVH\":'',\"spcOT\":'',\"freeLow\":'',\"spcComment\":'',\"oteSpecial\":'',\"spcDk\":'',\"age\":'',\"ageStart\":'',\"ageEnd\":'',\"ageOTComment\":'',\"childGuide\":'',\"adolescentGuide\":'',\"adultGuide\":'',\"agesGuide\":'',\"otServ\":'',\"hivTestGuide\":'',\"abortionGuide\":'',\"mhCount\":'',\"mhCounSG\":'',\"mhCounOT\":'',\"subAbGuide\":'',\"sexAbGuide\":'',\"angManGuide\":'',\"hivConsGuide\":'',\"lgbtGuide\":'',\"suppGGuide\":'',\"finalComment\":'',\"notes\":'',\"notesLowFree\":'',\"notesLowFree2\":''}");
+    }
 %>
 <!DOCTYPE html>
 
