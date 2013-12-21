@@ -41,6 +41,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             adminPage(request, response);
         } else if (request.getParameter("action").equalsIgnoreCase("deleteBug")) {
             deleteBug(request, response);
+        } else if (request.getParameter("action").equalsIgnoreCase("populateFields")) {
+            populateFields(request, response);
         }
 
 }
@@ -78,6 +80,24 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             statement.executeUpdate(query);
             //TODO we should think about where all of these go when they're done. We should have confirmation messages for things like this.
 //            request.getRequestDispatcher("/home.jsp").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
+
+    private void populateFields(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        Connection con = initializeConnection();
+        Statement statement = null;
+        try {
+            statement = con.createStatement();
+            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 WHERE p1.ID=" + id;
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.next();
+            Hospital hospital = Hospital.getHospitalFromResultSet(resultSet);
+            request.setAttribute("hospital", hospital.toJson());
+            request.getRequestDispatcher("/edit.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

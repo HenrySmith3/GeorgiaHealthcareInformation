@@ -147,28 +147,29 @@
     <div class="form-group" id="city" class="form-inline">
     <label>City</label>
     <br>
-    <textarea id="city" name = "city" rows = "1" cols = "60" placeholder="city"></textarea>
+    <textarea id="city" name = "city" rows = "1" cols = "60" placeholder="city"><%out.write(hospital.getString("city"));%></textarea>
     <br>
     </div>
     <div class="form-group" id="website" class="form-inline">
     <label>Website</label>
     <br>
-    <textarea id="web" name = "web" rows = "1" cols = "60" placeholder="website"></textarea>
+    <textarea id="web" name = "web" rows = "1" cols = "60" placeholder="website"><%out.write(hospital.getString("website"));%></textarea>
     </div>
     <div class="form-group" id="phone" class="form-inline">
     <label>Phone</label>
     <br>
-    <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"></textarea>
+    <%--TODO Make sure that the input is the right format for this. Parenthesis, spaces, etc.--%>
+    <textarea id="pho" name = "pho" rows = "1" cols = "60" placeholder="phone number"><%out.write(hospital.getString("phone"));%></textarea>
     </div>
     <div class="form-group" id="address" class="form-inline">
         <label>Address</label>
         <br>
-        <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"></textarea>
+        <textarea id="add" name = "add" rows = "1" cols = "60" placeholder="address"><%out.write(hospital.getString("addressLine1"));%></textarea>
     </div>
     <div class="form-group" id="zipCode" class="form-inline">
         <label>Zip Code</label>
         <br>
-        <textarea id="zip" name = "zip" rows = "1" cols = "60" placeholder="zip code"></textarea>
+        <textarea id="zip" name = "zip" rows = "1" cols = "60" placeholder="zip code"><%out.write(hospital.getString("zip"));%></textarea>
     </div>
     <br>
     <div class="form-group" id="appt">
