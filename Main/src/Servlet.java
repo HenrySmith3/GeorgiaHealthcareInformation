@@ -984,6 +984,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             {
                 temp = request.getParameter(parameter);
                 if (temp != null && temp.equalsIgnoreCase("interpY")) {
+                    //TODO are these just 1 and 0? or is there 3 or something?
                 	criteria.spanInterpreter = 1;
                 } 
                 else 

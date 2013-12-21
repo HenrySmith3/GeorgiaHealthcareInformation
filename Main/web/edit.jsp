@@ -175,26 +175,26 @@
     <div class="form-group" id="appt">
         <label>What kind of appointments can be made?</label><br>
         <label class="radio-inline" for="walkin">
-            <input id="walkin" name="appt" type="radio" value="walkin">Walk-In
+            <input id="walkin" name="appt" type="radio" value="walkin" checked="<%hospital.getString("walkIn").equals("1");%>">Walk-In
         </label>
         <label class="radio-inline" for="appointment">
-            <input id="appointment" name="appt" type="radio" value="appointment">Appointment
+            <input id="appointment" name="appt" type="radio" value="appointment" checked="<%hospital.getString("walkIn").equals("2");%>">Appointment
         </label>
         <%--TODO this option is new--%>
         <label class="radio-inline" for="bothWalkApp">
-            <input id="bothWalkApp" name="appt" type="radio" value="bothWalkApp">Both
+            <input id="bothWalkApp" name="appt" type="radio" value="bothWalkApp" checked="<%hospital.getString("walkIn").equals("3");%>">Both
         </label>
     </div>
     <div class="form-group" id="insurance">
         <label>Which medical insurance can be used?</label>
         <label class="checkbox" for="Medicare">
-            <input id="Medicare" type="checkbox" value="Medicare" name = "days">Medicare
+            <input id="Medicare" type="checkbox" value="Medicare" name = "days" checked="<%hospital.getString("medicare").equals("true");%>">Medicare
         </label>
         <label class="checkbox" for="Medicaid">
-            <input id="Medicaid" type="checkbox" value="Medicaid" name = "days">Medicaid
+            <input id="Medicaid" type="checkbox" value="Medicaid" name = "days" checked="<%hospital.getString("medicaid").equals("true");%>">Medicaid
         </label>
         <label class="checkbox" for="Peachcare">
-            <input id="Peachcare" type="checkbox" value="Peachcare" name = "days">Peachcare
+            <input id="Peachcare" type="checkbox" value="Peachcare" name = "days" checked="<%hospital.getString("peachCare").equals("true");%>">Peachcare
         </label>
         <label class="checkbox" for="Other">
             <input id="Other" type="checkbox" value="Other" name = "days">Other
@@ -205,40 +205,40 @@
         <%--TODO this was added--%>
         <label>Is there a Spanish interpreter/translator?</label><br>
         <label class="radio-inline" for="interpreteryes">
-            <input id="interpreteryes" name="interpreter" type="radio" value="interpY">Yes
+            <input id="interpreteryes" name="interpreter" type="radio" value="interpY" checked="<%hospital.getString("spanInterpreter").equals("3");%>">Yes
         </label>
         <label class="radio-inline" for="interpreterno">
-            <input id="interpreterno" name="interpreter" type="radio" value="interpN">No
+            <input id="interpreterno" name="interpreter" type="radio" value="interpN" checked="<%hospital.getString("spanInterpreter").equals("1");%>">No
         </label>
     </div>
 
     <div class="form-group" id="forms">
         <label>Do you provide medical forms that are written in Spanish?</label><br>
         <label class="radio-inline" for="formyes">
-            <input id="formyes" name="forms" type="radio" value="yes">Yes
+            <input id="formyes" name="forms" type="radio" value="yes" checked="<%hospital.getString("spanFo").equals("1");%>">Yes
         </label>
         <label class="radio-inline" for="formno">
-            <input id="formno" name="forms" type="radio" value="no">No
+            <input id="formno" name="forms" type="radio" value="no" checked="<%hospital.getString("spanFo").equals("0");%>">No
         </label>
     </div>
 
     <div class="form-group" id="phone">
         <label>Do you have a Spanish speaking receptionist on the phone?</label><br>
         <label class="radio-inline" for="phoneyes">
-            <input id="phoneyes" name="reception" type="radio" value="yes">Yes
+            <input id="phoneyes" name="reception" type="radio" value="yes" checked="<%hospital.getString("spanPhone").equals("0");%>">Yes
         </label>
         <label class="radio-inline" for="phoneno">
-            <input id="phoneno" name="reception" type="radio" value="no">No
+            <input id="phoneno" name="reception" type="radio" value="no" checked="<%hospital.getString("spanPhone").equals("0");%>">No
         </label>
     </div>
 
     <div class="form-group" id="call">
         <label>Do you have someone available on the phone after the clinic's normal business hours?</label><br>
         <label class="radio-inline" for="afterphoneyes">
-            <input id="afterphoneyes" name="call" type="radio" value="yes">Yes
+            <input id="afterphoneyes" name="call" type="radio" value="yes" checked="<%hospital.getString("onCall").equals("true");%>">Yes
         </label>
         <label class="radio-inline" for="afterphoneno">
-            <input id="afterphoneno" name="call" type="radio" value="no">No
+            <input id="afterphoneno" name="call" type="radio" value="no" checked="<%hospital.getString("onCall").equals("false");%>">No
         </label>
     </div>
 
@@ -274,22 +274,22 @@
     <div class="form-group" id="type">
         <label>Do you have the clinic to handle any of the following? (Check all that applies)?</label><br>
         <label class="checkbox-inline" for="women">
-            <input id="women" type="checkbox" value="wo" name = "womens">Womens
+            <input id="women" type="checkbox" value="wo" name = "womens" checked="<%hospital.getString("spcWH").equals("true");%>">Womens
         </label>
         <label class="checkbox-inline" for="mens">
-            <input id="mens" type="checkbox" value="me" name = "mens">Mens
+            <input id="mens" type="checkbox" value="me" name = "mens" checked="<%hospital.getString("spcMH").equals("true");%>">Mens
         </label>
         <label class="checkbox-inline" for="family">
-            <input id="family" type="checkbox" value="fam" name = "family">Family
+            <input id="family" type="checkbox" value="fam" name = "family" checked="<%hospital.getString("spcFCH").equals("true");%>">Family
         </label>
         <label class="checkbox-inline" for="mental">
-            <input id="mental" type="checkbox" value="ment" name = "mental">Mental
+            <input id="mental" type="checkbox" value="ment" name = "mental" checked="<%hospital.getString("spcMHC").equals("true");%>">Mental
         </label>
         <label class="checkbox-inline" for="dental">
-            <input id="dental" type="checkbox" value="dent" name = "dental">Dental
+            <input id="dental" type="checkbox" value="dent" name = "dental" checked="<%hospital.getString("spcDH").equals("true");%>">Dental
         </label>
         <label class="checkbox-inline" for="vision">
-            <input id="vision" type="checkbox" value="vis" name = "vision">Vision
+            <input id="vision" type="checkbox" value="vis" name = "vision" checked="<%hospital.getString("spcVH").equals("true");%>">Vision
         </label>
         <%--TODO all the options from here forward are new and aren't being handles --%>
         <label class="checkbox-inline" for="primary">
@@ -363,19 +363,19 @@
     <div class="form-group" id="mentalhealth">
         <label>Do you have mental health services, counseling, or rehabilitation services in any of the following? (Check all that applies)</label>
         <label class="checkbox">
-            <input id="substance" type="checkbox" value="subt" name = "mentalhealth">Substance
+            <input id="substance" type="checkbox" value="subt" name = "mentalhealth" checked="<%hospital.getString("subAbGuide").equals("true");%>">Substance
         </label>
         <label class="checkbox">
-            <input id="sex" type="checkbox" value="se" name = "mentalhealth1">Sexual
+            <input id="sex" type="checkbox" value="se" name = "mentalhealth1" checked="<%hospital.getString("sexAbGuide").equals("true");%>">Sexual
         </label>
         <label class="checkbox">
-            <input id="anger" type="checkbox" value="ang" name = "mentalhealth2">Anger
+            <input id="anger" type="checkbox" value="ang" name = "mentalhealth2" checked="<%hospital.getString("angManGuide").equals("true");%>">Anger
         </label>
         <label class="checkbox">
-            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3">HIV
+            <input id="sexHIV" type="checkbox" value="HIV" name = "mentalhealth3" checked="<%hospital.getString("hivConsGuide").equals("true");%>">HIV
         </label>
         <label class="checkbox">
-            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4">LGBT
+            <input id="sexLGBT" type="checkbox" value="LGBT" name = "mentalhealth4" checked="<%hospital.getString("lgbtGuide").equals("true");%>">LGBT
         </label>
     </div>
     <br>

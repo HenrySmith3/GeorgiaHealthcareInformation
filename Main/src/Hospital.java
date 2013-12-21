@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Hospital {
     public final static Integer TRUE = 1;
-    public final static Integer FALSE = 1;
+    public final static Integer FALSE = 0;
 
     //page 1
     public Integer id;
