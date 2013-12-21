@@ -11,6 +11,7 @@
 --%>
 <%@ page import = "java.util.ResourceBundle" %>
 <%@ page import="java.util.Enumeration" %>
+<%@ page import="net.sf.json.JSONObject" %>
 <%
     ResourceBundle resource;
     String language;
@@ -21,6 +22,7 @@
         resource = ResourceBundle.getBundle("spanish");
         language = "spanish";
     }
+    JSONObject hospital = (JSONObject)request.getAttribute("hospital");
 %>
 <!DOCTYPE html>
 
@@ -114,17 +116,21 @@
 </form>
 <br>
 
+<div class="form-group" id="selectclinic">
+    <label>Input the ID of the hospital you wish to edit</label><br>
+    <form action="/html_form_action.asp">
+        <textarea id="id" name="id" rows="1" cols="20" placeholder="hospital ID"><%out.write(hospital.getString("id"));%></textarea>
+        <input type="hidden" value="populateFields" name="action" id="action">
+        <button type="submit">Populate Fields</button>
+    </form>
+</div>
+
 <div class="span10">
 <form class="form-horizontal form-stepped" action="/html_form_action.asp">
 
 
 <fieldset class="form-step">
     <input type="hidden" value="editHospital" name="action" id="action">
-
-    <div class="form-group" id="selectclinic">
-    <label>Input the ID of the hospital you wish to edit</label><br>
-    <textarea id="id" name="id" rows="1" cols="20" placeholder="hospital ID"/></textarea>
-    </div>
 
     <div class="form-group" id="county">
         <label>County</label>
