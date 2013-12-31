@@ -200,10 +200,10 @@
     <div class="form-group" id="appt">
         <label><%=resource.getString("kindAppointments")%></label><br>
         <label class="radio-inline" for="walkin">
-            <input id="walkin" name="appt" type="radio" value="walk">Walk-In
+            <input id="walkin" name="appt" type="radio" value="walk"><%=resource.getString("walkIn")%>
         </label>
         <label class="radio-inline" for="appointment">
-            <input id="appointment" name="appt" type="radio" value="appmt">Appointment
+            <input id="appointment" name="appt" type="radio" value="appmt"><%=resource.getString("appointment")%>
         </label>
     </div>
     <div class="form-group" id="insurance">
@@ -220,7 +220,7 @@
 
     <div class="form-group" id="interpreter">
         <%--TODO this was added--%>
-        <label>Do you need a Spanish interpreter/translator?</label><br>
+        <label><%=resource.getString("interpreterTranslator")%></label><br>
         <label class="radio-inline" for="interpreteryes">
             <input id="interpreteryes" name="interpreter" type="radio" value="interpYes"><%=resource.getString("yes")%>
         </label>

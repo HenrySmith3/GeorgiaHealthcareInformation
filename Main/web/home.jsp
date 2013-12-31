@@ -37,20 +37,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <%--TODO this entire header needs to be in spanish or english depending on the URL--%>
-          <a class="navbar-brand" href="/home.jsp/spanish">Spanish</a>
-          <a class="navbar-brand" href="/home.jsp/english">English</a>
+          <a class="navbar-brand" href="/home.jsp/spanish"><%=resource.getString("spanish")%></a>
+          <a class="navbar-brand" href="/home.jsp/english"><%=resource.getString("english")%></a>
         </div>
         <div class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" action="/html_form_action.asp">
             <div class="form-group">
-              <input type="text" placeholder="Email" name="username" class="form-control">
+              <input type="text" placeholder="<%=resource.getString("email")%>" name="username" class="form-control">
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" name="password"  class="form-control">
+              <input type="password" placeholder="<%=resource.getString("password")%>" name="password"  class="form-control">
             </div>
             <input type="hidden" value="adminPage" name="action" id="action">
-            <button type="submit">Login</button>
+            <button type="submit"><%=resource.getString("login")%></button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
