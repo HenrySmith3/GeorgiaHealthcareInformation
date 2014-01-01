@@ -126,7 +126,6 @@
                 <div class="panel-body">
                     Unless otherwise advised or at risk, regular mammographies and colorectal screening exams should begin starting at age 50. Screening for diabetes should begin based on family history, blood pressure, and other identifiable risk factors. One should receive a blood pressure test every two years if at a normal blood pressure and more often if in an abnormal range. Cholesterol tests should be received regularly if at an increased risk for heart disease. HPV tests and Pap tests should be obtained for women between 30-65 every 3-5 years. Sexual health test recommendations vary, but generally should be conducted if sexually active, at an increased risk, and/or pregnant. Unless otherwise advised, 65 is the recommended age for osteoperosis screening. See a doctor if you are unsure about any of these screening recommendations.
                     <br>
-                    <a href="http://womenshealth.gov/nwhw/health-resources/screening-tool/">Learn More</a>
                 </div>
             </div>
         </div>
