@@ -623,23 +623,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Hospital criteria = new Hospital();
         Enumeration parameterNames = request.getParameterNames();
         String temp;
-
+        //TODO the looping here seems inefficient
         while (parameterNames.hasMoreElements()) 
         {
             String parameter = (String)parameterNames.nextElement();
 
-            temp = request.getParameter("county");
-            if(temp.equals("1")) {
-                criteria.county = "Clayton";
-            } else if (temp.equals("2")) {
-                criteria.county = "Cobb";
-            } else if (temp.equals("3")) {
-               	criteria.county = "DeKalb";
-            } else if (temp.equals("4")) {
-               	criteria.county = "Fulton";
-            } else if (temp.equals("5")) {
-                criteria.county = "Gwinnett";
-            }
+            criteria.county = request.getParameter("county");
             if (parameter.equalsIgnoreCase("transportationForm")) {
                 //TODO What are we doing if they say drive, bus, or bike? Nothing?
                 temp = request.getParameter(parameter);
@@ -928,18 +917,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             criteria.id = 1;
             if(temp != null && temp != "")
                 criteria.id = Integer.parseInt(temp);
-            temp = request.getParameter("county");
-            if(temp.equals("1")) {
-                criteria.county = "Clayton";
-            } else if (temp.equals("2")) {
-                criteria.county = "Cobb";
-            } else if (temp.equals("3")) {
-                       criteria.county = "DeKalb";
-            } else if (temp.equals("4")) {
-                       criteria.county = "Fulton";
-            } else if (temp.equals("5")) {
-                criteria.county = "Gwinnett";
-            }
+            criteria.county = request.getParameter("county");
             temp = request.getParameter("parking");
             criteria.parking = 0;
             if(temp != null && temp.equals("yes"))
