@@ -135,7 +135,6 @@
 
     <div class="form-group" id="address">
         <label><%=resource.getString("county")%></label>
-        <%--TODO this needs to be automated--%>
         <!--<input class="form-control" name="address" type="text" placeholder="Enter county"> -->
         <select id="county" name= "county" class="form-control">
             <option value="Appling">Appling</option>
