@@ -257,7 +257,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             max_survno = Math.max(max_survno, Integer.parseInt(max_survno3));
             String survno = String.valueOf(max_survno + 1);
             criteria.name = "none";
-            String ss = "INSERT INTO P1 (SurvNo, AddFacL1, County, Website, Phone, City, ZIPCode) VALUES ('" + survno + "', '" + criteria.addressLine1 + "', '" + criteria.county + "','" + criteria.website + "', '" + criteria.phone + "', '" + criteria.city + "','" + criteria.zip + "'); ";
+            String ss = "INSERT INTO P1 (NameFac, SurvNo, AddFacL1, County, Website, Phone, City, ZIPCode) VALUES ('" + criteria.name + "', '" + survno + "', '" + criteria.addressLine1 + "', '" + criteria.county + "','" + criteria.website + "', '" + criteria.phone + "', '" + criteria.city + "','" + criteria.zip + "'); ";
             statement.executeUpdate(ss);
             String oncall = (criteria.onCall == true)? "1" : "0";
             ss = "INSERT INTO P2 (SurvNo, OnCall) VALUES ('" + survno + "', '" + oncall + "'); ";
@@ -917,6 +917,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             criteria.id = 1;
             if(temp != null && temp != "")
                 criteria.id = Integer.parseInt(temp);
+            temp = request.getParameter("name");
+            criteria.name = "";
+            if(temp != null && temp != "")
+                criteria.name = temp;
             criteria.county = request.getParameter("county");
             temp = request.getParameter("parking");
             criteria.parking = 0;

@@ -114,6 +114,13 @@
 
 <fieldset class="form-step">
     <input type="hidden" value="addHospital" name="action" id="action">
+    <div id="name" class="form-group">
+        <label>Name</label>
+        <br>
+        <textarea id="name" name = "name" rows = "1" cols = "60" placeholder="name"></textarea>
+
+        <br>
+    </div>
 
     <div class="form-group" id="county">
         <label>County</label>
