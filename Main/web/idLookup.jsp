@@ -22,7 +22,7 @@
     while (listIterator.hasNext()) {
         out.println("<tr><td>");
         JSONObject object = (JSONObject)listIterator.next();
-        out.print(object.get("ID"));
+        out.print(object.get("SurvNo"));
         out.print("</td><td>");
         out.print(object.get("name"));
         out.print("</td></tr>");

@@ -16,7 +16,7 @@ public class Hospital {
     public final static Integer FALSE = 0;
 
     //page 1
-    public Integer id;
+    public Integer survNo;
     public Boolean itp;
     public Boolean spanishSpeakingStaff;
     public String name;
@@ -166,7 +166,7 @@ public class Hospital {
         Hospital hospital = new Hospital();
 
         //page 1
-        hospital.id = resultSet.getInt("ID");
+        hospital.survNo = resultSet.getInt("survNo");
         hospital.itp = resultSet.getInt("ITP") == TRUE;
         hospital.spanishSpeakingStaff = resultSet.getInt("SPAN") == TRUE;
         hospital.name = resultSet.getString("NameFac");

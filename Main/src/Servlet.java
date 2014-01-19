@@ -89,12 +89,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     private void populateFields(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Hospital hospital1 = new Hospital();
         String getThis = hospital1.toJson().toString();
-        String id = request.getParameter("id");
+        String id = request.getParameter("survNo");
         Connection con = initializeConnection();
         Statement statement = null;
         try {
             statement = con.createStatement();
-            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 WHERE p1.ID=" + id;
+            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 WHERE p1.SurvNo=" + id;
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
             Hospital hospital = Hospital.getHospitalFromResultSet(resultSet);
@@ -149,7 +149,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             while (resultset.next()) {
                 JSONObject object = new JSONObject();
                 object.accumulate("name", resultset.getString("NameFac"));
-                object.accumulate("ID", resultset.getString("ID"));
+                object.accumulate("SurvNo", resultset.getString("SurvNo"));
                 hospitals.add(object);
                 //writer.append(hospital.toString() + "\n");
             }
@@ -186,11 +186,11 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     private String getIDLookupQuery() {
-        return "SELECT p1.NameFac, p1.ID from p1";
+        return "SELECT p1.NameFac, p1.SurvNo from p1";
     }
 
     private String getBugLookup() {
-        return "SELECT bug_report.ID, bug_report.bug, bug_report.bugDesc from bug_report";
+        return "SELECT bug_report.SurvNo, bug_report.bug, bug_report.bugDesc from bug_report";
     }
 
     private void submitBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -256,7 +256,6 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             max_survno = Math.max(Integer.parseInt(max_survno1),  Integer.parseInt(max_survno2));
             max_survno = Math.max(max_survno, Integer.parseInt(max_survno3));
             String survno = String.valueOf(max_survno + 1);
-            criteria.name = "none";
             String ss = "INSERT INTO P1 (NameFac, SurvNo, AddFacL1, County, Website, Phone, City, ZIPCode) VALUES ('" + criteria.name + "', '" + survno + "', '" + criteria.addressLine1 + "', '" + criteria.county + "','" + criteria.website + "', '" + criteria.phone + "', '" + criteria.city + "','" + criteria.zip + "'); ";
             statement.executeUpdate(ss);
             String oncall = (criteria.onCall == true)? "1" : "0";
@@ -328,27 +327,27 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             criteria.name = "none";
 //            TODO this should all be done in one SQL call.
             if(criteria.county != null && !criteria.county.equals("")){
-                ss = "UPDATE P1 SET County = '" + criteria.county + "' WHERE ID = " + criteria.id + "; ";
+                ss = "UPDATE P1 SET County = '" + criteria.county + "' WHERE SurvNo = " + criteria.survNo + "; ";
                 statement.executeUpdate(ss);
             }
             if(criteria.city != null && !criteria.city.equals("")){
-                ss = "UPDATE P1 SET City = '" + criteria.city + "' WHERE ID = " + criteria.id + "; ";
+                ss = "UPDATE P1 SET City = '" + criteria.city + "' WHERE SurvNo = " + criteria.survNo + "; ";
                 statement.executeUpdate(ss);
             }
             if(criteria.website != null && !criteria.website.equals("")){
-                ss = "UPDATE P1 SET Website = '" + criteria.website + "' WHERE ID = " + criteria.id + "; ";
+                ss = "UPDATE P1 SET Website = '" + criteria.website + "' WHERE SurvNo = " + criteria.survNo + "; ";
                 statement.executeUpdate(ss);
             }
             if(criteria.phone != null && !criteria.phone.equals("")){
-                ss = "UPDATE P1 SET Phone = '" + criteria.city + "' WHERE ID = " + criteria.id + "; ";
+                ss = "UPDATE P1 SET Phone = '" + criteria.city + "' WHERE SurvNo = " + criteria.survNo + "; ";
                 statement.executeUpdate(ss);
             }
             if(criteria.addressLine1 != null && !criteria.addressLine1.equals("")){
-                ss = "UPDATE P1 SET AddFacL1 = '" + criteria.addressLine1 + "' WHERE ID = " + criteria.id + "; ";
+                ss = "UPDATE P1 SET AddFacL1 = '" + criteria.addressLine1 + "' WHERE SurvNo = " + criteria.survNo + "; ";
                 statement.executeUpdate(ss);
             }
             if(criteria.zip != null){
-                ss = "UPDATE P1 SET ZIPCode = '" + criteria.zip + "' WHERE ID = " + criteria.id + "; ";
+                ss = "UPDATE P1 SET ZIPCode = '" + criteria.zip + "' WHERE SurvNo = " + criteria.survNo + "; ";
                 statement.executeUpdate(ss);
             }
             String oncall = "0";
@@ -356,7 +355,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             	oncall = "1";
             else
             	oncall = "0";
-            ss = "UPDATE P2 SET OnCall = '" + oncall + "' WHERE ID = " + criteria.id + "; ";
+            ss = "UPDATE P2 SET OnCall = '" + oncall + "' WHERE SurvNo = " + criteria.survNo + "; ";
             statement.executeUpdate(ss);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append( "UPDATE P3_4_5 SET ");
@@ -440,7 +439,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 stringBuilder.append( "SpanIntON = '" + interpreter + "', ");
             }
             ss = stringBuilder.toString();
-            ss = ss.substring(0, ss.length() - 2) + "WHERE ID = " + criteria.id + "; ";
+            ss = ss.substring(0, ss.length() - 2) + "WHERE SurvNo = " + criteria.survNo + "; ";
             System.out.println(ss);
             statement.executeUpdate(ss);
           con.close();
@@ -608,8 +607,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     private String getBasicSelectStatement() {
         return "SELECT * " +
                 "FROM (p1 " +
-                "JOIN p2 ON p1.ID = p2.ID " +
-                "JOIN p3_4_5 ON p1.ID = p3_4_5.ID)";
+                "JOIN p2 ON p1.SurvNo = p2.SurvNo " +
+                "JOIN p3_4_5 ON p1.SurvNo = p3_4_5.SurvNo)";
     }
 
     /**
@@ -913,10 +912,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         {
             String parameter = (String)parameterNames.nextElement();
 
-            temp = request.getParameter("id");
-            criteria.id = 1;
+            temp = request.getParameter("SurvNo");
+            criteria.survNo = 1;
             if(temp != null && temp != "")
-                criteria.id = Integer.parseInt(temp);
+                criteria.survNo = Integer.parseInt(temp);
             temp = request.getParameter("name");
             criteria.name = "";
             if(temp != null && temp != "")
