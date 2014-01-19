@@ -583,14 +583,14 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     }
 
     /**
-     * Just initializes the database connection. In the future, the username/password should not just be "root"
+     * Just initializes the database connection.
      * @return A connection to run SQL statements on.
      */
     private Connection initializeConnection() {
+        ResourceBundle resource = ResourceBundle.getBundle("password");
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //This needs to be changed, we need database accounts.
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/georgiahealthcareinformation", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/georgiahealthcareinformation", "JLeon3", resource.getString("JLeon3"));
             return con;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
