@@ -905,145 +905,131 @@ public class Servlet extends javax.servlet.http.HttpServlet {
      private Hospital populateCriteriaFromRequest_addHospital(HttpServletRequest request)
     {
         Hospital criteria = new Hospital();
-        Enumeration parameterNames = request.getParameterNames();
         String temp;
-//        TODO we aren't actually using the looping here. Just take it out.
-        while (parameterNames.hasMoreElements()) 
-        {
-            String parameter = (String)parameterNames.nextElement();
 
-            temp = request.getParameter("SurvNo");
-            criteria.survNo = 1;
-            if(temp != null && temp != "")
-                criteria.survNo = Integer.parseInt(temp);
-            temp = request.getParameter("name");
-            criteria.name = "";
-            if(temp != null && temp != "")
-                criteria.name = temp;
-            criteria.county = request.getParameter("county");
-            temp = request.getParameter("parking");
-            criteria.parking = 0;
-            if(temp != null && temp.equals("yes"))
-                criteria.parking = 1;
-            criteria.walkIn = 1;
-            if (parameter.equalsIgnoreCase("appt"))
-            {
-                temp = request.getParameter(parameter);
-                //if walkin was already processed
-                if (temp != null && temp.equalsIgnoreCase("walkin")) {
-                    criteria.walkIn = 2;
-                } 
-                else if (temp != null && temp.equalsIgnoreCase("appointment")){
-                    criteria.walkIn = 1;
-                }
-            }
-            temp = request.getParameter("insuranceForm");
-            criteria.medicare = false;
-            criteria.medicaid = false;
-            criteria.peachCare = false;
-            if(temp != null && temp.equals("1")) {
-                criteria.medicare = true;
-            } else if (temp != null && temp.equals("2")) {
-                criteria.medicaid = true;
-            } else if (temp != null && temp.equals("3")) {
-                criteria.peachCare = true;
-            }
-            criteria.spanFo = 0;
-            temp = request.getParameter("forms");
-            if(temp != null && temp.equals("yes")) {
-                criteria.spanFo = 1;
-            }
-            temp = request.getParameter("zip");
-            if(temp != null) {
-                criteria.zip = new Integer(temp);
-            }
-            temp = request.getParameter("reception");
-            if(temp != null && temp.equals("yes")) {
-                criteria.spanAdmin = 1;
-            } else{ 
-                criteria.spanAdmin = 0;
-            } 
-            if (parameter.equalsIgnoreCase("interpreter"))
-            {
-                temp = request.getParameter(parameter);
-                if (temp != null && temp.equalsIgnoreCase("interpY")) {
-                    //TODO are these just 1 and 0? or is there 3 or something?
-                	criteria.spanInterpreter = 1;
-                } 
-                else 
-                	criteria.spanInterpreter = 0;
-            }
-            temp = request.getParameter("call");
-            if(temp != null && temp.equals("yes"))
-                criteria.onCall = true;
-            else criteria.onCall = false;
-            //Stuff about days would go here, we're ignoring that for now.
-            if (parameter.equalsIgnoreCase("family"))
-            {
-                temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("fam"))
-                    criteria.spcFCH = true;
-                else
-                    criteria.spcFCH = false;
-            }
-            temp = request.getParameter("womens");
-            if(temp != null && temp.equals("wo"))
-                criteria.spcWH = true;
-            else criteria.spcWH = false;
-            temp = request.getParameter("mens");
-            if(temp != null && temp.equals("me"))
-                criteria.spcMH = true;
-            else criteria.spcMH = false;
-            temp = request.getParameter("mental");
-            if(temp != null && temp.equals("ment"))
-                criteria.spcMHC = true;
-            else criteria.spcMHC = false;
-            temp = request.getParameter("dental");
-            if(temp != null && temp.equals("dent"))
-                criteria.spcDH = true;
-            else criteria.spcDH = false;
-            temp = request.getParameter("vision");
-            if(temp != null && temp.equals("vis"))
-                criteria.spcVH = true;
-            else criteria.spcVH = false;
-            temp = request.getParameter("child");
-            if(temp != null && temp.equals("y"))
-                criteria.childGuide = true;
-            else criteria.childGuide = false;
-            temp = request.getParameter("mentalhealth");
-            if(temp != null && temp.equals("subt"))
-                criteria.subAbGuide = true;
-            else criteria.subAbGuide = false;
-            temp = request.getParameter("mentalhealth1");
-            if(temp != null && temp.equals("se"))
-                criteria.sexAbGuide = true;
-            else criteria.sexAbGuide = false;
-            temp = request.getParameter("mentalhealth2");
-            if(temp != null && temp.equals("ang"))
-                criteria.angManGuide = true;
-            else criteria.angManGuide = false;
-            temp = request.getParameter("mentalhealth3");
-            if(temp != null && temp.equals("HIV"))
-                criteria.hivConsGuide = true;
-            else criteria.hivConsGuide = false;
-            temp = request.getParameter("mentalhealth4");
-            if(temp != null && temp.equals("LGBT"))
-                criteria.lgbtGuide = true;
-            else criteria.lgbtGuide = false;
-            criteria.childGuide = false;
-            temp = request.getParameter("child");
-            if(temp != null && temp.equals("yes"))
-                criteria.childGuide = true;
-//            TODO is this right? These are getting set every time, that's idiotic.
-            temp = request.getParameter("web");
-            criteria.website = temp;
-            temp = request.getParameter("pho");
-            criteria.phone = temp;
-            temp = request.getParameter("add");
-            criteria.addressLine1 = temp;
-            temp = request.getParameter("city");
-            criteria.city = temp;
+        temp = request.getParameter("SurvNo");
+        criteria.survNo = 1;
+        if(temp != null && temp != "")
+            criteria.survNo = Integer.parseInt(temp);
+        temp = request.getParameter("name");
+        criteria.name = "";
+        if(temp != null && temp != "")
+            criteria.name = temp;
+        criteria.county = request.getParameter("county");
+        temp = request.getParameter("parking");
+        criteria.parking = 0;
+        if(temp != null && temp.equals("yes"))
+            criteria.parking = 1;
+        criteria.walkIn = 1;
+        temp = request.getParameter("appt");
+        //if walkin was already processed
+        //TODO not sure this is right, this is leftover from when we were looping here.
+        if (temp != null && temp.equalsIgnoreCase("walkin")) {
+            criteria.walkIn = 2;
         }
+        else if (temp != null && temp.equalsIgnoreCase("appointment")){
+            criteria.walkIn = 1;
+        }
+        temp = request.getParameter("insuranceForm");
+        criteria.medicare = false;
+        criteria.medicaid = false;
+        criteria.peachCare = false;
+        if(temp != null && temp.equals("1")) {
+            criteria.medicare = true;
+        } else if (temp != null && temp.equals("2")) {
+            criteria.medicaid = true;
+        } else if (temp != null && temp.equals("3")) {
+            criteria.peachCare = true;
+        }
+        criteria.spanFo = 0;
+        temp = request.getParameter("forms");
+        if(temp != null && temp.equals("yes")) {
+            criteria.spanFo = 1;
+        }
+        temp = request.getParameter("zip");
+        if(temp != null) {
+            criteria.zip = new Integer(temp);
+        }
+        temp = request.getParameter("reception");
+        if(temp != null && temp.equals("yes")) {
+            criteria.spanAdmin = 1;
+        } else{
+            criteria.spanAdmin = 0;
+        }
+        temp = request.getParameter("interpreter");
+        if (temp != null && temp.equalsIgnoreCase("interpY")) {
+            //TODO are these just 1 and 0? or is there 3 or something?
+            criteria.spanInterpreter = 1;
+        }
+        else
+            criteria.spanInterpreter = 0;
+        temp = request.getParameter("call");
+        if(temp != null && temp.equals("yes"))
+            criteria.onCall = true;
+        else criteria.onCall = false;
+        //Stuff about days would go here, we're ignoring that for now.
+        temp = request.getParameter("family");
+        if( temp != null && temp.equalsIgnoreCase("fam"))
+            criteria.spcFCH = true;
+        else
+            criteria.spcFCH = false;
+        temp = request.getParameter("womens");
+        if(temp != null && temp.equals("wo"))
+            criteria.spcWH = true;
+        else criteria.spcWH = false;
+        temp = request.getParameter("mens");
+        if(temp != null && temp.equals("me"))
+            criteria.spcMH = true;
+        else criteria.spcMH = false;
+        temp = request.getParameter("mental");
+        if(temp != null && temp.equals("ment"))
+            criteria.spcMHC = true;
+        else criteria.spcMHC = false;
+        temp = request.getParameter("dental");
+        if(temp != null && temp.equals("dent"))
+            criteria.spcDH = true;
+        else criteria.spcDH = false;
+        temp = request.getParameter("vision");
+        if(temp != null && temp.equals("vis"))
+            criteria.spcVH = true;
+        else criteria.spcVH = false;
+        temp = request.getParameter("child");
+        if(temp != null && temp.equals("y"))
+            criteria.childGuide = true;
+        else criteria.childGuide = false;
+        temp = request.getParameter("mentalhealth");
+        if(temp != null && temp.equals("subt"))
+            criteria.subAbGuide = true;
+        else criteria.subAbGuide = false;
+        temp = request.getParameter("mentalhealth1");
+        if(temp != null && temp.equals("se"))
+            criteria.sexAbGuide = true;
+        else criteria.sexAbGuide = false;
+        temp = request.getParameter("mentalhealth2");
+        if(temp != null && temp.equals("ang"))
+            criteria.angManGuide = true;
+        else criteria.angManGuide = false;
+        temp = request.getParameter("mentalhealth3");
+        if(temp != null && temp.equals("HIV"))
+            criteria.hivConsGuide = true;
+        else criteria.hivConsGuide = false;
+        temp = request.getParameter("mentalhealth4");
+        if(temp != null && temp.equals("LGBT"))
+            criteria.lgbtGuide = true;
+        else criteria.lgbtGuide = false;
+        criteria.childGuide = false;
+        temp = request.getParameter("child");
+        if(temp != null && temp.equals("yes"))
+            criteria.childGuide = true;
+        temp = request.getParameter("web");
+        criteria.website = temp;
+        temp = request.getParameter("pho");
+        criteria.phone = temp;
+        temp = request.getParameter("add");
+        criteria.addressLine1 = temp;
+        temp = request.getParameter("city");
+        criteria.city = temp;
+
         return criteria ;
     }
 }
