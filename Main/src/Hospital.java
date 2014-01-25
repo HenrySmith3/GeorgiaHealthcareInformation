@@ -72,6 +72,7 @@ public class Hospital {
     public Boolean medicare;
     public Boolean medicaid;
     public Boolean peachCare;
+    public Boolean otherHealthcare;
     public Integer pay;
     public Integer financialAssistance;
     public Boolean payPlanGuide;
