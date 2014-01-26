@@ -89,7 +89,7 @@
     </div>
 </header>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
+<!-- Main jumbotron for a primaryCare marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
         <h1>Health Information</h1>

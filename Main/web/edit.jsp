@@ -447,45 +447,46 @@
         <label class="checkbox-inline" for="vision">
             <input id="vision" type="checkbox" value="vis" name = "vision" <%if (hospital.getString("spcVH").equals("true")) out.write("checked='true'");%>>Vision
         </label>
-        <%--TODO all the options from here forward are new and aren't being handles --%>
+        <%--additional specialties--%>
+
         <label class="checkbox-inline" for="primary">
-            <input id="primary" type="checkbox" value="pri">Primary Care
+            <input id="primary" type="checkbox" value="pri" name="primaryCare" <%if (hospital.getString("primaryCare").equals("1")) out.write("checked='true'");%>>Primary Care
         </label>
         <label class="checkbox-inline" for="internal">
-            <input id="internal" type="checkbox" value="int">Internal Medicine
+            <input id="internal" type="checkbox" value="int" name="internal" <%if (hospital.getString("internal").equals("1")) out.write("checked='true'");%>>Internal Medicine
         </label>
         <label class="checkbox-inline" for="child">
-            <input id="child" type="checkbox" value="chi">Pediatric Care
+            <input id="child" type="checkbox" value="chi" name="child" <%if (hospital.getString("pediatric").equals("1")) out.write("checked='true'");%>>Pediatric Care
         </label>
         <label class="checkbox-inline" for="elder">
-            <input id="elder" type="checkbox" value="eld">Geriatric Care
+            <input id="elder" type="checkbox" value="eld" name="elder" <%if (hospital.getString("geriatric").equals("1")) out.write("checked='true'");%>>Geriatric Care
         </label>
         <label class="checkbox-inline" for="diabetes">
-            <input id="diabetes" type="checkbox" value="dia">Diabetes
+            <input id="diabetes" type="checkbox" value="dia" name="diabetes" <%if (hospital.getString("diabetes").equals("1")) out.write("checked='true'");%>>Diabetes
         </label>
         <label class="checkbox-inline" for="pain">
-            <input id="pain" type="checkbox" value="pai">Pain Management
+            <input id="pain" type="checkbox" value="pai" name="pain" <%if (hospital.getString("pain").equals("1")) out.write("checked='true'");%>>Pain Management
         </label>
         <label class="checkbox-inline" for="trauma">
-            <input id="trauma" type="checkbox" value="trau">Trauma/Emergency
+            <input id="trauma" type="checkbox" value="trau" name="trauma" <%if (hospital.getString("emergency").equals("1")) out.write("checked='true'");%>>Trauma/Emergency
         </label>
         <label class="checkbox-inline" for="surgery">
-            <input id="surgery" type="checkbox" value="sur">General Surgery
+            <input id="surgery" type="checkbox" value="sur" name="surgery" <%if (hospital.getString("surgery").equals("1")) out.write("checked='true'");%>>General Surgery
         </label>
         <label class="checkbox-inline" for="radio">
-            <input id="radio" type="checkbox" value="rad">Radiology
+            <input id="radio" type="checkbox" value="rad" name="radio" <%if (hospital.getString("radiology").equals("1")) out.write("checked='true'");%>>Radiology
         </label>
         <label class="checkbox-inline" for="skin">
-            <input id="skin" type="checkbox" value="skin">Dermatology
+            <input id="skin" type="checkbox" value="skin" name="skin" <%if (hospital.getString("dermatology").equals("1")) out.write("checked='true'");%>>Dermatology
         </label>
         <label class="checkbox-inline" for="ent">
-            <input id="ent" type="checkbox" value="ent">ENT (Ears/Nose/Throat)
+            <input id="ent" type="checkbox" value="ent" name="ent" <%if (hospital.getString("ent").equals("1")) out.write("checked='true'");%>>ENT (Ears/Nose/Throat)
         </label>
         <label class="checkbox-inline" for="allergy">
-            <input id="allergy" type="checkbox" value="alle">Allergy/Asthma
+            <input id="allergy" type="checkbox" value="alle" name="allergy" <%if (hospital.getString("allergy").equals("1")) out.write("checked='true'");%>>Allergy/Asthma
         </label>
         <label class="checkbox-inline" for="prenatal">
-            <input id="prenatal" type="checkbox" value="prena">Prenatal Care
+            <input id="prenatal" type="checkbox" value="prena" name="prenatal" <%if (hospital.getString("prenatal").equals("1")) out.write("checked='true'");%>>Prenatal Care
         </label>
     </div>
 

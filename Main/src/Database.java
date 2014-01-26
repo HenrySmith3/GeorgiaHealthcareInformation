@@ -178,6 +178,7 @@ public class Database {
         return "SELECT * " +
                 "FROM (p1 " +
                 "JOIN p2 ON p1.SurvNo = p2.SurvNo " +
-                "JOIN p3_4_5 ON p1.SurvNo = p3_4_5.SurvNo)";
+                "JOIN p3_4_5 ON p1.SurvNo = p3_4_5.SurvNo " +
+                "LEFT JOIN additionalSpecialties ON p1.SurvNo = additionalSpecialties.SurvNo";
     }
 }

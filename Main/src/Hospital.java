@@ -116,6 +116,21 @@ public class Hospital {
     public String notesLowFree;
     public String notesLowFree2;
 
+    //additional specialties:
+    public String primaryCare;
+    public String internal;
+    public String pediatric;
+    public String geriatric;
+    public String diabetes;
+    public String pain;
+    public String emergency;
+    public String surgery;
+    public String radiology;
+    public String dermatology;
+    public String ent;
+    public String allergy;
+    public String prenatal;
+
     public String toString() {
         StringBuilder result = new StringBuilder();
         String newLine = System.getProperty("line.separator");
@@ -285,6 +300,20 @@ public class Hospital {
         hospital.notes = resultSet.getString("NotesGUIDE");
         hospital.notesLowFree = resultSet.getString("NotesLowFreeGUIDE");
         hospital.notesLowFree2 = resultSet.getString("NotesLowFree2GUIDE");
+
+        hospital.primaryCare = resultSet.getString("PrimaryCare");
+        hospital.internal = resultSet.getString("Internal");
+        hospital.pediatric = resultSet.getString("Pediatric");
+        hospital.geriatric = resultSet.getString("Geriatric");
+        hospital.diabetes = resultSet.getString("Diabetes");
+        hospital.pain = resultSet.getString("Pain");
+        hospital.emergency = resultSet.getString("Emergency");
+        hospital.surgery = resultSet.getString("Surgery");
+        hospital.radiology = resultSet.getString("Radiology");
+        hospital.dermatology = resultSet.getString("Dermatology");
+        hospital.ent = resultSet.getString("ENT");
+        hospital.allergy = resultSet.getString("Allergy");
+        hospital.prenatal = resultSet.getString("Prenatal");
         return hospital;
     }
 }

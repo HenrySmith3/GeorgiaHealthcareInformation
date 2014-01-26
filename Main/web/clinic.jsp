@@ -342,16 +342,16 @@
         <label>Which medical insurance can be used?</label>
         <%--TODO changed format, being handled?--%>
         <label class="checkbox" for="Medicare">
-            <input id="Medicare" type="checkbox" value="Medicare" name = "days">Medicare
+            <input id="Medicare" type="checkbox" value="Medicare" name = "Medicare">Medicare
         </label>
         <label class="checkbox" for="Medicaid">
-            <input id="Medicaid" type="checkbox" value="Medicaid" name = "days">Medicaid
+            <input id="Medicaid" type="checkbox" value="Medicaid" name = "Medicaid">Medicaid
         </label>
         <label class="checkbox" for="Peachcare">
-            <input id="Peachcare" type="checkbox" value="Peachcare" name = "days">Peachcare
+            <input id="Peachcare" type="checkbox" value="Peachcare" name = "Peachcare">Peachcare
         </label>
         <label class="checkbox" for="Other">
-            <input id="Other" type="checkbox" value="Other" name = "days">Other
+            <input id="OtherHealthcare" type="checkbox" value="OtherHealthcare" name = "OtherHealthcare">Other
         </label>
     </div>
 
@@ -399,28 +399,28 @@
     <div class="form-group" id="date">
         <label>On which days do you open?</label><br>
         <label class="checkbox-inline" for="mon">
-            <input id="mon" type="checkbox" value="M" name = "days">Monday
+            <input id="mon" type="checkbox" value="M" name = "Monday">Monday
         </label>
         <label class="checkbox-inline" for="tues">
-            <input id="tues" type="checkbox" value="T" name = "days">Tuesday
+            <input id="tues" type="checkbox" value="T" name = "Tuesday">Tuesday
         </label>
         <label class="checkbox-inline" for="wed">
-            <input id="wed" type="checkbox" value="W" name = "days">Wednesday
+            <input id="wed" type="checkbox" value="W" name = "Wednesday">Wednesday
         </label>
         <label class="checkbox-inline" for="thurs">
-            <input id="thurs" type="checkbox" value="R" name = "days">Thursday
+            <input id="thurs" type="checkbox" value="R" name = "Thursday">Thursday
         </label>
         <label class="checkbox-inline" for="fri">
-            <input id="fri" type="checkbox" value="F" name = "days">Friday
+            <input id="fri" type="checkbox" value="F" name = "Friday">Friday
         </label>
         <label class="checkbox-inline" for="sat">
-            <input id="sat" type="checkbox" value="S" name = "days">Saturday
+            <input id="sat" type="checkbox" value="S" name = "Saturday">Saturday
         </label>
         <label class="checkbox-inline" for="sun">
-            <input id="sun" type="checkbox" value="Su" name = "days">Sunday
+            <input id="sun" type="checkbox" value="Su" name = "Sunday">Sunday
         </label>
         <label class="checkbox-inline" for="all">
-            <input id="all" type="checkbox" value="A" name = "days">All/Any
+            <input id="all" type="checkbox" value="A" name = "AnyDay">All/Any
         </label>
     </div>
     <br>
@@ -445,45 +445,45 @@
         <label class="checkbox-inline" for="vision">
             <input id="vision" type="checkbox" value="vis" name = "vision">Vision
         </label>
-        <%--TODO all the options from here forward are new and aren't being handles --%>
+        <%--additional specialties--%>
         <label class="checkbox-inline" for="primary">
-            <input id="primary" type="checkbox" value="pri">Primary Care
+            <input id="primary" type="checkbox" value="pri" name="primaryCare" >Primary Care
         </label>
         <label class="checkbox-inline" for="internal">
-            <input id="internal" type="checkbox" value="int">Internal Medicine
+            <input id="internal" type="checkbox" value="int" name="internal">Internal Medicine
         </label>
         <label class="checkbox-inline" for="child">
-            <input id="child" type="checkbox" value="chi">Pediatric Care
+            <input id="child" type="checkbox" value="chi" name="child">Pediatric Care
         </label>
         <label class="checkbox-inline" for="elder">
-            <input id="elder" type="checkbox" value="eld">Geriatric Care
+            <input id="elder" type="checkbox" value="eld" name="elder">Geriatric Care
         </label>
         <label class="checkbox-inline" for="diabetes">
-            <input id="diabetes" type="checkbox" value="dia">Diabetes
+            <input id="diabetes" type="checkbox" value="dia" name="diabetes">Diabetes
         </label>
         <label class="checkbox-inline" for="pain">
-            <input id="pain" type="checkbox" value="pai">Pain Management
+            <input id="pain" type="checkbox" value="pai" name="pain">Pain Management
         </label>
         <label class="checkbox-inline" for="trauma">
-            <input id="trauma" type="checkbox" value="trau">Trauma/Emergency
+            <input id="trauma" type="checkbox" value="trau" name="trauma">Trauma/Emergency
         </label>
         <label class="checkbox-inline" for="surgery">
-            <input id="surgery" type="checkbox" value="sur">General Surgery
+            <input id="surgery" type="checkbox" value="sur" name="surgery">General Surgery
         </label>
         <label class="checkbox-inline" for="radio">
-            <input id="radio" type="checkbox" value="rad">Radiology
+            <input id="radio" type="checkbox" value="rad" name="radio">Radiology
         </label>
         <label class="checkbox-inline" for="skin">
-            <input id="skin" type="checkbox" value="skin">Dermatology
+            <input id="skin" type="checkbox" value="skin" name="skin">Dermatology
         </label>
         <label class="checkbox-inline" for="ent">
-            <input id="ent" type="checkbox" value="ent">ENT (Ears/Nose/Throat)
+            <input id="ent" type="checkbox" value="ent" name="ent">ENT (Ears/Nose/Throat)
         </label>
         <label class="checkbox-inline" for="allergy">
-            <input id="allergy" type="checkbox" value="alle">Allergy/Asthma
+            <input id="allergy" type="checkbox" value="alle" name="allergy">Allergy/Asthma
         </label>
         <label class="checkbox-inline" for="prenatal">
-            <input id="prenatal" type="checkbox" value="prena">Prenatal Care
+            <input id="prenatal" type="checkbox" value="prena" name="prenatal">Prenatal Care
         </label>
     </div>
 

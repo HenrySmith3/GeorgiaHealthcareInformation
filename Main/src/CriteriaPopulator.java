@@ -1,6 +1,7 @@
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,10 +25,6 @@ public class CriteriaPopulator {
        if(temp != null && temp != "")
            criteria.name = temp;
        criteria.county = request.getParameter("county");
-       temp = request.getParameter("parking");
-       criteria.parking = 0;
-       if(temp != null && temp.equals("yes"))
-           criteria.parking = 1;
        criteria.walkIn = 1;
        temp = request.getParameter("appt");
        //if walkin was already processed
@@ -38,18 +35,24 @@ public class CriteriaPopulator {
        else if (temp != null && temp.equalsIgnoreCase("appointment")){
            criteria.walkIn = 1;
        }
-       temp = request.getParameter("insuranceForm");
        criteria.medicare = false;
        criteria.medicaid = false;
        criteria.peachCare = false;
        criteria.otherHealthcare = false;
-       if(temp != null && temp.equals("1")) {
+       temp = request.getParameter("Medicare");
+       if(temp != null && temp.equals("Medicare")) {
            criteria.medicare = true;
-       } else if (temp != null && temp.equals("2")) {
+       }
+       temp = request.getParameter("Medicaid");
+       if (temp != null && temp.equals("Medicaid")) {
            criteria.medicaid = true;
-       } else if (temp != null && temp.equals("3")) {
+       }
+       temp = request.getParameter("PeachCare");
+       if (temp != null && temp.equals("PeachCare")) {
            criteria.peachCare = true;
-       } else if (temp != null && temp.equals("4")) {
+       }
+       temp = request.getParameter("OtherHealthcare");
+       if (temp != null && temp.equals("OtherHealthcare")) {
            criteria.otherHealthcare = true;
        }
        criteria.spanFo = 0;
@@ -69,16 +72,87 @@ public class CriteriaPopulator {
        }
        temp = request.getParameter("interpreter");
        if (temp != null && temp.equalsIgnoreCase("interpY")) {
-           //TODO are these just 1 and 0? or is there 3 or something?
+           //1, 2, and 3 are just yes, 4 is no. Yes, it's a terrible system, but we were given a terrible database.
            criteria.spanInterpreter = 1;
-       }
-       else
+       } else {
            criteria.spanInterpreter = 0;
+       }
        temp = request.getParameter("call");
        if(temp != null && temp.equals("yes"))
            criteria.onCall = true;
        else criteria.onCall = false;
-       //Stuff about days would go here, we're ignoring that for now.
+       //This is a stupid system, but it technically works. The open times are whether it's open on that day or not.
+       //zero is not open, one is open, as strings. Yeah, it's dumb.
+       if (criteria.openTimes == null || criteria.openTimes.size() < 7) {
+           List<String> openTimes = new ArrayList<String>();
+           for (int i = 0; i < 7; i++) {
+               openTimes.add(i, "0");
+           }
+           criteria.openTimes = openTimes;
+       }
+       temp = request.getParameter("Sunday");
+       if (temp != null && temp.equalsIgnoreCase("Su")) {
+           criteria.openTimes.remove(0);
+           criteria.openTimes.add(0, "1");
+       } else {
+           criteria.openTimes.remove(0);
+           criteria.openTimes.add(0, "0");
+       }
+       temp = request.getParameter("Monday");
+       if (temp != null && temp.equalsIgnoreCase("M")) {
+           criteria.openTimes.remove(1);
+           criteria.openTimes.add(1, "1");
+       } else {
+           criteria.openTimes.remove(1);
+           criteria.openTimes.add(1, "0");
+       }
+       temp = request.getParameter("Tuesday");
+       if (temp != null && temp.equalsIgnoreCase("T")) {
+           criteria.openTimes.remove(2);
+           criteria.openTimes.add(2, "1");
+       } else {
+           criteria.openTimes.remove(2);
+           criteria.openTimes.add(2, "0");
+       }
+       temp = request.getParameter("Wednesday");
+       if (temp != null && temp.equalsIgnoreCase("W")) {
+           criteria.openTimes.remove(3);
+           criteria.openTimes.add(3, "1");
+       } else {
+           criteria.openTimes.remove(3);
+           criteria.openTimes.add(3, "0");
+       }
+       temp = request.getParameter("Thursday");
+       if (temp != null && temp.equalsIgnoreCase("R")) {
+           criteria.openTimes.remove(4);
+           criteria.openTimes.add(4, "1");
+       } else {
+           criteria.openTimes.remove(4);
+           criteria.openTimes.add(4, "0");
+       }
+       temp = request.getParameter("Friday");
+       if (temp != null && temp.equalsIgnoreCase("F")) {
+           criteria.openTimes.remove(5);
+           criteria.openTimes.add(5, "1");
+       } else {
+           criteria.openTimes.remove(5);
+           criteria.openTimes.add(5, "0");
+       }
+       temp = request.getParameter("Saturday");
+       if (temp != null && temp.equalsIgnoreCase("S")) {
+           criteria.openTimes.remove(6);
+           criteria.openTimes.add(6, "1");
+       } else {
+           criteria.openTimes.remove(6);
+           criteria.openTimes.add(6, "0");
+       }
+       temp = request.getParameter("AnyDay");
+       if (temp != null && temp.equalsIgnoreCase("A")) {
+           for (int i = 0; i < criteria.openTimes.size(); i++) {
+               criteria.openTimes.remove(i);
+               criteria.openTimes.add(i, "1");
+           }
+       }
        temp = request.getParameter("family");
        if( temp != null && temp.equalsIgnoreCase("fam"))
            criteria.spcFCH = true;
@@ -140,6 +214,87 @@ public class CriteriaPopulator {
        criteria.addressLine1 = temp;
        temp = request.getParameter("city");
        criteria.city = temp;
+
+       //additional specialties
+
+       criteria.primaryCare = "0";
+       criteria.internal = "0";
+       criteria.pediatric = "0";
+       criteria.geriatric = "0";
+       criteria.diabetes = "0";
+       criteria.pain = "0";
+       criteria.emergency = "0";
+       criteria.surgery = "0";
+       criteria.radiology = "0";
+       criteria.dermatology = "0";
+       criteria.ent = "0";
+       criteria.allergy = "0";
+       criteria.prenatal = "0";
+
+       temp = request.getParameter("primaryCare");
+       if (temp != null && temp.equalsIgnoreCase("pri")) {
+           criteria.primaryCare = "1";
+       }
+
+       temp = request.getParameter("internal");
+       if (temp != null && temp.equalsIgnoreCase("int")) {
+           criteria.internal = "1";
+       }
+
+       temp = request.getParameter("child");
+       if (temp != null && temp.equalsIgnoreCase("chi")) {
+           criteria.pediatric = "1";
+       }
+
+       temp = request.getParameter("elder");
+       if (temp != null && temp.equalsIgnoreCase("eld")) {
+           criteria.geriatric = "1";
+       }
+
+       temp = request.getParameter("diabetes");
+       if (temp != null && temp.equalsIgnoreCase("dia")) {
+           criteria.diabetes = "1";
+       }
+
+       temp = request.getParameter("pain");
+       if (temp != null && temp.equalsIgnoreCase("pai")) {
+           criteria.pain = "1";
+       }
+
+       temp = request.getParameter("trauma");
+       if (temp != null && temp.equalsIgnoreCase("trau")) {
+           criteria.emergency = "1";
+       }
+
+       temp = request.getParameter("surgery");
+       if (temp != null && temp.equalsIgnoreCase("sur")) {
+           criteria.surgery = "1";
+       }
+
+       temp = request.getParameter("radio");
+       if (temp != null && temp.equalsIgnoreCase("rad")) {
+           criteria.radiology = "1";
+       }
+
+       temp = request.getParameter("skin");
+       if (temp != null && temp.equalsIgnoreCase("skin")) {
+           criteria.dermatology = "1";
+       }
+
+       temp = request.getParameter("ent");
+       if (temp != null && temp.equalsIgnoreCase("ent")) {
+           criteria.ent = "1";
+       }
+
+       temp = request.getParameter("allergy");
+       if (temp != null && temp.equalsIgnoreCase("alle")) {
+           criteria.allergy = "1";
+       }
+
+       temp = request.getParameter("prenatal");
+       if (temp != null && temp.equalsIgnoreCase("prena")) {
+           criteria.prenatal = "1";
+       }
 
        return criteria ;
    }
@@ -227,7 +382,7 @@ public class CriteriaPopulator {
             if (parameter.equalsIgnoreCase("receptionist"))
             {
                 temp = request.getParameter(parameter);
-                if(temp.equalsIgnoreCase("recept"))
+                if(temp.equalsIgnoreCase("yes"))
                     criteria.spanAdmin = Hospital.TRUE;
             }
             if (parameter.equalsIgnoreCase("nurses"))
@@ -252,16 +407,19 @@ public class CriteriaPopulator {
                 criteria.spanInterpreter = temp.equalsIgnoreCase("interpY") ? Hospital.TRUE : Hospital.FALSE;
             }
 
-            if (parameter.equalsIgnoreCase("phone"))
+            if (parameter.equalsIgnoreCase("reception"))
             {
                 temp = request.getParameter(parameter);
-                criteria.spanPhone = temp.equalsIgnoreCase("y") ? Hospital.TRUE : Hospital.FALSE;
+                criteria.spanPhone = temp.equalsIgnoreCase("yes") ? Hospital.TRUE : Hospital.FALSE;
             }
             temp = request.getParameter("call");
-            if(temp != null && temp.equals("yes"))
+            if(temp != null && temp.equals("yes")) {
                 criteria.onCall = true;
-            else criteria.onCall = false;
+            } else {
+                criteria.onCall = false;
+            }
             //Stuff about days would go here, we're ignoring that for now.
+
             if (parameter.equalsIgnoreCase("family"))
             {
                 temp = request.getParameter(parameter);

@@ -93,7 +93,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Statement statement = null;
         try {
             statement = con.createStatement();
-            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 WHERE p1.SurvNo=" + id;
+            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 JOIN additionalSpecialties WHERE p1.SurvNo=" + id;
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
             Hospital hospital = Hospital.getHospitalFromResultSet(resultSet);
@@ -227,7 +227,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     private void addHospital(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Hospital criteria = CriteriaPopulator.populateCriteriaFromRequest_addHospital(request);
         Connection con = Database.initializeConnection();
-        String max_survno1 = "", max_survno2 = "", max_survno3 = "";  //find the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
+        String max_survno1 = "", max_survno2 = "", max_survno3 = "", max_survno4 = "";  //find the max number of survno, when insert a new hospital, make the value be larger than the values currently exist
 //        TODO I'm pretty sure SQL does all of this automatically.
         int max_survno;
         try {
@@ -242,10 +242,15 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             }
             result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM P3_4_5;");
             while(result_max_survno.next()){
-                max_survno3 = result_max_survno.getString("MAX(SurvNo)"); 
+                max_survno3 = result_max_survno.getString("MAX(SurvNo)");
+            }
+            result_max_survno = statement.executeQuery("SELECT MAX(SurvNo) FROM additionalSpecialties;");
+            while(result_max_survno.next()){
+                max_survno4 = result_max_survno.getString("MAX(SurvNo)");
             }
             max_survno = Math.max(Integer.parseInt(max_survno1),  Integer.parseInt(max_survno2));
             max_survno = Math.max(max_survno, Integer.parseInt(max_survno3));
+            max_survno = Math.max(max_survno, Integer.parseInt(max_survno4));
             String survno = String.valueOf(max_survno + 1);
             String ss = "INSERT INTO P1 (NameFac, SurvNo, AddFacL1, County, Website, Phone, City, ZIPCode) VALUES ('" + criteria.name + "', '" + survno + "', '" + criteria.addressLine1 + "', '" + criteria.county + "','" + criteria.website + "', '" + criteria.phone + "', '" + criteria.city + "','" + criteria.zip + "'); ";
             statement.executeUpdate(ss);
@@ -300,6 +305,28 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                     spcwh + "', '" + spcmh + "', '" + spcfch + "', '" + spcmhc+ "', '" + 
                     spcdh + "', '" + spcvh + "', '" + childguide + "', '" + subab + "', '" + sexab + "', '" + angman + "', '" + 
                     hivcons + "', '" + lgbt + "', '" + interpreter + "'); ");
+            ss = stringBuilder.toString();
+            statement.executeUpdate(ss);
+
+            //now the additional specialties.
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("INSERT INTO additionalSpecialties (SurvNo, PrimaryCare, Internal, Pediatric, Geriatric, Diabetes," +
+                    "Pain, Emergency, Surgery, Radiology, Dermatology, ENT, Allergy, Prenatal)");
+            stringBuilder.append("VALUES ('"
+            + survno + "', '"
+            + (criteria.primaryCare.equals("1") ? "1" : "0") + "', '"
+            + (criteria.internal.equals("1") ? "1" : "0") + "', '"
+            + (criteria.pediatric.equals("1") ? "1" : "0") + "', '"
+            + (criteria.geriatric.equals("1") ? "1" : "0") + "', '"
+            + (criteria.diabetes.equals("1") ? "1" : "0") + "', '"
+            + (criteria.pain.equals("1") ? "1" : "0") + "', '"
+            + (criteria.emergency.equals("1") ? "1" : "0") + "', '"
+            + (criteria.surgery.equals("1") ? "1" : "0") + "', '"
+            + (criteria.radiology.equals("1") ? "1" : "0") + "', '"
+            + (criteria.dermatology.equals("1") ? "1" : "0") + "', '"
+            + (criteria.ent.equals("1") ? "1" : "0") + "', '"
+            + (criteria.allergy.equals("1") ? "1" : "0") + "', '"
+            + (criteria.prenatal.equals("1") ? "1" : "0") + "');");
             ss = stringBuilder.toString();
             statement.executeUpdate(ss);
           con.close();
