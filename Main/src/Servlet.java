@@ -93,7 +93,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Statement statement = null;
         try {
             statement = con.createStatement();
-            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 JOIN additionalSpecialties WHERE p1.SurvNo=" + id;
+            String query = "SELECT * FROM p1 JOIN p2 JOIN p3_4_5 JOIN additionalSpecialties WHERE p1.SurvNo=" + id +
+                    " AND p2.SurvNo=" + id + " AND p3_4_5.SurvNo=" + id + " AND additionalSpecialties.SurvNo=" + id;
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
             Hospital hospital = Hospital.getHospitalFromResultSet(resultSet);

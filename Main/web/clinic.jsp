@@ -487,17 +487,6 @@
         </label>
     </div>
 
-    <div class="form-group" id="children">
-        <label>Do you have pediatrics? (Ages 0-24) **Add to the specialties in the previous question*</label><br>
-        <label class="radio-inline" for="childrenyes">
-            <input id="childrenyes" name="child" type="radio" value="y">Yes
-        </label>
-        <label class="radio-inline" for="childrenno">
-            <input id="childrenno" name="child" type="radio" value="n">No
-        </label>
-    </div>
-
-
     <!--<div class="form-group" id="ages">
        <label>If yes, please check all the ages that apply.</label>
        <label class="checkbox">
