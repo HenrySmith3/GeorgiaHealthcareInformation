@@ -27,12 +27,15 @@ public class CriteriaPopulator {
        criteria.county = request.getParameter("county");
        criteria.walkIn = 1;
        temp = request.getParameter("appt");
-       //if walkin was already processed
-       //TODO not sure this is right, this is leftover from when we were looping here.
-       if (temp != null && temp.equalsIgnoreCase("walkin")) {
+       if (temp != null && temp.equalsIgnoreCase("appointment")) {
            criteria.walkIn = 2;
        }
-       else if (temp != null && temp.equalsIgnoreCase("appointment")){
+       temp = request.getParameter("walk");
+       if (temp != null && temp.equalsIgnoreCase("walkin")){
+           criteria.walkIn = 1;
+       }
+       temp = request.getParameter("bothappt");
+       if (temp != null && temp.equalsIgnoreCase("bothWalkApp")){
            criteria.walkIn = 1;
        }
        criteria.medicare = false;
@@ -47,8 +50,8 @@ public class CriteriaPopulator {
        if (temp != null && temp.equals("Medicaid")) {
            criteria.medicaid = true;
        }
-       temp = request.getParameter("PeachCare");
-       if (temp != null && temp.equals("PeachCare")) {
+       temp = request.getParameter("Peachcare");
+       if (temp != null && temp.equals("Peachcare")) {
            criteria.peachCare = true;
        }
        temp = request.getParameter("OtherHealthcare");
@@ -360,16 +363,27 @@ public class CriteriaPopulator {
             if (parameter.equalsIgnoreCase("appt"))
             {
                 temp = request.getParameter(parameter);
-                //if walkin was already processed
-                if (temp.equalsIgnoreCase("appmt")) {
+                if (temp.equalsIgnoreCase("appointment")) {
                     criteria.walkIn = 2;
                 }
-                else if (temp.equalsIgnoreCase("walk")){
-                	criteria.walkIn = 1;
+            }
+            if (parameter.equalsIgnoreCase("walkin"))
+            {
+                temp = request.getParameter(parameter);
+                if (temp.equalsIgnoreCase("walkin")) {
+                    criteria.walkIn = 1;
+                }
+            }
+            if (parameter.equalsIgnoreCase("bothappt"))
+            {
+                temp = request.getParameter(parameter);
+                if (temp.equalsIgnoreCase("bothWalkApp")) {
+                    criteria.walkIn = 3;
                 }
             }
             if (parameter.equalsIgnoreCase("insuranceForm"))
             {
+                //TODO this is different than in adding a hospital. Is it right?
                 temp = request.getParameter(parameter);
                 if(temp.equals("1")) {
                     criteria.medicare = true;

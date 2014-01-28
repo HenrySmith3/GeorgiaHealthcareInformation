@@ -327,14 +327,14 @@
     <div class="form-group" id="appt">
         <label>What kind of appointments can be made?</label><br>
         <label class="radio-inline" for="walkin">
-            <input id="walkin" name="appt" type="radio" value="walkin">Walk-In
+            <input id="walkin" name="walk" type="radio" value="walkin">Walk-In
         </label>
         <label class="radio-inline" for="appointment">
             <input id="appointment" name="appt" type="radio" value="appointment">Appointment
         </label>
         <%--TODO this option is new--%>
         <label class="radio-inline" for="bothWalkApp">
-            <input id="bothWalkApp" name="appt" type="radio" value="bothWalkApp">Both
+            <input id="bothWalkApp" name="bothappt" type="radio" value="bothWalkApp">Both
         </label>
     </div>
 

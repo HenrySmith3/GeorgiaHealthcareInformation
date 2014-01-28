@@ -260,12 +260,12 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             statement.executeUpdate(ss);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("INSERT INTO P3_4_5 (SurvNo, AppWalk, MedicareGuide, MedicaidGuide, " +
-                    "PeachcareGuide, SPANAdmGUIDE,SPANFoGuide, " +
+                    "PeachcareGuide, OtherHealthcare SPANAdmGUIDE,SPANFoGuide, " +
                     "SpcWH, SpcMH, SpcFCH, SpcMHC," +
                     "SpcDH, SpcVH, NinosGUIDE," +
                     "subAbGuide, sexAbGuide, angManGuide, " +
                     "HIVConsGUIDE, LGBTGUIDE, SPANIntON)");
-            String medicare = "0", medicaid = "0", peachcare = "0", childguide = "0";
+            String medicare = "0", medicaid = "0", peachcare = "0", otherHealthcare = "0", childguide = "0";
             String subab = "0", sexab = "0", angman = "0", hivcons = "0", lgbt = "0";
             String spcwh = "0", spcmh = "0", spcfch = "0", spcmhc = "0", spcdh = "0", spcvh = "0";
             String interpreter = "3";
@@ -274,7 +274,9 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if(criteria.medicaid != null && criteria.medicaid == true)
             	medicaid = "1";
             if(criteria.peachCare != null && criteria.peachCare == true)
-            	peachcare = "1";
+                peachcare = "1";
+            if(criteria.otherHealthcare != null && criteria.otherHealthcare == true)
+                otherHealthcare = "1";
             if(criteria.childGuide != null && criteria.childGuide == true)
             	childguide = "1";
             if(criteria.subAbGuide != null && criteria.subAbGuide == true)
@@ -302,7 +304,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             if(!new Integer(3).equals(criteria.spanInterpreter))
                 interpreter = "1";
            stringBuilder.append("VALUES ('" + survno + "', '" +  + criteria.walkIn + "', '" + medicare + "', '" + medicaid + "', '" + 
-                    peachcare + "', '" + criteria.spanAdmin + "', '" + criteria.spanFo + "', '" + 
+                    peachcare + "', '" + otherHealthcare + "', '" + criteria.spanAdmin + "', '" + criteria.spanFo + "', '" +
                     spcwh + "', '" + spcmh + "', '" + spcfch + "', '" + spcmhc+ "', '" + 
                     spcdh + "', '" + spcvh + "', '" + childguide + "', '" + subab + "', '" + sexab + "', '" + angman + "', '" + 
                     hivcons + "', '" + lgbt + "', '" + interpreter + "'); ");
